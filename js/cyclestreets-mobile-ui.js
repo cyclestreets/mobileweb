@@ -21,7 +21,7 @@ $(function() {
 	});
 
 	var showDataMenu = function() {
-		$('#data-sub-menu').slideToggle();
+		$('li.data ul').slideToggle();
 	};
 	
 	var showBrowseSearchBox = function() {
@@ -48,32 +48,18 @@ $(function() {
 		$('#route-box-handle').addClass( 'open' );
 	};
 	
-	/* for demonstration purposes */
-	var togglePhotomapMenuBadge = function() {
-		if ($('#photomap-menu-badge').is(":visible")) {
-			$('#photomap-menu-badge').removeClass('menu-badge').addClass('menu-badge-hidden');
-		}
-		else {
-			$('#photomap-menu-badge').removeClass('menu-badge-hidden').addClass('mmenu-badge');
-		}
-	};
-	
 	mapboxgl.accessToken = 'API_KEY';
 	var map = new mapboxgl.Map({
 		container: 'map',
 		style: 'mapbox://styles/mapbox/light-v9'
 	});
 	
-	/* openNav(); for dev use */
-	$('#data-sub-menu').hide();
+	/* openNav(); to speed up design process */
 
 	// Events
 	// Nav
-	/* $('#closeNavButton').click(closeNav); */
 	$('#hamburger-menu').click(openNav);
-	$('#data-menu-href').click(showDataMenu);
-	$('#data-menu-badge').click(showDataMenu);
-	$('#photomap-badge-row').click(togglePhotomapMenuBadge);
+	$('li.data').click(showDataMenu);
 	
 	// UI
 	$('#glasses-icon').click(showBrowseSearchBox);

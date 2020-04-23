@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CycleStreets</title>
+
+	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+	<script src="js/cyclestreets-mobile-ui.js"></script>
+	<script src="https://kit.fontawesome.com/eb8e412f0f.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/2.0.2/jquery.mobile-events.js"></script>
+	
+	<link rel="stylesheet" href="css/cyclestreets-mobile-ui.css" type="text/css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+	
+	<!-- Mapbox -->
+	<script src='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+
+<body class="browse">
+
+	<nav>
+		<!-- <a href="#" id="closeNavButton" class="close-nav-button"><img src="assets/icon-cross-red.svg"></a> Include close button --> 
+		<a href="#"><img class="menu-icon" src="assets/icon-jp-red.svg">Journey planner</a>
+		<div class="badge-row" id="photomap-badge-row">
+			<div class="text-column">
+				<a href="#"><img class="menu-icon" src="assets/icon-photomap-red.svg">Photomap</a>
+			</div>
+			<div class="badge-column">
+				<a href="#" id="photomap-menu-badge"><img class="menu-badge" src="assets/icon-view-pass-on-16x16.svg"> </a>
+			</div>
+		</div>
+		<a href="#"><img class="menu-icon" src="assets/icon-places-red.svg">Places</a>
+		<a href="#"><img class="menu-icon" src="assets/icon-ride-track-red.svg">Ride tracker</a>
+		<div class="data-menu badge-row">
+			<div class="text-column">
+				<a href="#" id="data-menu-href"><img class="menu-icon" src="assets/icon-data-red.svg">Data</a>
+			</div>
+			<div class="badge-column">
+				<a href="#" id="data-menu-badge"><img class="menu-badge" src="assets/icon-disclosure-red-down.svg"></a>
+			</div>
+		</div>
+		<div id="data-sub-menu">
+			<ul>
+				<div class="badge-row">
+					<div class="text-column">
+						<a href="#" class="secondary-menu">Collisions</a>
+					</div>
+					<div class="badge-column">
+						<a href="#" id="data-menu-badge"><img class="menu-badge" src="assets/icon-view-pass-on-16x16.svg"> </a>
+					</div>
+				</div>
+				<!-- Apply this div column structure to the rest of the menu? -->
+				<a href="#" class="secondary-menu">Traffic counts</a>
+				<a href="#" class="secondary-menu">Cycle theft</a>
+				<a href="#" class="secondary-menu">Cycleability</a>
+				<a href="#" class="secondary-menu">Planning applications</a>
+				<a href="#" class="secondary-menu">Cycling groups</a>
+			</ul>
+		</div>
+		<hr>
+		<a href="#" class="secondary-menu">Map style</a>
+		<a href="#" class="secondary-menu">Settings</a>
+		<div class="badge-row">
+			<div class="text-column">
+				<a href="#" class="secondary-menu">Blog</a>
+			</div>
+			<div class="badge-column">
+				<a href="#" class="blog-badge" data-badge="3"></a>
+			</div>
+		</div>
+		<a href="#" class="secondary-menu">Feedback</a>
+		<a href="#" class="secondary-menu">Sign in</a>
+
+		<div id="nav-footer">
+			<img class="cyclestreets-logo" src="assets/logo-crop-monochrome.svg">				
+			<p class="logo-text">CycleStreets</p>
+			<p class="logo-description">Maps from OpenStreetMap</p>
+		</div>
+	</nav>
+
+	<main>
+		<div id='map'></div>
+		
+		<a href="#" id="hamburger-menu" <i class="fa fa-bars"></i></a>
+		<a href="#" id="location-icon" class="ui-button location-icon"><i class="fa fa-location-arrow"></i></a>
+		<a href="#" id="glasses-icon" class="ui-button glasses-icon"><i class="fa fa-glasses"></i></a>
+		<a href="#" id="close-browse-box-icon" class="close-browse-box-icon"><i class="fa fa-times"></i></a>
+	
+		<div>       
+			<input id="browse-search-box" type="text"
+			placeholder="Search for destination" value="" />
+		</div>
+		
+		<div id="route-search-panel">
+			<img id="route-box-handle" src="assets/panel-no-shadow-handle.svg">
+			<input id="route-search-box" type="text"
+			placeholder="Get somewhere from here" value="" />
+		</div>
+	</main>
+
+</body>
+
+</html>

@@ -1,5 +1,10 @@
 $(function() {
 	// Handlers
+	var resetUI = function () {
+		closeNav ();
+		hideBrowseSearchBox ();
+	}
+	
 	var openNav = function() {
 		$('nav').addClass('open');
 	};
@@ -11,7 +16,7 @@ $(function() {
 	// Enable implicit click/touch on map as close menu
 	if ($('nav').is(':visible')) {
 		$('#map').click(function () {
-			$('nav').removeClass('open');
+			resetUI ();
 		});
 	};
 	
@@ -41,22 +46,13 @@ $(function() {
 		$('#browse-search-box').hide();
 	};
 	
-	var browseRouteSearchBox = function() {
-		hideBrowseSearchBox();
+	var routeSearchBoxFocus = function() {
+		resetUI();
 		$('#route-search-panel').addClass( 'open' );
 		$('#routeroute-search-box').addClass( 'open' );
 		$('#route-box-handle').addClass( 'open' );
 	};
 	
-	mapboxgl.accessToken = 'API_KEY';
-	var map = new mapboxgl.Map({
-		container: 'map',
-		style: 'mapbox://styles/mapbox/light-v9'
-	});
-	
-	/* openNav(); to speed up design process */
-
-	// Events
 	// Nav
 	$('#hamburger-menu').click(openNav);
 	$('li.data').click(showDataMenu);
@@ -64,5 +60,5 @@ $(function() {
 	// UI
 	$('#glasses-icon').click(showBrowseSearchBox);
 	$('#close-browse-box-icon').click(hideBrowseSearchBox);
-	$('#route-search-box').focus(browseRouteSearchBox);
+	$('#route-search-box').focus(routeSearchBoxFocus);
 });

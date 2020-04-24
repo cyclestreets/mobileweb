@@ -1,0 +1,10 @@
+var config = {};
+	
+// CycleStreets API base URL (not slash-terminated) and key
+config.apiKey = 'API_KEY';
+
+// Google Maps API key (for Street View)
+config.gmapApiKey = 'API_KEY';
+
+// Mapbox API key
+config.mapboxAccessToken = 'API_KEY';

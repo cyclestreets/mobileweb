@@ -112,13 +112,15 @@ var cyclestreetsui = (function ($) {
 			// Open the route search box
 			var routeSearchBoxFocus = function() {
 				resetUI();
-				$('#route-search-box, #route-search-panel, #route-box-handle, #shortcut-icons-div').addClass( 'open' );
+				$('#route-search-box, #route-search-panel, #route-box-handle').addClass( 'open' );
+				$('#shortcut-icons').addClass ('visible');
 				
 			};
 			
 			// Close the route search box
 			var closeRouteSearchBox = function() {
-				$('#route-search-panel, #route-search-box, #route-box-handle, #shortcut-icons-div').removeClass( 'open' );
+				$('#route-search-panel, #route-search-box, #route-box-handle').removeClass( 'open' );
+				$('#shortcut-icons').removeClass ('visible');
 			};	
 			
 			// Close the Browse search box

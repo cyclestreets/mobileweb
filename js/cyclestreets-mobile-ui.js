@@ -57,7 +57,7 @@ var cyclestreetsui = (function ($) {
 				zoom: _settings.defaultLocation.zoom
 			});
 			
-			_map.addControl (new mapboxgl.NavigationControl (), 'top-left');
+			//_map.addControl (new mapboxgl.NavigationControl (), 'top-left'); can this be positioned elsewhere?
 		},
 		
 		

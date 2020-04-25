@@ -1,13 +1,14 @@
 /* UI icons and input boxes */
 
-.ui-button {display: block; position: fixed; top: 0; right: 0; width: 50px; height: 50px; line-height: 50px; border: 0 solid #f5f5f5;  border-radius: 50%; background: #f5f5f5; text-align: center; text-decoration: none; color: #cc5959; box-shadow: 0 0 3px gray; font-size: 20px; font-weight: bold;}
-.location-icon {margin: 40px 30px 0 0;}
-.glasses-icon {margin: 110px 30px 0 0;}
+.ui-button {display: block; position: fixed; width: 50px; height: 50px; line-height: 50px; border: 0 solid #f5f5f5; border-radius: 50%; background: #f5f5f5; text-align: center; text-decoration: none; color: #cc5959; box-shadow: 0 0 3px gray; font-size: 20px; font-weight: bold;}
+.ui-button-large {width: 60px; height: 60px; line-height: 65px; color: #f5f5f5; background: #cc5959; font-size: 28px;}
 
-#hamburger-menu {position: fixed; top: 0; left: 0; width: 60px; height: 60px; line-height: 60px; border: 0 solid #f5f5f5; border-radius: 50%; color: #f5f5f5; text-align: center; text-decoration: none; background: #cc5959; box-shadow: 0 0 3px gray; font-size: 20px; font-weight: bold; margin: 20px 0 0 20px;}
-#browse-search-box { display: none; position: fixed; top: 0; right: 0; margin: 110px 30px 0 0; width: 50px; height: 50px; z-index: 17; background: #f5f5f5;}
-#browse-search-box.open{display: block; padding-left: 5%; border-radius: 25px;}
-#close-browse-box-icon {display: none; z-index: 19; margin: 110px 30px 0 0;}
+#hamburger-menu {top: 20px; left: 20px;}
+#location-icon {top: 40px; right: 30px;}
+#glasses-icon {top: 110px; right: 30px;}
+#browse-search-box {display: none; position: fixed; top: 110px; right: 30px; width: 50px; height: 50px; background: #f5f5f5;}
+#browse-search-box.open {display: block; padding-left: 5%; border-radius: 25px;}
+#close-browse-box-icon {display: none; top: 110px; right: 30px; z-index: 1}
 
 input {border: none; line-height: 50px; border-radius: 50px; box-shadow: 0 0 3px gray;}
 

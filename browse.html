@@ -6,7 +6,7 @@
 
 	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 	
-	<script src="https://kit.fontawesome.com/eb8e412f0f.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/2.0.2/jquery.mobile-events.js"></script>
 	<script src="js/cyclestreets-mobile-config.js"></script>
 	<script src="js/cyclestreets-mobile-ui.js"></script>
@@ -84,9 +84,11 @@
 		</div>
 		
 		<div id="route-search-panel">
-			<img id="route-box-handle" src="assets/panel-no-shadow-handle.svg">
-			<input id="route-search-box" type="text"
-			placeholder="Get somewhere from here" value="" />
+			<img id="route-box-handle" src="assets/card-with-handle.svg">
+			<input id="route-search-box" type="text" placeholder="Get somewhere from here" value="" />
+			<div id="shortcut-icons-div">
+				<a href="#" id="home-shortcut-button" class="ui-button shortcut-button"></a>
+			</div>
 		</div>
 	</main>
 

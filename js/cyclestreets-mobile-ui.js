@@ -86,10 +86,12 @@ var cyclestreetsui = (function ($) {
 			var resetUI = function () {
 				closeNav ();
 				hideBrowseSearchBox ();
+				closeRouteSearchBox ();
 			};
 			
 			// Show the Browse search box
 			$('#glasses-icon').click(function() {
+				resetUI ();
 				$('#browse-search-box').show();
 				$('#browse-search-box').addClass( 'open' );
 				$('#close-browse-box-icon').show();
@@ -114,6 +116,13 @@ var cyclestreetsui = (function ($) {
 				$('#routeroute-search-box').addClass( 'open' );
 				$('#route-box-handle').addClass( 'open' );
 			};
+			
+			// Close the route search box
+			var closeRouteSearchBox = function() {
+				$('#route-search-panel').removeClass( 'open' );
+				$('#routeroute-search-box').removeClass( 'open' );
+				$('#route-box-handle').removeClass( 'open' );
+			};	
 			
 			// Close the Browse search box
 			$('#close-browse-box-icon').click(hideBrowseSearchBox);

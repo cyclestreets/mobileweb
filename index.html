@@ -5,7 +5,7 @@
 	<title>CycleStreets</title>
 
 	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-	
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/2.0.2/jquery.mobile-events.js"></script>
 	<script src="js/cyclestreets-mobile-config.js"></script>
@@ -95,12 +95,12 @@
 				<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg"></li></a>
 				<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg"></li></a>
 			</ul>
-			<ul class="segmented-control">
-				<li class="segmented-control__item">
+			<ul id="journey-options" class="segmented-control">
+				<li class="segmented-control-item">
 					<input class="segmented-control-input" type="radio" value="1" name="option" id="option-1" checked>
 					<label class="segmented-control-label left" for="option-1">Recent searches</label>
 				</li>
-				<li class="segmented-control__item">
+				<li class="segmented-control-item">
 				    <input class="segmented-control-input" type="radio" value="2" name="option" id="option-2" >
 				    <label class="segmented-control-label right" for="option-2">Recent journeys</label>
 				</li>

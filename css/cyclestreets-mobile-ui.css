@@ -68,7 +68,8 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 #shortcut-icons {display: none;}
 #shortcut-icons.visible {display: inline-block; overflow-x: scroll; }
 
-.segmented-control {display: table; width: 80%; margin: 0 7.5%; padding: 0;}
+.segmented-control {display: none; width: 80%; margin: 0 7.5%; padding: 0;}
+.segmented-control.visible {display: table}
 .segmented-control-item {display: table-cell; margin: 0; padding: 0; list-style-type: none;}
 .segmented-control-input {position: absolute; visibility: hidden;}
 .segmented-control-label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}

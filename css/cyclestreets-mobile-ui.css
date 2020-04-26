@@ -62,11 +62,20 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 #route-search-box {position: relative; bottom: 5px; height: 50px; width: 80%; margin-left: 10px; margin-right: 10px; padding: 0 20px; transition: 0.5s;}
 #route-search-box.open {top: 0;}
 
-#route-search-panel ul {list-style-type: none; width: 1500px; padding: 0;}
+#route-search-panel #shortcut-icons {list-style-type: none; width: 1500px; padding: 0;}
 #route-search-panel ul li a  {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}
 
 #shortcut-icons {display: none;}
 #shortcut-icons.visible {display: inline-block; overflow-x: scroll; }
+
+.segmented-control {display: table; width: 80%; margin: 0 7.5%; padding: 0;}
+.segmented-control-item {display: table-cell; margin: 0; padding: 0; list-style-type: none;}
+.segmented-control-input {position: absolute; visibility: hidden;}
+.segmented-control-label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
+.segmented-control-label.left {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
+.segmented-control-label.right {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
+.segmented-control-label:hover {background: #fafafa;}
+.segmented-control-input:checked + .segmented-control-label {background: #eee;color: #333;}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

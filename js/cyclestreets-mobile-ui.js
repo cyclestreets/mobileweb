@@ -133,7 +133,7 @@ var cyclestreetsui = (function ($) {
 			// Close the route search box
 			var closeRouteSearchBox = function() {
 				$('#route-search-panel, #route-search-box, #route-box-handle').removeClass( 'open' );
-				$('#shortcut-icons').removeClass ('visible');
+				$('#shortcut-icons, #journey-options').removeClass ('visible');
 			};	
 			
 			// Close the Browse search box

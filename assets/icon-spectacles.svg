@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="14.705" viewBox="0 0 30 14.705">
+  <defs>
+    <ellipse id="ellipse-1" cx="6.5" cy="6.5" rx="6.5" ry="6.5"/>
+    <mask id="mask-2" x="0" y="-1.705" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+      <rect width="30" height="14.705" x="0" y="-1.705" fill="black"/>
+      <use fill="white" xlink:href="#ellipse-1"/>
+    </mask>
+    <ellipse id="ellipse-3" cx="23.5" cy="6.5" rx="6.5" ry="6.5"/>
+    <mask id="mask-4" x="0" y="-1.705" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+      <rect width="30" height="14.705" x="0" y="-1.705" fill="black"/>
+      <use fill="white" xlink:href="#ellipse-3"/>
+    </mask>
+  </defs>
+  <g transform="translate(0 1.7046301)">
+    <use fill-opacity="0" stroke="rgb(220,79,85)" stroke-width="4" mask="url(#mask-2)" xlink:href="#ellipse-1"/>
+    <use fill-opacity="0" stroke="rgb(220,79,85)" stroke-width="4" mask="url(#mask-4)" xlink:href="#ellipse-3"/>
+    <path fill="none" stroke="rgb(220,79,85)" stroke-width="2" d="M18.46247048 4.39287095c-.8984692-.86265667-2.11855093-1.39287169-3.46247087-1.39287093-1.3093501 7.4e-7-2.5011505.5032903-3.39249999 1.3269673"/>
+  </g>
+</svg>

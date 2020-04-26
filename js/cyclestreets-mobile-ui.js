@@ -95,7 +95,7 @@ var cyclestreetsui = (function ($) {
 				grid: [ 50, 350 ],
 				drag: function () {
 					$('#route-search-box, #route-search-panel, #route-box-handle').addClass( 'open' );
-					$('#shortcut-icons').addClass ('visible');
+					$('#shortcut-icons, #journey-options').addClass ('visible');
 				}
 			});
 			

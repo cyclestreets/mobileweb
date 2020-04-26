@@ -1,19 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="84" height="84" viewBox="0 0 84 84">
-  <defs>
-    <ellipse id="ellipse-1" cx="32" cy="32" rx="32" ry="32"/>
-    <filter id="filter-2" width="200%" height="200%" x="-50%" y="-50%" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-      <feOffset dx="0" dy="0" in="SourceAlpha" result="shadow-1-feOffset-shadow"/>
-      <feGaussianBlur in="shadow-1-feOffset-shadow" result="shadow-1-feGaussianBlur-shadow" stdDeviation="6.024"/>
-      <feColorMatrix in="shadow-1-feGaussianBlur-shadow" result="shadow-1-feColorMatrix-shadow" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.25 0"/>
-    </filter>
-  </defs>
-  <g transform="translate(10 10)">
-    <g>
-      <use fill="black" stroke="black" stroke-opacity="0" stroke-width="0" filter="url(#filter-2)" xlink:href="#ellipse-1"/>
-      <use fill="rgb(220,79,85)" xlink:href="#ellipse-1"/>
-    </g>
-    <path fill="none" stroke="rgb(251,246,248)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2" d="M20 39h24"/>
-    <path fill="none" stroke="rgb(251,246,248)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2" d="M20 32h24"/>
-    <path fill="none" stroke="rgb(251,246,248)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2" d="M20 25h24"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="63" viewBox="0 0 64 63">
+  <g>
+    <ellipse cx="32" cy="31.5" fill="none" rx="32" ry="31.5"/>
+    <path fill="none" stroke="rgb(251,246,248)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2" d="M20 38.390625h24"/>
+    <path fill="none" stroke="rgb(251,246,248)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2" d="M20 31.5h24"/>
+    <path fill="none" stroke="rgb(251,246,248)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2" d="M20 24.609375h24"/>
   </g>
 </svg>

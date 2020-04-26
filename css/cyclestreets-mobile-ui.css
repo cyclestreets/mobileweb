@@ -70,13 +70,11 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 
 .segmented-control {display: none; width: 80%; margin: 0 7.5%; padding: 0;}
 .segmented-control.visible {display: table}
-.segmented-control-item {display: table-cell; margin: 0; padding: 0; list-style-type: none;}
-.segmented-control-input {position: absolute; visibility: hidden;}
-.segmented-control-label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
-.segmented-control-label.left {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
-.segmented-control-label.right {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
-.segmented-control-label:hover {background: #fafafa;}
-.segmented-control-input:checked + .segmented-control-label {background: #eee;color: #333;}
+.segmented-control li {display: table-cell; margin: 0; padding: 0; list-style-type: none;}
+.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
+.segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
+.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
+.segmented-control label:hover {background: #fafafa;}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

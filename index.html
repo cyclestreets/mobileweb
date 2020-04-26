@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+	<meta charset="UTF-8" />
 	<title>CycleStreets</title>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
 	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/2.0.2/jquery.mobile-events.js"></script>
 	<script src="js/cyclestreets-mobile-config.js"></script>
 	<script src="js/cyclestreets-mobile-ui.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			cyclestreetsui.initialise (config);
-		});
-	</script>
+	<script type="text/javascript"> $(function() {cyclestreetsui.initialise (config);}); </script>
 	
 	<link rel="stylesheet" href="css/cyclestreets-mobile-ui.css" type="text/css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
-	<link href="https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap">
 	
 	<!-- Mapbox -->
 	<script src='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js'></script>
@@ -76,10 +73,8 @@
 		<a href="#" id="location-icon" class="ui-button"><img src="assets/icon-location-red.svg"></a>
 		<a href="#" id="glasses-icon" class="ui-button"><img src="assets/icon-spectacles.svg"></a>
 		<a href="#" id="close-browse-box-icon" class="ui-button"><img src="assets/icon-cross-red.svg"></a>
-	
-		     
+	     
 		<input id="browse-search-box" type="text" placeholder="Move map to place or postcode" value="" />
-		
 		
 		<div id="route-search-panel">
 			<img id="route-box-handle" src="assets/card-with-handle.svg">
@@ -94,15 +89,10 @@
 				<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg"></a></li>
 				<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg"></a></li>
 			</ul>
+			
 			<ul id="journey-options" class="segmented-control">
-				<li class="segmented-control-item">
-					<input class="segmented-control-input" type="radio" value="1" name="option" id="option-1" checked>
-					<label class="segmented-control-label left" for="option-1">Recent searches</label>
-				</li>
-				<li class="segmented-control-item">
-				    <input class="segmented-control-input" type="radio" value="2" name="option" id="option-2" >
-				    <label class="segmented-control-label right" for="option-2">Recent journeys</label>
-				</li>
+				<li><label>Recent searches</label></li>
+				<li><label>Recent journeys</label></li>
 			</ul>
 			<hr>
 				

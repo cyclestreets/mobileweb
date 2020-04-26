@@ -141,7 +141,7 @@ var cyclestreetsui = (function ($) {
 			$('#route-search-box').focus(routeSearchBoxFocus);
 			
 			// While developing, open the route-box on load
-			//routeSearchBoxFocus ();
+			routeSearchBoxFocus ();
 			
 		}
 	

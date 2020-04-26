@@ -59,7 +59,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 #route-box-handle {position: relative; bottom: 20px; width: 40%; margin-left: 25%; margin-right: 25%; transition: 0.5s;}
 #route-box-handle.open {top: -22px }
 
-#route-search-box {position: relative; bottom: 5px; height: 50px; width: 80%; margin-left: 10px; margin-right: 10px; padding: 0 20px; transition: 0.5s;}
+#route-search-box {position: relative; bottom: 5px; height: 50px; width: 85%; margin-left: auto; margin-right: auto; border: 0; padding: 0 20px; transition: 0.5s;}
 #route-search-box.open {top: 0;}
 
 #route-search-panel #shortcut-icons {list-style-type: none; width: 1500px; padding: 0;}
@@ -70,9 +70,10 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 
 .segmented-control {display: none; width: 80%; margin: 0 7.5%; padding: 0;}
 .segmented-control.visible {display: table}
-.segmented-control li {display: table-cell; margin: 0; padding: 0; list-style-type: none;}
+.segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
 .segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
 .segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
+.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959}
 .segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
 .segmented-control label:hover {background: #fafafa;}
 

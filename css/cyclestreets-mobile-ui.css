@@ -93,7 +93,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .segmented-control label:hover {background: #fafafa;}
 #route-search-panel hr {margin: 10px 0; width: 100%;}
 
-#recent-journeys li {width: 90%; list-style-type: none;}
+#recent-journeys {margin: 0; padding: 0;}
+#recent-journeys li {padding-left: 20px; width: 80%; list-style-type: none;}
 #recent-journeys li p {margin: 10px 0;}
 #recent-journeys li p.destination {display: inline; font-size: 16px; line-height: 19px;}
 #recent-journeys li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}

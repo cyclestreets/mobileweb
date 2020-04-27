@@ -143,7 +143,25 @@ var cyclestreetsui = (function ($) {
 			
 			// While developing, open the route-box on load
 			//$('#route-search-panel').hide();
-			//$('#photomap-uploading-panel').show();
+			//$('#photomap-add-location-panel').show();
+			
+			// Development "tour" actions
+			$('#photomap-add-button').click(function() {				
+				$('#photomap-panel').hide();
+				$('#photomap-add-location-panel').show();
+			});
+			$('#photomap-add-location-continue').click(function() {				
+				$('#photomap-add-location-panel').hide();
+				$('#photomap-add-details-panel').show();
+			});
+			$('#photomap-upload').click(function() {				
+				$('#photomap-add-details-panel').hide();
+				$('#photomap-uploading-panel').show();
+			});
+			$('#cancel-photomap-upload').click(function() {				
+				$('#photomap-uploading-panel').hide();
+				$('#route-search-panel').show();
+			});
 			
 			// Display photomap
 			$('#photomap').click( function() {

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52.5" height="37" viewBox="0 0 52.5 37">
+  <defs>
+    <path id="path-1" fill-rule="evenodd" d="M15.5 0h20C44.05468288 0 51 6.94531712 51 15.5S44.05468288 31 35.5 31h-20C6.94531712 31 0 24.05468288 0 15.5S6.94531712 0 15.5 0z"/>
+    <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+      <rect width="52.5" height="37" x="0" y="0" fill="black"/>
+      <use fill="white" xlink:href="#path-1"/>
+    </mask>
+    <ellipse id="ellipse-3" cx="15.5" cy="15.5" rx="14" ry="14"/>
+    <filter id="filter-4" width="200%" height="200%" x="-50%" y="-50%" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="3" in="SourceAlpha" result="shadow-1-feOffset-shadow"/>
+      <feGaussianBlur in="shadow-1-feOffset-shadow" result="shadow-1-feGaussianBlur-shadow" stdDeviation="1.807"/>
+      <feColorMatrix in="shadow-1-feGaussianBlur-shadow" result="shadow-1-feColorMatrix-shadow" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/>
+      <feOffset dx="0" dy="2" in="SourceAlpha" result="shadow-2-feOffset-shadow"/>
+      <feGaussianBlur in="shadow-2-feOffset-shadow" result="shadow-2-feGaussianBlur-shadow" stdDeviation="1.205"/>
+      <feColorMatrix in="shadow-2-feGaussianBlur-shadow" result="shadow-2-feColorMatrix-shadow" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.1 0"/>
+      <feOffset dx="0" dy="3" in="SourceAlpha" result="shadow-3-feOffset-shadow"/>
+      <feGaussianBlur in="shadow-3-feOffset-shadow" result="shadow-3-feGaussianBlur-shadow" stdDeviation=".602"/>
+      <feColorMatrix in="shadow-3-feGaussianBlur-shadow" result="shadow-3-feColorMatrix-shadow" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.0510643115942029 0"/>
+      <feOffset dx="0" dy="0" in="SourceAlpha" result="shadow-4-feOffset-shadow"/>
+      <feGaussianBlur in="shadow-4-feOffset-shadow" result="shadow-4-feGaussianBlur-shadow" stdDeviation="1.807"/>
+      <feColorMatrix in="shadow-4-feGaussianBlur-shadow" result="shadow-4-feColorMatrix-shadow" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/>
+      <feMerge>
+        <feMergeNode in="shadow-1-feColorMatrix-shadow"/>
+        <feMergeNode in="shadow-2-feColorMatrix-shadow"/>
+        <feMergeNode in="shadow-3-feColorMatrix-shadow"/>
+        <feMergeNode in="shadow-4-feColorMatrix-shadow"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g transform="translate(1.5 1.5)">
+    <g>
+      <use fill="rgb(196,193,194)" xlink:href="#path-1"/>
+      <g mask="url(#mask-2)"/>
+    </g>
+    <g>
+      <use fill="black" stroke="black" stroke-opacity="0" stroke-width="0" filter="url(#filter-4)" xlink:href="#ellipse-3"/>
+      <use fill="rgb(255,255,255)" xlink:href="#ellipse-3"/>
+    </g>
+  </g>
+</svg>

@@ -29,7 +29,7 @@
 		<!-- <a href="#" id="closeNavButton" class="close-nav-button"><img src="assets/icon-cross-red.svg"></a> Include close button? --> 
 		<ul>
 			<li class="journeyplanner"><a href="#">Journey planner</a></li>
-			<li class="photomap enabled"><a href="#">Photomap</a></li>
+			<li id="photomap" class="photomap enabled"><a href="#">Photomap</a></li>
 			<li class="places"><a href="#">Places</a></li>
 			<li class="ridetracker"><a href="#">Ride tracker</a></li>
 			<li class="data"><a href="#">Data</a>
@@ -76,8 +76,8 @@
 	     
 		<input id="browse-search-box" type="text" placeholder="Move map to place or postcode" value="" />
 		
-		<div id="route-search-panel">
-			<img id="route-box-handle" src="assets/card-with-handle.svg">
+		<div id="route-search-panel" class="panel">
+			<img id="route-box-handle" class="handle" src="assets/card-with-handle.svg">
 			<input id="route-search-box" type="text" placeholder="Get somewhere from here" value="" />
 			<ul id="shortcut-icons">
 				<li><a href="#" class="ui-button"><img src="assets/icon-home.svg"></a></li>
@@ -95,7 +95,27 @@
 				<li class="active"><label>Recent journeys</label></li>
 			</ul>
 			<hr>
-				
+			<ul id="recent-journeys">
+				<li>
+					<p class="destination">Nandos</p>
+					<p class="distance">7 miles</p>
+					<a href="#"><img src="assets/btn-get-directions-small.svg"></a>
+					<p class="address">Cambridge Leisure Park, Clifton Way, Cambridge...</p>
+					
+				</li>
+			</ul>
+		</div>
+		
+		<div id="photomap-panel" class="panel">
+			<img id="photomap-panel-handle" class="handle" src="assets/card-with-handle.svg">
+			<h2>Photomap</h2>
+			<a id="photomap-add-button" href="#"><img src="assets/icon-add-photo-rest.svg"></a>
+			<p>Category</p>
+			<p>Good or bad</p>
+			<p>Since</p>
+			<hr>
+			<p id="photo-reports-label">Only show reports with photos</p>
+			<a id="photo-reports-switch" href="#"><img src="assets/switch-off.svg"></a>
 		</div>
 	</main>
 

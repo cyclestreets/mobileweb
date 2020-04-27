@@ -83,7 +83,7 @@ var cyclestreetsui = (function ($) {
 			// Open the route search box
 			var routeSearchBoxFocus = function() {
 				resetUI();
-				$('#route-search-box, #route-search-panel, #route-box-handle').addClass( 'open' );
+				$('#route-search-box, #route-search-panel').addClass( 'open' );
 				$('#shortcut-icons, #journey-options').addClass ('visible');
 				
 			};
@@ -129,9 +129,9 @@ var cyclestreetsui = (function ($) {
 			
 			// Close the route search box
 			var closeRouteSearchBox = function() {
-				$('#route-search-panel, #route-search-box, #route-box-handle').removeClass( 'open' );
+				$('#route-search-panel, #route-search-box').removeClass( 'open' );
 				$('#shortcut-icons, #journey-options').removeClass ('visible');
-				$('#route-search-box').height ('50px');
+				
 			};	
 			
 			// Close the Browse search box
@@ -141,7 +141,15 @@ var cyclestreetsui = (function ($) {
 			$('#route-search-box').focus(routeSearchBoxFocus);
 			
 			// While developing, open the route-box on load
-			routeSearchBoxFocus ();
+			//$('#route-search-panel').hide();
+			//$('#photomap-panel').hide();
+			
+			// Display photomap
+			$('#photomap').click( function() {
+				closeNav ();
+				$('#route-search-panel').hide();
+				$('#photomap-panel').show();
+			});
 			
 		}
 	

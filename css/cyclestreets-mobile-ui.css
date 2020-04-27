@@ -53,21 +53,17 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 
 #map {position:absolute; top:0; bottom:0; width:100%;}
 
-#route-search-panel {position: fixed; bottom: 0; height: 65px; width: 100%; padding: 10px; background-color: #fbf6f8; transition: 0.5s;}
+.panel {position: fixed; bottom: 0; width: 100%; padding: 10px; background-color: #fbf6f8; transition: 0.5s;}
+.handle {position: absolute; top: -12px; width: 40%; margin-left: 25%; margin-right: 25%; transition: 0.5s;}
+
+#route-search-panel {height: 65px;}
 #route-search-panel.open {height: 75%;}
-
-#route-box-handle {position: relative; bottom: 20px; width: 40%; margin-left: 25%; margin-right: 25%; transition: 0.5s;}
-#route-box-handle.open {top: -22px }
-
-#route-search-box {position: relative; bottom: 5px; height: 50px; width: 85%; margin-left: auto; margin-right: auto; border: 0; padding: 0 20px; transition: 0.5s;}
+#route-search-box {position: relative; bottom: 5px; height: 50px; width: 85%; margin-left: auto; margin-right: auto; border: 0; margin-top: 12px; padding: 0 20px; transition: 0.5s;}
 #route-search-box.open {top: 0;}
-
-#route-search-panel #shortcut-icons {list-style-type: none; width: 1500px; padding: 0;}
-#route-search-panel ul li a  {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}
-#route-search-panel hr {margin: 20px 0; width: 95%}
+#shortcut-icons {list-style-type: none; width: 1500px; padding: 0;}
 #shortcut-icons {display: none;}
-#shortcut-icons.visible {display: inline-block; overflow-x: scroll; }
-
+#shortcut-icons.visible {display: inline-block; overflow-x: scroll;}
+#shortcut-icons li a {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}
 .segmented-control {display: none; width: 80%; margin: 0 7.5%; padding: 0;}
 .segmented-control.visible {display: table}
 .segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
@@ -76,6 +72,19 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 .segmented-control li.active label {color: #f5f5f5; background-color: #cc5959}
 .segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
 .segmented-control label:hover {background: #fafafa;}
+#route-search-panel hr {margin: 20px 0; width: 95%}
+#recent-journeys li {width: 90%; list-style-type: none;}
+#recent-journeys li p {margin: 10px 0;}
+#recent-journeys li p.destination {display: inline; font-size: 16px; line-height: 19px;}
+#recent-journeys li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('../assets/icon-cyclist-small.svg')} 
+#recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8E8C8C}
+#recent-journeys li a {display: inline; float: right}
+
+#photomap-panel {display: none; height: 275px;}
+#photomap-panel h2 {display: inline; padding: 0; width: 80%; padding-left: 37%; margin: 5px; text-align: center; font-variant: small-caps;}
+#photomap-panel img {float: right; margin-right: 20px}
+#photomap-panel p {margin: 0; padding: 20px 10px}
+#photo-reports-label {display: inline; line-height: 35px;}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

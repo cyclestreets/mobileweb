@@ -44,14 +44,13 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 #map {position:absolute; top:0; bottom:0; width:100%;}
 
 /* UI icons and input boxes */
-
 .ui-button {display: block; position: fixed; width: 50px; height: 50px; line-height: 50px; border: 0 solid #f5f5f5; border-radius: 50%; background: #f5f5f5; text-align: center; box-shadow: 0 0 3px gray;}
 .ui-button-large {width: 65px; height: 65px; background: #cc5959;}
 .padded {padding: 0 20px 20px 20px;}
 
 #hamburger-menu {top: 20px; left: 20px;}
 #location-icon {top: 40px; right: 30px; line-height: 64px;}
-#location-icon img {margin-right: 4px}
+#location-icon img {margin-right: 4px;}
 #glasses-icon {top: 110px; right: 30px; line-height: 53px;}
 #browse-search-box {display: none; position: fixed; top: 110px; right: 30px; width: 50px; height: 50px; background: #f5f5f5;}
 #browse-search-box.open {display: block; padding-left: 5%; border-radius: 25px;}
@@ -60,7 +59,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 .panel {position: fixed; bottom: 0; width: calc(100% - 40px); padding: 20px; background-color: #fbf6f8; transition: 0.5s;}
 .handle {position: absolute; top: -8px; width: 40%; margin: 0 calc(30% - 20px); transition: 0.5s;}
 a.back-action {float: left;}
-a.forward-action {float: right; color: #DC4F55; text-decoration: none}
+a.forward-action {float: right; color: #DC4F55; text-decoration: none;}
 h2 {display: inline; width: 80%; margin: 10px; text-align: center; font-variant: small-caps;}
 ul li select {display: inline-block; padding: 0 20px; margin: 2px 10px; width: 52%; border-radius: 25px; text-align: left; text-decoration: none; background: #DC4F55; color: #f5f5f5;}
 
@@ -88,7 +87,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
 .segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
 .segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
-.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959}
+.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
 .segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
 .segmented-control label:hover {background: #fafafa;}
 #route-search-panel hr {margin: 10px 0; width: 100%;}
@@ -110,7 +109,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #photomap-panel p {display: inline; margin: 0; line-height: 35px;}
 
 #photomap-add-location-panel {display: none; height: 400px;}
-#photomap-add-location-panel h2 {padding-left: 26%;}
+#photomap-add-location-panel h2 {padding-left: 28%; margin: 0; width: 30px;}
 #photomap-add-location-panel p {margin: 10px;}
 #mini-map {height: 335px; width:100%;}
 
@@ -120,14 +119,14 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #photomap-add-details-panel ul {margin: 0; padding: 20px;}
 #photomap-add-details-panel textarea {display: inline-block; height: 50px; width: 65%;}
 #photomap-add-details-panel ul li {list-style-type: none; width: 100%;}
-#photomap-add-details-panel ul li select {margin: 0; width: 73%}
+#photomap-add-details-panel ul li select {margin: 0; width: 73%;}
 #photomap-add-details-panel ul li label {display: inline-block; width: 25%;}
 
-#photomap-uploading-panel {display: none; height: 250px; background-color: #DC4F55}
+#photomap-uploading-panel {display: none; height: 250px; background-color: #DC4F55;}
 #photomap-uploading-panel img.wheel {margin-left: 15px; padding: 0 30%; width: 40%;}
-#photomap-uploading-panel p {margin: 10px 30%; color:#FBF6F8; text-align: center}
+#photomap-uploading-panel p {margin: 10px 30%; color:#FBF6F8; text-align: center;}
 #photomap-uploading-panel progress {margin: 10px 30%; width: 40%;}
-#photomap-uploading-panel a {display: block; margin: 10px 30%; color: #C4C1C2; text-align: center; text-decoration: none}
+#photomap-uploading-panel a {display: block; margin: 10px 30%; color: #C4C1C2; text-align: center; text-decoration: none;}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

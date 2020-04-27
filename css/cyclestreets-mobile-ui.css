@@ -55,7 +55,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 #close-browse-box-icon {display: none; top: 110px; right: 30px; z-index: 1; line-height: 60px}
 
 .panel {position: fixed; bottom: 0; width: calc(100% - 40px); padding: 20px; background-color: #fbf6f8; transition: 0.5s;}
-.handle {position: absolute; top: -12px; width: 40%; margin: 0 calc(30% - 20px); transition: 0.5s;}
+.handle {position: absolute; top: -8px; width: 40%; margin: 0 calc(30% - 20px); transition: 0.5s;}
 
 .switch {position: relative; float: right; display: inline-block; width: 60px; height: 34px;}
 .switch input {opacity: 0; width: 0; height: 0;}
@@ -67,16 +67,17 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .slider.round {border-radius: 34px;}
 .slider.round:before {border-radius: 50%;}
 
-#route-search-panel {height: 80px; padding: 0; width: 100%}
+#route-search-panel {height: 80px; padding: 0; width: 100%;}
 #route-search-panel.open {height: 75%;}
+#route-box-handle.handle {margin: 0 30%;}
 #route-search-box {position: relative; bottom: 5px; height: 50px; width: 80%; margin: 20px 5%; padding: 0 20px; border: 0; transition: 0.5s;}
 #route-search-box.open {top: 0;}
-#shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0 0 0 20px}
+#shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0 0 0 20px;}
 #shortcut-icons {display: none;}
 #shortcut-icons.visible {display: inline-block; overflow-x: scroll;}
 #shortcut-icons li a {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}
 .segmented-control {display: none; width: 80%; margin: 10px 7.5%; padding: 0;}
-.segmented-control.visible {display: table}
+.segmented-control.visible {display: table;}
 .segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
 .segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
 .segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}

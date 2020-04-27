@@ -77,7 +77,7 @@
 		<input id="browse-search-box" type="text" placeholder="Move map to place or postcode" value="" />
 		
 		<div id="route-search-panel" class="panel">
-			<img id="route-box-handle" class="handle" src="assets/card-with-handle.svg">
+			<img id="route-box-handle" class="handle" src="assets/card-handle.svg">
 			<input id="route-search-box" type="text" placeholder="Get somewhere from here" value="" />
 			<ul id="shortcut-icons">
 				<li><a href="#" class="ui-button"><img src="assets/icon-home.svg"></a></li>
@@ -114,7 +114,7 @@
 		</div>
 		
 		<div id="photomap-panel" class="panel">
-			<img class="handle" src="assets/card-with-handle.svg">
+			<img class="handle" src="assets/card-handle.svg">
 			<h2>Photomap</h2>
 			<a id="photomap-add-button" href="#"><img src="assets/icon-add-photo-rest.svg"></a>
 			<ul>
@@ -169,7 +169,7 @@
 		</div>
 		
 		<div id="photomap-add-location-panel" class="panel">
-			<img class="handle" src="assets/card-with-handle.svg">
+			<img class="handle" src="assets/card-handle.svg">
 			<a class="back-action" href="#"><img src="assets/icon-disclosure-red-left.svg"></a>
 			<h2>Add location</h2>
 			<a class="forward-action" href="#"><img src="assets/icon-add-photo-rest.svg"></a>
@@ -178,7 +178,7 @@
 		</div>
 		
 		<div id="photomap-add-details-panel" class="panel">
-			<img class="handle" src="assets/card-with-handle.svg">
+			<img class="handle" src="assets/card-handle.svg">
 			<a class="back-action padded" href="#"><img src="assets/icon-disclosure-red-left.svg"></a>
 			<h2>Add details</h2>
 			<a class="forward-action padded" href="#">Upload <img src="assets/icon-disclosure-red-right.svg"></a>
@@ -226,6 +226,13 @@
 			</ul>
 		</div>
 		
+		<div id="photomap-uploading-panel" class="panel">
+			<img class="handle" src="assets/card-handle-red-fill.svg">
+			<img class="wheel" src="assets/bicycle-wheel.svg">
+			<p>Uploading</p>
+			<progress id="photomap-upload" value="32" max="100"></progress>
+			<a href="#">Cancel</a>
+		</div>
 		
 	</main>
 

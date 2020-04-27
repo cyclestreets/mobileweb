@@ -8,7 +8,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    inkscape:version="1.1-dev (bc69992, 2020-04-15)"
-   sodipodi:docname="card-with-handle.svg"
+   sodipodi:docname="card-handle-red.svg"
    id="svg19"
    version="1.1"
    viewBox="0 0 168 12"
@@ -32,7 +32,7 @@
      inkscape:window-y="23"
      inkscape:window-x="0"
      inkscape:cy="8.0536131"
-     inkscape:cx="179.53376"
+     inkscape:cx="118.20186"
      inkscape:zoom="3.1386605"
      fit-margin-left="0"
      width="150px"
@@ -59,16 +59,19 @@
   </defs>
   <g
      transform="translate(-103.22875,0.31860725)"
-     id="g17">
+     id="g17"
+     style="fill:#dc4f55;fill-opacity:1">
     <path
        id="path13"
        d="m 0,11.527273 h 102.28005 c 2.0661,0 4.05207,-0.799343 5.54208,-2.2306488 l 7.35574,-7.0659756 C 116.66788,0.79934288 118.65385,0 120.71995,0 h 133.5601 c 2.0661,0 4.05207,0.79934288 5.54208,2.2306486 l 7.35574,7.0659756 c 1.49001,1.4313058 3.47598,2.2306488 5.54208,2.2306488 H 375 V 317 H 0 Z"
        fill-rule="evenodd"
-       fill="#fbf6f8" />
+       fill="#fbf6f8"
+       style="fill:#dc4f55;fill-opacity:1" />
     <path
        id="path15"
        d="m 166,8 h 44 c 1.10383,0 2,0.89617 2,2 0,1.10383 -0.89617,2 -2,2 h -44 c -1.10383,0 -2,-0.89617 -2,-2 0,-1.10383 0.89617,-2 2,-2 z"
        fill-rule="evenodd"
-       fill="#8e8c8c" />
+       fill="#8e8c8c"
+       style="fill:#dc4f55;fill-opacity:1" />
   </g>
 </svg>

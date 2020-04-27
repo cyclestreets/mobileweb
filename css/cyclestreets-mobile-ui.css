@@ -121,7 +121,11 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #photomap-add-details-panel ul li select {margin: 0; width: 73%}
 #photomap-add-details-panel ul li label {display: inline-block; width: 25%;}
 
-
+#photomap-uploading-panel {display: none; height: 250px; background-color: #DC4F55}
+#photomap-uploading-panel img.wheel {margin-left: 15px; padding: 0 30%; width: 40%;}
+#photomap-uploading-panel p {margin: 10px 30%; color:#FBF6F8; text-align: center}
+#photomap-uploading-panel progress {margin: 10px 30%; width: 40%;}
+#photomap-uploading-panel a {display: block; margin: 10px 30%; color: #C4C1C2; text-align: center; text-decoration: none}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

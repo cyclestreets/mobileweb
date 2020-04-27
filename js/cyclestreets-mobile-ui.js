@@ -143,7 +143,7 @@ var cyclestreetsui = (function ($) {
 			
 			// While developing, open the route-box on load
 			//$('#route-search-panel').hide();
-			$('#photomap-add-location-panel').show();
+			//$('#photomap-uploading-panel').show();
 			
 			// Display photomap
 			$('#photomap').click( function() {

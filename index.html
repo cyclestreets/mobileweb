@@ -97,12 +97,19 @@
 			<hr>
 			<ul id="recent-journeys">
 				<li>
+					<a href="#"><img src="assets/btn-get-directions-small.svg"></a>
 					<p class="destination">Nandos</p>
 					<p class="distance">7 miles</p>
-					<a href="#"><img src="assets/btn-get-directions-small.svg"></a>
-					<p class="address">Cambridge Leisure Park, Clifton Way, Cambridge...</p>
-					
+					<p class="address">Cambridge Leisure Park, Clifton Way, Cambrid...</p>
 				</li>
+				<hr>
+				<li>
+					<a href="#"><img src="assets/btn-get-directions-small.svg"></a>
+					<p class="destination">Nandos</p>
+					<p class="distance">8 miles</p>
+					<p class="address">High Street, Cambridge, Cambridgeshire, CM3 7...</p>
+				</li>
+				<hr>
 			</ul>
 		</div>
 		
@@ -110,12 +117,55 @@
 			<img id="photomap-panel-handle" class="handle" src="assets/card-with-handle.svg">
 			<h2>Photomap</h2>
 			<a id="photomap-add-button" href="#"><img src="assets/icon-add-photo-rest.svg"></a>
-			<p>Category</p>
-			<p>Good or bad</p>
-			<p>Since</p>
+			<ul>
+				<li>
+					<label for="category">Category</label>
+					<select name="category" id="category">
+						<option value="">All</option>
+						<option value="cycleparking">Cycle parking</option>
+						<option value="obstructions">Obstruction</option>
+						<option value="track">Track</option>
+						<option value="dutchcycleways">Dutch-style cycleway</option>
+						<option value="road">Road environment</option>
+						<option value="cycleways">Cycleway</option>
+						<option value="enforcement">Enforcement</option>
+						<option value="carstorage">Car storage</option>
+						<option value="closure">Temporary closure</option>
+						<option value="roadworks">Roadworks</option>
+						<option value="bikeshops">Bike shop</option>
+						<option value="potholes">Pothole</option>
+						<option value="destinations">Destination</option>
+						<option value="signs">General sign/notice</option>
+						<option value="routesigns">Route sign</option>
+						<option value="congestion">Congestion</option>
+						<option value="bicycles">Bicycle</option>
+						<option value="general">Other</option>
+					</select>
+				</li>
+				<li>
+					<label for="metacategory">Good or bad</label>
+					<select name="metacategory" id="metacategory">
+						<option value="">All</option>
+						<option value="bad" id="severity_bad">Problem</option>
+						<option value="good" id="severity_good">Good practice</option>
+						<option value="other" id="severity_other">Infrastructure</option>
+						<option value="any" id="severity_any">Misc</option>
+						<option value="event" id="severity_event">Event</option>
+					</select>
+				<li>
+					<label for="since">Since</label>
+					<select name="since" data-yearly-since-unixtime="2000">
+						<option value="">No date limit</option>
+					</select>
+				<li>
+			</ul>
 			<hr>
-			<p id="photo-reports-label">Only show reports with photos</p>
-			<a id="photo-reports-switch" href="#"><img src="assets/switch-off.svg"></a>
+			<p>Only show reports with photos</p>
+			<label class="switch">
+				<input type="checkbox" id="photo-reports">
+				<span class="slider round"></span>
+			</label>
+			
 		</div>
 	</main>
 

@@ -3,8 +3,8 @@ h1 {font-family: 'Ropa Sans', sans-serif;}
 h2, h3, h4, h5, h6, body {font-family: 'Josefin Sans', sans-serif;}
 
 input {border: none; line-height: 50px; border-radius: 50px; box-shadow: 0 0 3px gray;}
-select {-webkit-appearance: none; height: 50px}
-textarea {border-radius: 20px; padding: 10px}
+select {-webkit-appearance: none; height: 50px;}
+textarea {border-radius: 20px; padding: 10px;}
 
 /* Nav */
 nav {height: calc(100% - 20px); display: none; width: 0; position: fixed; z-index: 20; padding-top: 20px; top: 0; left: 0; background-color: #2d2e2e; overflow-x: hidden; overflow: hidden; opacity: 0.95; transition: 0.3s;}
@@ -90,12 +90,12 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .segmented-control li.active label {color: #f5f5f5; background-color: #cc5959}
 .segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
 .segmented-control label:hover {background: #fafafa;}
-#route-search-panel hr {margin: 10px 0; width: 100%}
+#route-search-panel hr {margin: 10px 0; width: 100%;}
 
 #recent-journeys li {width: 90%; list-style-type: none;}
 #recent-journeys li p {margin: 10px 0;}
 #recent-journeys li p.destination {display: inline; font-size: 16px; line-height: 19px;}
-#recent-journeys li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap}
+#recent-journeys li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
 #recent-journeys li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('../assets/icon-cyclist-small.svg');} 
 #recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8E8C8C;}
 #recent-journeys li a {position: absolute; right: 0px;}
@@ -108,15 +108,17 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #photomap-panel p {display: inline; margin: 0; line-height: 35px;}
 
 #photomap-add-location-panel {display: none; height: 400px;}
-#photomap-add-location-panel h2 {padding-left: 26%}
+#photomap-add-location-panel h2 {padding-left: 26%;}
 #photomap-add-location-panel p {margin: 10px;}
+#mini-map {height: 335px; width:100%;}
 
 #photomap-add-details-panel {display: none; padding: 0; padding-top: 20px; width: 100%; height: 80%;}
-#photomap-add-details-panel h2 {margin-left: 80px}
+#photomap-add-details-panel h2 {margin-left: 80px;}
 #photomap-add-details-panel img.handle {margin: 0 18%;}
 #photomap-add-details-panel ul {margin: 0; padding: 20px;}
-#photomap-add-details-panel textarea {height: 50px; width: 60%}
+#photomap-add-details-panel textarea {display: inline-block; height: 50px; width: 65%;}
 #photomap-add-details-panel ul li {list-style-type: none; width: 100%;}
+#photomap-add-details-panel ul li select {margin: 0; width: 73%}
 #photomap-add-details-panel ul li label {display: inline-block; width: 25%;}
 
 

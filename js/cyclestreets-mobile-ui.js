@@ -40,18 +40,19 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 			
-			cyclestreetsui.createMap ();
+			cyclestreetsui.createMap ('map');
+			cyclestreetsui.createMap ('mini-map');
 			cyclestreetsui.createUIEvents();
 		},
 		
 		
 		// Create the map
-		createMap: function ()
+		createMap: function (container)
 		{
 			// Create the map in the "map" div, set the view to a given place and zoom
 			mapboxgl.accessToken = _settings.mapboxAccessToken;
 			_map = new mapboxgl.Map({
-				container: 'map',
+				container: container,
 				style: 'mapbox://styles/mapbox/light-v9',
 				center: [_settings.defaultLocation.longitude, _settings.defaultLocation.latitude],
 				zoom: _settings.defaultLocation.zoom
@@ -142,7 +143,7 @@ var cyclestreetsui = (function ($) {
 			
 			// While developing, open the route-box on load
 			//$('#route-search-panel').hide();
-			//$('#photomap-add-details-panel').show();
+			$('#photomap-add-location-panel').show();
 			
 			// Display photomap
 			$('#photomap').click( function() {

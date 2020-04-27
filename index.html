@@ -114,7 +114,7 @@
 		</div>
 		
 		<div id="photomap-panel" class="panel">
-			<img id="photomap-panel-handle" class="handle" src="assets/card-with-handle.svg">
+			<img class="handle" src="assets/card-with-handle.svg">
 			<h2>Photomap</h2>
 			<a id="photomap-add-button" href="#"><img src="assets/icon-add-photo-rest.svg"></a>
 			<ul>
@@ -152,6 +152,7 @@
 						<option value="any" id="severity_any">Misc</option>
 						<option value="event" id="severity_event">Event</option>
 					</select>
+				</li>
 				<li>
 					<label for="since">Since</label>
 					<select name="since" data-yearly-since-unixtime="2000">
@@ -165,6 +166,63 @@
 				<input type="checkbox" id="photo-reports">
 				<span class="slider round"></span>
 			</label>
+		</div>
+		
+		<div id="photomap-add-location-panel" class="panel">
+			<img class="handle" src="assets/card-with-handle.svg">
+			<a class="back-action" href="#"><img src="assets/icon-disclosure-red-left.svg"></a>
+			<h2>Add location</h2>
+			<a class="forward-action" href="#"><img src="assets/icon-add-photo-rest.svg"></a>
+			<p>If the location shown is not accurate, tap on the map below location to adjust it.</p>
+		</div>
+		
+		<div id="photomap-add-details-panel" class="panel">
+			<img class="handle" src="assets/card-with-handle.svg">
+			<a class="back-action padded" href="#"><img src="assets/icon-disclosure-red-left.svg"></a>
+			<h2>Add details</h2>
+			<a class="forward-action padded" href="#">Upload <img src="assets/icon-disclosure-red-right.svg"></a>
+			<img src="placeholders/photomap-add-comments-placeholder.svg">
+			<ul>
+				<li>
+					<label for="since">Caption</label>
+					<textarea placeholder="Enter description"></textarea>
+				<li>
+				<li>
+					<label for="category">Category</label>
+					<select name="category" id="category">
+						<option value="">All</option>
+						<option value="cycleparking">Cycle parking</option>
+						<option value="obstructions">Obstruction</option>
+						<option value="track">Track</option>
+						<option value="dutchcycleways">Dutch-style cycleway</option>
+						<option value="road">Road environment</option>
+						<option value="cycleways">Cycleway</option>
+						<option value="enforcement">Enforcement</option>
+						<option value="carstorage">Car storage</option>
+						<option value="closure">Temporary closure</option>
+						<option value="roadworks">Roadworks</option>
+						<option value="bikeshops">Bike shop</option>
+						<option value="potholes">Pothole</option>
+						<option value="destinations">Destination</option>
+						<option value="signs">General sign/notice</option>
+						<option value="routesigns">Route sign</option>
+						<option value="congestion">Congestion</option>
+						<option value="bicycles">Bicycle</option>
+						<option value="general">Other</option>
+					</select>
+				</li>
+				<li>
+					<label for="metacategory">This photo represents</label>
+					<select name="metacategory" id="metacategory">
+						<option value="">All</option>
+						<option value="bad" id="severity_bad">Problem</option>
+						<option value="good" id="severity_good">Good practice</option>
+						<option value="other" id="severity_other">Infrastructure</option>
+						<option value="any" id="severity_any">Misc</option>
+						<option value="event" id="severity_event">Event</option>
+					</select>
+				</li>
+			</ul>
 			
 		</div>
 	</main>

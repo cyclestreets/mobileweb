@@ -4,6 +4,7 @@ h2, h3, h4, h5, h6, body {font-family: 'Josefin Sans', sans-serif;}
 
 input {border: none; line-height: 50px; border-radius: 50px; box-shadow: 0 0 3px gray;}
 select {-webkit-appearance: none; height: 50px}
+textarea {border-radius: 20px; padding: 10px}
 
 /* Nav */
 nav {height: calc(100% - 20px); display: none; width: 0; position: fixed; z-index: 20; padding-top: 20px; top: 0; left: 0; background-color: #2d2e2e; overflow-x: hidden; overflow: hidden; opacity: 0.95; transition: 0.3s;}
@@ -46,16 +47,21 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 
 .ui-button {display: block; position: fixed; width: 50px; height: 50px; line-height: 50px; border: 0 solid #f5f5f5; border-radius: 50%; background: #f5f5f5; text-align: center; box-shadow: 0 0 3px gray;}
 .ui-button-large {width: 65px; height: 65px; background: #cc5959;}
+.padded {padding: 0 20px 20px 20px}
 
 #hamburger-menu {top: 20px; left: 20px;}
 #location-icon {top: 40px; right: 30px; line-height: 63px}
 #glasses-icon {top: 110px; right: 30px;}
 #browse-search-box {display: none; position: fixed; top: 110px; right: 30px; width: 50px; height: 50px; background: #f5f5f5;}
 #browse-search-box.open {display: block; padding-left: 5%; border-radius: 25px;}
-#close-browse-box-icon {display: none; top: 110px; right: 30px; z-index: 1; line-height: 60px}
+#close-browse-box-icon {display: none; top: 110px; right: 30px; z-index: 1; line-height: 60px;}
 
 .panel {position: fixed; bottom: 0; width: calc(100% - 40px); padding: 20px; background-color: #fbf6f8; transition: 0.5s;}
 .handle {position: absolute; top: -8px; width: 40%; margin: 0 calc(30% - 20px); transition: 0.5s;}
+a.back-action {float: left;}
+a.forward-action {float: right; color: #DC4F55; text-decoration: none}
+h2 {display: inline; width: 80%; margin: 10px; text-align: center; font-variant: small-caps;}
+ul li select {display: inline-block; padding: 0 20px; margin: 2px 10px; width: 52%; border-radius: 25px; text-align: left; text-decoration: none; background: #DC4F55; color: #f5f5f5;}
 
 .switch {position: relative; float: right; display: inline-block; width: 60px; height: 34px;}
 .switch input {opacity: 0; width: 0; height: 0;}
@@ -89,20 +95,31 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #recent-journeys li {width: 90%; list-style-type: none;}
 #recent-journeys li p {margin: 10px 0;}
 #recent-journeys li p.destination {display: inline; font-size: 16px; line-height: 19px;}
-#recent-journeys li p.address {width: 320px; text-overflow:ellipsis; overflow: hidden; white-space: nowrap}
+#recent-journeys li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap}
 #recent-journeys li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('../assets/icon-cyclist-small.svg');} 
 #recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8E8C8C;}
-#recent-journeys li a {position: absolute; right: 0px}
+#recent-journeys li a {position: absolute; right: 0px;}
 
 #photomap-panel {display: none; height: 275px;}
-#photomap-panel .handle {position: absolute; width: 40%;}
-#photomap-panel h2 {display: inline; padding: 0 0 0 35%; width: 80%; margin: 10px; text-align: center; font-variant: small-caps;}
-#photomap-panel img {float: right;}
+#photomap-panel h2 {padding: 0 0 0 32%;}
 #photomap-panel ul {margin: 0; padding: 0;}
-#photomap-panel ul li {list-style-type: none; width: 100%; }
+#photomap-panel ul li {list-style-type: none; width: 100%;}
 #photomap-panel ul li label {display: inline-block; width: 30%;}
-#photomap-panel ul li select {display: inline-block; padding: 0 20px; margin: 2px 10px; width: 55%; border-radius: 25px; text-align: left; text-decoration: none; background: #DC4F55; color: #f5f5f5;}
 #photomap-panel p {display: inline; margin: 0; line-height: 35px;}
+
+#photomap-add-location-panel {display: none; height: 400px;}
+#photomap-add-location-panel h2 {padding-left: 26%}
+#photomap-add-location-panel p {margin: 10px;}
+
+#photomap-add-details-panel {display: none; padding: 0; padding-top: 20px; width: 100%; height: 80%;}
+#photomap-add-details-panel h2 {margin-left: 80px}
+#photomap-add-details-panel img.handle {margin: 0 18%;}
+#photomap-add-details-panel ul {margin: 0; padding: 20px;}
+#photomap-add-details-panel textarea {height: 50px; width: 60%}
+#photomap-add-details-panel ul li {list-style-type: none; width: 100%;}
+#photomap-add-details-panel ul li label {display: inline-block; width: 25%;}
+
+
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

@@ -170,6 +170,11 @@ var cyclestreetsui = (function ($) {
 				$('#photomap-panel').show();
 			});
 			
+			// Display photomap
+			$('#popup-close-button').click( function() {
+				$('#photomap-popup-panel').hide('300');
+			});
+			
 		}
 	
 	};	

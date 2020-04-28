@@ -182,7 +182,7 @@
 			<a class="back-action padded" href="#"><img src="assets/icon-disclosure-red-left.svg"></a>
 			<h2>Add details</h2>
 			<a id="photomap-upload" class="forward-action padded" href="#">Upload <img src="assets/icon-disclosure-red-right.svg"/></a>
-			<img src="placeholders/photomap-add-comments-placeholder.svg"/>
+			<img src="placeholders/photomap-add-comments-placeholder.svg" />
 			<ul>
 				<li>
 					<label for="since">Caption</label>
@@ -227,11 +227,18 @@
 		</div>
 		
 		<div id="photomap-uploading-panel" class="panel">
-			<img class="handle" src="assets/card-handle-red-fill.svg"/>
-			<img class="wheel" src="assets/bicycle-wheel.svg"/>
+			<img class="handle" src="assets/card-handle-red-fill.svg" />
+			<img class="wheel" src="assets/bicycle-wheel.svg" />
 			<p>Uploading</p>
 			<progress id="photomap-upload" value="32" max="100"></progress>
 			<a id="cancel-photomap-upload" href="#">Cancel</a>
+		</div>
+		
+		<div id="photomap-popup-panel" class="popup">
+			<img class="popup-photo" src="placeholders/photomap-add-comments-placeholder.svg" />
+			<a href="#" id="popup-close-button" class="ui-button"><img src="assets/icon-cross-red.svg"/></a>
+			<a href="#"><img src="assets/icon-share.svg" /> Share</a>
+			<a class="right" href="#"> Photo info</a>
 		</div>
 		
 	</main>

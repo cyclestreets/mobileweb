@@ -141,10 +141,6 @@ var cyclestreetsui = (function ($) {
 			// Open the Route search box
 			$('#route-search-box').focus(routeSearchBoxFocus);
 			
-			// While developing, open the route-box on load
-			//$('#route-search-panel').hide();
-			//$('#photomap-add-location-panel').show();
-			
 			// Development "tour" actions
 			$('#photomap-add-button').click(function() {				
 				$('#photomap-panel').hide();
@@ -170,10 +166,15 @@ var cyclestreetsui = (function ($) {
 				$('#photomap-panel').show();
 			});
 			
-			// Display photomap
+			// Hide photomap popup panel
 			$('#popup-close-button').click( function() {
 				$('#photomap-popup-panel').hide('300');
 			});
+			
+			// While developing, open the route-box on load
+			$('#route-search-panel').hide();
+			$('#places-panel').show();
+			
 			
 		}
 	

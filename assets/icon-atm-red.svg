@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <ellipse id="ellipse-8" cx="16" cy="20.667" rx="2.667" ry="2.667"/>
+    <mask id="mask-9" x="0" y="0" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+      <rect width="32" height="32" x="0" y="0" fill="black"/>
+      <use fill="white" xlink:href="#ellipse-8"/>
+    </mask>
+  </defs>
+  <g>
+    <path fill="rgb(220,79,85)" fill-rule="evenodd" d="M6.33333333 32c-.55228475 0-1-.44771525-1-1V9.33333333H8v20h16v-20h2.66666667V31c0 .55228475-.44771525 1-1 1H6.33333333z"/>
+    <path fill="rgb(220,79,85)" fill-rule="evenodd" d="M9.33333333 9.33333333C9.33333333 13.00014691 12.33285593 16 16.00073446 16c3.6664096 0 6.6659322-2.9998531 6.6659322-6.66666667H9.33333334z"/>
+    <path fill="rgb(220,79,85)" fill-rule="evenodd" d="M0 1c0-.55228475.44771525-1 1-1h30c.55228475 0 1 .44771525 1 1v12.66666667c0 .55228475-.44771525 1-1 1h-3V12h.33333333c.55228475 0 1-.44771525 1-1V7.66666667c0-.55228475-.44771525-1-1-1H3.66666667c-.55228475 0-1 .44771525-1 1V11c0 .55228475.44771525 1 1 1H4v2.66666667H1c-.55228475 0-1-.44771525-1-1V1z"/>
+    <path fill="rgb(220,79,85)" fill-rule="evenodd" d="M8 29.33333333v-4c2.21005082 0 4 1.79107849 4 4H8z"/>
+    <path fill="rgb(220,79,85)" fill-rule="evenodd" d="M24 29.33333333v-4c-2.21005082 0-4 1.79107849-4 4h4z"/>
+    <rect width="5.333" height="1.333" x="13.333" y="24" fill="rgb(220,79,85)" rx="0" ry="0"/>
+    <rect width="1.333" height="2" x="13.333" y="24" fill="rgb(220,79,85)" rx="0" ry="0"/>
+    <use fill-opacity="0" stroke="rgb(220,79,85)" stroke-width="2" mask="url(#mask-9)" xlink:href="#ellipse-8"/>
+  </g>
+</svg>

@@ -165,9 +165,11 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #sign-in-panel p {margin: 0 20px; padding: 0; text-align: left;}
 #sign-in-panel .ui-button-large {width: 200px; height: 50px; margin: 15px 25%; border-radius: 50px; color: #fbf6f8; line-height: 50px;}
 
-#map-style-panel h2 {display: inline; width: 100px; margin: 0 0 0 34%; text-align: center;}
+#map-style-panel.panel {padding: 0; margin: 0; width: 100%;}
+#map-style-panel h2 {display: inline; width: 100px; margin: 0 0 0 34%; line-height: 50px; text-align: center;}
+#map-style-panel #map-style-done {margin: 20px}
 #map-style-panel p {width: calc(100% - 70px); line-height: 50px; text-align: center; margin-bottom: 0;}
-#map-style-panel ul {overflow-x: scroll; overflow-y: hidden; white-space: nowrap;}
+#map-style-panel ul {width: 100%; margin: 0; padding: 0; overflow-x: scroll; overflow-y: hidden; white-space: nowrap;}
 #map-style-panel ul li {display: inline; list-style-type: none; width: 100%;}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

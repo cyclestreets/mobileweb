@@ -106,6 +106,7 @@ var cyclestreetsui = (function ($) {
 				closeNav ();
 				hideBrowseSearchBox ();
 				closeRouteSearchBox ();
+				$('#creating-account-panel').hide();
 			};
 			
 			// Show the Browse search box
@@ -186,9 +187,23 @@ var cyclestreetsui = (function ($) {
 				$('#creating-account-panel').show();
 			});
 			
+			// Open sign-in card
+			$('#sign-in').click( function () {
+				resetUI();
+				$('#route-search-panel').hide();
+				$('#sign-in-panel').show();
+			});
+			
+			// Open sign-up card
+			$('#create-account-button').click( function () {
+				$('#sign-in-panel').hide();
+				$('#create-account-panel').show();
+			});
+			
+			
 			// While developing, open the route-box on load
-			$('#route-search-panel').hide();
-			$('#sign-in-panel').show();
+			//$('#route-search-panel').hide();
+			//$('#sign-in-panel').show();
 			
 			
 		}

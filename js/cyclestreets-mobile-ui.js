@@ -171,6 +171,21 @@ var cyclestreetsui = (function ($) {
 				$('#photomap-popup-panel').hide('300');
 			});
 			
+			// When creating account, after inputting username, display password set card
+			$('#choose-username-next').click( function (){
+				$('#create-account-panel').addClass('open');
+				$('#choose-username').addClass('disabled');
+				$('#choose-password').removeClass('disabled');
+				$('#choose-username-next').addClass('disabled');
+				$('#finish-account-creation').removeClass('disabled');
+			});
+			
+			// Hide the user information input panel, and display the creating account card
+			$('#finish-account-creation').click ( function () {
+				$('#create-account-panel').hide();
+				$('#creating-account-panel').show();
+			});
+			
 			// While developing, open the route-box on load
 			$('#route-search-panel').hide();
 			$('#create-account-panel').show();

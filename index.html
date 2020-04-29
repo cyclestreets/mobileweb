@@ -262,8 +262,24 @@
 			<img class="handle" src="assets/card-handle.svg" />
 			<h2>Create account</h2>
 			<a id="choose-username-next" class="forward-action" href="#">Next <img src="assets/icon-disclosure-red-right.svg"/></a>
-			<p>Choose your CycleStreets username: </p>
-			<input placeholder="Username"></input>
+			<a id="finish-account-creation" class="forward-action disabled" href="#">Finish <img src="assets/icon-disclosure-red-right.svg"/></a>
+			<div id="choose-username">
+				<p>Choose your CycleStreets username: </p>
+				<input id="username" placeholder="Username"></input>	
+			</div>
+			<div id="choose-password" class="disabled">
+				<p>Provide the following and you're done: </p>
+				<input id="password" placeholder="Choose a password"></input>
+				<input id="email" placeholder="Enter your email"></input>	
+			</div>
+		</div>
+		
+		<div id="creating-account-panel" class="panel">
+			<img class="handle" src="assets/card-handle-red-fill.svg" />
+			<h2>Welcome to</h2>
+			<h1>CycleStreets</h1>
+			<img class="wheel" src="assets/bicycle-wheel.svg" />
+			<p>Creating your account...</p>
 		</div>
 		
 	</main>

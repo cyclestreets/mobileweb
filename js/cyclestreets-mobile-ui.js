@@ -173,7 +173,7 @@ var cyclestreetsui = (function ($) {
 			
 			// While developing, open the route-box on load
 			$('#route-search-panel').hide();
-			$('#places-panel').show();
+			$('#create-account-panel').show();
 			
 			
 		}

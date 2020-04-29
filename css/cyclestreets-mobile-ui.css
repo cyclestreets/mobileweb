@@ -138,9 +138,14 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .poi-button {display: inline-block; width: 65px; height: 65px; line-height: 85px; border: 1px solid #dc4f55; border-radius: 50%; background: #f5f5f5; text-align: center; box-shadow: 0 0 3px gray;}
 #places-panel {display: none; height: 250px;}
 #places-panel h2 {display: inline-block; width: 80%; margin: 0 10% 10px; text-align: center;}
-#places-panel ul {margin: 0; padding: 0; overflow-y: scroll}
-#places-panel ul li {display: inline; width: 70px; padding: 20px; list-style: none; }
+#places-panel ul {margin: 0; padding: 0; overflow-y: scroll;}
+#places-panel ul li {display: inline; width: 70px; padding: 20px; list-style: none;}
 #places-panel ul li a {color: #212322; text-decoration: none; line-height: 83px;}
+
+#create-account-panel {display: none; height: 100px;}
+#create-account-panel h2 {display: inline; width: 80%; margin: 0 0 0 26% ; text-align: center;}
+#create-account-panel p {margin: 10px 0; text-align: left;}
+#create-account-panel input {margin: 5px calc(10% - 20px); height: 40px; width: 80%; border: 0; padding: 0 10px; background-color: #ede9ea;}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

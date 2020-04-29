@@ -65,7 +65,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 .popup a.right {float: right;}
 .popup #popup-close-button {position: absolute; top: 0; right: 0; margin: 10px; line-height: 60px;}
 
-a.back-action {float: left;}
+a.back-action {float: left; color: #dc4f55; text-decoration: none;}
 a.forward-action {float: right; color: #dc4f55; text-decoration: none;}
 h2 {display: inline; width: 80%; margin: 10px; text-align: center; font-variant: small-caps;}
 ul li select {display: inline-block; padding: 0 20px; margin: 2px 10px; width: 52%; border-radius: 25px; text-align: left; text-decoration: none; background: #DC4F55; color: #f5f5f5;}
@@ -105,7 +105,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #recent-journeys li p.destination {display: inline; font-size: 16px; line-height: 19px;}
 #recent-journeys li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
 #recent-journeys li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('../assets/icon-cyclist-small.svg');} 
-#recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8cC;}
+#recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
 #recent-journeys li a {position: absolute; right: 0px;}
 
 #photomap-panel {display: none; height: 275px;}
@@ -155,6 +155,16 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #creating-account-panel h1 {font-size: 32px;}
 #creating-account-panel img.wheel {margin-left: 15px; padding: 0 30%; width: 40%;}
 #creating-account-panel p {width: 60%; margin: 0 20%; text-align: center; color: #fbf6f8;}
+
+#sign-in-panel {display: none; height: 450px; padding: 0; width: 100%;}
+#sign-in-panel .handle {margin: 0 8%;}
+#sign-in-panel h2 {display: inline; width: 100px; margin: 0 0 0 18%; line-height: 50px; text-align: center;}
+#sign-in-panel input {margin: 5px calc(10% - 20px); height: 40px; width: 80%; border: 0; padding: 0 10px; background-color: #ede9ea;}
+#sign-in-panel a {display: block; color: #dc4f55; text-decoration: none; margin: 20px;}
+#sign-in-panel h3 {width: 100%; line-height: 50px; text-align: center; margin-bottom: 0;}
+#sign-in-panel p {margin: 0 20px; padding: 0; text-align: left;}
+#sign-in-panel .ui-button-large {width: 200px; height: 50px; margin: 15px 25%; border-radius: 50px; color: #fbf6f8; line-height: 50px;}
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
 	nav {padding-top: 15px;}

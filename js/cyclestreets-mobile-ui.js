@@ -188,7 +188,7 @@ var cyclestreetsui = (function ($) {
 			
 			// While developing, open the route-box on load
 			$('#route-search-panel').hide();
-			$('#create-account-panel').show();
+			$('#sign-in-panel').show();
 			
 			
 		}

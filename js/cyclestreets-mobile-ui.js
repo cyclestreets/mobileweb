@@ -200,10 +200,23 @@ var cyclestreetsui = (function ($) {
 				$('#create-account-panel').show();
 			});
 			
+			// Open map-style card
+			$('#map-style-menu-item').click( function () {
+				resetUI();
+				$('#route-search-panel').hide();
+				$('#map-style-panel').show();
+			});
+			
+			// Close map-style card
+			$('#map-style-done').click( function () {
+				$('#map-style-panel').hide();
+				$('#route-search-panel').show();
+			});
+			
 			
 			// While developing, open the route-box on load
-			$('#route-search-panel').hide();
-			$('#map-style-panel').show();
+			//$('#route-search-panel').hide();
+			//$('#map-style-panel').show();
 			
 			
 		}

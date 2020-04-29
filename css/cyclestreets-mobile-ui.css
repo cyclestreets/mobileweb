@@ -85,6 +85,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #route-box-handle.handle {margin: 0 30%;}
 #route-search-box {position: relative; bottom: 5px; height: 50px; width: 80%; margin: 20px 5%; padding: 0 20px; border: 0; transition: 0.5s;}
 #route-search-box.open {top: 0;}
+
 #shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0 0 0 20px;}
 #shortcut-icons {display: none;}
 #shortcut-icons.visible {display: inline-block; overflow-x: scroll;}
@@ -165,7 +166,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #sign-in-panel p {margin: 0 20px; padding: 0; text-align: left;}
 #sign-in-panel .ui-button-large {width: 200px; height: 50px; margin: 15px 25%; border-radius: 50px; color: #fbf6f8; line-height: 50px;}
 
-#map-style-panel.panel {padding: 0; margin: 0; width: 100%;}
+#map-style-panel.panel {display: none; padding: 0; margin: 0; width: 100%;}
 #map-style-panel h2 {display: inline; width: 100px; margin: 0 0 0 34%; line-height: 50px; text-align: center;}
 #map-style-panel #map-style-done {margin: 20px}
 #map-style-panel p {width: calc(100% - 70px); line-height: 50px; text-align: center; margin-bottom: 0;}

@@ -145,7 +145,6 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 #create-account-panel {display: none; height: 100px;}
 #create-account-panel .disabled {display: none;}
-#create-account-panel .disabled {display:none;}
 #create-account-panel h2 {display: inline; width: 80%; margin: 0 0 0 26% ; text-align: center;}
 #create-account-panel p {margin: 10px 0; text-align: left;}
 #create-account-panel input {margin: 5px calc(10% - 20px); height: 40px; width: 80%; border: 0; padding: 0 10px; background-color: #ede9ea;}
@@ -168,7 +167,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 #map-style-panel.panel {display: none; padding: 0; margin: 0; width: 100%;}
 #map-style-panel h2 {display: inline; width: 100px; margin: 0 0 0 34%; line-height: 50px; text-align: center;}
-#map-style-panel #map-style-done {margin: 20px}
+#map-style-panel #map-style-done {margin: 20px;}
 #map-style-panel p {width: calc(100% - 70px); line-height: 50px; text-align: center; margin-bottom: 0;}
 #map-style-panel ul {width: 100%; margin: 0; padding: 0; overflow-x: scroll; overflow-y: hidden; white-space: nowrap;}
 #map-style-panel ul li {display: inline; list-style-type: none; width: 100%;}

@@ -247,10 +247,28 @@ var cyclestreetsui = (function ($) {
 				$('#route-search-panel').show();
 			});
 			
+			// Open about card
+			$('#about-cyclestreets').click( function () {
+				$('#settings-panel').hide();
+				$('#about-panel').show();
+			});
 			
-			// While developing, open the route-box on load
+			// Open settings card (coming back from About)
+			$('#about-back-button').click( function () {
+				$('#about-panel').hide();
+				$('#settings-panel').show();
+			});
+			
+			// Close about card
+			$('#about-done').click( function () {
+				$('#about-panel').hide();
+				$('#route-search-panel').show();
+			});
+			
+			
+			// While developing, shortcut to certain panels on load
 			//$('#route-search-panel').hide();
-			//$('#settings-panel').show();
+			//$('#about-panel').show();
 			
 			
 		}

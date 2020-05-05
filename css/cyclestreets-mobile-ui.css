@@ -188,15 +188,12 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #settings-panel p {float: left; width: 270px; text-align: left; margin: 10px 0 0 15px;}
 #settings-panel .switch {display: inline-block; float: none;}
 #settings-panel img.disclosure {padding: 10px; float: right;}
-
 #settings-panel img.cycle-left {display: inline; padding-left: 15px;}
 #settings-panel img.cycle-right {display: inline;}
-
 .speed-slider {-webkit-appearance: none; position: relative; width: 60%; height: 2px; border-radius: 5px; background: #d3d3d3; outline: none; -webkit-transition: .2s; transition: opacity .2s;}
 .speed-slider::-webkit-slider-thumb {-webkit-appearance: none; appearance: none; width: 25px; height: 25px; border-radius: 50%; background: #dc4f55; cursor: pointer;}
 .speed-slider::-moz-range-thumb {width: 25px; height: 25px; border-radius: 50%; background: #4CAF50; cursor: pointer;}
 #settings-panel p.speed {display: inline-block; width: 20%; padding-top: 10px; margin: 5px 0 15px 40px;}
-
 #settings-panel p.distance {width:100px;}
 #settings-panel ul.segmented-control {display: inline-table; width: 60%; margin: 0; padding: 0;}
 #settings-panel ul.segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none; font-size: 12px;}
@@ -205,7 +202,14 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #settings-panel ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
 #settings-panel ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
 #settings-panel ul.segmented-control label:hover {background: #fafafa;}
+#settings-panel #about-cyclestreets {margin: 10px 0 0 15px;}
 
+#about-panel {display: none; height: 630px; width: calc(100% - 40); overflow-y: scroll;}
+#about-panel img.handle {margin: 0 13%;}
+#about-panel h2 {display: inline; width: 100px; margin: 0 0 0 27%; text-align: center;}
+#about-panel a.forward-action {}
+#about-panel h3 {width: 100%; text-align: left; margin: 25px 0 0 0;}
+#about-panel p {padding: 0; margin: 15px 0 0 0; line-height: 22px;}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

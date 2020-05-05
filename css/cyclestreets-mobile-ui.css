@@ -220,7 +220,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #ride-tracker-panel.tracking h5 {color: #fbf6f8;}
 #ride-tracker-panel.tracking img {display: none;}
 #ride-tracker-panel.tracking a img {display: inline;}
-#ride-tracker-panel h2, h3, h5 {color: #212322}
+#ride-tracker-panel h2, h3, h5 {color: #21232;}
 #ride-tracker-panel h2 {display: inline; width: 100px; margin: 0 0 0 15%; text-align: center;}
 #ride-tracker-panel h3 {width: 100%; text-align: center; font-size: 45px; margin: 25px 0 0 0;}
 #ride-tracker-panel h4 {width: 100%; text-align: center; font-size: 20px; font-weight: normal; margin: 5px 0 0 0; color: #8e8c8c;}
@@ -250,6 +250,13 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #ride-info-panel ul li p.description {display: block; margin: 10px 0 15px 0; padding: 0; color: #8e8c8c;}
 #ride-info-panel ul li img {width: 24px; padding: 0; float: left;}
 #ride-info-panel ul li ul li p.classification {color: #8e8c8c;}
+
+#feedback-panel {display: none; padding: 20px; width: calc(100% - 40); height: 180px;}
+#feedback-panel h2 {margin-left: 23%;}
+#feedback-panel img.handle {margin: 0 0 0 13%;}
+#feedback-panel label {display: inline-block; width: 30%; margin-top: 20px;}
+#feedback-panel input {display: inline-block; width: 200px; margin-top: 10px; padding: 10px;}
+#feedback-panel textarea {display: inline-block; width: 200px; margin-top: 10px; padding: 10px;}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {nav {padding-top: 15px;} nav a {font-size: 18px;}}

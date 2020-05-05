@@ -311,10 +311,23 @@ var cyclestreetsui = (function ($) {
 				$('#ride-tracker-panel').show();
 			});
 			
+			// Open feedback panel
+			$('#feedback-menu-item').click( function () {
+				resetUI();
+				$('#route-search-panel').hide();
+				$('#feedback-panel').show();
+			});
+			
+			// Close feedback panel
+			$('#cancel-feedback').click( function () {
+				$('#feedback-panel').hide();
+				$('#route-search-panel').show();
+				
+			});
 			
 			// While developing, shortcut to certain panels on load
 			//$('#route-search-panel').hide();
-			//$('#ride-tracker-panel').show();
+			//$('#feedback-panel').show();
 			
 			
 		}

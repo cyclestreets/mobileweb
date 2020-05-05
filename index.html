@@ -55,7 +55,7 @@
 					<a href="#" class="blog-badge" data-badge="3"></a>
 				</div>
 			</div></li>
-			<li><a href="#">Feedback</a></li>
+			<li><a id="feedback-menu-item" href="#">Feedback</a></li>
 			<li><a id="sign-in" href="#">Sign in</a></li>
 		</ul>
 
@@ -466,6 +466,23 @@
 					</ul>
 				</li>
 			</ul>
+		</div>
+		
+		<div id="feedback-panel" class="panel">
+			<img class="handle" src="assets/card-handle.svg" />
+			<a id="cancel-feedback" class="back-action" href="#">Cancel</a>
+			<h2>Feedback</h2>
+			<a id="share-feedback" class="forward-action" href="#">Send <img src="assets/icon-disclosure-red-right.svg" /></a>
+			<form>
+				<label>Your name</label>
+				<input placeholder="Enter your name"></input>
+				<br>
+				<label>Email</label>
+				<input placeholder="Your email"></input>
+				<br>
+				<label>Feedback</label>
+				<textarea placeholder="Your feedback"></textarea>
+			</form>
 		</div>
 		
 	</main>

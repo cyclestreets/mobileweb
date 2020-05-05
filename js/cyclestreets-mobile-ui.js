@@ -293,6 +293,18 @@ var cyclestreetsui = (function ($) {
 				$('#my-rides-panel').show();
 			});
 			
+			// Open the my-rides information screen
+			$('#my-rides-panel ul li').click(function() {
+				$('#my-rides-panel').hide();
+				$('#ride-info-panel').show();
+			});
+			
+			// Close rides info panel
+			$('#ride-info-back').click( function () {
+				$('#ride-info-panel').hide();
+				$('#my-rides-panel').show();
+			});
+			
 			// Close my-rides panel
 			$('#my-rides-back').click( function () {
 				$('#my-rides-panel').hide();
@@ -301,8 +313,8 @@ var cyclestreetsui = (function ($) {
 			
 			
 			// While developing, shortcut to certain panels on load
-			$('#route-search-panel').hide();
-			$('#ride-tracker-panel').show();
+			//$('#route-search-panel').hide();
+			//$('#ride-tracker-panel').show();
 			
 			
 		}

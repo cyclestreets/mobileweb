@@ -272,10 +272,22 @@ var cyclestreetsui = (function ($) {
 				$('#ride-tracker-panel').show();
 			});
 			
+			// Open my-rides panel
+			$('#my-rides-button').click( function () {
+				$('#ride-tracker-panel').hide();
+				$('#my-rides-panel').show();
+			});
+			
+			// Close my-rides panel
+			$('#my-rides-back').click( function () {
+				$('#my-rides-panel').hide();
+				$('#ride-tracker-panel').show();
+			});
+			
 			
 			// While developing, shortcut to certain panels on load
 			//$('#route-search-panel').hide();
-			//$('#ride-tracker-panel').show();
+			//$('#my-rides-panel').show();
 			
 			
 		}

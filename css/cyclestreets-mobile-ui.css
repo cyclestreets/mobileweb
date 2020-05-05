@@ -229,5 +229,16 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #my-rides-panel ul li img {display: inline; margin: 10px 0 0 15px;}
 #my-rides-panel ul li p {display: inline-block; margin: 0; padding: 0 0 0 5px;}
 
+#ride-info-panel {display: none; padding: 20px; width: calc(100% - 40); height: 300px;}
+#ride-info-panel h2 {margin-left: 36%;}
+#ride-info-panel img.handle {margin: 0 0 0 25%;}
+#ride-info-panel ul {margin: 0; padding: 0; width: 100%; overflow-y: scroll;}
+#ride-info-panel ul li {display: inline-block; margin: 0; padding: 0 0 10px 0; width: 100%; list-style: none;}
+#ride-info-panel ul li h3 {display: inline-block; width: 40%; margin: 15px 0 0 0; padding: 0; text-align: left;}
+#ride-info-panel ul li p.datetime {display: inline-block; width: 50%; margin: 0; padding: 0; text-align: right; color: #8e8c8c;}
+#ride-info-panel ul li p.description {display: block; margin: 10px 0 15px 0; padding: 0; color: #8e8c8c;}
+#ride-info-panel ul li img {width: 24px; padding: 0; float: left;}
+#ride-info-panel ul li ul li p.classification {color: #8e8c8c;}
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {nav {padding-top: 15px;} nav a {font-size: 18px;}}

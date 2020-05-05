@@ -286,8 +286,8 @@ var cyclestreetsui = (function ($) {
 			
 			
 			// While developing, shortcut to certain panels on load
-			//$('#route-search-panel').hide();
-			//$('#my-rides-panel').show();
+			$('#route-search-panel').hide();
+			$('#ride-info-panel').show();
 			
 			
 		}

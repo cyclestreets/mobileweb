@@ -187,11 +187,32 @@ var cyclestreetsui = (function ($) {
 				$('#creating-account-panel').show();
 			});
 			
+			// Open places
+			$('#places-menu-item').click( function () {
+				resetUI();
+				$('#route-search-panel').hide();
+				$('#places-panel').show();
+			});
+			
+			// Close places card
+			$('#cancel-sign-in').click( function () {
+				resetUI();
+				$('#sign-in-panel').hide();
+				$('#route-search-panel').show();
+			});
+			
 			// Open sign-in card
 			$('#sign-in').click( function () {
 				resetUI();
 				$('#route-search-panel').hide();
 				$('#sign-in-panel').show();
+			});
+			
+			// Close sign-in card
+			$('#cancel-sign-in').click( function () {
+				resetUI();
+				$('#sign-in-panel').hide();
+				$('#route-search-panel').show();
 			});
 			
 			// Open sign-up card

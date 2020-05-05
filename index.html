@@ -46,7 +46,7 @@
 		<hr>
 		<ul id="secondary-menu">
 			<li><a id="map-style-menu-item" href="#">Map style</a></li>
-			<li><a href="#">Settings</a></li>
+			<li><a id="settings-menu-item" href="#">Settings</a></li>
 			<li><div class="badge-row">
 				<div class="text-column">
 					<a href="#">Blog</a>
@@ -89,7 +89,6 @@
 				<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg" /></a></li>
 				<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg" /></a></li>
 			</ul>
-			
 			<ul id="journey-options" class="segmented-control">
 				<li><label>Recent searches</label></li>
 				<li class="active"><label>Recent journeys</label></li>
@@ -245,16 +244,15 @@
 			<img class="handle" src="assets/card-handle.svg" />
 			<h2>Places</h2>
 			<ul>
-				<li><a href="#" class="poi-button"><img src="assets/icon-cycle-parking.svg" /></a></li>
-				<li><a href="#" class="poi-button"><img src="assets/icon-atm-red.svg" /></a></li>
-				<li><a href="#" class="poi-button"><img src="assets/icon-atm-red.svg" /></a></li>
-				<li><a href="#" class="poi-button"><img src="assets/icon-car-park-pos.svg" /></a></li>
-				<li><a href="#" class="poi-button"><img src="assets/icon-underground-pos.svg" /></a></li>
-				<li><a href="#" class="poi-button"><img src="assets/icon-bike-shops-pos.svg" /></a></li>
-				<li><a href="#" class="poi-button"><img src="assets/icon-greengrocer-neg.svg" /></a></li>
-				<li><a href="#" class="poi-button"><img src="assets/icon-supermarket-pos.svg" /></a></li>
-				<li><a href="#" class="poi-button"><img src="assets/icon-tourist-info-pos.svg" /></a></li>
-				<li><a href="#" class="poi-button"><img src="assets/icon-viewpoint-neg.svg" /></a></li>				
+				<li><a href="#"><img src="assets/icon-cycle-parking.svg" /><span>Cycle parking</span></a></li>
+				<li><a href="#"><img src="assets/icon-atm-red.svg" /><span>ATM</span></a></li>
+				<li><a href="#"><img src="assets/icon-car-park-pos.svg" /><span>Car park</span></a></li>
+				<li><a href="#"><img src="assets/icon-underground-pos.svg" /><span>Underground</span></a></li>
+				<li><a href="#"><img src="assets/icon-bike-shops-pos.svg" /><span>Bike shops</span></a></li>
+				<li><a href="#"><img src="assets/icon-greengrocer-neg.svg" /><span>Greengrocer</span></a></li>
+				<li><a href="#"><img src="assets/icon-supermarket-pos.svg" /><span>Supermarket</span></a></li>
+				<li><a href="#"><img src="assets/icon-tourist-info-pos.svg" /><span>Tourist info</span></a></li>
+				<li><a href="#"><img src="assets/icon-viewpoint-neg.svg" /><span>Viewpoint</span></a></li>		
 			</ul>
 		</div>
 		
@@ -301,11 +299,58 @@
 			<h2>Map style</h2>
 			<a id="map-style-done" class="forward-action" href="#">Done</a>
 			<ul>
-				<li><a href="#" class="map-style-button"><img src="placeholders/map_style_1.png" /></a></li>
-				<li><a href="#" class="map-style-button"><img src="placeholders/map_style_2.png" /></a></li>
-				<li><a href="#" class="map-style-button"><img src="placeholders/map_style_3.png" /></a></li>			
+				<li><a href="#"><img src="placeholders/map_style_1.png" /></a></li>
+				<li><a href="#"><img src="placeholders/map_style_2.png" /></a></li>
+				<li><a href="#"><img src="placeholders/map_style_3.png" /></a></li>			
 			</ul>
 			<p>Open Cycle Maps</p>
+		</div>
+		
+		<div id="settings-panel" class="panel">
+			<img class="handle" src="assets/card-handle.svg" />
+			<h2>Settings</h2>
+			<a id="settings-done" class="forward-action padded" href="#">Done</a>
+			<h3>Saved locations</h3>
+			<ul>
+				<li>
+					<img src="assets/icon-home-dark.svg" />
+					<a id="create-account-button" class="ui-button ui-button-large" href="#">Set your Home location <img class="disclosure" src="assets/icon-disclosure-light.svg" /></a>
+				</li>
+				<li>
+					<img src="assets/icon-work-dark.svg" />
+					<a id="create-account-button" class="ui-button ui-button-large set" href="#">Fraser Street, Temple, South... <img class="disclosure" src="assets/icon-disclosure-red-right.svg" /></a>
+				</li>
+			</ul>
+			<hr>
+			<h3>Route speed & units</h3>
+			<img class="cycle-left" src="assets/icon-dutch-cycle-large.svg" />
+			<input type="range" min="1" max="3" value="1" class="speed-slider" id="myRange">
+			<img class="cycle-right" src="assets/icon-race-cycle-large.svg" />
+			<p class="speed">10 mph</p>
+			<p class="speed">12 mph</p>
+			<p class="speed">15 mph</p>
+			<p class="distance">Distance unit</p>
+			<ul class="segmented-control">
+				<li><label>Miles</label></li>
+				<li class="active"><label>Kilometers</label></li>
+			</ul>
+			<hr>
+			<h3>Photo of the day</h3>
+			<p>Receive our pick of the day's photos.</p>
+			<label class="switch">
+				<input type="checkbox" id="photo-of-the-day">
+				<span class="slider round"></span>
+			</label>
+			<hr>
+			<h3>Auto-end routes</h3>
+			<p>The app will attempt to complete a route if stopped for too long.</p>
+			<label class="switch">
+				<input type="checkbox" id="auto-end-route">
+				<span class="slider round"></span>
+			</label>
+			<hr>
+			<p>About CycleStreets</p>
+			<img class="disclosure" src="assets/icon-disclosure-red-right.svg" />
 		</div>
 		
 	</main>

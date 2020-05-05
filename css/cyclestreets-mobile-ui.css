@@ -90,14 +90,14 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #shortcut-icons {display: none;}
 #shortcut-icons.visible {display: inline-block; overflow-x: scroll;}
 #shortcut-icons li a {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}
-.segmented-control {display: none; width: 80%; margin: 10px 7.5%; padding: 0;}
-.segmented-control.visible {display: table;}
-.segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
-.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
-.segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
-.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
-.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
-.segmented-control label:hover {background: #fafafa;}
+#route-search-panel ul.segmented-control {display: none; width: 80%; margin: 10px 7.5%; padding: 0;}
+#route-search-panel ul.segmented-control.visible {display: table;}
+#route-search-panel ul.segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
+#route-search-panel ul.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
+#route-search-panel ul.segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
+#route-search-panel ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
+#route-search-panel ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
+#route-search-panel ul.segmented-control label:hover {background: #fafafa;}
 #route-search-panel hr {margin: 10px 0; width: 100%;}
 
 #recent-journeys {margin: 0; padding: 0;}
@@ -136,12 +136,13 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #photomap-uploading-panel progress {margin: 10px 30%; width: 40%;}
 #photomap-uploading-panel a {display: block; margin: 10px 30%; color: #c4c1c2; text-align: center; text-decoration: none;}
 
-.poi-button {display: inline-block; width: 65px; height: 65px; line-height: 85px; border: 1px solid #dc4f55; border-radius: 50%; background: #f5f5f5; text-align: center; box-shadow: 0 0 3px gray;}
 #places-panel {display: none; height: 250px;}
+#places-panel img.handle {margin: 0 23%;}
 #places-panel h2 {display: inline-block; width: 80%; margin: 0 10% 10px; text-align: center;}
 #places-panel ul {margin: 0; padding: 0; overflow-y: scroll;}
-#places-panel ul li {display: inline; width: 70px; padding: 20px; list-style: none;}
-#places-panel ul li a {color: #212322; text-decoration: none; line-height: 83px;}
+#places-panel ul li {display: inline-block; height: 80px; width: 70px; margin: 0 35px 10px 0; list-style: none;}
+#places-panel ul li a {display: inline-block; width: 65px; height: 65px; border: 1px solid #dc4f55; border-radius: 50%; background: #f5f5f5; color: #212322; text-decoration: none; text-align: center; box-shadow: 0 0 3px gray;}
+#places-panel ul li a img {display: block; padding: 15px;}
 
 #create-account-panel {display: none; height: 100px;}
 #create-account-panel .disabled {display: none;}
@@ -171,6 +172,40 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #map-style-panel p {width: calc(100% - 70px); line-height: 50px; text-align: center; margin-bottom: 0;}
 #map-style-panel ul {width: 100%; margin: 0; padding: 0; overflow-x: scroll; overflow-y: hidden; white-space: nowrap;}
 #map-style-panel ul li {display: inline; list-style-type: none; width: 100%;}
+
+#settings-panel {display: none; height: 630px; padding: 0; width: 100%;}
+#settings-panel img.handle {margin: 0 30%;}
+#settings-panel h2 {display: inline; width: 100px; margin: 0 0 0 38%; line-height: 50px; text-align: center;}
+#settings-panel a.forward-action {padding: 20px;}
+#settings-panel h3 {width: 100%; text-align: center; margin: 10px 0 0 0;}
+#settings-panel hr {margin: 15px 0;}
+#settings-panel ul {padding: 10px; margin: 0;}
+#settings-panel ul li {list-style-type: none;}
+#settings-panel ul li img {display: inline; padding: 10px;}
+#settings-panel ul li a {display: inline; color: #dc4f55; text-decoration: none;}
+#settings-panel ul li a.ui-button-large {width: 250px; margin-left: 20px; padding: 0 15px; height: 40px; border-radius: 50px; color: #fbf6f8; line-height: 40px; text-align: left;}
+#settings-panel ul li a.set {color: #212322; background-color: #fbf6f8;}
+#settings-panel p {float: left; width: 270px; text-align: left; margin: 10px 0 0 15px;}
+#settings-panel .switch {display: inline-block; float: none;}
+#settings-panel img.disclosure {padding: 10px; float: right;}
+
+#settings-panel img.cycle-left {display: inline; padding-left: 15px;}
+#settings-panel img.cycle-right {display: inline;}
+
+.speed-slider {-webkit-appearance: none; position: relative; width: 60%; height: 2px; border-radius: 5px; background: #d3d3d3; outline: none; -webkit-transition: .2s; transition: opacity .2s;}
+.speed-slider::-webkit-slider-thumb {-webkit-appearance: none; appearance: none; width: 25px; height: 25px; border-radius: 50%; background: #dc4f55; cursor: pointer;}
+.speed-slider::-moz-range-thumb {width: 25px; height: 25px; border-radius: 50%; background: #4CAF50; cursor: pointer;}
+#settings-panel p.speed {display: inline-block; width: 20%; padding-top: 10px; margin: 5px 0 15px 40px;}
+
+#settings-panel p.distance {width:100px;}
+#settings-panel ul.segmented-control {display: inline-table; width: 60%; margin: 0; padding: 0;}
+#settings-panel ul.segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none; font-size: 12px;}
+#settings-panel ul.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
+#settings-panel ul.segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
+#settings-panel ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
+#settings-panel ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
+#settings-panel ul.segmented-control label:hover {background: #fafafa;}
+
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {

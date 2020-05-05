@@ -213,10 +213,23 @@ var cyclestreetsui = (function ($) {
 				$('#route-search-panel').show();
 			});
 			
+			// Open settings card
+			$('#settings-menu-item').click( function () {
+				resetUI();
+				$('#route-search-panel').hide();
+				$('#settings-panel').show();
+			});
+			
+			// Close settings card
+			$('#settings-done').click( function () {
+				$('#settings-panel').hide();
+				$('#route-search-panel').show();
+			});
+			
 			
 			// While developing, open the route-box on load
 			//$('#route-search-panel').hide();
-			//$('#map-style-panel').show();
+			//$('#settings-panel').show();
 			
 			
 		}

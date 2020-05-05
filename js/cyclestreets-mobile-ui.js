@@ -272,6 +272,21 @@ var cyclestreetsui = (function ($) {
 				$('#ride-tracker-panel').show();
 			});
 			
+			// Start ride tracking
+			$('#start-ride-tracking').click( function () {
+				$('#ride-tracker-panel').addClass('tracking');
+				$('#my-rides-button, #start-ride-tracking').removeClass('enabled');
+				$('#cancel-tracking, #finish-tracking').addClass('enabled');
+			});
+			
+			// Cancel ride tracking
+			$('#cancel-tracking').click( function () {
+				$('#cancel-tracking, #finish-tracking').removeClass('enabled');
+				$('#my-rides-button, #start-ride-tracking').addClass('enabled');
+				$('#ride-tracker-panel').removeClass('tracking');
+				
+			});
+			
 			// Open my-rides panel
 			$('#my-rides-button').click( function () {
 				$('#ride-tracker-panel').hide();
@@ -287,7 +302,7 @@ var cyclestreetsui = (function ($) {
 			
 			// While developing, shortcut to certain panels on load
 			$('#route-search-panel').hide();
-			$('#ride-info-panel').show();
+			$('#ride-tracker-panel').show();
 			
 			
 		}

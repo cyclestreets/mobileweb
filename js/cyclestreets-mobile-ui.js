@@ -265,10 +265,17 @@ var cyclestreetsui = (function ($) {
 				$('#route-search-panel').show();
 			});
 			
+			// Open ride-tracker panel
+			$('#ride-tracker-menu-item').click( function () {
+				resetUI();
+				$('#route-search-panel').hide();
+				$('#ride-tracker-panel').show();
+			});
+			
 			
 			// While developing, shortcut to certain panels on load
 			//$('#route-search-panel').hide();
-			//$('#about-panel').show();
+			//$('#ride-tracker-panel').show();
 			
 			
 		}

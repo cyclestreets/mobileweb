@@ -205,15 +205,17 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #settings-panel #about-cyclestreets {margin: 10px 0 0 15px;}
 
 #about-panel {display: none; height: 630px; width: calc(100% - 40); overflow-y: scroll;}
-#about-panel img.handle {margin: 0 13%;}
 #about-panel h2 {display: inline; width: 100px; margin: 0 0 0 27%; text-align: center;}
-#about-panel a.forward-action {}
 #about-panel h3 {width: 100%; text-align: left; margin: 25px 0 0 0;}
 #about-panel p {padding: 0; margin: 15px 0 0 0; line-height: 22px;}
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-	nav {padding-top: 15px;}
+#ride-tracker-panel {display: none; height: 200px;}
+#ride-tracker-panel .handle {margin: 0 10%;}
+#ride-tracker-panel h2 {display: inline; width: 100px; margin: 0 0 0 15%; text-align: center;}
+#ride-tracker-panel h3 {width: 100%; text-align: center; font-size: 45px; margin: 25px 0 0 0;}
+#ride-tracker-panel h4 {width: 100%; text-align: center; font-size: 20px; font-weight: normal; margin: 5px 0 0 0; color: #8e8c8c;}
+#ride-tracker-panel h5 {display: inline-block; width: 45%; text-align: center; font-size: 20px; margin: 20px 0 0 0; padding: 0;}
+#ride-tracker-panel h6 {display: inline-block; width: 45%; text-align: center; font-size: 15px; font-weight: normal; margin: 8px 0 0 0; padding: 0; color: #8e8c8c;}
 
-	nav a {font-size: 18px;}
-}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {nav {padding-top: 15px;} nav a {font-size: 18px;}}

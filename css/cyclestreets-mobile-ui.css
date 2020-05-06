@@ -254,7 +254,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #feedback-panel h2 {margin-left: 23%;}
 #feedback-panel img.handle {margin: 0 0 0 13%;}
 #feedback-panel label {display: inline-block; width: 30%; margin-top: 20px;}
-#feedback-panel input {display: inline-block; width: 200px; margin-top: 10px; padding: 10px;}
+#feedback-panel input {display: inline-block; width: 200px; height: 18px; line-height: 18px; margin-top: 10px; padding: 10px;}
 #feedback-panel textarea {display: inline-block; width: 200px; margin-top: 10px; padding: 10px;}
 
 #add-ride-details-panel {display: none; padding: 20px; width: calc(100% - 40); height: 180px;}

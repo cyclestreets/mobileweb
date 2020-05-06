@@ -357,6 +357,7 @@ var cyclestreetsui = (function ($) {
 			// While developing, shortcut to certain panels on load
 			//$('#route-search-panel').hide();
 			$('#ride-notification').delay(2000).slideDown('slow');
+			//$('#places-panel').show();
 			
 			
 		}

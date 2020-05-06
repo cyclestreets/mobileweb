@@ -7,8 +7,7 @@ select {-webkit-appearance: none; height: 50px;}
 textarea {border-radius: 20px; padding: 10px;}
 
 /* Nav */
-nav {height: calc(100% - 20px); display: none; width: 0; position: fixed; z-index: 20; padding-top: 20px; top: 0; left: 0; background-color: #2d2e2e; overflow-x: hidden; overflow: hidden; opacity: 0.95; transition: 0.3s;}
-nav.open {width: 70%;}
+nav {height: calc(100% - 20px); display: none; width: 70%; position: fixed; z-index: 20; padding-top: 20px; top: 0; left: 0; background-color: #2d2e2e; overflow-x: hidden; overflow: hidden; opacity: 0.95;}
 nav ul {margin: 0 20px; padding: 0; list-style: none;}
 nav ul ul {display: none; margin: 0; margin-left: 8px;}
 nav ul ul a {color: #c5c2c3;}
@@ -41,7 +40,7 @@ nav #nav-footer h6, p {margin: 0 0 0 40px;}
 nav #nav-footer .logo-text {padding: 6px 0 5px 20px; color: #e1dde0; font-size: 18px; font-weight: bold; font-variant: small-caps;}
 nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-weight: lighter;}
 
-#map {position:absolute; top:0; bottom:0; width:100%;}
+#map {position:absolute; top:0; bottom:0; left: 0; width:100%;}
 
 /* UI icons and input boxes */
 .ui-button {display: block; position: fixed; width: 50px; height: 50px; line-height: 50px; border: 0 solid #f5f5f5; border-radius: 50%; background: #f5f5f5; text-align: center; box-shadow: 0 0 3px gray;}
@@ -57,7 +56,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 #browse-search-box.open {display: block; padding-left: 5%; border-radius: 25px;}
 #close-browse-box-icon {display: none; top: 110px; right: 30px; z-index: 1; line-height: 60px;}
 
-.panel {position: fixed; bottom: 0; width: calc(100% - 40px); padding: 20px; background-color: #fbf6f8; transition: 0.5s;}
+.panel {position: fixed; bottom: 0; left: 0; width: calc(100% - 40px); padding: 20px; background-color: #fbf6f8; transition: 0.5s;}
 .handle {position: absolute; top: -8px; width: 40%; margin: 0 calc(30% - 20px); transition: 0.5s;}
 .popup {display: none; position: fixed; bottom: 20%; width: 90%; height: 400px; margin-left: 5%; margin-right: 5%; border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8;}
 .popup img.popup-photo {height: 85%;}
@@ -284,6 +283,3 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #ride-notification p.direction {width: 200px; margin-top: 10px; font-size: 17px;}
 #ride-notification p.time {color: #dc4f55; margin-top: 10px; font-size: 14px;}
 #ride-notification p.distance {color: #8e8c8c; font-size: 14px;}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {nav {padding-top: 15px;} nav a {font-size: 18px;}}

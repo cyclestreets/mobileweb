@@ -67,16 +67,16 @@ var cyclestreetsui = (function ($) {
 		{
 			/* Nav bar functions */
 			// Open the nav bar
-			$('#hamburger-menu').click(function() {$('nav').addClass('open');});
+			$('#hamburger-menu').click(function() {$('nav').show("slide", { direction: "left" }, 300);});
 			
 			// Close the nav bar
-			var closeNav = function() {$('nav').removeClass('open');};
+			var closeNav = function() {$('nav').hide("slide", { direction: "left" }, 300);};
 			
 			// Enable implicit click/touch on map as close menu
 			if ($('nav').is(':visible')) {$('#map').click(function () {resetUI ();});}
 			
 			// Enable swipe-to-close
-			$('nav').on('swipeleft', function () {$('nav').removeClass('open');});
+			$('nav').on('swipeleft', function () {$('nav').hide("slide", { direction: "left" }, 300);});
 			
 			// Open the Data submenu
 			$('li.data').click(function() {$('li.data ul').slideToggle();});

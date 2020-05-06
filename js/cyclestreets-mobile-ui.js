@@ -349,9 +349,14 @@ var cyclestreetsui = (function ($) {
 				
 			});
 			
+			// Slide up the ride notification on click
+			$('#ride-notification').click( function () {
+				$('#ride-notification').slideUp('slow');
+			});
+			
 			// While developing, shortcut to certain panels on load
-			$('#route-search-panel').hide();
-			$('#add-ride-details-panel').show();
+			//$('#route-search-panel').hide();
+			$('#ride-notification').delay(2000).slideDown('slow');
 			
 			
 		}

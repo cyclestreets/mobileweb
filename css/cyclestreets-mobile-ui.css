@@ -278,5 +278,12 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #show-tracked-ride-panel ul li img {display: inline; margin: 10px 0 0 15px;}
 #show-tracked-ride-panel ul li p {display: inline-block; margin: 0; padding: 0 0 0 5px;}
 
+#ride-notification {display: none; position: relative; margin: 20px 7.5%; padding: 10px; width: 80%; height: 60px; border-radius: 8px; transition: none;}
+#ride-notification img {height: 30px; width: 30px; background-color: #dc4f55; border-radius: 5px; padding: 15px; margin-right: 10px; float: left}
+#ride-notification p {display: inline-block; margin: 0 0 0 10px;}
+#ride-notification p.direction {width: 200px; margin-top: 10px; font-size: 17px;}
+#ride-notification p.time {color: #dc4f55; margin-top: 10px; font-size: 14px;}
+#ride-notification p.distance {color: #8e8c8c; font-size: 14px;}
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {nav {padding-top: 15px;} nav a {font-size: 18px;}}

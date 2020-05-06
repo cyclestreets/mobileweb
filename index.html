@@ -485,6 +485,54 @@
 			</form>
 		</div>
 		
+		<div id="add-ride-details-panel" class="panel">
+			<img class="handle" src="assets/card-handle.svg" />
+			<a id="continue-satnav-mode" class="back-action" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+			<h2>Ride tracker</h2>
+			<a id="save-ride-button" class="forward-action" href="#">Save</a>
+			
+			<ul>
+				<li>
+					<label for="category">Purpose</label>
+					<select name="category" id="category">
+						<option value="" disabled selected>Choose</option>
+						<option value="cycleparking">Cycle parking</option>
+						<option value="obstructions">Obstruction</option>
+						<option value="track">Track</option>
+						<option value="dutchcycleways">Dutch-style cycleway</option>
+						<option value="road">Road environment</option>
+						<option value="cycleways">Cycleway</option>
+						<option value="enforcement">Enforcement</option>
+					</select>
+				</li>
+				<li>
+					<label>Notes</label>
+					<textarea placeholder="e.g. Trip to town"></textarea>
+				</li>
+		</div>
+		
+		<div id="show-tracked-ride-panel" class="panel">
+			<img class="handle" src="assets/card-handle.svg" />
+			<a id="close-ride-tracker" class="back-action padded" href="#">Done</a>
+			<h2>Ride tracker</h2>
+			<a id="share-ride" class="forward-action padded" href="#"><img src="assets/icon-share.svg" /></a>
+			<ul>
+				<li>
+					<h3>Social</h3>
+					<p class="datetime">16 June 2017 at 3:45pm</p>
+					<p class="description">Checked in on neighbour's dog</p>
+					<img src="assets/icon-cyclist-small.svg" />
+					<p class>7.1 miles</p>
+					<img src="assets/icon-clock.svg" />
+					<p class>21.15</p>
+					<img src="assets/icon-flame.svg" />
+					<p class>39 kcals</p>
+					<img src="assets/icon-leaf.svg" />
+					<p class>1 lbs CO2</p>
+				</li>
+			</ul>
+		</div>
+		
 	</main>
 
 </body>

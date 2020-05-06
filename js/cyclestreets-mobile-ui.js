@@ -279,6 +279,24 @@ var cyclestreetsui = (function ($) {
 				$('#cancel-tracking, #finish-tracking').addClass('enabled');
 			});
 			
+			// Open add-ride-details panel
+			$('#finish-tracking').click( function () {
+				$('#ride-tracker-panel').hide();
+				$('#add-ride-details-panel').show();
+			});
+			
+			// Cancel add-ride-details panel
+			$('#continue-satnav-mode').click( function () {
+				$('#add-ride-details-panel').hide();
+				$('#ride-tracker-panel').show();
+			});
+			
+			// Save and show the ride details
+			$('#save-ride-button').click( function () {
+				$('#add-ride-details-panel').hide();
+				$('#show-tracked-ride-panel').show();
+			});
+			
 			// Cancel ride tracking
 			$('#cancel-tracking').click( function () {
 				$('#cancel-tracking, #finish-tracking').removeClass('enabled');
@@ -311,6 +329,12 @@ var cyclestreetsui = (function ($) {
 				$('#ride-tracker-panel').show();
 			});
 			
+			// Close rides info panel
+			$('#close-ride-tracker').click( function () {
+				$('#show-tracked-ride-panel').hide();
+				$('#route-search-panel').show();
+			});
+			
 			// Open feedback panel
 			$('#feedback-menu-item').click( function () {
 				resetUI();
@@ -326,8 +350,8 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			// While developing, shortcut to certain panels on load
-			//$('#route-search-panel').hide();
-			//$('#feedback-panel').show();
+			$('#route-search-panel').hide();
+			$('#add-ride-details-panel').show();
 			
 			
 		}

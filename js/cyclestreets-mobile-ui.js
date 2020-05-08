@@ -354,10 +354,18 @@ var cyclestreetsui = (function ($) {
 				$('#ride-notification').slideUp('slow');
 			});
 			
+			// Flip photomap popup card
+			$('#photo-info-flip').click( function () {
+				$('#inner-card').addClass('flipped');
+			});
+			$('#popup-back-button').click( function () {
+				$('#inner-card').removeClass('flipped');
+			});
+			
 			// While developing, shortcut to certain panels on load
-			//$('#route-search-panel').hide();
+			$('#route-search-panel').hide();
 			//$('#ride-notification').delay(2000).slideDown('slow');
-			$('#places-panel').show();
+			$('#photomap-popup-panel').show();
 			
 			
 		}

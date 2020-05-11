@@ -149,6 +149,13 @@ var cyclestreetsui = (function ($) {
 				}]
 			  },
 			options: {
+					responsive:true,
+					maintainAspectRatio: false,
+					elements: {
+					    point:{
+					        radius: 0
+					    }
+					},
 					layout: {
 						padding: {
 						left: -10,

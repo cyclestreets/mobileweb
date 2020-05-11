@@ -103,6 +103,17 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
 #recent-journeys li a {position: absolute; right: 0px;}
 
+#route-select-panel {display: none; height: 200px; padding: 10px 0 0 0; width: 100%;}
+#route-select-panel h2 {margin-left: 26%;}
+#route-select-panel img.handle {margin: 0 18%;}
+#route-select-panel p {margin-top: 15px; text-align: center;}
+#route-select-panel p.location {font-size: 13px; margin: 10px; padding: 0; color: #8e8c8c;}
+#route-select-panel ul {margin: 15px 0 0 0 0; padding: 0;}
+#route-select-panel ul li {list-style-type: none; display: inline-block;}
+#route-select-panel ul li img {display: inline-block; margin: 0 0 0 30px; padding: 0;}
+#route-select-panel ul li p {display: inline-block; margin: 0; padding: 0; text-align: left}
+#route-select-panel span.elevation {position: absolute; bottom: 15px; right: 15px; padding: 5px; color: #ffffff; background-color: #212322; opacity: .75; border-radius: 15px; line-height: 20px; }
+#route-select-panel span img {padding: 0 5px 0 0;}
 #photomap-panel {display: none; height: 275px;}
 #photomap-panel h2 {padding: 0 0 0 32%;}
 #photomap-panel ul {margin: 0; padding: 0;}

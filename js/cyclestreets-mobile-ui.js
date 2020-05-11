@@ -134,7 +134,57 @@ var cyclestreetsui = (function ($) {
 				$('#route-search-panel, #route-search-box').removeClass( 'open' );
 				$('#shortcut-icons, #journey-options').removeClass ('visible');
 				
-			};	
+			};
+			
+			// Display the elevation graph
+			var ctx = document.getElementById('elevationChart').getContext('2d');
+			var myChart = new Chart(ctx, {
+			  type: 'line',
+			  data: {
+				labels: [1, 5, 3, 5, 3, 2, 5],
+				datasets: [{
+				  label: '',
+				  data: [1, 3, 5, 3, 7, 8, 4],
+				  backgroundColor: "rgba(220,79,85,1)"
+				}]
+			  },
+			options: {
+					layout: {
+						padding: {
+						left: -10,
+						right: 0,
+						top: 0,
+						bottom: -10
+						}
+					},
+					legend: {
+						display: false,
+					},
+					scales: {
+						 xAxes: [{
+							ticks: {
+								display: false
+							},
+							gridLines: {
+								drawOnChartArea: false,
+								drawBorder: true,
+								display: false
+							}
+						}],
+						yAxes: [{
+							gridLines: {
+								drawOnChartArea: false,
+								drawBorder: true,
+								display: false
+							},
+							ticks: {
+								display: false
+							}
+						}]
+					}
+				}
+			});			
+			
 			
 			// Close the Browse search box
 			$('#close-browse-box-icon').click(hideBrowseSearchBox);
@@ -362,10 +412,12 @@ var cyclestreetsui = (function ($) {
 				$('#inner-card').removeClass('flipped');
 			});
 			
+			
+			
 			// While developing, shortcut to certain panels on load
-			//$('#route-search-panel').hide();
+			$('#route-search-panel').hide();
 			//$('#ride-notification').delay(2000).slideDown('slow');
-			//$('#route-select-panel').show();
+			$('#route-select-panel').show();
 			
 			
 		}

@@ -103,7 +103,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
 #recent-journeys li a {position: absolute; right: 0px;}
 
-#route-select-panel {display: none; height: 200px; padding: 10px 0 0 0; width: 100%;}
+#route-select-panel {display: none; height: 350px; padding: 10px 0 0 0; width: 100%;}
 #route-select-panel h2 {margin-left: 26%;}
 #route-select-panel img.handle {margin: 0 18%;}
 #route-select-panel p {margin-top: 15px; text-align: center;}
@@ -111,9 +111,11 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #route-select-panel ul {margin: 15px 0 0 0 0; padding: 0;}
 #route-select-panel ul li {list-style-type: none; display: inline-block;}
 #route-select-panel ul li img {display: inline-block; margin: 0 0 0 30px; padding: 0;}
-#route-select-panel ul li p {display: inline-block; margin: 0; padding: 0; text-align: left}
-#route-select-panel span.elevation {position: absolute; bottom: 15px; right: 15px; padding: 5px; color: #ffffff; background-color: #212322; opacity: .75; border-radius: 15px; line-height: 20px; }
+#route-select-panel ul li p {display: inline-block; margin: 0; padding: 0; text-align: left;}
+#route-select-panel span.elevation {position: absolute; bottom: 15px; right: 15px; padding: 5px; color: #ffffff; background-color: #212322; opacity: .75; border-radius: 15px; line-height: 20px;}
 #route-select-panel span img {padding: 0 5px 0 0;}
+#route-select-panel #elevationChart {position: absolute; bottom: 0; left: 0; height: 150px; width: 100%; padding: 0; margin: 0;}
+
 #photomap-panel {display: none; height: 275px;}
 #photomap-panel h2 {padding: 0 0 0 32%;}
 #photomap-panel ul {margin: 0; padding: 0;}
@@ -257,7 +259,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #ride-tracker-panel.tracking h5 {color: #fbf6f8;}
 #ride-tracker-panel.tracking img {display: none;}
 #ride-tracker-panel.tracking a img {display: inline;}
-#ride-tracker-panel h2, h3, h5 {color: #21232;}
+#ride-tracker-panel h2, h3, h5 {color: #212322;}
 #ride-tracker-panel h2 {display: inline; width: 100px; margin: 0 0 0 15%; text-align: center;}
 #ride-tracker-panel h3 {width: 100%; text-align: center; font-size: 45px; margin: 25px 0 0 0;}
 #ride-tracker-panel h4 {width: 100%; text-align: center; font-size: 20px; font-weight: normal; margin: 5px 0 0 0; color: #8e8c8c;}

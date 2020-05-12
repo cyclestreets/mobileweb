@@ -190,7 +190,10 @@ var cyclestreetsui = (function ($) {
 						}]
 					}
 				}
-			});			
+			});
+			
+			// Make elevation scrubber draggable
+			$('#elevation-scrubber').draggable({axis: "x"});
 			
 			
 			// Close the Browse search box

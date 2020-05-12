@@ -113,7 +113,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #route-select-panel ul li img {display: inline-block; margin: 0 0 0 30px; padding: 0;}
 #route-select-panel ul li p {display: inline-block; margin: 0; padding: 0; text-align: left;}
 #route-select-panel #elevation-chart-container {position: absolute; bottom: 0; left: 0; height: 80px; width: 100%;}
-#route-select-panel span.elevation {position: absolute; bottom: 15px; right: 15px; padding: 5px; color: #ffffff; background-color: #212322; opacity: .75; border-radius: 15px; line-height: 20px;}
+#route-select-panel span.elevation {position: absolute; bottom: 15px; right: 15px; padding: 5px; color: #ffffff; background-color: #212322; opacity: .75; border-radius: 40px; line-height: 20px;}
 #route-select-panel span img {padding: 0 5px 0 0;}
 
 

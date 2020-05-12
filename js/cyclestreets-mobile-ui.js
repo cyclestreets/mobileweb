@@ -104,9 +104,7 @@ var cyclestreetsui = (function ($) {
 			// Reset the UI to its default state
 			var resetUI = function () {
 				closeNav ();
-				hideBrowseSearchBox ();
 				closeRouteSearchBox ();
-				$('#creating-account-panel').hide();
 			};
 			
 			// Show the Browse search box
@@ -195,7 +193,6 @@ var cyclestreetsui = (function ($) {
 			// Make elevation scrubber draggable
 			$('#elevation-scrubber').draggable({axis: "x"});
 			
-			
 			// Close the Browse search box
 			$('#close-browse-box-icon').click(hideBrowseSearchBox);
 			
@@ -220,12 +217,20 @@ var cyclestreetsui = (function ($) {
 				$('#route-search-panel').show();
 			});
 			
-			// Display photomap
-			$('#photomap').click( function() {
-				closeNav ();
-				$('#route-search-panel').hide();
-				$('#photomap-panel').show();
+			
+			// Open card from main nav items
+			$('nav ul > li').click( function () {
+				// Hide nav & open searchbars or panels
+				resetUI ();
+				$('.panel').hide();
+				
+				// Get the class name from the li
+				var className = this.className.split(' ')[0];
+				
+				// Show the matching panel
+				$('#' + className + '-panel').show();
 			});
+			
 			
 			// Hide photomap popup panel
 			$('#popup-close-button').click( function() {
@@ -247,25 +252,11 @@ var cyclestreetsui = (function ($) {
 				$('#creating-account-panel').show();
 			});
 			
-			// Open places
-			$('#places-menu-item').click( function () {
-				resetUI();
-				$('#route-search-panel').hide();
-				$('#places-panel').show();
-			});
-			
-			// Close places card
+			// Close sign-in card
 			$('#cancel-sign-in').click( function () {
 				resetUI();
 				$('#sign-in-panel').hide();
 				$('#route-search-panel').show();
-			});
-			
-			// Open sign-in card
-			$('#sign-in').click( function () {
-				resetUI();
-				$('#route-search-panel').hide();
-				$('#sign-in-panel').show();
 			});
 			
 			// Close sign-in card
@@ -281,12 +272,6 @@ var cyclestreetsui = (function ($) {
 				$('#create-account-panel').show();
 			});
 			
-			// Open map-style card
-			$('#map-style-menu-item').click( function () {
-				resetUI();
-				$('#route-search-panel').hide();
-				$('#map-style-panel').show();
-			});
 			
 			// Close map-style card
 			$('#map-style-done').click( function () {
@@ -294,12 +279,6 @@ var cyclestreetsui = (function ($) {
 				$('#route-search-panel').show();
 			});
 			
-			// Open settings card
-			$('#settings-menu-item').click( function () {
-				resetUI();
-				$('#route-search-panel').hide();
-				$('#settings-panel').show();
-			});
 			
 			// Close settings card
 			$('#settings-done').click( function () {
@@ -325,12 +304,9 @@ var cyclestreetsui = (function ($) {
 				$('#route-search-panel').show();
 			});
 			
-			// Open ride-tracker panel
-			$('#ride-tracker-menu-item').click( function () {
-				resetUI();
-				$('#route-search-panel').hide();
-				$('#ride-tracker-panel').show();
-			});
+			
+			
+			
 			
 			// Start ride tracking
 			$('#start-ride-tracking').click( function () {
@@ -425,9 +401,9 @@ var cyclestreetsui = (function ($) {
 			
 			
 			// While developing, shortcut to certain panels on load
-			$('#route-search-panel').hide();
+			//$('#route-search-panel').hide();
 			//$('#ride-notification').delay(2000).slideDown('slow');
-			$('#route-select-panel').show();
+			//$('#route-select-panel').show();
 			
 			
 		}

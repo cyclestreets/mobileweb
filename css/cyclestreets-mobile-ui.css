@@ -116,7 +116,6 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #route-select-panel span.elevation {position: absolute; bottom: 15px; right: 15px; padding: 5px; color: #ffffff; background-color: #212322; opacity: .75; border-radius: 40px; line-height: 20px;}
 #route-select-panel span img {padding: 0 5px 0 0;}
 
-
 #photomap-panel {display: none; height: 275px;}
 #photomap-panel h2 {padding: 0 0 0 32%;}
 #photomap-panel ul {margin: 0; padding: 0;}
@@ -249,23 +248,23 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #about-panel h3 {width: 100%; text-align: left; margin: 25px 0 0 0;}
 #about-panel p {padding: 0; margin: 15px 0 0 0; line-height: 22px;}
 
-#ride-tracker-panel {display: none; height: 200px;}
-#ride-tracker-panel a {display: none;}
-#ride-tracker-panel a.enabled {display: inline;}
-#ride-tracker-panel .handle {margin: 0 10%;}
-#ride-tracker-panel.tracking {background-color: #212322; opacity: .85;}
-#ride-tracker-panel.tracking h2 {color: #fbf6f8;}
-#ride-tracker-panel.tracking h3 {color: #fbf6f8;}
-#ride-tracker-panel.tracking h4 {color: #c4c1c2;}
-#ride-tracker-panel.tracking h5 {color: #fbf6f8;}
-#ride-tracker-panel.tracking img {display: none;}
-#ride-tracker-panel.tracking a img {display: inline;}
-#ride-tracker-panel h2, h3, h5 {color: #212322;}
-#ride-tracker-panel h2 {display: inline; width: 100px; margin: 0 0 0 15%; text-align: center;}
-#ride-tracker-panel h3 {width: 100%; text-align: center; font-size: 45px; margin: 25px 0 0 0;}
-#ride-tracker-panel h4 {width: 100%; text-align: center; font-size: 20px; font-weight: normal; margin: 5px 0 0 0; color: #8e8c8c;}
-#ride-tracker-panel h5 {display: inline-block; width: 45%; text-align: center; font-size: 20px; margin: 20px 0 0 0; padding: 0;}
-#ride-tracker-panel h6 {display: inline-block; width: 45%; text-align: center; font-size: 15px; font-weight: normal; margin: 8px 0 0 0; padding: 0; color: #8e8c8c;}
+#ridetracker-panel {display: none; height: 200px;}
+#ridetracker-panel a {display: none;}
+#ridetracker-panel a.enabled {display: inline;}
+#ridetracker-panel .handle {margin: 0 10%;}
+#ridetracker-panel.tracking {background-color: #212322; opacity: .85;}
+#ridetracker-panel.tracking h2 {color: #fbf6f8;}
+#ridetracker-panel.tracking h3 {color: #fbf6f8;}
+#ridetracker-panel.tracking h4 {color: #c4c1c2;}
+#ridetracker-panel.tracking h5 {color: #fbf6f8;}
+#ridetracker-panel.tracking img {display: none;}
+#ridetracker-panel.tracking a img {display: inline;}
+#ridetracker-panel h2, h3, h5 {color: #212322;}
+#ridetracker-panel h2 {display: inline; width: 100px; margin: 0 0 0 15%; text-align: center;}
+#ridetracker-panel h3 {width: 100%; text-align: center; font-size: 45px; margin: 25px 0 0 0;}
+#ridetracker-panel h4 {width: 100%; text-align: center; font-size: 20px; font-weight: normal; margin: 5px 0 0 0; color: #8e8c8c;}
+#ridetracker-panel h5 {display: inline-block; width: 45%; text-align: center; font-size: 20px; margin: 20px 0 0 0; padding: 0;}
+#ridetracker-panel h6 {display: inline-block; width: 45%; text-align: center; font-size: 15px; font-weight: normal; margin: 8px 0 0 0; padding: 0; color: #8e8c8c;}
 
 #my-rides-panel {display: none; padding: 0; padding-top: 20px; width: 100%; height: 80%;}
 #my-rides-panel h2 {margin-left: 95px;}

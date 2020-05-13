@@ -36,8 +36,8 @@ nav .blog-badge[data-badge]:after {content: attr(data-badge); position: absolute
 
 nav #nav-footer {position: absolute; bottom: 0; height: 50px; width: 100%; padding: 10px; background-color: #212323; color: #b1afb1;}
 nav #nav-footer .cyclestreets-logo {float: left; width: 50px; height: 50px;}
-nav #nav-footer h6, p {margin: 0 0 0 40px;}
-nav #nav-footer .logo-text {padding: 6px 0 5px 20px; color: #e1dde0; font-size: 18px; font-weight: bold; font-variant: small-caps;}
+nav #nav-footer h6, nav #nav-footer p, nav #nav-footer a {margin: 0 0 0 40px;}
+nav #nav-footer .logo-text {padding: 3px 0 5px 20px; color: #e1dde0; font-size: 18px; font-weight: bold; font-variant: small-caps;}
 nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-weight: lighter;}
 
 #map {position:absolute; top:0; bottom:0; left: 0; width:100%;}
@@ -67,7 +67,7 @@ ul li {list-style-type: none;}
 ul li select {display: inline-block; padding: 0 20px; margin: 2px 10px; width: 52%; border-radius: 25px; text-align: left; text-decoration: none; background: #DC4F55; color: #f5f5f5;}
 
 div.photomap {height: 275px;}
-div.photomap ul li {width: 100%}
+div.photomap ul li {width: 100%;}
 div.photomap ul li label {display: inline-block; width: 30%;}
 div.photomap p {display: inline; margin: 0; line-height: 35px;}
 

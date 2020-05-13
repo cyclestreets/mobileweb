@@ -55,10 +55,11 @@ var cyclestreetsui = (function ($) {
 				container: container,
 				style: 'mapbox://styles/mapbox/light-v9',
 				center: [_settings.defaultLocation.longitude, _settings.defaultLocation.latitude],
-				zoom: _settings.defaultLocation.zoom
+				zoom: _settings.defaultLocation.zoom,
+				
+				// We display attribution in the nav, so remove it from the map (https://docs.mapbox.com/help/how-mapbox-works/attribution/)
+				attributionControl: false
 			});
-			
-			//_map.addControl (new mapboxgl.NavigationControl (), 'top-left'); can this be positioned elsewhere?
 		},
 		
 		

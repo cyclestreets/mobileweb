@@ -400,7 +400,7 @@ var cyclestreetsui = (function ($) {
 			// While developing, shortcut to certain panels on load
 			//$('#route-search-panel').hide();
 			//$('#ride-notification').delay(2000).slideDown('slow');
-			$('#creating-account-panel').show();
+			$('#map-style-panel').show();
 			
 			
 		}

@@ -56,7 +56,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 #browse-search-box.open {display: block; padding-left: 5%; border-radius: 25px;}
 #close-browse-box-icon {display: none; top: 110px; right: 30px; z-index: 1; line-height: 60px;}
 
-.panel {display: none; position: fixed; bottom: 0; left: 0; width: calc(100% - 40px); padding: 10px 20px 20px; background-color: #fbf6f8; transition: 0.5s;}
+.panel {display: none; position: fixed; bottom: 0; left: 0; z-index: 3; width: calc(100% - 40px); padding: 10px 20px 20px; background-color: #fbf6f8; transition: 0.5s;}
 .handle {position: absolute; top: -8px; margin: 0 calc((100% - 200px) / 2); padding: 0; transition: 0.5s;}
 
 a.back-action {float: left; color: #dc4f55; text-decoration: none;}
@@ -66,7 +66,7 @@ ul {margin: 0; padding: 0;}
 ul li {list-style-type: none;}
 ul li select {display: inline-block; padding: 0 20px; margin: 2px 10px; width: 52%; border-radius: 25px; text-align: left; text-decoration: none; background: #DC4F55; color: #f5f5f5;}
 
-div.photomap {height: 275px;}
+div.photomap {height: 240px;}
 div.photomap ul li {width: 100%;}
 div.photomap ul li label {display: inline-block; width: 30%;}
 div.photomap p {display: inline; margin: 0; line-height: 35px;}

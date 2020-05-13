@@ -304,28 +304,24 @@ var cyclestreetsui = (function ($) {
 				$('#about-panel').hide();
 				$('#route-search-panel').show();
 			});
-			
-			
-			
-			
-			
+				
 			// Start ride tracking
 			$('#start-ride-tracking').click( function () {
-				$('#ride-tracker-panel').addClass('tracking');
+				$('#ridetracker-panel').addClass('tracking');
 				$('#my-rides-button, #start-ride-tracking').removeClass('enabled');
 				$('#cancel-tracking, #finish-tracking').addClass('enabled');
 			});
 			
 			// Open add-ride-details panel
 			$('#finish-tracking').click( function () {
-				$('#ride-tracker-panel').hide();
+				$('#ridetracker-panel').hide();
 				$('#add-ride-details-panel').show();
 			});
 			
 			// Cancel add-ride-details panel
 			$('#continue-satnav-mode').click( function () {
 				$('#add-ride-details-panel').hide();
-				$('#ride-tracker-panel').show();
+				$('#ridetracker-panel').show();
 			});
 			
 			// Save and show the ride details
@@ -338,13 +334,13 @@ var cyclestreetsui = (function ($) {
 			$('#cancel-tracking').click( function () {
 				$('#cancel-tracking, #finish-tracking').removeClass('enabled');
 				$('#my-rides-button, #start-ride-tracking').addClass('enabled');
-				$('#ride-tracker-panel').removeClass('tracking');
+				$('#ridetracker-panel').removeClass('tracking');
 				
 			});
 			
 			// Open my-rides panel
 			$('#my-rides-button').click( function () {
-				$('#ride-tracker-panel').hide();
+				$('#ridetracker-panel').hide();
 				$('#my-rides-panel').show();
 			});
 			
@@ -363,7 +359,7 @@ var cyclestreetsui = (function ($) {
 			// Close my-rides panel
 			$('#my-rides-back').click( function () {
 				$('#my-rides-panel').hide();
-				$('#ride-tracker-panel').show();
+				$('#ridetracker-panel').show();
 			});
 			
 			// Close rides info panel
@@ -402,9 +398,9 @@ var cyclestreetsui = (function ($) {
 			
 			
 			// While developing, shortcut to certain panels on load
-			//$('#route-search-panel').hide();
+			$('#route-search-panel').hide();
 			//$('#ride-notification').delay(2000).slideDown('slow');
-			//$('#photomap-panel').show();
+			$('#ridetracker-panel').show();
 			
 			
 		}

@@ -1,6 +1,6 @@
 /* Typography */
 h1 {font-family: 'Ropa Sans', sans-serif;}
-h2, h3, h4, h5, h6, body {font-family: 'Josefin Sans', sans-serif;}
+h2, h3, h4, h5, h6, body {font-family: 'Josefin Sans', sans-serif; color: #212322;}
 
 input {border: none; line-height: 50px; border-radius: 50px; box-shadow: 0 0 3px gray;}
 select {-webkit-appearance: none; height: 50px;}
@@ -12,7 +12,6 @@ nav ul {margin: 0 20px; padding: 0; list-style: none;}
 nav ul ul {display: none; margin: 0; margin-left: 8px;}
 nav ul ul a {color: #c5c2c3;}
 nav ul ul li a {font-size: 16px;}
-
 nav li {background: left no-repeat;}
 nav li a {font-size: 20px;}
 nav li.journeyplanner {background-image: url('../assets/icon-jp-red.svg');}
@@ -21,19 +20,15 @@ nav li.places {background-image: url('../assets/icon-places-red.svg');}
 nav li.ridetracker {background-image: url('../assets/icon-ride-track-red.svg');}
 nav li.data {background-image: url('../assets/icon-data-red.svg'); background-position: 0 8px;}
 nav li.enabled a {background: url('../assets/icon-view-pass-on-16x16.svg') right no-repeat;}
-
 nav a {padding: 12px 38px; text-decoration: none; color: #fbf6f8; display: block; transition: 0.3s;}
 nav a:hover {color: #cc5959;}
-
 nav hr {color: #b1afb1; margin-left: 0; width: 50%;}
-
 nav #secondary-menu li a {font-size: 16px; color: #c5c2c3;}
 nav .badge-row {display: flex;}
 nav .text-column {width: 80%;}
 nav .badge-column {width: 20%;}
 nav .blog-badge {position: relative; margin: 0; padding: 0;}
 nav .blog-badge[data-badge]:after {content: attr(data-badge); position: absolute; right: 20px; font-size: .7em; background: #cc5959; color: white; width: 18px; height: 18px; text-align: center; line-height: 18px; border-radius: 50%; box-shadow: 0 0 1px #333;}
-
 nav #nav-footer {position: absolute; bottom: 0; height: 50px; width: 100%; padding: 10px; background-color: #212323; color: #b1afb1;}
 nav #nav-footer .cyclestreets-logo {float: left; width: 50px; height: 50px;}
 nav #nav-footer h6, nav #nav-footer p, nav #nav-footer a {margin: 0 0 0 40px;}
@@ -42,11 +37,9 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 
 #map {position:absolute; top:0; bottom:0; left: 0; width:100%;}
 
-/* UI icons and input boxes */
+/* Main UI icons and input boxes */
 .ui-button {display: block; position: fixed; width: 50px; height: 50px; line-height: 50px; border: 0 solid #f5f5f5; border-radius: 50%; background: #f5f5f5; text-align: center; box-shadow: 0 0 3px gray;}
 .ui-button-large {width: 65px; height: 65px; background: #cc5959;}
-
-.padded {padding: 0 20px 20px 20px;}
 
 #hamburger-menu {top: 20px; left: 20px;}
 #location-icon {top: 40px; right: 30px; line-height: 64px;}
@@ -56,9 +49,14 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 #browse-search-box.open {display: block; padding-left: 5%; border-radius: 25px;}
 #close-browse-box-icon {display: none; top: 110px; right: 30px; z-index: 1; line-height: 60px;}
 
-.panel {display: none; position: fixed; bottom: 0; left: 0; z-index: 3; width: calc(100% - 40px); padding: 10px 20px 20px; background-color: #fbf6f8; transition: 0.5s;}
+
+/* Default panel styling */
+/* Structural elements */
+.panel {display: none; position: fixed; bottom: 0; left: 0; z-index: 3; width: calc(100% - 40px); padding: 20px; background-color: #fbf6f8; transition: 0.5s;}
 .handle {position: absolute; top: -8px; margin: 0 calc((100% - 200px) / 2); padding: 0; transition: 0.5s;}
 
+/* Card content */
+.padded {padding: 0 20px 20px 20px;}
 a.back-action {float: left; color: #dc4f55; text-decoration: none;}
 a.forward-action {float: right; color: #dc4f55; text-decoration: none;}
 h2 {display: inline-block; width: 50%; margin: 5px 0 5px 25%; text-align: center; font-variant: small-caps;}
@@ -66,13 +64,7 @@ ul {margin: 0; padding: 0;}
 ul li {list-style-type: none;}
 ul li select {display: inline-block; padding: 0 20px; margin: 2px 10px; width: 52%; border-radius: 25px; text-align: left; text-decoration: none; background: #DC4F55; color: #f5f5f5;}
 
-div.photomap {height: 240px;}
-div.photomap ul li {width: 100%;}
-div.photomap ul li label {display: inline-block; width: 30%;}
-div.photomap p {display: inline; margin: 0; line-height: 35px;}
-
-
-
+/* iOS style switches */
 .switch {position: relative; float: right; display: inline-block; width: 60px; height: 34px;}
 .switch input {opacity: 0; width: 0; height: 0;}
 .slider {position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; -webkit-transition: .4s; transition: .4s;}
@@ -82,6 +74,28 @@ input:focus + .slider {box-shadow: 0 0 1px #2196f3;}
 input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transform: translateX(26px); transform: translateX(26px);}
 .slider.round {border-radius: 34px;}
 .slider.round:before {border-radius: 50%;}
+
+
+/* Card specific styles */
+/* Photomap specific card styles */
+div.photomap ul li {width: 100%;}
+div.photomap ul li label {display: inline-block; width: 30%;}
+div.photomap p {display: inline; margin: 0; line-height: 35px;}
+
+/* Ridetracker specific card styles */
+div.ridetracker a {display: none;}
+div.ridetracker a.enabled {display: inline;}
+div.ridetracker h2 {display: inline; width: 100px; margin: 0 0 0 15%; text-align: center;}
+div.ridetracker h3, div.ridetracker h4, div.ridetracker h5, div.ridetracker h6 {text-align: center;}
+div.ridetracker h3 {width: 100%; font-size: 45px; margin: 25px 0 0 0;}
+div.ridetracker h4 {width: 100%; font-size: 20px; font-weight: normal; margin: 5px 0 0 0; color: #8e8c8c;}
+div.ridetracker h5 {display: inline-block; width: 45%; font-size: 20px; margin: 20px 0 0 0; padding: 0;}
+div.ridetracker h6 {display: inline-block; width: 45%; font-size: 15px; font-weight: normal; margin: 8px 0 0 0; padding: 0; color: #8e8c8c;}
+div.ridetracker.tracking {background-color: #212322; opacity: .85;}
+div.ridetracker.tracking h2, div.ridetracker.tracking h3, div.ridetracker.tracking h5 {color: #fbf6f8;}
+div.ridetracker.tracking h4 {color: #c4c1c2;}
+div.ridetracker.tracking img {display: none;}
+div.ridetracker.tracking a img {display: inline;}
 
 #route-search-panel {height: 80px; padding: 0; width: 100%;}
 #route-search-panel.open {height: 75%;}
@@ -251,23 +265,6 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #about-panel h3 {width: 100%; text-align: left; margin: 25px 0 0 0;}
 #about-panel p {padding: 0; margin: 15px 0 0 0; line-height: 22px;}
 
-#ridetracker-panel {display: none; height: 200px;}
-#ridetracker-panel a {display: none;}
-#ridetracker-panel a.enabled {display: inline;}
-#ridetracker-panel .handle {margin: 0 10%;}
-#ridetracker-panel.tracking {background-color: #212322; opacity: .85;}
-#ridetracker-panel.tracking h2 {color: #fbf6f8;}
-#ridetracker-panel.tracking h3 {color: #fbf6f8;}
-#ridetracker-panel.tracking h4 {color: #c4c1c2;}
-#ridetracker-panel.tracking h5 {color: #fbf6f8;}
-#ridetracker-panel.tracking img {display: none;}
-#ridetracker-panel.tracking a img {display: inline;}
-#ridetracker-panel h2, h3, h5 {color: #212322;}
-#ridetracker-panel h2 {display: inline; width: 100px; margin: 0 0 0 15%; text-align: center;}
-#ridetracker-panel h3 {width: 100%; text-align: center; font-size: 45px; margin: 25px 0 0 0;}
-#ridetracker-panel h4 {width: 100%; text-align: center; font-size: 20px; font-weight: normal; margin: 5px 0 0 0; color: #8e8c8c;}
-#ridetracker-panel h5 {display: inline-block; width: 45%; text-align: center; font-size: 20px; margin: 20px 0 0 0; padding: 0;}
-#ridetracker-panel h6 {display: inline-block; width: 45%; text-align: center; font-size: 15px; font-weight: normal; margin: 8px 0 0 0; padding: 0; color: #8e8c8c;}
 
 #my-rides-panel {display: none; padding: 0; padding-top: 20px; width: 100%; height: 80%;}
 #my-rides-panel h2 {margin-left: 95px;}

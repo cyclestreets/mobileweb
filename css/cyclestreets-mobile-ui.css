@@ -51,6 +51,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 .panel {display: none; position: fixed; bottom: 0; left: 0; z-index: 3; width: calc(100% - 40px); padding: 20px; background-color: #fbf6f8; transition: 0.5s;}
 .handle {position: absolute; top: -8px; margin: 0 calc((100% - 200px) / 2); transition: 0.5s;}
 .handle.less-padded {margin: 0 calc((100% - 249px) / 2);}
+.hidden {display: none;}
 
 /* Standard card elements */
 .padded {padding: 0 20px 20px 20px;}
@@ -62,7 +63,7 @@ ul {margin: 0; padding: 0;}
 ul li {list-style-type: none;}
 ul li select {display: inline-block; padding: 0 20px; margin: 2px 0; width: 52%; border-radius: 25px; text-align: left; text-decoration: none; background: #DC4F55; color: #f5f5f5;}
 textarea {display: inline-block; height: 50px; width: 65%; border-radius: 20px; padding: 10px;}
-input {border: none; line-height: 50px; border-radius: 50px; box-shadow: 0 0 3px gray;}
+input {border: none; line-height: 50px; margin: 5px 0; padding: 0 20px; border-radius: 50px; box-shadow: 0 0 3px gray;}
 select {-webkit-appearance: none; height: 50px;}
 
 /* iOS style elements */
@@ -114,6 +115,9 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.ridetracker.tracking h4 {color: #c4c1c2;}
 .panel.ridetracker.tracking img {display: none;}
 .panel.ridetracker.tracking a img {display: inline;}
+
+/* Create account specific card styles */
+.panel.create-account input {width: calc(100% - 40px);}
 
 #route-search-panel {height: 80px; padding: 0; width: 100%;}
 #route-search-panel.open {height: 75%;}
@@ -187,13 +191,6 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #places-popup-panel ul li img {display: inline-block; margin: 0; padding: 0; width: 20px}
 #places-popup-panel ul li p {margin: 10px; display: inline-block; width: 200px}
 #places-popup-panel ul li p.phone {color: #dc4f55}
-
-#create-account-panel {display: none; height: 100px;}
-#create-account-panel .disabled {display: none;}
-#create-account-panel h2 {display: inline; width: 80%; margin: 0 0 0 26% ; text-align: center;}
-#create-account-panel p {margin: 10px 0; text-align: left;}
-#create-account-panel input {margin: 5px calc(10% - 20px); height: 40px; width: 80%; border: 0; padding: 0 10px; background-color: #ede9ea;}
-#create-account-panel.open {height: 150px;}
 
 #creating-account-panel {display: none; height: 250px; background-color: #dc4f55;}
 #creating-account-panel h1, #creating-account-panel h2 {display: inline-block; width: 60%; margin: 10px 20%; text-align: center; color: #fbf6f8; font-size: 14px}

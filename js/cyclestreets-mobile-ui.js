@@ -241,10 +241,10 @@ var cyclestreetsui = (function ($) {
 			// When creating account, after inputting username, display password set card
 			$('#choose-username-next').click( function (){
 				$('#create-account-panel').addClass('open');
-				$('#choose-username').addClass('disabled');
-				$('#choose-password').removeClass('disabled');
-				$('#choose-username-next').addClass('disabled');
-				$('#finish-account-creation').removeClass('disabled');
+				$('#choose-username').addClass('hidden');
+				$('#choose-password').removeClass('hidden');
+				$('#choose-username-next').addClass('hidden');
+				$('#finish-account-creation').removeClass('hidden');
 			});
 			
 			// Hide the user information input panel, and display the creating account card
@@ -400,7 +400,7 @@ var cyclestreetsui = (function ($) {
 			// While developing, shortcut to certain panels on load
 			//$('#route-search-panel').hide();
 			//$('#ride-notification').delay(2000).slideDown('slow');
-			$('#places-panel').show();
+			$('#create-account-panel').show();
 			
 			
 		}

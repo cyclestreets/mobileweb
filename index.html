@@ -31,7 +31,7 @@
 		<!-- <a href="#" id="closeNavButton" class="close-nav-button"><img src="assets/icon-cross-red.svg"></a> Include close button? --> 
 		<ul>
 			<li class="journeyplanner"><a href="#">Journey planner</a></li>
-			<li id="photomap" class="photomap enabled"><a href="#">Photomap</a></li>
+			<li class="photomap enabled"><a href="#">Photomap</a></li>
 			<li class="places"><a id="places-menu-item" href="#">Places</a></li>
 			<li class="ridetracker"><a href="#">Ride tracker</a></li>
 			<li class="data"><a href="#">Data</a>
@@ -79,8 +79,7 @@
 	     
 		<input id="browse-search-box" type="text" placeholder="Move map to place or postcode" value="" />
 		
-		<div id="route-search-panel" class="panel">
-			<img id="route-box-handle" class="handle" src="assets/card-handle.svg" />
+		<div id="route-search-panel" class="panel route search">
 			<input id="route-search-box" type="text" placeholder="Get somewhere from here" value="" />
 			<ul id="shortcut-icons">
 				<li><a href="#" class="ui-button"><img src="assets/icon-home.svg" /></a></li>
@@ -92,7 +91,7 @@
 				<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg" /></a></li>
 				<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg" /></a></li>
 			</ul>
-			<ul id="journey-options" class="segmented-control">
+			<ul class="segmented-control">
 				<li><label>Recent searches</label></li>
 				<li class="active"><label>Recent journeys</label></li>
 			</ul>
@@ -115,11 +114,10 @@
 			</ul>
 		</div>
 		
-		<div id="route-select-panel" class="panel">
-			<img class="handle" src="assets/card-handle.svg" />
-			<a class="back-action padded" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+		<div id="route-select-panel" class="panel route select">
 			<h2>Fastest</h2>
-			<a id="start-route-button" class="forward-action" href="#"><img src="assets/btn-get-directions-large.svg" /></a>
+			<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+			<a id="start-route-button" class="action forward" href="#"><img src="assets/btn-get-directions-large.svg" /></a>
 			<p>Nandos</p>
 			<p class="location">Cambridge Leisure Park, Clifton Way, Cambridge, Camb…</p>
 			<ul>
@@ -144,10 +142,9 @@
 			<a href="#" id="elevation-scrubber" class=""><img src="assets/elevation-dragger.svg" /></a>
 		</div>
 		
-		<div id="photomap-panel" class="panel photomap">
-			<img class="handle" src="assets/card-handle.svg" />
+		<div id="photomap-panel" class="panel photomap main">
 			<h2>Photomap</h2>
-			<a id="photomap-add-button" class="forward-action" href="#"><img src="assets/icon-add-photo-rest.svg" /></a>
+			<a id="photomap-add-button" class="action forward" href="#"><img src="assets/icon-add-photo-rest.svg" /></a>
 			<ul>
 				<li>
 					<label for="category">Category</label>
@@ -200,20 +197,18 @@
 		</div>
 		
 		<div id="photomap-add-location-panel" class="panel photomap add-location">
-			<img class="handle" src="assets/card-handle.svg"/>
-			<a class="back-action" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
 			<h2>Add location</h2>
-			<a id="photomap-add-location-continue" class="forward-action" href="#">Continue <img src="assets/icon-disclosure-red-right.svg"/></a>
+			<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+			<a id="photomap-add-location-continue" class="action forward" href="#">Continue <img src="assets/icon-disclosure-red-right.svg"/></a>
 			<br>
 			<p>If the location shown is not accurate, tap on the map below location to adjust it.</p>
 			<div id='mini-map'></div>
 		</div>
 		
 		<div id="photomap-add-details-panel" class="panel photomap add-details">
-			<img class="handle less-padded" src="assets/card-handle.svg" />
-			<a class="back-action padded" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
 			<h2>Add details</h2>
-			<a id="photomap-upload" class="forward-action padded" href="#">Upload <img src="assets/icon-disclosure-red-right.svg"/></a>
+			<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+			<a id="photomap-upload" class="action forward" href="#">Upload <img src="assets/icon-disclosure-red-right.svg"/></a>
 			<img class="uploaded-image" src="placeholders/photomap-add-comments-placeholder.svg" />
 			<ul>
 				<li>
@@ -258,9 +253,8 @@
 			</ul>
 		</div>
 		
-		<div id="photomap-uploading-panel" class="panel photomap uploading">
-			<img class="handle" src="assets/card-handle-red-fill.svg" />
-			<img class="wheel" src="assets/bicycle-wheel.svg" />
+		<div id="photomap-uploading-panel" class="panel red photomap uploading">
+			<img src="assets/bicycle-wheel.svg" />
 			<p>Uploading</p>
 			<progress id="photomap-upload" value="32" max="100"></progress>
 			<a id="cancel-photomap-upload" href="#">Cancel</a>
@@ -308,7 +302,6 @@
 		</div>
 		
 		<div id="places-panel" class="panel places">
-			<img class="handle" src="assets/card-handle.svg" />
 			<h2>Places</h2>
 			<ul>
 				<li><a href="#"><img src="assets/icon-cycle-parking.svg" /><span>Cycle parking</span></a></li>
@@ -342,10 +335,9 @@
 		</div>
 		
 		<div id="create-account-panel" class="panel create-account">
-			<img class="handle" src="assets/card-handle.svg" />
 			<h2>Create account</h2>
-			<a id="choose-username-next" class="forward-action" href="#">Next <img src="assets/icon-disclosure-red-right.svg"/></a>
-			<a id="finish-account-creation" class="forward-action hidden" href="#">Finish <img src="assets/icon-disclosure-red-right.svg"/></a>
+			<a id="choose-username-next" class="action forward" href="#">Next <img src="assets/icon-disclosure-red-right.svg"/></a>
+			<a id="finish-account-creation" class="action forward hidden" href="#">Finish <img src="assets/icon-disclosure-red-right.svg"/></a>
 			<div id="choose-username">
 				<p>Choose your CycleStreets username: </p>
 				<input id="username" placeholder="Username"></input>	
@@ -357,8 +349,7 @@
 			</div>
 		</div>
 		
-		<div id="creating-account-panel" class="panel create-account creating">
-			<img class="handle" src="assets/card-handle-red-fill.svg" />
+		<div id="creating-account-panel" class="panel red create-account creating">
 			<h2>Welcome to</h2>
 			<h1>CycleStreets</h1>
 			<img class="wheel" src="assets/bicycle-wheel.svg" />
@@ -366,13 +357,13 @@
 		</div>
 		
 		<div id="sign-in-panel" class="panel sign-in">
-			<img class="handle" src="assets/card-handle.svg" />
-			<a id="cancel-sign-in" class="back-action" href="#">Cancel</a>
 			<h2>Signin</h2>
-			<a id="choose-username-next" class="forward-action" href="#">Signin <img src="assets/icon-disclosure-red-right.svg" /></a>
+			<a class="action back" href="#">Cancel</a>
+			<a class="action forward" href="#">Signin <img src="assets/icon-disclosure-red-right.svg" /></a>
 			<input id="username" placeholder="Username"></input>
 			<input id="password" placeholder="Password"></input>
-			<a id="forgotten-password" href="#">I've forgotten my password</a>
+			<br />
+			<a href="#">I've forgotten my password</a>
 			<hr>
 			<h3>Not with us yet?</h3>
 			<p>Create a Cyclestreets account and participate in an active cycling community.</p>
@@ -380,9 +371,8 @@
 		</div>
 		
 		<div id="map-style-panel" class="panel map-style">
-			<img class="handle" src="assets/card-handle.svg" />
 			<h2>Map style</h2>
-			<a id="map-style-done" class="forward-action" href="#">Done</a>
+			<a id="map-style-done" class="action forward" href="#">Done</a>
 			<ul>
 				<li><a href="#"><img src="placeholders/map_style_1.png" /></a></li>
 				<li><a href="#"><img src="placeholders/map_style_2.png" /></a></li>
@@ -392,9 +382,8 @@
 		</div>
 		
 		<div id="settings-panel" class="panel settings">
-			<img class="handle no-padding" src="assets/card-handle.svg" />
 			<h2>Settings</h2>
-			<a id="settings-done" class="forward-action padded" href="#">Done</a>
+			<a id="settings-done" class="action forward" href="#">Done</a>
 			<h3>Saved locations</h3>
 			<ul>
 				<li>
@@ -439,9 +428,9 @@
 		</div>
 		
 		<div id="about-panel" class="panel about">
-			<a id="about-back-button" class="back-action" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Back</a>
 			<h2>About</h2>
-			<a id="about-done" class="forward-action" href="#">Done</a>
+			<a id="about-back-button" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Back</a>
+			<a id="about-done" class="action forward" href="#">Done</a>
 			<h3>Mapping</h3>
 			<p>Mapping data courtesy of OpenStreetMap. Without OSM mappers on the ground collecting great data, the routing would not be possible. OpenStreetMap data can be used freely under the terms of the Open Data Commons Open Database License (ODbL).</p>
 			<p>OpenStreetMap is the Wiki of maps. YOU can help improve the routing and location data, by going to www.openstreetmap.org and contributing your local knowledge!</p>
@@ -465,12 +454,11 @@
 		</div>
 		
 		<div id="ridetracker-panel" class="panel ridetracker">
-			<img class="handle" src="assets/card-handle.svg" />
-			<a id="my-rides-button" class="back-action enabled" href="#">My rides</a>
-			<a id="cancel-tracking" class="back-action" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Cancel</a>
 			<h2>Ride tracker</h2>
-			<a id="start-ride-tracking" class="forward-action enabled" href="#">Start</a>
-			<a id="finish-tracking" class="forward-action" href="#">Finish <img src="assets/icon-disclosure-red-right.svg" /></a>
+			<a id="my-rides-button" class="action back enabled" href="#">My rides</a>
+			<a id="cancel-tracking" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Cancel</a>
+			<a id="start-ride-tracking" class="action forward enabled" href="#">Start</a>
+			<a id="finish-tracking" class="action forward" href="#">Finish <img src="assets/icon-disclosure-red-right.svg" /></a>
 			<h3>00:00:00</h3>
 			<h4>Elapsed time</h4>
 			<h5>0.0 miles</h5>
@@ -479,11 +467,10 @@
 			<h6>Av. speed</h6>
 		</div>
 		
-		<div id="my-rides-panel" class="panel">
-			<img class="handle" src="assets/card-handle.svg" />
-			<a id="my-rides-back" class="back-action padded" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+		<div id="my-rides-panel" class="panel ridetracker my-rides">
 			<h2>My rides</h2>
-			<a id="start-ride-tracking" class="forward-action padded" href="#">Edit</a>
+			<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+			<a class="action forward" href="#">Edit</a>
 			<ul>
 				<li>
 					<hr />
@@ -516,12 +503,10 @@
 			</ul>
 		</div>
 		
-		<div id="ride-info-panel" class="panel">
-			<img class="handle" src="assets/card-handle.svg" />
-			<a id="ride-info-back" class="back-action" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+		<div id="ride-info-panel" class="panel ridetracker ride-info">
 			<h2>Ride info</h2>
-			<a id="share-ride" class="forward-action" href="#"><img src="assets/icon-share.svg" /></a>
-			
+			<a id="ride-info-back" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+			<a id="share-ride" class="action forward" href="#"><img src="assets/icon-share.svg" /></a>
 			<ul>
 				<li>
 					<h3>Social</h3>
@@ -553,11 +538,10 @@
 			</ul>
 		</div>
 		
-		<div id="feedback-panel" class="panel">
-			<img class="handle" src="assets/card-handle.svg" />
-			<a id="cancel-feedback" class="back-action" href="#">Cancel</a>
+		<div id="feedback-panel" class="panel feedback">
 			<h2>Feedback</h2>
-			<a id="share-feedback" class="forward-action" href="#">Send <img src="assets/icon-disclosure-red-right.svg" /></a>
+			<a id="cancel-feedback" class="action back" href="#">Cancel</a>
+			<a id="share-feedback" class="action forward" href="#">Send <img src="assets/icon-disclosure-red-right.svg" /></a>
 			<form>
 				<label>Your name</label>
 				<input placeholder="Enter your name"></input>
@@ -570,12 +554,10 @@
 			</form>
 		</div>
 		
-		<div id="add-ride-details-panel" class="panel">
-			<img class="handle" src="assets/card-handle.svg" />
-			<a id="continue-satnav-mode" class="back-action" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+		<div id="add-ride-details-panel" class="panel ridetracker add-details">
 			<h2>Ride tracker</h2>
-			<a id="save-ride-button" class="forward-action" href="#">Save</a>
-			
+			<a id="continue-satnav-mode" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+			<a id="save-ride-button" class="action forward" href="#">Save</a>
 			<ul>
 				<li>
 					<label for="category">Purpose</label>
@@ -596,11 +578,10 @@
 				</li>
 		</div>
 		
-		<div id="show-tracked-ride-panel" class="panel">
-			<img class="handle" src="assets/card-handle.svg" />
-			<a id="close-ride-tracker" class="back-action padded" href="#">Done</a>
+		<div id="show-tracked-ride-panel" class="panel ridetracker show-tracked-ride">
 			<h2>Ride tracker</h2>
-			<a id="share-ride" class="forward-action padded" href="#"><img src="assets/icon-share.svg" /></a>
+			<a id="close-ride-tracker" class="action back" href="#">Done</a>
+			<a id="share-ride" class="action forward" href="#"><img src="assets/icon-share.svg" /></a>
 			<ul>
 				<li>
 					<h3>Social</h3>

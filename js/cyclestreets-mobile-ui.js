@@ -201,7 +201,7 @@ var cyclestreetsui = (function ($) {
 			$('#route-search-box').focus(routeSearchBoxFocus);
 			
 			// Development "tour" actions
-			$('#photomap-add-button').click(function() {				
+			$('.panel.photomap.main .action.forward').click(function() {				
 				$('#photomap-panel').hide();
 				$('#photomap-add-location-panel').show();
 			});
@@ -398,9 +398,9 @@ var cyclestreetsui = (function ($) {
 			
 			
 			// While developing, shortcut to certain panels on load
-			//$('#route-search-panel').hide();
+			//$('#route-search-panel').show();
 			//$('#ride-notification').delay(2000).slideDown('slow');
-			$('#map-style-panel').show();
+			$('.panel.route.search').show();
 			
 			
 		}

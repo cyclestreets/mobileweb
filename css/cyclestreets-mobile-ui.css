@@ -41,7 +41,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 #location-icon {top: 40px; right: 30px; line-height: 64px;}
 #location-icon img {margin-right: 4px;}
 #glasses-icon {top: 110px; right: 30px; line-height: 53px;}
-#browse-search-box {display: none; position: fixed; top: 110px; right: 30px; width: 50px; height: 50px; background: #f5f5f5;}
+#browse-search-box {display: none; position: fixed; top: 110px; right: 30px; width: 50px; height: 50px; margin: 0; background: #f5f5f5;}
 #browse-search-box.open {display: block; padding-left: 5%; border-radius: 25px;}
 #close-browse-box-icon {display: none; top: 110px; right: 30px; z-index: 1; line-height: 60px;}
 
@@ -51,18 +51,17 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
  */
 
 /* Structural elements */
-.panel {display: none; position: fixed; bottom: 0; left: 0; z-index: 3; width: calc(100% - 40px); padding: 20px; background-color: #fbf6f8; transition: 0.5s;}
-.handle {position: absolute; top: -8px; margin: 0 calc((100% - 200px) / 2); transition: 0.5s;}
-.handle.less-padded {margin: 0 calc((100% - 249px) / 2);}
-.handle.no-padding {margin: 0 calc((100% - 168px) /2);}
+.panel {display: none; position: fixed; bottom: 0; left: 0; z-index: 3; width: calc(100% - 40px); padding: 15px 20px; background-color: #fbf6f8; transition: 0.5s;}
+.panel::before {content:url('../assets/card-handle.svg'); position: absolute; top: -8px; margin: 0 calc((100% - 208px) / 2);}
+.panel.red::before {content:url('../assets/card-handle-red-fill.svg');}
 .hidden {display: none;}
 
 /* Standard card elements */
-.padded {padding: 0 20px 20px 20px;}
 a {text-decoration: none; color: #dc4f55;}
-a.back-action {float: left; color: #dc4f55; text-decoration: none;}
-a.forward-action {float: right; color: #dc4f55; text-decoration: none;}
-h2 {display: inline-block; width: 40%; margin: 0 0 5px 30%; text-align: center; font-variant: small-caps;}
+a.action {position: absolute; top: 0; padding: 15px; color: #dc4f55; text-decoration: none;}
+a.action.back {left: 0;}
+a.action.forward {right: 0;}
+h2 {margin: 0; text-align: center; font-variant: small-caps;}
 ul {margin: 0; padding: 0;}
 ul li {list-style-type: none;}
 ul li select {display: inline-block; padding: 0 20px; margin: 2px 0; width: 52%; border-radius: 25px; text-align: left; text-decoration: none; background: #DC4F55; color: #f5f5f5;}
@@ -86,17 +85,55 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
  * Card specific styles
  */
 
+/*
+ * Route search panels
+ */
+
+.panel.route.search {height: 60px;}
+.panel.route.search.open {height: 75%;}
+.panel.route.search #route-search-box {position: relative; bottom: 5px; height: 50px; width: calc(100% - 40px); margin: 10px 0; padding: 0 20px; border: 0; transition: 0.5s;}
+.panel.route.search #route-search-box.open {top: 0;}
+.panel.route.search #shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0;}
+.panel.route.search #shortcut-icons {display: none;}
+.panel.route.search #shortcut-icons.visible {display: inline-block; overflow-x: scroll;}
+.panel.route.search #shortcut-icons li a {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}
+.panel.route.search ul.segmented-control {display: none; width: 80%; margin: 10px 7.5%; padding: 0;}
+.panel.route.search ul.segmented-control.visible {display: table;}
+.panel.route.search ul.segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
+.panel.route.search ul.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
+.panel.route.search ul.segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
+.panel.route.search ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
+.panel.route.search ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
+.panel.route.search ul.segmented-control label:hover {background: #fafafa;}
+.panel.route.search hr {width: calc(100% + 40px); margin: 10px 0 10px -20px; }
+.panel.route.search #recent-journeys li {padding-right: 15px;}
+.panel.route.search #recent-journeys li p {margin: 10px 0;}
+.panel.route.search #recent-journeys li p.destination {display: inline; font-size: 16px; line-height: 19px;}
+.panel.route.search #recent-journeys li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
+.panel.route.search #recent-journeys li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('../assets/icon-cyclist-small.svg');} 
+.panel.route.search #recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
+.panel.route.search #recent-journeys li a {position: absolute; right: 0px;}
+
+.panel.route.select p {margin-top: 15px; text-align: center;}
+.panel.route.select p.location {font-size: 13px; margin: 10px; padding: 0; color: #8e8c8c;}
+.panel.route.select ul {margin: 15px 0 0 0; padding: 0;}
+.panel.route.select ul li {list-style-type: none; display: inline-block;}
+.panel.route.select ul li img {display: inline-block; margin: 0 0 0 30px; padding: 0;}
+.panel.route.select ul li p {display: inline-block; margin: 0; padding: 0; text-align: left;}
+.panel.route.select #elevation-chart-container {position: absolute; bottom: 0; left: 0; height: 80px; width: 100%;}
+.panel.route.select span.elevation {position: absolute; bottom: 15px; right: 15px; padding: 5px; color: #ffffff; background-color: #212322; opacity: .75; border-radius: 40px; line-height: 20px;}
+.panel.route.select span img {padding: 0 5px 0 0;}
+
+
 /* Photomap specific card styles */
-.panel.photomap ul li label {display: inline-block; width: 35%;}
-.panel.photomap p {display: inline; line-height: 35px;}
+.panel.photomap.main ul li label {display: inline-block; width: 35%;}
+.panel.photomap.main p {display: inline; line-height: 35px;}
+.panel.photomap.main hr {width: calc(100% + 40px); margin-left: -20px;}
 .panel.photomap.add-location #mini-map {height: 335px; width:100%;}
-.panel.photomap.add-details {padding: 20px 0 0 0; width: 100%;}
-.panel.photomap.add-details h2 {margin-left: calc(30% - 49px);}
-.panel.photomap.add-details img.uploaded-image {width: 100%;}
-.panel.photomap.add-details ul {margin: 0; padding: 20px;}
 .panel.photomap.add-details ul li label {display: inline-block; width: 25%;}
+.panel.photomap.add-details img {border-radius: 25px;}
 .panel.photomap.uploading {background-color: #dc4f55;}
-.panel.photomap.uploading img.wheel {margin-left: 15px; padding: 0 30%; width: 40%;}
+.panel.photomap.uploading img {margin-left: 15px; padding: 0 30%; width: 40%;}
 .panel.photomap.uploading p {display: inline-block; width: 40%; margin: 10px 30%; color: #fbf6f8; text-align: center;}
 .panel.photomap.uploading progress {margin: 10px 30%; width: 40%;}
 .panel.photomap.uploading a {display: block; color: #c4c1c2; text-align: center;}
@@ -111,17 +148,28 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 /* Ridetracker specific card styles */
 .panel.ridetracker a {display: none;}
 .panel.ridetracker a.enabled {display: inline;}
-.panel.ridetracker h2 {display: inline; width: 100px; margin: 0 0 0 15%; text-align: center;}
 .panel.ridetracker h3, div.ridetracker h4, div.ridetracker h5, div.ridetracker h6 {text-align: center;}
 .panel.ridetracker h3 {width: 100%; font-size: 45px; margin: 25px 0 0 0;}
 .panel.ridetracker h4 {width: 100%; font-size: 20px; font-weight: normal; margin: 5px 0 0 0; color: #8e8c8c;}
 .panel.ridetracker h5 {display: inline-block; width: 45%; font-size: 20px; margin: 20px 0 0 0; padding: 0;}
 .panel.ridetracker h6 {display: inline-block; width: 45%; font-size: 15px; font-weight: normal; margin: 8px 0 0 0; padding: 0; color: #8e8c8c;}
 .panel.ridetracker.tracking {background-color: #212322; opacity: .85;}
+.panel.ridetracker.tracking::before {display: none;}
 .panel.ridetracker.tracking h2, .panel.ridetracker.tracking h3, .panel.ridetracker.tracking h5 {color: #fbf6f8;}
 .panel.ridetracker.tracking h4 {color: #c4c1c2;}
 .panel.ridetracker.tracking img {display: none;}
 .panel.ridetracker.tracking a img {display: inline;}
+.panel.ridetracker ul {margin: 0; padding: 0; width: 100%; overflow-y: scroll;}
+.panel.ridetracker p.datetime {display: inline-block; width: 50%; margin: 0; padding: 0; text-align: right; color: #8e8c8c;}
+.panel.ridetracker p.description {display: block; margin: 10px 0 0 0; padding: 0; color: #8e8c8c;}
+.panel.ridetracker ul li img {display: inline; margin: 10px 7.5px 0 0;}
+.panel.ridetracker ul li p {display: inline-block; margin: 0;}
+.panel.ridetracker.my-rides h3, .panel.ridetracker.show-tracked-ride h3, .panel.ridetracker.ride-info h3 {display: inline-block; width: 40%; margin: 10px 0 0 0; padding: 0; font-size: 20px; text-align: left;}
+.panel.ridetracker.add-details ul li label {display: inline-block; width: 20%; margin-top: 20px;}
+.panel.ridetracker.add-details ul li select {display: inline-block; width: 70%; margin: 10px 0 0 0; padding: 10px;}
+.panel.ridetracker.add-details ul li textarea {display: inline-block; width: 70%; margin-top: 10px; padding: 10px;}
+.panel.ridetracker.show-tracked-ride a, .panel.ridetracker.my-rides a, .panel.ridetracker.add-details a, .panel.ridetracker.ride-info a {display: inherit;}
+.panel.ridetracker.ride-info ul li ul li p.classification {color: #8e8c8c;}
 
 /*
  * Account management and sign-in
@@ -129,6 +177,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 /* Create account specific card styles */
 .panel.create-account input {width: calc(100% - 40px);}
+
 .panel.create-account.creating {background-color: #dc4f55;}
 .panel.create-account.creating h1, .panel.create-account.creating h2, .panel.create-account.creating p {width: 60%; margin: 5px 20%; text-align: center; color: #fbf6f8;}
 .panel.create-account.creating h1 {font-size: 32px;}
@@ -136,33 +185,26 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.create-account.creating img.wheel {margin-left: 15px; padding: 0 30%; width: 40%;}
 
 /* Sign-in panel specific styles */
-.panel.sign-in {height: 410px; padding: 0; width: 100%;}
-.panel.sign-in .handle {margin-left: calc(((100% - 168px) / 2) - 89px);}
-.panel.sign-in h2 {display: inline; width: 100px; margin-left: calc(((100% - 100px) / 2) - 89px); line-height: 50px;}
-.panel.sign-in input {margin-left: 20px; width: 80%; border: 0;}
-.panel.sign-in a {display: block; margin: 20px;}
+.panel.sign-in {height: 340px;}
+.panel.sign-in input {width: 80%; margin: 10px auto;}
 .panel.sign-in h3 {width: 100%; line-height: 30px; text-align: center; margin-bottom: 0;}
 .panel.sign-in p {margin: 0 20px; padding: 0; text-align: left;}
 .panel.sign-in .ui-button-large {width: 200px; height: 50px; margin: 15px 25%; border-radius: 50px; color: #fbf6f8;}
 
 /*
- * Settings, about, and map styling panels
+ * Settings, about, feedback, and map styling panels
  */
-
-.panel.settings {padding: 0; width: 100%;}
-.panel.settings h2 {padding-top: 20px;}
-.panel.settings a.forward-action {padding: 20px;}
-.panel.settings h3 {width: 100%; text-align: center; margin: 10px 0 0 0;}
-.panel.settings hr {margin: 15px 0;}
+.panel.settings h3 {width: 100%; text-align: center; margin: 10px 0;}
+.panel.settings hr {width: calc(100% + 40px); margin: 5px 0 5px -20px;}
 .panel.settings ul {padding: 10px;}
-.panel.settings ul li img {display: inline; padding: 10px;}
+.panel.settings ul li img {display: inline; padding: 10px 0;}
 .panel.settings ul li a {display: inline; color: #dc4f55; text-decoration: none;}
 .panel.settings ul li a.ui-button-large {width: 250px; margin-left: 20px; padding: 0 15px; height: 40px; border-radius: 50px; color: #fbf6f8; line-height: 40px; text-align: left;}
 .panel.settings ul li a.set {color: #212322; background-color: #fbf6f8;}
-.panel.settings p {float: left; width: 270px; text-align: left; margin: 10px 0 0 15px;}
+.panel.settings p {float: left; width: 270px; text-align: left; margin: 10px 0;}
 .panel.settings .switch {display: inline-block; float: none;}
-.panel.settings img.disclosure {padding: 10px; float: right;}
-.panel.settings img.cycle-left {display: inline; padding-left: 15px;}
+.panel.settings img.disclosure {padding: 12.5px; float: right;}
+.panel.settings img.cycle-left {display: inline;}
 .panel.settings img.cycle-right {display: inline;}
 .speed-slider {-webkit-appearance: none; position: relative; width: 190px; height: 2px; border-radius: 5px; background: #d3d3d3; outline: none; -webkit-transition: .2s; transition: opacity .2s;}
 .speed-slider::-webkit-slider-thumb {-webkit-appearance: none; appearance: none; width: 25px; height: 25px; border-radius: 50%; background: #dc4f55; cursor: pointer;}
@@ -176,61 +218,20 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.settings ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
 .panel.settings ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
 .panel.settings ul.segmented-control label:hover {background: #fafafa;}
-.panel.settings #about-cyclestreets {margin: 10px 0 0 15px;}
 
 .panel.about {height: 630px; width: calc(100% - 40px); overflow-y: scroll;}
-.panel.about h2 {display: inline; width: 100px; margin: 0 0 0 27%;}
+.panel.about::before {display: none;}
 .panel.about h3 {width: 100%; text-align: left; margin: 25px 0 0 0;}
 .panel.about p {padding: 0; margin: 15px 0 0 0; line-height: 22px;}
 
-.panel.map-style {width: 100%; padding: 0;}
-.panel.map-style h2 {display: inline; width: 100px; margin: 0 0 0 34%; line-height: 50px; text-align: center;}
-.panel.map-style #map-style-done {margin: 20px;}
 .panel.map-style p {width: calc(100% - 70px); line-height: 50px; text-align: center; margin-bottom: 0;}
 .panel.map-style ul {width: 100%; margin: 0; padding: 0; overflow-x: scroll; overflow-y: hidden; white-space: nowrap;}
-.panel.map-style ul li {display: inline; list-style-type: none; width: 100%;}
+.panel.map-style ul li {display: inline; width: 100%;}
 
-#route-search-panel {height: 80px; padding: 0; width: 100%;}
-#route-search-panel.open {height: 75%;}
-#route-box-handle.handle {margin: 0 30%;}
-#route-search-box {position: relative; bottom: 5px; height: 50px; width: 80%; margin: 20px 5%; padding: 0 20px; border: 0; transition: 0.5s;}
-#route-search-box.open {top: 0;}
+.panel.feedback label {display: inline-block; width: 30%; margin-top: 20px;}
+.panel.feedback input {display: inline-block; width: 200px; height: 18px; line-height: 18px; margin-top: 10px; padding: 10px;}
+.panel.feedback textarea {display: inline-block; width: 200px; margin-top: 10px; padding: 10px;}
 
-#shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0 0 0 20px;}
-#shortcut-icons {display: none;}
-#shortcut-icons.visible {display: inline-block; overflow-x: scroll;}
-#shortcut-icons li a {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}
-#route-search-panel ul.segmented-control {display: none; width: 80%; margin: 10px 7.5%; padding: 0;}
-#route-search-panel ul.segmented-control.visible {display: table;}
-#route-search-panel ul.segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
-#route-search-panel ul.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
-#route-search-panel ul.segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
-#route-search-panel ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
-#route-search-panel ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
-#route-search-panel ul.segmented-control label:hover {background: #fafafa;}
-#route-search-panel hr {margin: 10px 0; width: 100%;}
-
-#recent-journeys {margin: 0; padding: 0;}
-#recent-journeys li {padding-left: 20px; width: 80%; list-style-type: none;}
-#recent-journeys li p {margin: 10px 0;}
-#recent-journeys li p.destination {display: inline; font-size: 16px; line-height: 19px;}
-#recent-journeys li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
-#recent-journeys li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('../assets/icon-cyclist-small.svg');} 
-#recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
-#recent-journeys li a {position: absolute; right: 0px;}
-
-#route-select-panel {display: none; height: 200px; padding: 10px 0 0 0; width: 100%;}
-#route-select-panel h2 {margin-left: 26%;}
-#route-select-panel img.handle {margin: 0 18%;}
-#route-select-panel p {margin-top: 15px; text-align: center;}
-#route-select-panel p.location {font-size: 13px; margin: 10px; padding: 0; color: #8e8c8c;}
-#route-select-panel ul {margin: 15px 0 0 0 0; padding: 0;}
-#route-select-panel ul li {list-style-type: none; display: inline-block;}
-#route-select-panel ul li img {display: inline-block; margin: 0 0 0 30px; padding: 0;}
-#route-select-panel ul li p {display: inline-block; margin: 0; padding: 0; text-align: left;}
-#route-select-panel #elevation-chart-container {position: absolute; bottom: 0; left: 0; height: 80px; width: 100%;}
-#route-select-panel span.elevation {position: absolute; bottom: 15px; right: 15px; padding: 5px; color: #ffffff; background-color: #212322; opacity: .75; border-radius: 40px; line-height: 20px;}
-#route-select-panel span img {padding: 0 5px 0 0;}
 
 #photomap-popup-panel {display: none; position: fixed; perspective: 1000px; left: 0; bottom: 0; background-color: transparent; width: 90%; padding: 0; margin: 0 5% 20% 5%; height: 480px;}
 #photomap-popup-panel .popup {border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8;}
@@ -264,55 +265,9 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #places-popup-panel ul li p.phone {color: #dc4f55}
 
 
-#my-rides-panel {display: none; padding: 0; padding-top: 20px; width: 100%; height: 80%;}
-#my-rides-panel h2 {margin-left: 95px;}
-#my-rides-panel img.handle {margin: 0 14%;}
-#my-rides-panel hr {width: 100%;}
-#my-rides-panel ul {margin: 0; padding: 0; width: 100%; overflow-y: scroll;}
-#my-rides-panel ul li {display: inline-block; margin: 0; padding: 0 0 10px 0; width: 100%; list-style: none;}
-#my-rides-panel h3 {display: inline-block; width: 40%; margin: 10px 0 0 15px; padding: 0; text-align: left;}
-#my-rides-panel p.datetime {display: inline-block; width: 50%; margin: 0; padding: 0; text-align: right; color: #8e8c8c;}
-#my-rides-panel p.description {display: block; margin: 10px 0 0 15px; padding: 0; color: #8e8c8c;}
-#my-rides-panel ul li img {display: inline; margin: 10px 0 0 15px;}
-#my-rides-panel ul li p {display: inline-block; margin: 0; padding: 0 0 0 5px;}
 
-#ride-info-panel {display: none; padding: 20px; width: calc(100% - 40); height: 300px;}
-#ride-info-panel h2 {margin-left: 32%;}
-#ride-info-panel img.handle {margin: 0 0 0 23%;}
-#ride-info-panel ul {margin: 0; padding: 0; width: 100%; overflow-y: scroll;}
-#ride-info-panel ul li {display: inline-block; margin: 0; padding: 0 0 10px 0; width: 100%; list-style: none;}
-#ride-info-panel ul li h3 {display: inline-block; width: 40%; margin: 15px 0 0 0; padding: 0; text-align: left;}
-#ride-info-panel ul li p.datetime {display: inline-block; width: 50%; margin: 0; padding: 0; text-align: right; color: #8e8c8c;}
-#ride-info-panel ul li p.description {display: block; margin: 10px 0 15px 0; padding: 0; color: #8e8c8c;}
-#ride-info-panel ul li img {width: 24px; padding: 0; float: left;}
-#ride-info-panel ul li ul li p.classification {color: #8e8c8c;}
 
-#feedback-panel {display: none; padding: 20px; width: calc(100% - 40); height: 180px;}
-#feedback-panel h2 {margin-left: 23%;}
-#feedback-panel img.handle {margin: 0 0 0 13%;}
-#feedback-panel label {display: inline-block; width: 30%; margin-top: 20px;}
-#feedback-panel input {display: inline-block; width: 200px; height: 18px; line-height: 18px; margin-top: 10px; padding: 10px;}
-#feedback-panel textarea {display: inline-block; width: 200px; margin-top: 10px; padding: 10px;}
 
-#add-ride-details-panel {display: none; padding: 20px; width: calc(100% - 40); height: 180px;}
-#add-ride-details-panel ul {margin: 0; padding: 0; width: 100%;}
-#add-ride-details-panel ul li {display: inline-block; margin: 0; padding: 0 0 10px 0; width: 100%; list-style: none;}
-#add-ride-details-panel h2 {margin-left: 27%;}
-#add-ride-details-panel img.handle {margin: 0 0 0 20%;}
-#add-ride-details-panel ul li label {display: inline-block; width: 20%; margin-top: 20px;}
-#add-ride-details-panel ul li select {display: inline-block; width: 70%; margin: 10px 0 0 0; padding: 10px;}
-#add-ride-details-panel ul li textarea {display: inline-block; width: 70%; margin-top: 10px; padding: 10px;}
-
-#show-tracked-ride-panel {display: none; padding: 0; padding-top: 20px; width: 100%; height: 150px;}
-#show-tracked-ride-panel h2 {margin-left: 70px;}
-#show-tracked-ride-panel img.handle {margin: 0 14%;}
-#show-tracked-ride-panel ul {margin: 0; padding: 0; width: 100%; overflow-y: scroll;}
-#show-tracked-ride-panel ul li {display: inline-block; margin: 0; padding: 0 0 10px 0; width: 100%; list-style: none;}
-#show-tracked-ride-panel h3 {display: inline-block; width: 40%; margin: 10px 0 0 15px; padding: 0; text-align: left;}
-#show-tracked-ride-panel p.datetime {display: inline-block; width: 50%; margin: 0; padding: 0; text-align: right; color: #8e8c8c;}
-#show-tracked-ride-panel p.description {display: block; margin: 10px 0 0 15px; padding: 0; color: #8e8c8c;}
-#show-tracked-ride-panel ul li img {display: inline; margin: 10px 0 0 15px;}
-#show-tracked-ride-panel ul li p {display: inline-block; margin: 0; padding: 0 0 0 5px;}
 
 #ride-notification {display: none; position: relative; margin: 20px 7.5%; padding: 10px; width: 80%; height: 60px; border-radius: 8px; transition: none;}
 #ride-notification img {height: 30px; width: 30px; background-color: #dc4f55; border-radius: 5px; padding: 15px; margin-right: 10px; float: left}

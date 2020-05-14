@@ -51,7 +51,7 @@
 				<li class="settings"><a href="#">Settings</a></li>
 				<li><div class="badge-row">
 					<div class="text-column">
-						<a href="#">Blog</a>
+						<a href="https://www.cyclestreets.org/news/">Blog</a>
 					</div>
 					<div class="badge-column">
 						<a href="#" class="blog-badge" data-badge="3"></a>
@@ -348,47 +348,49 @@
 				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
 				<a class="action forward" href="#">Upload <img src="assets/icon-disclosure-red-right.svg"/></a>
 				<img class="uploaded-image" src="placeholders/photomap-add-comments-placeholder.svg" />
-				<ul>
-					<li>
-						<label for="since">Caption</label>
-						<textarea placeholder="Enter description"></textarea>
-					</li>
-					<li>
-						<label for="category">Category</label>
-						<select name="category" id="category">
-							<option value="" disabled selected>Choose</option>
-							<option value="cycleparking">Cycle parking</option>
-							<option value="obstructions">Obstruction</option>
-							<option value="track">Track</option>
-							<option value="dutchcycleways">Dutch-style cycleway</option>
-							<option value="road">Road environment</option>
-							<option value="cycleways">Cycleway</option>
-							<option value="enforcement">Enforcement</option>
-							<option value="carstorage">Car storage</option>
-							<option value="closure">Temporary closure</option>
-							<option value="roadworks">Roadworks</option>
-							<option value="bikeshops">Bike shop</option>
-							<option value="potholes">Pothole</option>
-							<option value="destinations">Destination</option>
-							<option value="signs">General sign/notice</option>
-							<option value="routesigns">Route sign</option>
-							<option value="congestion">Congestion</option>
-							<option value="bicycles">Bicycle</option>
-							<option value="general">Other</option>
-						</select>
-					</li>
-					<li>
-						<label for="metacategory">This photo represents</label>
-						<select name="metacategory" id="metacategory">
-							<option value="" disabled selected>Choose</option>
-							<option value="bad" id="severity_bad">Problem</option>
-							<option value="good" id="severity_good">Good practice</option>
-							<option value="other" id="severity_other">Infrastructure</option>
-							<option value="any" id="severity_any">Misc</option>
-							<option value="event" id="severity_event">Event</option>
-						</select>
-					</li>
-				</ul>
+				<form>
+					<ul>
+						<li>
+							<label for="since">Caption</label>
+							<textarea placeholder="Enter description"></textarea>
+						</li>
+						<li>
+							<label for="category">Category</label>
+							<select name="category" id="category">
+								<option value="" disabled selected>Choose</option>
+								<option value="cycleparking">Cycle parking</option>
+								<option value="obstructions">Obstruction</option>
+								<option value="track">Track</option>
+								<option value="dutchcycleways">Dutch-style cycleway</option>
+								<option value="road">Road environment</option>
+								<option value="cycleways">Cycleway</option>
+								<option value="enforcement">Enforcement</option>
+								<option value="carstorage">Car storage</option>
+								<option value="closure">Temporary closure</option>
+								<option value="roadworks">Roadworks</option>
+								<option value="bikeshops">Bike shop</option>
+								<option value="potholes">Pothole</option>
+								<option value="destinations">Destination</option>
+								<option value="signs">General sign/notice</option>
+								<option value="routesigns">Route sign</option>
+								<option value="congestion">Congestion</option>
+								<option value="bicycles">Bicycle</option>
+								<option value="general">Other</option>
+							</select>
+						</li>
+						<li>
+							<label for="metacategory">This photo represents</label>
+							<select name="metacategory" id="metacategory">
+								<option value="" disabled selected>Choose</option>
+								<option value="bad" id="severity_bad">Problem</option>
+								<option value="good" id="severity_good">Good practice</option>
+								<option value="other" id="severity_other">Infrastructure</option>
+								<option value="any" id="severity_any">Misc</option>
+								<option value="event" id="severity_event">Event</option>
+							</select>
+						</li>
+					</ul>
+				</form>
 			</div>
 			
 			<div class="panel red photomap uploading">
@@ -572,8 +574,8 @@
 			
 			<div class="panel about">
 				<h2>About</h2>
-				<a id="about-back-button" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Back</a>
-				<a id="about-done" class="action forward" href="#">Done</a>
+				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Back</a>
+				<a class="action forward" href="#">Done</a>
 				<h3>Mapping</h3>
 				<p>Mapping data courtesy of OpenStreetMap. Without OSM mappers on the ground collecting great data, the routing would not be possible. OpenStreetMap data can be used freely under the terms of the Open Data Commons Open Database License (ODbL).</p>
 				<p>OpenStreetMap is the Wiki of maps. YOU can help improve the routing and location data, by going to www.openstreetmap.org and contributing your local knowledge!</p>

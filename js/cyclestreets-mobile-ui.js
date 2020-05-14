@@ -90,10 +90,12 @@ var cyclestreetsui = (function ($) {
 				// Get the class name from the li
 				var className = this.className.split(' ')[0];
 				
+				// If this is the data menu item, open its sub-menu
 				if (className == 'data') {
 					// Open the Data submenu
 					$('li.data ul').slideToggle();
 				}
+				// Otherwise, close the nav and open the desired panel
 				else {
 					// Hide nav & open searchbars and all panels
 					resetUI ();

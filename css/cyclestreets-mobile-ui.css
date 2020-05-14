@@ -95,50 +95,47 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 
 /* Route search panel */
-.panel.route.search {height: 60px;}
-.panel.route.search.open {height: 75%;}
-.panel.route.search #route-search-box {position: relative; bottom: 5px; height: 50px; width: calc(100% - 40px); margin: 10px 0; padding: 0 20px; border: 0; transition: 0.5s;}
-.panel.route.search #route-search-box.open {top: 0;}
-.panel.route.search #shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0;}
-.panel.route.search #shortcut-icons {display: none;}
-.panel.route.search #shortcut-icons.visible {display: inline-block; overflow-x: scroll;}
-.panel.route.search #shortcut-icons li a {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}
-.panel.route.search ul.segmented-control {display: none; width: 80%; margin: 10px 7.5%; padding: 0;}
-.panel.route.search ul.segmented-control.visible {display: table;}
-.panel.route.search ul.segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
-.panel.route.search ul.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
-.panel.route.search ul.segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
-.panel.route.search ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
-.panel.route.search ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
-.panel.route.search ul.segmented-control label:hover {background: #fafafa;}
-.panel.route.search hr {width: calc(100% + 40px); margin: 10px 0 10px -20px; }
-.panel.route.search #recent-journeys li {padding-right: 15px;}
-.panel.route.search #recent-journeys li p {margin: 10px 0;}
-.panel.route.search #recent-journeys li p.destination {display: inline; font-size: 16px; line-height: 19px;}
-.panel.route.search #recent-journeys li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
-.panel.route.search #recent-journeys li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('../assets/icon-cyclist-small.svg');} 
-.panel.route.search #recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
-.panel.route.search #recent-journeys li a {position: absolute; right: 0px;}
+.panel.journeyplanner.search {height: 60px;}
+.panel.journeyplanner.search.open {height: 75%;}
+.panel.journeyplanner.search input {position: relative; bottom: 5px; height: 50px; width: calc(100% - 40px); margin: 10px 0; padding: 0 20px; border: 0; transition: 0.5s;}
+.panel.journeyplanner.search .shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0;}
+.panel.journeyplanner.search .shortcut-icons {display: inline-block; overflow-x: scroll;}
+.panel.journeyplanner.search .shortcut-icons li a {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}
+.panel.journeyplanner.search ul.segmented-control {display: table; width: 80%; margin: 10px 7.5%; padding: 0;}
+.panel.journeyplanner.search ul.segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
+.panel.journeyplanner.search ul.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
+.panel.journeyplanner.search ul.segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
+.panel.journeyplanner.search ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
+.panel.journeyplanner.search ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
+.panel.journeyplanner.search ul.segmented-control label:hover {background: #fafafa;}
+.panel.journeyplanner.search hr {width: calc(100% + 40px); margin: 10px 0 10px -20px;}
+.panel.journeyplanner.search .recent-journeys li {padding-right: 15px;}
+.panel.journeyplanner.search .recent-journeys li p {margin: 10px 0;}
+.panel.journeyplanner.search .recent-journeys li p.destination {display: inline; font-size: 16px; line-height: 19px;}
+.panel.journeyplanner.search .recent-journeys li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
+.panel.journeyplanner.search .recent-journeys li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('../assets/icon-cyclist-small.svg');} 
+.panel.journeyplanner.search .recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
+.panel.journeyplanner.search .recent-journeys li a {position: absolute; right: 0px;}
 
 /* Route speed select panel */
-.panel.route.select p {margin-top: 15px; text-align: center;}
-.panel.route.select p.location {font-size: 13px; margin: 10px; padding: 0; color: #8e8c8c;}
-.panel.route.select ul {margin: 15px 0 0 0; padding: 0;}
-.panel.route.select ul li {list-style-type: none; display: inline-block;}
-.panel.route.select ul li img {display: inline-block; margin: 0 0 0 30px; padding: 0;}
-.panel.route.select ul li p {display: inline-block; margin: 0; padding: 0; text-align: left;}
-.panel.route.select #elevation-chart-container {position: absolute; bottom: 0; left: 0; height: 80px; width: 100%;}
-.panel.route.select span.elevation {position: absolute; bottom: 15px; right: 15px; padding: 5px; color: #ffffff; background-color: #212322; opacity: .75; border-radius: 40px; line-height: 20px;}
-.panel.route.select span img {padding: 0 5px 0 0;}
+.panel.journeyplanner.select p {margin-top: 15px; text-align: center;}
+.panel.journeyplanner.select p.location {font-size: 13px; margin: 10px; padding: 0; color: #8e8c8c;}
+.panel.journeyplanner.select ul {margin: 15px 0 0 0; padding: 0;}
+.panel.journeyplanner.select ul li {list-style-type: none; display: inline-block;}
+.panel.journeyplanner.select ul li img {display: inline-block; margin: 0 0 0 30px; padding: 0;}
+.panel.journeyplanner.select ul li p {display: inline-block; margin: 0; padding: 0; text-align: left;}
+.panel.journeyplanner.select #elevation-chart-container {position: absolute; bottom: 0; left: 0; height: 80px; width: 100%;}
+.panel.journeyplanner.select span.elevation {position: absolute; bottom: 15px; right: 15px; padding: 5px; color: #ffffff; background-color: #212322; opacity: .75; border-radius: 40px; line-height: 20px;}
+.panel.journeyplanner.select span img {padding: 0 5px 0 0;}
 
 /* Ridetracker specific card styles */
-.panel.ridetracker a {display: none;}
-.panel.ridetracker a.enabled {display: inline;}
-.panel.ridetracker h3, div.ridetracker h4, div.ridetracker h5, div.ridetracker h6 {text-align: center;}
-.panel.ridetracker h3 {width: 100%; font-size: 45px; margin: 25px 0 0 0;}
-.panel.ridetracker h4 {width: 100%; font-size: 20px; font-weight: normal; margin: 5px 0 0 0; color: #8e8c8c;}
-.panel.ridetracker h5 {display: inline-block; width: 45%; font-size: 20px; margin: 20px 0 0 0; padding: 0;}
-.panel.ridetracker h6 {display: inline-block; width: 45%; font-size: 15px; font-weight: normal; margin: 8px 0 0 0; padding: 0; color: #8e8c8c;}
+.panel.ridetracker.track a {display: none;}
+.panel.ridetracker.track a.enabled {display: inline;}
+.panel.ridetracker.track h3, div.ridetracker h4, div.ridetracker h5, div.ridetracker h6 {text-align: center;}
+.panel.ridetracker.track h3 {width: 100%; font-size: 45px; margin: 25px 0 0 0;}
+.panel.ridetracker.track h4 {width: 100%; font-size: 20px; font-weight: normal; margin: 5px 0 0 0; color: #8e8c8c;}
+.panel.ridetracker.track h5 {display: inline-block; width: 45%; font-size: 20px; margin: 20px 0 0 0; padding: 0;}
+.panel.ridetracker.track h6 {display: inline-block; width: 45%; font-size: 15px; font-weight: normal; margin: 8px 0 0 0; padding: 0; color: #8e8c8c;}
 .panel.ridetracker.tracking {background-color: #212322; opacity: .85;}
 .panel.ridetracker.tracking::before {display: none;}
 .panel.ridetracker.tracking h2, .panel.ridetracker.tracking h3, .panel.ridetracker.tracking h5 {color: #fbf6f8;}
@@ -163,9 +160,9 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
  */
 
 /* Photomap card */
-.panel.photomap.main ul li label {display: inline-block; width: 35%;}
-.panel.photomap.main p {display: inline; line-height: 35px;}
-.panel.photomap.main hr {width: calc(100% + 40px); margin-left: -20px;}
+.panel.photomap ul li label {display: inline-block; width: 35%;}
+.panel.photomap p {display: inline; line-height: 35px;}
+.panel.photomap hr {width: calc(100% + 40px); margin-left: -20px;}
 .panel.photomap.add-location #mini-map {height: 335px; width:100%;}
 .panel.photomap.add-details ul li label {display: inline-block; width: 25%;}
 .panel.photomap.add-details img {border-radius: 25px;}

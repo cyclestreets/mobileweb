@@ -1,614 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>CycleStreets</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<head>
+		<meta charset="UTF-8" />
+		<title>CycleStreets</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/2.0.2/jquery.mobile-events.js"></script>
+		<script src="js/cyclestreets-mobile-config.js"></script>
+		<script src="js/cyclestreets-mobile-ui.js"></script>
+		<script type="text/javascript"> $(function() {cyclestreetsui.initialise (config);}); </script>
+		
+		<link rel="stylesheet" href="css/cyclestreets-mobile-ui.css" type="text/css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap">
+		
+		<!-- Mapbox -->
+		<script src='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js'></script>
+		<link href='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css' rel='stylesheet' />
+		
+		<!-- chart.js -->
+		<script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
 	
-	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/2.0.2/jquery.mobile-events.js"></script>
-	<script src="js/cyclestreets-mobile-config.js"></script>
-	<script src="js/cyclestreets-mobile-ui.js"></script>
-	<script type="text/javascript"> $(function() {cyclestreetsui.initialise (config);}); </script>
+	</head>
 	
-	<link rel="stylesheet" href="css/cyclestreets-mobile-ui.css" type="text/css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap">
+	<body class="browse">
+		<!-- Hamburger menu -->
+		<nav>
+			<!-- <a href="#" id="closeNavButton" class="close-nav-button"><img src="assets/icon-cross-red.svg"></a> Include close button? --> 
+			<ul>
+				<li class="journeyplanner"><a href="#">Journey planner</a></li>
+				<li class="photomap enabled"><a href="#">Photomap</a></li>
+				<li class="places"><a id="places-menu-item" href="#">Places</a></li>
+				<li class="ridetracker"><a href="#">Ride tracker</a></li>
+				<li class="data"><a href="#">Data</a>
+					<ul>
+						<li class="enabled"><a href="#">Collisions</a></li>
+						<li><a href="#">Traffic counts</a></li>
+						<li><a href="#">Cycle theft</a></li>
+						<li><a href="#">Cycleability</a></li>
+						<li><a href="#">Planning applications</a></li>
+						<li><a href="#">Cycling groups</a></li>
+					</ul>
+				</li>
+			</ul>
+			<hr>
+			<ul id="secondary-menu">
+				<li class="map-style"><a href="#">Map style</a></li>
+				<li class="settings"><a href="#">Settings</a></li>
+				<li><div class="badge-row">
+					<div class="text-column">
+						<a href="#">Blog</a>
+					</div>
+					<div class="badge-column">
+						<a href="#" class="blog-badge" data-badge="3"></a>
+					</div>
+				</div></li>
+				<li class="feedback"><a href="#">Feedback</a></li>
+				<li class="sign-in"><a href="#">Sign in</a></li>
+			</ul>
 	
-	<!-- Mapbox -->
-	<script src='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js'></script>
-	<link href='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css' rel='stylesheet' />
+			<div id="nav-footer">
+				<img class="cyclestreets-logo" src="assets/logo-crop-monochrome.svg"/>				
+				<h6 class="logo-text">CycleStreets</h6>
+				<p class="logo-description">Maps from OpenStreetMap and Mapbox</p>
+				<a class="logo-description" href="https://www.mapbox.com/map-feedback/#/-74.5/40/10">Improve this map</a>
+			</div>
+		</nav>
 	
-	<!-- chart.js -->
-	<script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
-
-</head>
-
-<body class="browse">
-
-	<nav>
-		<!-- <a href="#" id="closeNavButton" class="close-nav-button"><img src="assets/icon-cross-red.svg"></a> Include close button? --> 
-		<ul>
-			<li class="journeyplanner"><a href="#">Journey planner</a></li>
-			<li class="photomap enabled"><a href="#">Photomap</a></li>
-			<li class="places"><a id="places-menu-item" href="#">Places</a></li>
-			<li class="ridetracker"><a href="#">Ride tracker</a></li>
-			<li class="data"><a href="#">Data</a>
-				<ul>
-					<li class="enabled"><a href="#">Collisions</a></li>
-					<li><a href="#">Traffic counts</a></li>
-					<li><a href="#">Cycle theft</a></li>
-					<li><a href="#">Cycleability</a></li>
-					<li><a href="#">Planning applications</a></li>
-					<li><a href="#">Cycling groups</a></li>
+		<main>
+			<!-- Main UI components -->
+			<div id='map'></div>
+			
+			<a href="#" id="hamburger-menu" class="ui-button ui-button-large"><img src="assets/btn-burger-nav-rest.svg" /></a>
+			<a href="#" id="location-icon" class="ui-button"><img src="assets/icon-location-red.svg" /></a>
+			<a href="#" id="glasses-icon" class="ui-button"><img src="assets/icon-spectacles.svg" /></a>
+			<a href="#" id="close-browse-box-icon" class="ui-button"><img src="assets/icon-cross-red.svg" /></a>
+			 
+			<input id="browse-search-box" type="text" placeholder="Move map to place or postcode" value="" />
+			
+			
+			<!-- Journey planner panels -->
+			<div class="panel journeyplanner search">
+				<input type="text" placeholder="Get somewhere from here" value="" />
+				<ul class="shortcut-icons">
+					<li><a href="#" class="ui-button"><img src="assets/icon-home.svg" /></a></li>
+					<li><a href="#" class="ui-button"><img src="assets/icon-work.svg" /></a></li>
+					<li><a href="#" class="ui-button"><img src="assets/icon-shop.svg" /></a></li>
+					<li><a href="#" class="ui-button"><img src="assets/icon-bike-shops.svg" /></a></li>
+					<li><a href="#" class="ui-button"><img src="assets/icon-atm.svg" /></a></li>
+					<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg" /></a></li>
+					<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg" /></a></li>
+					<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg" /></a></li>
 				</ul>
-			</li>
-		</ul>
-		<hr>
-		<ul id="secondary-menu">
-			<li class="map-style"><a href="#">Map style</a></li>
-			<li class="settings"><a href="#">Settings</a></li>
-			<li><div class="badge-row">
-				<div class="text-column">
-					<a href="#">Blog</a>
-				</div>
-				<div class="badge-column">
-					<a href="#" class="blog-badge" data-badge="3"></a>
-				</div>
-			</div></li>
-			<li><a id="feedback-menu-item" href="#">Feedback</a></li>
-			<li class="sign-in"><a href="#">Sign in</a></li>
-		</ul>
-
-		<div id="nav-footer">
-			<img class="cyclestreets-logo" src="assets/logo-crop-monochrome.svg"/>				
-			<h6 class="logo-text">CycleStreets</h6>
-			<p class="logo-description">Maps from OpenStreetMap and Mapbox</p>
-			<a class="logo-description" href="https://www.mapbox.com/map-feedback/#/-74.5/40/10">Improve this map</a>
-		</div>
-	</nav>
-
-	<main>
-		<div id='map'></div>
-		
-		<a href="#" id="hamburger-menu" class="ui-button ui-button-large"><img src="assets/btn-burger-nav-rest.svg" /></a>
-		<a href="#" id="location-icon" class="ui-button"><img src="assets/icon-location-red.svg" /></a>
-		<a href="#" id="glasses-icon" class="ui-button"><img src="assets/icon-spectacles.svg" /></a>
-		<a href="#" id="close-browse-box-icon" class="ui-button"><img src="assets/icon-cross-red.svg" /></a>
-	     
-		<input id="browse-search-box" type="text" placeholder="Move map to place or postcode" value="" />
-		
-		<div id="route-search-panel" class="panel route search">
-			<input id="route-search-box" type="text" placeholder="Get somewhere from here" value="" />
-			<ul id="shortcut-icons">
-				<li><a href="#" class="ui-button"><img src="assets/icon-home.svg" /></a></li>
-				<li><a href="#" class="ui-button"><img src="assets/icon-work.svg" /></a></li>
-				<li><a href="#" class="ui-button"><img src="assets/icon-shop.svg" /></a></li>
-				<li><a href="#" class="ui-button"><img src="assets/icon-bike-shops.svg" /></a></li>
-				<li><a href="#" class="ui-button"><img src="assets/icon-atm.svg" /></a></li>
-				<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg" /></a></li>
-				<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg" /></a></li>
-				<li><a href="#" class="ui-button"><img src="assets/icon-pubs.svg" /></a></li>
-			</ul>
-			<ul class="segmented-control">
-				<li><label>Recent searches</label></li>
-				<li class="active"><label>Recent journeys</label></li>
-			</ul>
-			<hr>
-			<ul id="recent-journeys">
-				<li>
-					<a href="#"><img src="assets/btn-get-directions-small.svg" /></a>
-					<p class="destination">Nandos</p>
-					<p class="distance">7 miles</p>
-					<p class="address">Cambridge Leisure Park, Clifton Way, Cambrid...</p>
-				</li>
+				<ul class="segmented-control">
+					<li><label>Recent searches</label></li>
+					<li class="active"><label>Recent journeys</label></li>
+				</ul>
 				<hr>
-				<li>
-					<a href="#"><img src="assets/btn-get-directions-small.svg" /></a>
-					<p class="destination">Nandos</p>
-					<p class="distance">8 miles</p>
-					<p class="address">High Street, Cambridge, Cambridgeshire, CM3 7...</p>
-				</li>
-				<hr>
-			</ul>
-		</div>
-		
-		<div id="route-select-panel" class="panel route select">
-			<h2>Fastest</h2>
-			<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-			<a id="start-route-button" class="action forward" href="#"><img src="assets/btn-get-directions-large.svg" /></a>
-			<p>Nandos</p>
-			<p class="location">Cambridge Leisure Park, Clifton Way, Cambridge, Camb…</p>
-			<ul>
-				<li>
-					<img src="assets/icon-cyclist.svg" />
-					<p>7 miles</p>
-				</li>
-				<li>
-					<img src="assets/icon-clock.svg" />
-					<p>8 mins</p>
-				</li>
-				<li>
-					<img src="assets/icon-flame.svg" />
-					<p>251 cals</p>
-				</li>
-			</ul>
-			
-			<div id="elevation-chart-container">
-				<canvas id="elevationChart"></canvas>	
+				<ul class="recent-journeys">
+					<li>
+						<a href="#"><img src="assets/btn-get-directions-small.svg" /></a>
+						<p class="destination">Nandos</p>
+						<p class="distance">7 miles</p>
+						<p class="address">Cambridge Leisure Park, Clifton Way, Cambrid...</p>
+					</li>
+					<hr>
+					<li>
+						<a href="#"><img src="assets/btn-get-directions-small.svg" /></a>
+						<p class="destination">Nandos</p>
+						<p class="distance">8 miles</p>
+						<p class="address">High Street, Cambridge, Cambridgeshire, CM3 7...</p>
+					</li>
+					<hr>
+				</ul>
 			</div>
-			<span class="elevation"><img src="assets/icon-elevation.svg" />32m elevation</span>
-			<a href="#" id="elevation-scrubber" class=""><img src="assets/elevation-dragger.svg" /></a>
-		</div>
-		
-		<div id="photomap-panel" class="panel photomap main">
-			<h2>Photomap</h2>
-			<a id="photomap-add-button" class="action forward" href="#"><img src="assets/icon-add-photo-rest.svg" /></a>
-			<ul>
-				<li>
-					<label for="category">Category</label>
-					<select name="category" id="category">
-						<option value="" disabled selected>Choose</option>
-						<option value="cycleparking">Cycle parking</option>
-						<option value="obstructions">Obstruction</option>
-						<option value="track">Track</option>
-						<option value="dutchcycleways">Dutch-style cycleway</option>
-						<option value="road">Road environment</option>
-						<option value="cycleways">Cycleway</option>
-						<option value="enforcement">Enforcement</option>
-						<option value="carstorage">Car storage</option>
-						<option value="closure">Temporary closure</option>
-						<option value="roadworks">Roadworks</option>
-						<option value="bikeshops">Bike shop</option>
-						<option value="potholes">Pothole</option>
-						<option value="destinations">Destination</option>
-						<option value="signs">General sign/notice</option>
-						<option value="routesigns">Route sign</option>
-						<option value="congestion">Congestion</option>
-						<option value="bicycles">Bicycle</option>
-						<option value="general">Other</option>
-					</select>
-				</li>
-				<li>
-					<label for="metacategory">Good or bad</label>
-					<select name="metacategory" id="metacategory">
-						<option value="" disabled selected>Choose</option>
-						<option value="bad" id="severity_bad">Problem</option>
-						<option value="good" id="severity_good">Good practice</option>
-						<option value="other" id="severity_other">Infrastructure</option>
-						<option value="any" id="severity_any">Misc</option>
-						<option value="event" id="severity_event">Event</option>
-					</select>
-				</li>
-				<li>
-					<label for="since">Since</label>
-					<select name="since" data-yearly-since-unixtime="2000">
-						<option value="">No date limit</option>
-					</select>
-				</li>
-			</ul>
-			<hr>
-			<p>Only show reports with photos</p>
-			<label class="switch">
-				<input type="checkbox" id="photo-reports">
-				<span class="slider round"></span>
-			</label>
-		</div>
-		
-		<div id="photomap-add-location-panel" class="panel photomap add-location">
-			<h2>Add location</h2>
-			<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-			<a id="photomap-add-location-continue" class="action forward" href="#">Continue <img src="assets/icon-disclosure-red-right.svg"/></a>
-			<br>
-			<p>If the location shown is not accurate, tap on the map below location to adjust it.</p>
-			<div id='mini-map'></div>
-		</div>
-		
-		<div id="photomap-add-details-panel" class="panel photomap add-details">
-			<h2>Add details</h2>
-			<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-			<a id="photomap-upload" class="action forward" href="#">Upload <img src="assets/icon-disclosure-red-right.svg"/></a>
-			<img class="uploaded-image" src="placeholders/photomap-add-comments-placeholder.svg" />
-			<ul>
-				<li>
-					<label for="since">Caption</label>
-					<textarea placeholder="Enter description"></textarea>
-				</li>
-				<li>
-					<label for="category">Category</label>
-					<select name="category" id="category">
-						<option value="" disabled selected>Choose</option>
-						<option value="cycleparking">Cycle parking</option>
-						<option value="obstructions">Obstruction</option>
-						<option value="track">Track</option>
-						<option value="dutchcycleways">Dutch-style cycleway</option>
-						<option value="road">Road environment</option>
-						<option value="cycleways">Cycleway</option>
-						<option value="enforcement">Enforcement</option>
-						<option value="carstorage">Car storage</option>
-						<option value="closure">Temporary closure</option>
-						<option value="roadworks">Roadworks</option>
-						<option value="bikeshops">Bike shop</option>
-						<option value="potholes">Pothole</option>
-						<option value="destinations">Destination</option>
-						<option value="signs">General sign/notice</option>
-						<option value="routesigns">Route sign</option>
-						<option value="congestion">Congestion</option>
-						<option value="bicycles">Bicycle</option>
-						<option value="general">Other</option>
-					</select>
-				</li>
-				<li>
-					<label for="metacategory">This photo represents</label>
-					<select name="metacategory" id="metacategory">
-						<option value="" disabled selected>Choose</option>
-						<option value="bad" id="severity_bad">Problem</option>
-						<option value="good" id="severity_good">Good practice</option>
-						<option value="other" id="severity_other">Infrastructure</option>
-						<option value="any" id="severity_any">Misc</option>
-						<option value="event" id="severity_event">Event</option>
-					</select>
-				</li>
-			</ul>
-		</div>
-		
-		<div id="photomap-uploading-panel" class="panel red photomap uploading">
-			<img src="assets/bicycle-wheel.svg" />
-			<p>Uploading</p>
-			<progress id="photomap-upload" value="32" max="100"></progress>
-			<a id="cancel-photomap-upload" href="#">Cancel</a>
-		</div>
-		
-		<div id="photomap-popup-panel" class="popup photomap">
-			<div id="inner-card" class="flip-card-inner">
-				<div class="flip-card-front popup-card">
-					<img class="popup-photo" src="placeholders/photomap-add-comments-placeholder.svg" />
-					<a id="popup-close-button" href="#" class="ui-button close-button"><img src="assets/icon-cross-red.svg" /></a>
-					<a href="#"><img src="assets/icon-share.svg" /> Share</a>
-					<a id="photo-info-flip" class="right" href="#"> Photo info</a>
+			
+			<div class="panel journeyplanner select">
+				<h2>Fastest</h2>
+				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+				<a class="action forward" href="#"><img src="assets/btn-get-directions-large.svg" /></a>
+				<p>Nandos</p>
+				<p class="location">Cambridge Leisure Park, Clifton Way, Cambridge, Camb…</p>
+				<ul>
+					<li>
+						<img src="assets/icon-cyclist.svg" />
+						<p>7 miles</p>
+					</li>
+					<li>
+						<img src="assets/icon-clock.svg" />
+						<p>8 mins</p>
+					</li>
+					<li>
+						<img src="assets/icon-flame.svg" />
+						<p>251 cals</p>
+					</li>
+				</ul>
+				
+				<div id="elevation-chart-container">
+					<canvas id="elevationChart"></canvas>	
 				</div>
-				<div class="flip-card-back popup-card">
-					<img id="popup-back-button" src="assets/icon-disclosure-red-left.svg" />
-					<a href="#" id="popup-close-button" class="ui-button"><img src="assets/icon-cross-red.svg" /></a>
+				<span class="elevation"><img src="assets/icon-elevation.svg" />32m elevation</span>
+				<a href="#" id="elevation-scrubber" class=""><img src="assets/elevation-dragger.svg" /></a>
+			</div>
+			
+			
+			<!-- Ridetracker and satnav panels -->
+			<div class="panel ridetracker track">
+				<h2>Ride tracker</h2>
+				<a id="my-rides-button" class="action back enabled" href="#">My rides</a>
+				<a id="cancel-tracking" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Cancel</a>
+				<a id="start-ride-tracking" class="action forward enabled" href="#">Start</a>
+				<a id="finish-tracking" class="action forward" href="#">Finish <img src="assets/icon-disclosure-red-right.svg" /></a>
+				<h3>00:00:00</h3>
+				<h4>Elapsed time</h4>
+				<h5>0.0 miles</h5>
+				<h5>0.0 mph</h5>
+				<h6>Distance</h6>
+				<h6>Av. speed</h6>
+			</div>
+			
+			<div class="panel ridetracker my-rides">
+				<h2>My rides</h2>
+				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+				<a class="action forward" href="#">Edit</a>
+				<ul>
+					<li>
+						<hr />
+						<h3>Social</h3>
+						<p class="datetime">16 June 2017 at 3:45pm</p>
+						<p class="description">Checked in on neighbour's dog</p>
+						<img src="assets/icon-cyclist-small.svg" />
+						<p class>7.1 miles</p>
+						<img src="assets/icon-clock.svg" />
+						<p class>21.15</p>
+						<img src="assets/icon-flame.svg" />
+						<p class>39 kcals</p>
+						<img src="assets/icon-leaf.svg" />
+						<p class>1 lbs CO2</p>
+					</li>
+					<li>
+						<hr>
+						<h3>Other</h3>
+						<p class="datetime">24 June 2018 at 3:45pm</p>
+						<p class="description">Water sports at Stephen's Green</p>
+						<img src="assets/icon-cyclist-small.svg" />
+						<p class>2.1 miles</p>
+						<img src="assets/icon-clock.svg" />
+						<p class>69.62</p>
+						<img src="assets/icon-flame.svg" />
+						<p class>123 kcals</p>
+						<img src="assets/icon-leaf.svg" />
+						<p class>2 lbs CO2</p>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="panel ridetracker ride-info">
+				<h2>Ride info</h2>
+				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+				<a class="action forward" href="#"><img src="assets/icon-share.svg" /></a>
+				<ul>
+					<li>
+						<h3>Social</h3>
+						<p class="datetime">16 June 2017 at 3:45pm</p>
+						<p class="description">Checked in on neighbour’s dog</p>
+						<ul>
+							<li>
+								<img src="assets/icon-cyclist.svg" />
+								<p class="classification">You rode</p>
+								<p>7.1 miles</p>
+							</li>
+							<li>
+								<img src="assets/icon-clock.svg" />
+								<p class="classification">It took you</p>
+								<p>21 mins and 15 secs</p>
+							</li>
+							<li>
+								<img src="assets/icon-flame.svg" />
+								<p class="classification">You burned</p>
+								<p>69 kcals</p>
+							</li>
+							<li>
+								<img src="assets/icon-leaf.svg" />
+								<p class="classification">You saved</p>
+								<p>1 lbs of CO2</p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="panel ridetracker add-details">
+				<h2>Ride tracker</h2>
+				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+				<a class="action forward" href="#">Save</a>
+				<ul>
+					<li>
+						<label for="category">Purpose</label>
+						<select name="category" id="category">
+							<option value="" disabled selected>Choose</option>
+							<option value="cycleparking">Cycle parking</option>
+							<option value="obstructions">Obstruction</option>
+							<option value="track">Track</option>
+							<option value="dutchcycleways">Dutch-style cycleway</option>
+							<option value="road">Road environment</option>
+							<option value="cycleways">Cycleway</option>
+							<option value="enforcement">Enforcement</option>
+						</select>
+					</li>
+					<li>
+						<label>Notes</label>
+						<textarea placeholder="e.g. Trip to town"></textarea>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="panel ridetracker show-tracked-ride">
+				<h2>Ride tracker</h2>
+				<a class="action back" href="#">Done</a>
+				<a class="action forward" href="#"><img src="assets/icon-share.svg" /></a>
+				<ul>
+					<li>
+						<h3>Social</h3>
+						<p class="datetime">16 June 2017 at 3:45pm</p>
+						<p class="description">Checked in on neighbour's dog</p>
+						<img src="assets/icon-cyclist-small.svg" />
+						<p class>7.1 miles</p>
+						<img src="assets/icon-clock.svg" />
+						<p class>21.15</p>
+						<img src="assets/icon-flame.svg" />
+						<p class>39 kcals</p>
+						<img src="assets/icon-leaf.svg" />
+						<p class>1 lbs CO2</p>
+					</li>
+				</ul>
+			</div>
+			
+			
+			<!-- Photomap panels -->
+			<div class="panel photomap">
+				<h2>Photomap</h2>
+				<a class="action forward" href="#"><img src="assets/icon-add-photo-rest.svg" /></a>
+				<ul>
+					<li>
+						<label for="category">Category</label>
+						<select name="category" id="category">
+							<option value="" disabled selected>Choose</option>
+							<option value="cycleparking">Cycle parking</option>
+							<option value="obstructions">Obstruction</option>
+							<option value="track">Track</option>
+							<option value="dutchcycleways">Dutch-style cycleway</option>
+							<option value="road">Road environment</option>
+							<option value="cycleways">Cycleway</option>
+							<option value="enforcement">Enforcement</option>
+							<option value="carstorage">Car storage</option>
+							<option value="closure">Temporary closure</option>
+							<option value="roadworks">Roadworks</option>
+							<option value="bikeshops">Bike shop</option>
+							<option value="potholes">Pothole</option>
+							<option value="destinations">Destination</option>
+							<option value="signs">General sign/notice</option>
+							<option value="routesigns">Route sign</option>
+							<option value="congestion">Congestion</option>
+							<option value="bicycles">Bicycle</option>
+							<option value="general">Other</option>
+						</select>
+					</li>
+					<li>
+						<label for="metacategory">Good or bad</label>
+						<select name="metacategory" id="metacategory">
+							<option value="" disabled selected>Choose</option>
+							<option value="bad" id="severity_bad">Problem</option>
+							<option value="good" id="severity_good">Good practice</option>
+							<option value="other" id="severity_other">Infrastructure</option>
+							<option value="any" id="severity_any">Misc</option>
+							<option value="event" id="severity_event">Event</option>
+						</select>
+					</li>
+					<li>
+						<label for="since">Since</label>
+						<select name="since" data-yearly-since-unixtime="2000">
+							<option value="">No date limit</option>
+						</select>
+					</li>
+				</ul>
+				<hr>
+				<p>Only show reports with photos</p>
+				<label class="switch">
+					<input type="checkbox" id="photo-reports">
+					<span class="slider round"></span>
+				</label>
+			</div>
+			
+			<div class="panel photomap add-location">
+				<h2>Add location</h2>
+				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+				<a class="action forward" href="#">Continue <img src="assets/icon-disclosure-red-right.svg"/></a>
+				<br>
+				<p>If the location shown is not accurate, tap on the map below location to adjust it.</p>
+				<div id='mini-map'></div>
+			</div>
+			
+			<div class="panel photomap add-details">
+				<h2>Add details</h2>
+				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+				<a class="action forward" href="#">Upload <img src="assets/icon-disclosure-red-right.svg"/></a>
+				<img class="uploaded-image" src="placeholders/photomap-add-comments-placeholder.svg" />
+				<ul>
+					<li>
+						<label for="since">Caption</label>
+						<textarea placeholder="Enter description"></textarea>
+					</li>
+					<li>
+						<label for="category">Category</label>
+						<select name="category" id="category">
+							<option value="" disabled selected>Choose</option>
+							<option value="cycleparking">Cycle parking</option>
+							<option value="obstructions">Obstruction</option>
+							<option value="track">Track</option>
+							<option value="dutchcycleways">Dutch-style cycleway</option>
+							<option value="road">Road environment</option>
+							<option value="cycleways">Cycleway</option>
+							<option value="enforcement">Enforcement</option>
+							<option value="carstorage">Car storage</option>
+							<option value="closure">Temporary closure</option>
+							<option value="roadworks">Roadworks</option>
+							<option value="bikeshops">Bike shop</option>
+							<option value="potholes">Pothole</option>
+							<option value="destinations">Destination</option>
+							<option value="signs">General sign/notice</option>
+							<option value="routesigns">Route sign</option>
+							<option value="congestion">Congestion</option>
+							<option value="bicycles">Bicycle</option>
+							<option value="general">Other</option>
+						</select>
+					</li>
+					<li>
+						<label for="metacategory">This photo represents</label>
+						<select name="metacategory" id="metacategory">
+							<option value="" disabled selected>Choose</option>
+							<option value="bad" id="severity_bad">Problem</option>
+							<option value="good" id="severity_good">Good practice</option>
+							<option value="other" id="severity_other">Infrastructure</option>
+							<option value="any" id="severity_any">Misc</option>
+							<option value="event" id="severity_event">Event</option>
+						</select>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="panel red photomap uploading">
+				<img src="assets/bicycle-wheel.svg" />
+				<p>Uploading</p>
+				<progress id="photomap-upload" value="32" max="100"></progress>
+				<a href="#">Cancel</a>
+			</div>
+			
+			
+			<!-- Places and POI panels -->
+			<div id="places-panel" class="panel places">
+				<h2>Places</h2>
+				<ul>
+					<li><a href="#"><img src="assets/icon-cycle-parking.svg" /><span>Cycle parking</span></a></li>
+					<li><a href="#"><img src="assets/icon-atm-red.svg" /><span>ATM</span></a></li>
+					<li><a href="#"><img src="assets/icon-car-park-pos.svg" /><span>Car park</span></a></li>
+					<li><a href="#"><img src="assets/icon-underground-pos.svg" /><span>Underground</span></a></li>
+					<li><a href="#"><img src="assets/icon-bike-shops-pos.svg" /><span>Bike shops</span></a></li>
+					<li><a href="#"><img src="assets/icon-greengrocer-neg.svg" /><span>Greengrocer</span></a></li>
+					<li><a href="#"><img src="assets/icon-supermarket-pos.svg" /><span>Supermarket</span></a></li>
+					<li><a href="#"><img src="assets/icon-tourist-info-pos.svg" /><span>Tourist info</span></a></li>
+					<li><a href="#"><img src="assets/icon-viewpoint-neg.svg" /><span>Viewpoint</span></a></li>		
+				</ul>
+			</div>
+			
+			
+			<!-- Popups and notification bars -->
+			<div class="popup photomap">
+				<div id="inner-card" class="flip-card-inner">
+					<div class="flip-card-front popup-card">
+						<img class="popup-photo" src="placeholders/photomap-add-comments-placeholder.svg" />
+						<a id="popup-close-button" href="#" class="ui-button close-button"><img src="assets/icon-cross-red.svg" /></a>
+						<a href="#"><img src="assets/icon-share.svg" /> Share</a>
+						<a id="photo-info-flip" class="right" href="#"> Photo info</a>
+					</div>
+					<div class="flip-card-back popup-card">
+						<img id="popup-back-button" src="assets/icon-disclosure-red-left.svg" />
+						<a href="#" id="popup-close-button" class="ui-button"><img src="assets/icon-cross-red.svg" /></a>
+						<br>
+						<p class="key">Category:</p>
+						<p>Cycle parking</p>
+						<br>	
+						<p class="key">Type:</p>
+						<p>Neutral</p>
+						<hr>
+						<ul>
+							<li>
+								<img src="assets/icon-user.svg" />
+								<p>timbo</p>
+							</li>
+							<li>
+								<img src="assets/icon-clock.svg" />
+								<p>1:16pm, 8th August, 2018</p>
+							</li>
+							<li>
+								<img src="assets/icon-hashtag.svg" />
+								<p>92334</p>
+							</li>
+							<li>
+								<img src="assets/icon-copyright.svg" />
+								<p>CC Attribution-Share Alike (by-sa)</p>
+							</li>
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="popup places">
+				<img class="place-photo" src="placeholders/places-popup-placeholder.png" />
+				<a href="#" id="places-popup-close-button" class="ui-button close-button"><img src="assets/icon-cross-red.svg" /></a>
+				<h2>Mary's Greengrocers</h2>
+				<img class="get-directions" src="assets/btn-get-directions-large.svg" />
+				<p>34 High St, Sawston, Cambridge, Cambridgeshire, CB22 3BG</p>
+				<ul>
+					<li>
+						<img src="assets/icon-clock.svg" />
+						<p>Open today: 09:00 - 17:30</p>
+					</li>
+					<li>
+						<img src="assets/icon-telephone.svg" />
+						<p class="phone">01223 576790</p>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="popup ride-notification">
+				<img src="assets/arrow-straight.svg" />
+				<p class="direction">Straight on Station Road</p>
+				<br>
+				<p class="time">05:57</p>
+				<p class="distance">10 meters</p>
+			</div>
+			
+			
+			<!-- Account management and creation panels -->
+			<div class="panel sign-in">
+				<h2>Signin</h2>
+				<a class="action back" href="#">Cancel</a>
+				<a class="action forward" href="#">Signin <img src="assets/icon-disclosure-red-right.svg" /></a>
+				<input id="username" placeholder="Username"></input>
+				<input id="password" placeholder="Password"></input>
+				<br />
+				<a href="#">I've forgotten my password</a>
+				<hr>
+				<h3>Not with us yet?</h3>
+				<p>Create a Cyclestreets account and participate in an active cycling community.</p>
+				<a id="create-account-button" class="ui-button ui-button-large" href="#">Create account <img src="assets/icon-disclosure-light.svg" /></a>
+			</div>
+			
+			<div class="panel create-account">
+				<h2>Create account</h2>
+				<a id="choose-username-next" class="action forward" href="#">Next <img src="assets/icon-disclosure-red-right.svg"/></a>
+				<a id="finish-account-creation" class="action forward hidden" href="#">Finish <img src="assets/icon-disclosure-red-right.svg"/></a>
+				<div id="choose-username">
+					<p>Choose your CycleStreets username: </p>
+					<input id="username" placeholder="Username"></input>	
+				</div>
+				<div id="choose-password" class="hidden">
+					<p>Provide the following and you're done: </p>
+					<input id="password" placeholder="Choose a password"></input>
+					<input id="email" placeholder="Enter your email"></input>	
+				</div>
+			</div>
+			
+			<div class="panel red create-account creating">
+				<h2>Welcome to</h2>
+				<h1>CycleStreets</h1>
+				<img class="wheel" src="assets/bicycle-wheel.svg" />
+				<p>Creating your account...</p>
+			</div>
+			
+			
+			<!-- Settings, about, feedback and map-style panels -->
+			<div class="panel settings">
+				<h2>Settings</h2>
+				<a id="settings-done" class="action forward" href="#">Done</a>
+				<h3>Saved locations</h3>
+				<ul>
+					<li>
+						<img src="assets/icon-home-dark.svg" />
+						<a id="create-account-button" class="ui-button ui-button-large" href="#">Set your Home location <img class="disclosure" src="assets/icon-disclosure-light.svg" /></a>
+					</li>
+					<li>
+						<img src="assets/icon-work-dark.svg" />
+						<a id="create-account-button" class="ui-button ui-button-large set" href="#">Fraser Street, Temple, South... <img class="disclosure" src="assets/icon-disclosure-red-right.svg" /></a>
+					</li>
+				</ul>
+				<hr>
+				<h3>Route speed & units</h3>
+				<img class="cycle-left" src="assets/icon-dutch-cycle-large.svg" />
+				<input type="range" min="1" max="3" value="1" class="speed-slider" id="myRange">
+				<img class="cycle-right" src="assets/icon-race-cycle-large.svg" />
+				<p class="speed">10 mph</p>
+				<p class="speed">12 mph</p>
+				<p class="speed">15 mph</p>
+				<p class="distance">Distance unit</p>
+				<ul class="segmented-control">
+					<li><label>Miles</label></li>
+					<li class="active"><label>Kilometers</label></li>
+				</ul>
+				<hr>
+				<h3>Photo of the day</h3>
+				<p>Receive our pick of the day's photos.</p>
+				<label class="switch">
+					<input type="checkbox" id="photo-of-the-day">
+					<span class="slider round"></span>
+				</label>
+				<hr>
+				<h3>Auto-end routes</h3>
+				<p>The app will attempt to complete a route if stopped for too long.</p>
+				<label class="switch">
+					<input type="checkbox" id="auto-end-route">
+					<span class="slider round"></span>
+				</label>
+				<hr>
+				<a id="about-cyclestreets">About CycleStreets <img class="disclosure" src="assets/icon-disclosure-red-right.svg" /></a>
+				
+			</div>
+			
+			<div class="panel about">
+				<h2>About</h2>
+				<a id="about-back-button" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Back</a>
+				<a id="about-done" class="action forward" href="#">Done</a>
+				<h3>Mapping</h3>
+				<p>Mapping data courtesy of OpenStreetMap. Without OSM mappers on the ground collecting great data, the routing would not be possible. OpenStreetMap data can be used freely under the terms of the Open Data Commons Open Database License (ODbL).</p>
+				<p>OpenStreetMap is the Wiki of maps. YOU can help improve the routing and location data, by going to www.openstreetmap.org and contributing your local knowledge!</p>
+				<p>Routing by CycleStreets uses a custom-written routing engine.</p>
+				<p>Feedback on planned routes is very welcome, in this app or at www.cyclestreets.net/feedback, and helps us improve the algorithms and data.</p>
+				<p>Map tiles thanks to OpenStreetMap, and OpenCycleMap.</p>
+				<h3>Development</h3>
+				<p>App designed by Patrick Johansson and developed by Neil Edwards.</p>
+				<h3>Development</h3>
+				<p>AFNetworking ©Matt Thompson</p>
+				<p>BlocksKit ©Michael Ash</p>
+				<p>FMMoveTable ©Florian Mielke</p>
+				<p>TouchJSON Jonathan Wight</p>
+				<p>TestFlight ©TestFlight</p>
+				<p>MBPProgressHUD ©2009 Matej Bukovinski</p>
+				<p>TBXML 2009 Tom Bradley</p>
+				<p>Crashlytics 2011 Crashlytics</p>
+				<p>A2StoryboardSegueContext ©2011 Alexsander Akers</p>
+				<h3>UI design and icons</h3>
+				<p>Jamie Watson</p>
+			</div>
+			
+			<div class="panel map-style">
+				<h2>Map style</h2>
+				<a class="action forward" href="#">Done</a>
+				<ul>
+					<li><a href="#"><img src="placeholders/map_style_1.png" /></a></li>
+					<li><a href="#"><img src="placeholders/map_style_2.png" /></a></li>
+					<li><a href="#"><img src="placeholders/map_style_3.png" /></a></li>			
+				</ul>
+				<p>Open Cycle Maps</p>
+			</div>
+			
+			<div class="panel feedback">
+				<h2>Feedback</h2>
+				<a id="cancel-feedback" class="action back" href="#">Cancel</a>
+				<a id="share-feedback" class="action forward" href="#">Send <img src="assets/icon-disclosure-red-right.svg" /></a>
+				<form>
+					<label>Your name</label>
+					<input placeholder="Enter your name"></input>
 					<br>
-					<p class="key">Category:</p>
-					<p>Cycle parking</p>
-					<br>	
-					<p class="key">Type:</p>
-					<p>Neutral</p>
-					<hr>
-					<ul>
-						<li>
-							<img src="assets/icon-user.svg" />
-							<p>timbo</p>
-						</li>
-						<li>
-							<img src="assets/icon-clock.svg" />
-							<p>1:16pm, 8th August, 2018</p>
-						</li>
-						<li>
-							<img src="assets/icon-hashtag.svg" />
-							<p>92334</p>
-						</li>
-						<li>
-							<img src="assets/icon-copyright.svg" />
-							<p>CC Attribution-Share Alike (by-sa)</p>
-						</li>
-					</ul>
-					
-				</div>
+					<label>Email</label>
+					<input placeholder="Your email"></input>
+					<br>
+					<label>Feedback</label>
+					<textarea placeholder="Your feedback"></textarea>
+				</form>
 			</div>
-		</div>
-		
-		<div id="places-panel" class="panel places">
-			<h2>Places</h2>
-			<ul>
-				<li><a href="#"><img src="assets/icon-cycle-parking.svg" /><span>Cycle parking</span></a></li>
-				<li><a href="#"><img src="assets/icon-atm-red.svg" /><span>ATM</span></a></li>
-				<li><a href="#"><img src="assets/icon-car-park-pos.svg" /><span>Car park</span></a></li>
-				<li><a href="#"><img src="assets/icon-underground-pos.svg" /><span>Underground</span></a></li>
-				<li><a href="#"><img src="assets/icon-bike-shops-pos.svg" /><span>Bike shops</span></a></li>
-				<li><a href="#"><img src="assets/icon-greengrocer-neg.svg" /><span>Greengrocer</span></a></li>
-				<li><a href="#"><img src="assets/icon-supermarket-pos.svg" /><span>Supermarket</span></a></li>
-				<li><a href="#"><img src="assets/icon-tourist-info-pos.svg" /><span>Tourist info</span></a></li>
-				<li><a href="#"><img src="assets/icon-viewpoint-neg.svg" /><span>Viewpoint</span></a></li>		
-			</ul>
-		</div>
-		
-		<div id="places-popup-panel" class="popup places">
-			<img class="place-photo" src="placeholders/places-popup-placeholder.png" />
-			<a href="#" id="places-popup-close-button" class="ui-button close-button"><img src="assets/icon-cross-red.svg" /></a>
-			<h2>Mary's Greengrocers</h2>
-			<img class="get-directions" src="assets/btn-get-directions-large.svg" />
-			<p>34 High St, Sawston, Cambridge, Cambridgeshire, CB22 3BG</p>
-			<ul>
-				<li>
-					<img src="assets/icon-clock.svg" />
-					<p>Open today: 09:00 - 17:30</p>
-				</li>
-				<li>
-					<img src="assets/icon-telephone.svg" />
-					<p class="phone">01223 576790</p>
-				</li>
-			</ul>
-		</div>
-		
-		<div id="create-account-panel" class="panel create-account">
-			<h2>Create account</h2>
-			<a id="choose-username-next" class="action forward" href="#">Next <img src="assets/icon-disclosure-red-right.svg"/></a>
-			<a id="finish-account-creation" class="action forward hidden" href="#">Finish <img src="assets/icon-disclosure-red-right.svg"/></a>
-			<div id="choose-username">
-				<p>Choose your CycleStreets username: </p>
-				<input id="username" placeholder="Username"></input>	
-			</div>
-			<div id="choose-password" class="hidden">
-				<p>Provide the following and you're done: </p>
-				<input id="password" placeholder="Choose a password"></input>
-				<input id="email" placeholder="Enter your email"></input>	
-			</div>
-		</div>
-		
-		<div id="creating-account-panel" class="panel red create-account creating">
-			<h2>Welcome to</h2>
-			<h1>CycleStreets</h1>
-			<img class="wheel" src="assets/bicycle-wheel.svg" />
-			<p>Creating your account...</p>
-		</div>
-		
-		<div id="sign-in-panel" class="panel sign-in">
-			<h2>Signin</h2>
-			<a class="action back" href="#">Cancel</a>
-			<a class="action forward" href="#">Signin <img src="assets/icon-disclosure-red-right.svg" /></a>
-			<input id="username" placeholder="Username"></input>
-			<input id="password" placeholder="Password"></input>
-			<br />
-			<a href="#">I've forgotten my password</a>
-			<hr>
-			<h3>Not with us yet?</h3>
-			<p>Create a Cyclestreets account and participate in an active cycling community.</p>
-			<a id="create-account-button" class="ui-button ui-button-large" href="#">Create account <img src="assets/icon-disclosure-light.svg" /></a>
-		</div>
-		
-		<div id="map-style-panel" class="panel map-style">
-			<h2>Map style</h2>
-			<a id="map-style-done" class="action forward" href="#">Done</a>
-			<ul>
-				<li><a href="#"><img src="placeholders/map_style_1.png" /></a></li>
-				<li><a href="#"><img src="placeholders/map_style_2.png" /></a></li>
-				<li><a href="#"><img src="placeholders/map_style_3.png" /></a></li>			
-			</ul>
-			<p>Open Cycle Maps</p>
-		</div>
-		
-		<div id="settings-panel" class="panel settings">
-			<h2>Settings</h2>
-			<a id="settings-done" class="action forward" href="#">Done</a>
-			<h3>Saved locations</h3>
-			<ul>
-				<li>
-					<img src="assets/icon-home-dark.svg" />
-					<a id="create-account-button" class="ui-button ui-button-large" href="#">Set your Home location <img class="disclosure" src="assets/icon-disclosure-light.svg" /></a>
-				</li>
-				<li>
-					<img src="assets/icon-work-dark.svg" />
-					<a id="create-account-button" class="ui-button ui-button-large set" href="#">Fraser Street, Temple, South... <img class="disclosure" src="assets/icon-disclosure-red-right.svg" /></a>
-				</li>
-			</ul>
-			<hr>
-			<h3>Route speed & units</h3>
-			<img class="cycle-left" src="assets/icon-dutch-cycle-large.svg" />
-			<input type="range" min="1" max="3" value="1" class="speed-slider" id="myRange">
-			<img class="cycle-right" src="assets/icon-race-cycle-large.svg" />
-			<p class="speed">10 mph</p>
-			<p class="speed">12 mph</p>
-			<p class="speed">15 mph</p>
-			<p class="distance">Distance unit</p>
-			<ul class="segmented-control">
-				<li><label>Miles</label></li>
-				<li class="active"><label>Kilometers</label></li>
-			</ul>
-			<hr>
-			<h3>Photo of the day</h3>
-			<p>Receive our pick of the day's photos.</p>
-			<label class="switch">
-				<input type="checkbox" id="photo-of-the-day">
-				<span class="slider round"></span>
-			</label>
-			<hr>
-			<h3>Auto-end routes</h3>
-			<p>The app will attempt to complete a route if stopped for too long.</p>
-			<label class="switch">
-				<input type="checkbox" id="auto-end-route">
-				<span class="slider round"></span>
-			</label>
-			<hr>
-			<a id="about-cyclestreets">About CycleStreets <img class="disclosure" src="assets/icon-disclosure-red-right.svg" /></a>
-			
-		</div>
-		
-		<div id="about-panel" class="panel about">
-			<h2>About</h2>
-			<a id="about-back-button" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Back</a>
-			<a id="about-done" class="action forward" href="#">Done</a>
-			<h3>Mapping</h3>
-			<p>Mapping data courtesy of OpenStreetMap. Without OSM mappers on the ground collecting great data, the routing would not be possible. OpenStreetMap data can be used freely under the terms of the Open Data Commons Open Database License (ODbL).</p>
-			<p>OpenStreetMap is the Wiki of maps. YOU can help improve the routing and location data, by going to www.openstreetmap.org and contributing your local knowledge!</p>
-			<p>Routing by CycleStreets uses a custom-written routing engine.</p>
-			<p>Feedback on planned routes is very welcome, in this app or at www.cyclestreets.net/feedback, and helps us improve the algorithms and data.</p>
-			<p>Map tiles thanks to OpenStreetMap, and OpenCycleMap.</p>
-			<h3>Development</h3>
-			<p>App designed by Patrick Johansson and developed by Neil Edwards.</p>
-			<h3>Development</h3>
-			<p>AFNetworking ©Matt Thompson</p>
-			<p>BlocksKit ©Michael Ash</p>
-			<p>FMMoveTable ©Florian Mielke</p>
-			<p>TouchJSON Jonathan Wight</p>
-			<p>TestFlight ©TestFlight</p>
-			<p>MBPProgressHUD ©2009 Matej Bukovinski</p>
-			<p>TBXML 2009 Tom Bradley</p>
-			<p>Crashlytics 2011 Crashlytics</p>
-			<p>A2StoryboardSegueContext ©2011 Alexsander Akers</p>
-			<h3>UI design and icons</h3>
-			<p>Jamie Watson</p>
-		</div>
-		
-		<div id="ridetracker-panel" class="panel ridetracker">
-			<h2>Ride tracker</h2>
-			<a id="my-rides-button" class="action back enabled" href="#">My rides</a>
-			<a id="cancel-tracking" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Cancel</a>
-			<a id="start-ride-tracking" class="action forward enabled" href="#">Start</a>
-			<a id="finish-tracking" class="action forward" href="#">Finish <img src="assets/icon-disclosure-red-right.svg" /></a>
-			<h3>00:00:00</h3>
-			<h4>Elapsed time</h4>
-			<h5>0.0 miles</h5>
-			<h5>0.0 mph</h5>
-			<h6>Distance</h6>
-			<h6>Av. speed</h6>
-		</div>
-		
-		<div id="my-rides-panel" class="panel ridetracker my-rides">
-			<h2>My rides</h2>
-			<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-			<a class="action forward" href="#">Edit</a>
-			<ul>
-				<li>
-					<hr />
-					<h3>Social</h3>
-					<p class="datetime">16 June 2017 at 3:45pm</p>
-					<p class="description">Checked in on neighbour's dog</p>
-					<img src="assets/icon-cyclist-small.svg" />
-					<p class>7.1 miles</p>
-					<img src="assets/icon-clock.svg" />
-					<p class>21.15</p>
-					<img src="assets/icon-flame.svg" />
-					<p class>39 kcals</p>
-					<img src="assets/icon-leaf.svg" />
-					<p class>1 lbs CO2</p>
-				</li>
-				<li>
-					<hr>
-					<h3>Other</h3>
-					<p class="datetime">24 June 2018 at 3:45pm</p>
-					<p class="description">Water sports at Stephen's Green</p>
-					<img src="assets/icon-cyclist-small.svg" />
-					<p class>2.1 miles</p>
-					<img src="assets/icon-clock.svg" />
-					<p class>69.62</p>
-					<img src="assets/icon-flame.svg" />
-					<p class>123 kcals</p>
-					<img src="assets/icon-leaf.svg" />
-					<p class>2 lbs CO2</p>
-				</li>
-			</ul>
-		</div>
-		
-		<div id="ride-info-panel" class="panel ridetracker ride-info">
-			<h2>Ride info</h2>
-			<a id="ride-info-back" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-			<a id="share-ride" class="action forward" href="#"><img src="assets/icon-share.svg" /></a>
-			<ul>
-				<li>
-					<h3>Social</h3>
-					<p class="datetime">16 June 2017 at 3:45pm</p>
-					<p class="description">Checked in on neighbour’s dog</p>
-					<ul>
-						<li>
-							<img src="assets/icon-cyclist.svg" />
-							<p class="classification">You rode</p>
-							<p>7.1 miles</p>
-						</li>
-						<li>
-							<img src="assets/icon-clock.svg" />
-							<p class="classification">It took you</p>
-							<p>21 mins and 15 secs</p>
-						</li>
-						<li>
-							<img src="assets/icon-flame.svg" />
-							<p class="classification">You burned</p>
-							<p>69 kcals</p>
-						</li>
-						<li>
-							<img src="assets/icon-leaf.svg" />
-							<p class="classification">You saved</p>
-							<p>1 lbs of CO2</p>
-						</li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-		
-		<div id="feedback-panel" class="panel feedback">
-			<h2>Feedback</h2>
-			<a id="cancel-feedback" class="action back" href="#">Cancel</a>
-			<a id="share-feedback" class="action forward" href="#">Send <img src="assets/icon-disclosure-red-right.svg" /></a>
-			<form>
-				<label>Your name</label>
-				<input placeholder="Enter your name"></input>
-				<br>
-				<label>Email</label>
-				<input placeholder="Your email"></input>
-				<br>
-				<label>Feedback</label>
-				<textarea placeholder="Your feedback"></textarea>
-			</form>
-		</div>
-		
-		<div id="add-ride-details-panel" class="panel ridetracker add-details">
-			<h2>Ride tracker</h2>
-			<a id="continue-satnav-mode" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-			<a id="save-ride-button" class="action forward" href="#">Save</a>
-			<ul>
-				<li>
-					<label for="category">Purpose</label>
-					<select name="category" id="category">
-						<option value="" disabled selected>Choose</option>
-						<option value="cycleparking">Cycle parking</option>
-						<option value="obstructions">Obstruction</option>
-						<option value="track">Track</option>
-						<option value="dutchcycleways">Dutch-style cycleway</option>
-						<option value="road">Road environment</option>
-						<option value="cycleways">Cycleway</option>
-						<option value="enforcement">Enforcement</option>
-					</select>
-				</li>
-				<li>
-					<label>Notes</label>
-					<textarea placeholder="e.g. Trip to town"></textarea>
-				</li>
-		</div>
-		
-		<div id="show-tracked-ride-panel" class="panel ridetracker show-tracked-ride">
-			<h2>Ride tracker</h2>
-			<a id="close-ride-tracker" class="action back" href="#">Done</a>
-			<a id="share-ride" class="action forward" href="#"><img src="assets/icon-share.svg" /></a>
-			<ul>
-				<li>
-					<h3>Social</h3>
-					<p class="datetime">16 June 2017 at 3:45pm</p>
-					<p class="description">Checked in on neighbour's dog</p>
-					<img src="assets/icon-cyclist-small.svg" />
-					<p class>7.1 miles</p>
-					<img src="assets/icon-clock.svg" />
-					<p class>21.15</p>
-					<img src="assets/icon-flame.svg" />
-					<p class>39 kcals</p>
-					<img src="assets/icon-leaf.svg" />
-					<p class>1 lbs CO2</p>
-				</li>
-			</ul>
-		</div>
-		
-		<div id="ride-notification" class="popup ride-notification">
-			<img src="assets/arrow-straight.svg" />
-			<p class="direction">Straight on Station Road</p>
-			<br>
-			<p class="time">05:57</p>
-			<p class="distance">10 meters</p>
-		</div>
-		
-	</main>
-
-</body>
-
+		</main>
+	</body>
 </html>

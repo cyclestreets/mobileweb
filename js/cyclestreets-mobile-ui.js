@@ -2,17 +2,17 @@ var cyclestreetsui = (function ($) {
 	
 	'use strict';
 	
-	// Settings defaults
+	// Default settings
 	var _settings = {
 		
-		// API
+		// CycleStreets API
 		apiBaseUrl: 'API_BASE_URL',
 		apiKey: 'YOUR_API_KEY',
 		
 		// Mapbox API key
 		mapboxAccessToken: 'MAPBOX_ACCESS_TOKEN',
 		
-		// Initial lat/lon/zoom of map and tile layer
+		// Initial lat/long/zoom of map and tile layer
 		defaultLocation: {
 			latitude: 54.661,
 			longitude: 1.263,
@@ -27,6 +27,9 @@ var cyclestreetsui = (function ($) {
 	// Internal class properties
 	var _map = null;
 	
+	// Breadcrump trail used when clicking left chevrons
+	var _breadcrumbs = [];
+	
 	
 	return {
 		
@@ -40,6 +43,7 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 			
+			// Create the maps, mini-maps and UI events
 			cyclestreetsui.createMap ('map');
 			cyclestreetsui.createMap ('mini-map');
 			cyclestreetsui.createUIEvents();
@@ -62,11 +66,13 @@ var cyclestreetsui = (function ($) {
 			});
 		},
 		
-		
 		// Setup nav events
 		createUIEvents: function ()
 		{
-			/* Nav bar functions */
+			/*
+			 * Nav bar functions
+			 */
+			
 			// Open the nav bar
 			$('#hamburger-menu').click(function() {$('nav').show("slide", { direction: "left" }, 300);});
 			
@@ -82,33 +88,72 @@ var cyclestreetsui = (function ($) {
 			// Open the Data submenu
 			$('li.data').click(function() {$('li.data ul').slideToggle();});
 			
-			// Open the route search box
-			var routeSearchBoxFocus = function() {
-				resetUI();
-				$('#route-search-box, #route-search-panel').addClass( 'open' );
-				$('#shortcut-icons, #journey-options').addClass ('visible');
+			// Open card from main nav items
+			//!// Should check if the data submenu is being opened, and act differently
+			$('nav ul > li').click( function () {
+				// Hide nav & open searchbars and all panels
+				resetUI ();
+				$('.panel').hide();
 				
-			};
-			
-			// Make route browser div dragable
-			$('#route-search-panel').draggable ({
-				axis: "y",
-				refreshPositions: true,
-				grid: [ 50, 350 ],
-				drag: function () {
-					routeSearchBoxFocus ();
-				}
+				// Reset the breadcrumb trail as we are starting a new "journey" from the nav
+				_breadcrumbs = [];
+				
+				// Get the class name from the li
+				var className = this.className.split(' ')[0];
+				
+				// Show the matching panel
+				$('.panel.' + className).first().show();
 			});
 			
 			
-			/* Main UI functions */
-			// Reset the UI to its default state
-			var resetUI = function () {
-				closeNav ();
-				closeRouteSearchBox ();
+			/*
+			 * Main UI functions
+			 */
+			
+			// Switch panel
+			var switchPanel = function (currentPanel, destinationPanel) {
+				_breadcrumbs.push(currentPanel);
+				$(currentPanel).hide();
+				$(destinationPanel).show();
 			};
 			
-			// Show the Browse search box
+			// Return to previous card
+			$('.action.back').click(function () {
+				// If we have stored a previous breadcrump, return to it
+				if (_breadcrumbs.length > 0) {
+					// Hide all panels
+					$('.panel').hide();
+					
+					// Show the previous panel
+					var lastPanel = _breadcrumbs.pop();
+					$(lastPanel).first().show();
+				}
+				else {
+					// Otherwise, if there are no breadcrumbs, return to the default home screen
+					returnHome ();	
+				}
+			});
+			
+			// Reset nav and move-map search box to their default states
+			var resetUI = function () {
+				// Close the nav bar
+				closeNav ();
+				
+				// Reset the route search box to default "peeking" height
+				closeRouteSearchBox ();
+				
+				// Hide the move-map browse input field
+				hideBrowseSearchBox ();
+			};
+			
+			// Set-up the default home-screen
+			var returnHome = function () {
+				resetUI ();
+				$('.panel').hide();
+				$('.panel.journeyplanner.search').show();
+			};
+			
+			// Show the move-map-to search box
 			$('#glasses-icon').click(function() {
 				resetUI ();
 				$('#browse-search-box').show();
@@ -119,7 +164,7 @@ var cyclestreetsui = (function ($) {
 				$('#browse-search-box').focus();
 			});
 			
-			// Hide the Browse search box
+			// Hide the move-map-to search box
 			var hideBrowseSearchBox = function() {
 				$('#browse-search-box').width('50px');
 				$('#glasses-icon').show();
@@ -128,12 +173,45 @@ var cyclestreetsui = (function ($) {
 				$('#browse-search-box').hide();
 			};
 			
-			// Close the route search box
-			var closeRouteSearchBox = function() {
-				$('#route-search-panel, #route-search-box').removeClass( 'open' );
-				$('#shortcut-icons, #journey-options').removeClass ('visible');
-				
+			// Close the Browse search box
+			$('#close-browse-box-icon').click(hideBrowseSearchBox);
+			
+			// Slide up the ride notification on click
+			$('#ride-notification').click( function () {
+				$('#ride-notification').slideUp('slow');
+			});
+			
+			
+			/*
+			 * Journey planner functions
+			 */
+			
+			// Open the route search box
+			var routeSearchBoxFocus = function() {
+				resetUI();
+				$('.panel.journeyplanner.search').addClass( 'open' );
 			};
+			
+			// Open the Route search box
+			$('.panel.journeyplanner.search input').focus(routeSearchBoxFocus);
+					
+			// Close the route search box
+			var closeRouteSearchBox = function() {$('.panel.journeyplanner.search').removeClass( 'open' );};
+			
+			// Make route browser div dragable
+			$('.panel.journeyplanner.search').draggable ({
+				axis: "y",
+				refreshPositions: true,
+				grid: [ 50, 350 ],
+				drag: function () {
+				}
+			});
+			
+			// Show the routing options after clicking on routing button
+			$('.panel.journeyplanner.search ul li a').click(function() {
+				$('.panel.journeyplanner.search').hide();
+				$('.panel.journeyplanner.select').show();
+			});
 			
 			// Display the elevation graph
 			var ctx = document.getElementById('elevationChart').getContext('2d');
@@ -194,49 +272,80 @@ var cyclestreetsui = (function ($) {
 			// Make elevation scrubber draggable
 			$('#elevation-scrubber').draggable({axis: "x"});
 			
-			// Close the Browse search box
-			$('#close-browse-box-icon').click(hideBrowseSearchBox);
 			
-			// Open the Route search box
-			$('#route-search-box').focus(routeSearchBoxFocus);
+			/*
+			 * Ride tracker actions
+			 */
 			
-			// Development "tour" actions
-			$('.panel.photomap.main .action.forward').click(function() {				
-				$('#photomap-panel').hide();
-				$('#photomap-add-location-panel').show();
-			});
-			$('#photomap-add-location-continue').click(function() {				
-				$('#photomap-add-location-panel').hide();
-				$('#photomap-add-details-panel').show();
-			});
-			$('#photomap-upload').click(function() {				
-				$('#photomap-add-details-panel').hide();
-				$('#photomap-uploading-panel').show();
-			});
-			$('#cancel-photomap-upload').click(function() {				
-				$('#photomap-uploading-panel').hide();
-				$('#route-search-panel').show();
-			});
-			
-			
-			// Open card from main nav items
-			$('nav ul > li').click( function () {
-				// Hide nav & open searchbars or panels
-				resetUI ();
-				$('.panel').hide();
-				
-				// Get the class name from the li
-				var className = this.className.split(' ')[0];
-				
-				// Show the matching panel
-				$('#' + className + '-panel').show();
+			// Main ridetracker panel actions
+			$('.panel.ridetracker.track .action.forward').click( function () {
+				if ($('.panel.ridetracker').hasClass('tracking')) {
+						// Reset the ride tracking panel to default state
+						$('.panel.ridetracker.track').hide();
+						$('.panel.ridetracker.track').removeClass('tracking');
+						$('#cancel-tracking, #finish-tracking').removeClass('enabled');
+						$('#my-rides-button, #start-ride-tracking').addClass('enabled');
+						
+						
+						// Open the add-details panel
+						switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.add-details');
+					}
+				else {
+						// Add breadcrumb to enable the back chevron functionality
+						_breadcrumbs.push ('.panel.ridetracker.track');
+						
+						// Add tracking classes to adjust the appearance of this panel to satnav-mode
+						$('.panel.ridetracker.track').addClass('tracking');
+						$('#my-rides-button, #start-ride-tracking').removeClass('enabled');
+						$('#cancel-tracking, #finish-tracking').addClass('enabled');
+					}
 			});
 			
-			
-			// Hide photomap popup panel
-			$('#popup-close-button').click( function() {
-				$('#photomap-popup-panel').hide('300');
+			$('.panel.ridetracker.track .action.back').click( function () {
+				// If we are in satnav mode, cancel the tracking and return to default state
+				if ($('.panel.ridetracker.track').hasClass('tracking')) {
+						$('.panel.ridetracker.track').removeClass('tracking');
+						$('#cancel-tracking, #finish-tracking').removeClass('enabled');
+						$('#my-rides-button, #start-ride-tracking').addClass('enabled');
+					}
+				// Otherwise, open the My Rides panel
+				else {
+						_breadcrumbs.push ('.panel.ridetracker.track');
+						$('.panel.ridetracker.track').hide();
+						$('.panel.ridetracker.my-rides').show();
+					}
 			});
+			
+			$('.panel.ridetracker.add-details .action.forward').click( function () {
+				switchPanel ('.panel.ridetracker.add-details', '.panel.ridetracker.show-tracked-ride');
+			});
+			
+			
+			/*
+			 *  Photomap actions
+			 */
+			
+			// Photomap panel navigation actions
+			$('.panel.photomap .action.forward').click(function() {				
+				switchPanel ('.panel.photomap', '.panel.photomap.add-location');
+			});
+			
+			$('.panel.photomap.add-location .action.forward').click(function() {				
+				switchPanel ('.panel.photomap.add-location', '.panel.photomap.add-details');
+			});
+			
+			$('.panel.photomap.add-details .action.forward').click(function() {				
+				switchPanel ('.panel.photomap.add-details', '.panel.photomap.uploading');
+			});
+			
+			$('.panel.photomap.uploading a').click(function() {				
+				returnHome ();
+			});
+			
+			
+			/*
+			 * Account management and sign-in
+			 */
 			
 			// When creating account, after inputting username, display password set card
 			$('#choose-username-next').click( function (){
@@ -247,144 +356,43 @@ var cyclestreetsui = (function ($) {
 				$('#finish-account-creation').removeClass('hidden');
 			});
 			
-			// Hide the user information input panel, and display the creating account card
-			$('#finish-account-creation').click ( function () {
-				$('#create-account-panel').hide();
-				$('#creating-account-panel').show();
-			});
 			
-			// Close sign-in card
-			$('#cancel-sign-in').click( function () {
-				resetUI();
-				$('#sign-in-panel').hide();
-				$('#route-search-panel').show();
-			});
-			
-			// Close sign-in card
-			$('#cancel-sign-in').click( function () {
-				resetUI();
-				$('#sign-in-panel').hide();
-				$('#route-search-panel').show();
-			});
-			
-			// Open sign-up card
-			$('#create-account-button').click( function () {
-				$('#sign-in-panel').hide();
-				$('#create-account-panel').show();
-			});
-			
+			/*
+			 * Settings, about and map-styles
+			 */
 			
 			// Close map-style card
-			$('#map-style-done').click( function () {
-				$('#map-style-panel').hide();
-				$('#route-search-panel').show();
+			$('.panel.map-style .action.forward').click( function () {
+				returnHome ();
 			});
 			
 			
 			// Close settings card
-			$('#settings-done').click( function () {
-				$('#settings-panel').hide();
-				$('#route-search-panel').show();
+			$('.panel.settings .action.forward').click( function () {
+				returnHome ();
 			});
 			
 			// Open about card
 			$('#about-cyclestreets').click( function () {
-				$('#settings-panel').hide();
-				$('#about-panel').show();
-			});
-			
-			// Open settings card (coming back from About)
-			$('#about-back-button').click( function () {
-				$('#about-panel').hide();
-				$('#settings-panel').show();
+				switchPanel ('.panel.settings', '.panel.about');
+				//_breadcrumbs.push('.panel.settings');
+				//$('.panel.settings').hide();
+				//$('.panel.about').show();
 			});
 			
 			// Close about card
-			$('#about-done').click( function () {
-				$('#about-panel').hide();
-				$('#route-search-panel').show();
+			$('.panel.about .action.forward').click( function () {
+				returnHome ();
 			});
-				
-			// Start ride tracking
-			$('#start-ride-tracking').click( function () {
-				$('#ridetracker-panel').addClass('tracking');
-				$('#my-rides-button, #start-ride-tracking').removeClass('enabled');
-				$('#cancel-tracking, #finish-tracking').addClass('enabled');
-			});
+		
 			
-			// Open add-ride-details panel
-			$('#finish-tracking').click( function () {
-				$('#ridetracker-panel').hide();
-				$('#add-ride-details-panel').show();
-			});
+			/*
+			 * Popup actions
+			 */
 			
-			// Cancel add-ride-details panel
-			$('#continue-satnav-mode').click( function () {
-				$('#add-ride-details-panel').hide();
-				$('#ridetracker-panel').show();
-			});
-			
-			// Save and show the ride details
-			$('#save-ride-button').click( function () {
-				$('#add-ride-details-panel').hide();
-				$('#show-tracked-ride-panel').show();
-			});
-			
-			// Cancel ride tracking
-			$('#cancel-tracking').click( function () {
-				$('#cancel-tracking, #finish-tracking').removeClass('enabled');
-				$('#my-rides-button, #start-ride-tracking').addClass('enabled');
-				$('#ridetracker-panel').removeClass('tracking');
-				
-			});
-			
-			// Open my-rides panel
-			$('#my-rides-button').click( function () {
-				$('#ridetracker-panel').hide();
-				$('#my-rides-panel').show();
-			});
-			
-			// Open the my-rides information screen
-			$('#my-rides-panel ul li').click(function() {
-				$('#my-rides-panel').hide();
-				$('#ride-info-panel').show();
-			});
-			
-			// Close rides info panel
-			$('#ride-info-back').click( function () {
-				$('#ride-info-panel').hide();
-				$('#my-rides-panel').show();
-			});
-			
-			// Close my-rides panel
-			$('#my-rides-back').click( function () {
-				$('#my-rides-panel').hide();
-				$('#ridetracker-panel').show();
-			});
-			
-			// Close rides info panel
-			$('#close-ride-tracker').click( function () {
-				$('#show-tracked-ride-panel').hide();
-				$('#route-search-panel').show();
-			});
-			
-			// Open feedback panel
-			$('#feedback-menu-item').click( function () {
-				resetUI();
-				$('#route-search-panel').hide();
-				$('#feedback-panel').show();
-			});
-			
-			// Close feedback panel
-			$('#cancel-feedback').click( function () {
-				$('#feedback-panel').hide();
-				$('#route-search-panel').show();
-				
-			});
-			
-			// Slide up the ride notification on click
-			$('#ride-notification').click( function () {
-				$('#ride-notification').slideUp('slow');
+			// Hide photomap popup panel
+			$('.popup.close-button').click( function() {
+				$('.popup.photomap').hide('300');
 			});
 			
 			// Flip photomap popup card
@@ -396,14 +404,20 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			
+			/*
+			 * Developer tools
+			 */
+			
+			// Capture click event
+			$(document).click(function(){
+				console.log ('Previous breadcrumbs are: ' + _breadcrumbs);
+			});
 			
 			// While developing, shortcut to certain panels on load
-			//$('#route-search-panel').show();
+			//$('.panel.journeyplanner.search').show();
+			
+			// Test the ride notification slide-down notification
 			//$('#ride-notification').delay(2000).slideDown('slow');
-			$('.popup.ride-notification').show();
-			
-			
 		}
-	
 	};	
 } (jQuery));

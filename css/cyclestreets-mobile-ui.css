@@ -171,13 +171,56 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.ridetracker.show-tracked-ride a, .panel.ridetracker.my-rides a, .panel.ridetracker.add-details a, .panel.ridetracker.ride-info a {display: inherit;}
 .panel.ridetracker.ride-info ul li ul li p.classification {color: #8e8c8c;}
 
+
+/*
+ * Popup panels
+ */
+.popup {display: none; position: fixed; left: 0; bottom: 0; padding: 0; margin: 0 5% 20% 5%; width: 90%;}
+.popup a.ui-button.close-button {position: absolute; top: 0; right: 0; margin: 10px; line-height: 60px;}
+
+/* Photomap popup */
+.popup.photomap {perspective: 1000px; background-color: transparent; height: 480px;}
+.popup.photomap .popup-card {border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8;}
+.popup.photomap a {position: absolute; bottom: 0; margin: 20px; padding: 0; line-height: 15px; color: #dc4f55; text-decoration: none;}
+.popup.photomap a.right {margin-left: 70%; right: 0;}
+.popup.photomap .flip-card-inner {position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d;}
+.popup.photomap .flip-card-inner.flipped {transform: rotateY(180deg);}
+.popup.photomap .flip-card-front, .flip-card-back {position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden;}
+.popup.photomap .flip-card-front img.popup-photo {height: 85%;}
+.popup.photomap .flip-card-back {transform: rotateY(180deg); background: #212322; text-align: left;}
+.popup.photomap .flip-card-back #popup-back-button {margin-bottom: 70px;}
+.popup.photomap .flip-card-back img {margin: 15px;}
+.popup.photomap .flip-card-back hr {width: calc(100% - 40px);}
+.popup.photomap .flip-card-back ul li img {width: 30px; margin: 10px 10px 0 20px;}
+.popup.photomap .flip-card-back p {display: inline-block; margin: 0; color: #fbf6f8;}
+.popup.photomap .flip-card-back p.key {margin: 0 0 15px 20px; color: #c4c1c2;}
+
+/* Places popup */
+.popup.places {height: 550px; border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8;}
+.popup.places img.place-photo {height: 60%; padding-bottom: 10px;}
+.popup.places h2 {display: inline-block; width: 50%; font-size: 30px;font-variant: normal; margin: 0 0 0 20px; text-align: left;}
+.popup.places img.get-directions {float: right;}
+.popup.places p {width: 90%; margin: 10px 20px;}
+.popup.places ul {margin: 10px 20px; padding: 0;}
+.popup.places ul li img {display: inline-block; margin: 0; padding: 0; width: 20px;}
+.popup.places ul li p {margin: 10px; display: inline-block; width: 200px;}
+.popup.places ul li p.phone {color: #dc4f55;}
+
+/* Ride notification slide-down */
+.popup.ride-notification {position: relative; margin: 20px 7.5%; padding: 10px; width: 80%; height: 60px; border-radius: 8px; background-color: #fbf6f8; transition: none;}
+.popup.ride-notification img {height: 30px; width: 30px; background-color: #dc4f55; border-radius: 5px; padding: 15px; margin-right: 10px; float: left}
+.popup.ride-notification p {display: inline-block; margin: 0 0 0 10px;}
+.popup.ride-notification p.direction {width: 200px; margin-top: 10px; font-size: 17px;}
+.popup.ride-notification p.time {color: #dc4f55; margin-top: 10px; font-size: 14px;}
+.popup.ride-notification p.distance {color: #8e8c8c; font-size: 14px;}
+
+
 /*
  * Account management and sign-in
  */
 
 /* Create account specific card styles */
 .panel.create-account input {width: calc(100% - 40px);}
-
 .panel.create-account.creating {background-color: #dc4f55;}
 .panel.create-account.creating h1, .panel.create-account.creating h2, .panel.create-account.creating p {width: 60%; margin: 5px 20%; text-align: center; color: #fbf6f8;}
 .panel.create-account.creating h1 {font-size: 32px;}
@@ -191,9 +234,12 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.sign-in p {margin: 0 20px; padding: 0; text-align: left;}
 .panel.sign-in .ui-button-large {width: 200px; height: 50px; margin: 15px 25%; border-radius: 50px; color: #fbf6f8;}
 
+
 /*
  * Settings, about, feedback, and map styling panels
  */
+
+/* Settings panel */
 .panel.settings h3 {width: 100%; text-align: center; margin: 10px 0;}
 .panel.settings hr {width: calc(100% + 40px); margin: 5px 0 5px -20px;}
 .panel.settings ul {padding: 10px;}
@@ -219,59 +265,18 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.settings ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
 .panel.settings ul.segmented-control label:hover {background: #fafafa;}
 
+/* About panel */
 .panel.about {height: 630px; width: calc(100% - 40px); overflow-y: scroll;}
 .panel.about::before {display: none;}
 .panel.about h3 {width: 100%; text-align: left; margin: 25px 0 0 0;}
 .panel.about p {padding: 0; margin: 15px 0 0 0; line-height: 22px;}
 
+/* Map style panel */
 .panel.map-style p {width: calc(100% - 70px); line-height: 50px; text-align: center; margin-bottom: 0;}
 .panel.map-style ul {width: 100%; margin: 0; padding: 0; overflow-x: scroll; overflow-y: hidden; white-space: nowrap;}
 .panel.map-style ul li {display: inline; width: 100%;}
 
+/* Feedback panel */
 .panel.feedback label {display: inline-block; width: 30%; margin-top: 20px;}
 .panel.feedback input {display: inline-block; width: 200px; height: 18px; line-height: 18px; margin-top: 10px; padding: 10px;}
 .panel.feedback textarea {display: inline-block; width: 200px; margin-top: 10px; padding: 10px;}
-
-
-#photomap-popup-panel {display: none; position: fixed; perspective: 1000px; left: 0; bottom: 0; background-color: transparent; width: 90%; padding: 0; margin: 0 5% 20% 5%; height: 480px;}
-#photomap-popup-panel .popup {border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8;}
-#photomap-popup-panel .popup a {position: absolute; bottom: 0; margin: 20px; padding: 0; line-height: 15px; color: #dc4f55; text-decoration: none;}
-#photomap-popup-panel .popup a.right {margin-left: 70%; right: 0;}
-#photomap-popup-panel .flip-card-inner {position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d;}
-#photomap-popup-panel .flip-card-inner.flipped {transform: rotateY(180deg);}
-#photomap-popup-panel .flip-card-front, .flip-card-back {position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden;}
-#photomap-popup-panel #popup-close-button {position: absolute; top: 0; right: 0; margin: 10px; line-height: 60px;}
-#photomap-popup-panel .flip-card-front img.popup-photo {height: 85%;}
-#photomap-popup-panel .flip-card-back {transform: rotateY(180deg); background: #212322; text-align: left;}
-#photomap-popup-panel .flip-card-back img {margin: 15px;}
-#photomap-popup-panel .flip-card-back #popup-back-button {margin-bottom: 70px;}
-#photomap-popup-panel .flip-card-back ul {margin: 0; padding: 0;}
-#photomap-popup-panel .flip-card-back ul li {list-style: none; margin-bottom: 20px;}
-#photomap-popup-panel .flip-card-back ul li img {width: 30px; margin: 10px 10px 0 20px;}
-#photomap-popup-panel .flip-card-back p {display: inline-block; margin: 0; color: #fbf6f8;}
-#photomap-popup-panel .flip-card-back p.key {margin: 0 0 15px 20px; color: #c4c1c2;}
-#photomap-popup-panel .flip-card-back hr {width: calc(100% - 40px);}
-
-#places-popup-panel {display: none; position: fixed; left: 0; bottom: 0; height: 550px; width: 90%; padding: 0; margin: 0 5% 20% 5%; border-radius: 20px; overflow-x: hidden;}
-#places-popup-panel img.place-photo {height: 60%; padding-bottom: 10px;}
-#places-popup-panel #places-popup-close-button {position: absolute; top: 0; right: 0; margin: 10px; line-height: 60px;}
-#places-popup-panel h2 {display: inline-block; width: 50%; font-size: 30px;font-variant: normal; margin: 0 0 0 20px; text-align: left;}
-#places-popup-panel img.get-directions {float: right;}
-#places-popup-panel p {width: 90%; margin: 10px 20px;}
-#places-popup-panel ul {margin: 10px 20px; padding: 0;}
-#places-popup-panel ul li {list-style: none;}
-#places-popup-panel ul li img {display: inline-block; margin: 0; padding: 0; width: 20px}
-#places-popup-panel ul li p {margin: 10px; display: inline-block; width: 200px}
-#places-popup-panel ul li p.phone {color: #dc4f55}
-
-
-
-
-
-
-#ride-notification {display: none; position: relative; margin: 20px 7.5%; padding: 10px; width: 80%; height: 60px; border-radius: 8px; transition: none;}
-#ride-notification img {height: 30px; width: 30px; background-color: #dc4f55; border-radius: 5px; padding: 15px; margin-right: 10px; float: left}
-#ride-notification p {display: inline-block; margin: 0 0 0 10px;}
-#ride-notification p.direction {width: 200px; margin-top: 10px; font-size: 17px;}
-#ride-notification p.time {color: #dc4f55; margin-top: 10px; font-size: 14px;}
-#ride-notification p.distance {color: #8e8c8c; font-size: 14px;}

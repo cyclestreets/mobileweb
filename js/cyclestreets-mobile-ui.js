@@ -434,7 +434,7 @@ var cyclestreetsui = (function ($) {
 			//});
 			
 			// While developing, shortcut to certain panels on load
-			$('.panel.ridetracker.show-tracked-ride').show();
+			$('.panel.settings').show();
 			
 			// Test the ride notification slide-down notification
 			//$('#ride-notification').delay(2000).slideDown('slow');

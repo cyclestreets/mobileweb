@@ -85,24 +85,26 @@ var cyclestreetsui = (function ($) {
 			// Enable swipe-to-close
 			$('nav').on('swipeleft', function () {$('nav').hide("slide", { direction: "left" }, 300);});
 			
-			// Open the Data submenu
-			$('li.data').click(function() {$('li.data ul').slideToggle();});
-			
 			// Open card from main nav items
-			//!// Should check if the data submenu is being opened, and act differently
 			$('nav ul > li').click( function () {
-				// Hide nav & open searchbars and all panels
-				resetUI ();
-				$('.panel').hide();
-				
-				// Reset the breadcrumb trail as we are starting a new "journey" from the nav
-				_breadcrumbs = [];
-				
 				// Get the class name from the li
 				var className = this.className.split(' ')[0];
 				
-				// Show the matching panel
-				$('.panel.' + className).first().show();
+				if (className == 'data') {
+					// Open the Data submenu
+					$('li.data ul').slideToggle();
+				}
+				else {
+					// Hide nav & open searchbars and all panels
+					resetUI ();
+					$('.panel').hide();
+				
+					// Reset the breadcrumb trail as we are starting a new "journey" from the nav
+					_breadcrumbs = [];
+				
+					// Show the matching panel
+					$('.panel.' + className).first().show();
+				}
 			});
 			
 			
@@ -409,9 +411,9 @@ var cyclestreetsui = (function ($) {
 			 */
 			
 			// Capture click event
-			$(document).click(function(){
-				console.log ('Previous breadcrumbs are: ' + _breadcrumbs);
-			});
+			//$(document).click(function(){
+			//	console.log ('Previous breadcrumbs are: ' + _breadcrumbs);
+			//});
 			
 			// While developing, shortcut to certain panels on load
 			//$('.panel.journeyplanner.search').show();

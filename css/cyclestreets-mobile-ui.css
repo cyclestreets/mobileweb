@@ -229,18 +229,18 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 /* Create account specific card styles */
 .panel.create-account input {width: calc(100% - 40px);}
-.panel.create-account.creating {background-color: #dc4f55;}
-.panel.create-account.creating h1, .panel.create-account.creating h2, .panel.create-account.creating p {width: 60%; margin: 5px 20%; text-align: center; color: #fbf6f8;}
-.panel.create-account.creating h1 {font-size: 32px;}
-.panel.create-account.creating h2 {font-size: 14px;}
-.panel.create-account.creating img.wheel {margin-left: 15px; padding: 0 30%; width: 40%;}
+.panel.creating-account {background-color: #dc4f55;}
+.panel.creating-account h1, .panel.creating-account h2, .panel.creating-account p {width: 60%; margin: 5px 20%; text-align: center; color: #fbf6f8;}
+.panel.creating-account h1 {font-size: 32px;}
+.panel.creating-account h2 {font-size: 14px;}
+.panel.creating-account img.wheel {margin-left: 15px; padding: 0 30%; width: 40%;}
 
 /* Sign-in panel specific styles */
 .panel.sign-in {height: 340px;}
 .panel.sign-in input {width: 80%; margin: 10px auto;}
 .panel.sign-in h3 {width: 100%; line-height: 30px; text-align: center; margin-bottom: 0;}
 .panel.sign-in p {margin: 0 20px; padding: 0; text-align: left;}
-.panel.sign-in .ui-button-large {width: 50%; height: 50px; margin: 15px calc((50% - 40px) / 2); border-radius: 50px; color: #fbf6f8;}
+.panel.sign-in .create-account {width: 50%; height: 50px; margin: 15px calc((50% - 40px) / 2); border-radius: 50px; color: #fbf6f8;}
 
 
 /*

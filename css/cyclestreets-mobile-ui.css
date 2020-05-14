@@ -31,6 +31,10 @@ nav #nav-footer h6, nav #nav-footer p, nav #nav-footer a {margin: 0 0 0 40px;}
 nav #nav-footer .logo-text {padding: 3px 0 5px 20px; color: #e1dde0; font-size: 18px; font-weight: bold; font-variant: small-caps;}
 nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-weight: lighter;}
 
+/*
+ * Main UI
+ */
+
 #map {position:absolute; top:0; bottom:0; left: 0; width:100%;}
 
 /* Main UI icons and input boxes */
@@ -69,7 +73,7 @@ textarea {display: inline-block; height: 50px; width: 65%; border-radius: 20px; 
 input {border: none; line-height: 50px; margin: 5px 0; padding: 0 20px; border-radius: 50px; box-shadow: 0 0 3px gray;}
 select {-webkit-appearance: none; height: 50px;}
 
-/* iOS style elements */
+/* iOS styled elements */
 .switch {position: relative; float: right; display: inline-block; width: 60px; height: 34px;}
 .switch input {opacity: 0; width: 0; height: 0;}
 .slider {position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; -webkit-transition: .4s; transition: .4s;}
@@ -86,9 +90,11 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
  */
 
 /*
- * Route search panels
+ * Routing and tracking panels
  */
 
+
+/* Route search panel */
 .panel.route.search {height: 60px;}
 .panel.route.search.open {height: 75%;}
 .panel.route.search #route-search-box {position: relative; bottom: 5px; height: 50px; width: calc(100% - 40px); margin: 10px 0; padding: 0 20px; border: 0; transition: 0.5s;}
@@ -114,6 +120,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.route.search #recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
 .panel.route.search #recent-journeys li a {position: absolute; right: 0px;}
 
+/* Route speed select panel */
 .panel.route.select p {margin-top: 15px; text-align: center;}
 .panel.route.select p.location {font-size: 13px; margin: 10px; padding: 0; color: #8e8c8c;}
 .panel.route.select ul {margin: 15px 0 0 0; padding: 0;}
@@ -123,27 +130,6 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.route.select #elevation-chart-container {position: absolute; bottom: 0; left: 0; height: 80px; width: 100%;}
 .panel.route.select span.elevation {position: absolute; bottom: 15px; right: 15px; padding: 5px; color: #ffffff; background-color: #212322; opacity: .75; border-radius: 40px; line-height: 20px;}
 .panel.route.select span img {padding: 0 5px 0 0;}
-
-
-/* Photomap specific card styles */
-.panel.photomap.main ul li label {display: inline-block; width: 35%;}
-.panel.photomap.main p {display: inline; line-height: 35px;}
-.panel.photomap.main hr {width: calc(100% + 40px); margin-left: -20px;}
-.panel.photomap.add-location #mini-map {height: 335px; width:100%;}
-.panel.photomap.add-details ul li label {display: inline-block; width: 25%;}
-.panel.photomap.add-details img {border-radius: 25px;}
-.panel.photomap.uploading {background-color: #dc4f55;}
-.panel.photomap.uploading img {margin-left: 15px; padding: 0 30%; width: 40%;}
-.panel.photomap.uploading p {display: inline-block; width: 40%; margin: 10px 30%; color: #fbf6f8; text-align: center;}
-.panel.photomap.uploading progress {margin: 10px 30%; width: 40%;}
-.panel.photomap.uploading a {display: block; color: #c4c1c2; text-align: center;}
-
-/* Places specific card styles */
-.panel.places ul {overflow-y: scroll;}
-.panel.places ul li {display: inline-block; height: 90px; width: 80px; margin: 0 28px 15px 0; vertical-align: top;}
-.panel.places ul li a {display: inline-block; width: 65px; height: 65px; margin: 2px; border: 1px solid #dc4f55; border-radius: 50%; background: #f5f5f5; color: #212322; text-decoration: none; text-align: center; box-shadow: 0 0 3px gray;}
-.panel.places ul li a img {display: block; padding: 15px;}
-.panel.places ul li a span {display: inline-block; text-align: center; word-wrap:normal; font-size: 13px; margin-top: 10px;}
 
 /* Ridetracker specific card styles */
 .panel.ridetracker a {display: none;}
@@ -173,8 +159,34 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 
 /*
+ * Photomap and POI panels
+ */
+
+/* Photomap card */
+.panel.photomap.main ul li label {display: inline-block; width: 35%;}
+.panel.photomap.main p {display: inline; line-height: 35px;}
+.panel.photomap.main hr {width: calc(100% + 40px); margin-left: -20px;}
+.panel.photomap.add-location #mini-map {height: 335px; width:100%;}
+.panel.photomap.add-details ul li label {display: inline-block; width: 25%;}
+.panel.photomap.add-details img {border-radius: 25px;}
+.panel.photomap.uploading {background-color: #dc4f55;}
+.panel.photomap.uploading img {margin-left: 15px; padding: 0 30%; width: 40%;}
+.panel.photomap.uploading p {display: inline-block; width: 40%; margin: 10px 30%; color: #fbf6f8; text-align: center;}
+.panel.photomap.uploading progress {margin: 10px 30%; width: 40%;}
+.panel.photomap.uploading a {display: block; color: #c4c1c2; text-align: center;}
+
+/* Places card */
+.panel.places ul {overflow-y: scroll;}
+.panel.places ul li {display: inline-block; height: 90px; width: 80px; margin: 0 28px 15px 0; vertical-align: top;}
+.panel.places ul li a {display: inline-block; width: 65px; height: 65px; margin: 2px; border: 1px solid #dc4f55; border-radius: 50%; background: #f5f5f5; color: #212322; text-decoration: none; text-align: center; box-shadow: 0 0 3px gray;}
+.panel.places ul li a img {display: block; padding: 15px;}
+.panel.places ul li a span {display: inline-block; text-align: center; word-wrap:normal; font-size: 13px; margin-top: 10px;}
+
+
+/*
  * Popup panels
  */
+
 .popup {display: none; position: fixed; left: 0; bottom: 0; padding: 0; margin: 0 5% 20% 5%; width: 90%;}
 .popup a.ui-button.close-button {position: absolute; top: 0; right: 0; margin: 10px; line-height: 60px;}
 

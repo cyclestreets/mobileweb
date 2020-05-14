@@ -325,6 +325,16 @@ var cyclestreetsui = (function ($) {
 				switchPanel ('.panel.ridetracker.add-details', '.panel.ridetracker.show-tracked-ride');
 			});
 			
+			// Enable the share sheet 
+			$('.panel.ridetracker.show-tracked-ride .action.forward').click( function () {
+				const shareData = {
+					title: 'My CycleStreets Journey',
+					text: 'View my latest journey here!',
+					url: 'https://www.cyclestreets.net/journey/52327060/'
+				};
+				navigator.share(shareData);
+			});
+			
 			
 			/*
 			 *  Photomap actions
@@ -424,7 +434,7 @@ var cyclestreetsui = (function ($) {
 			//});
 			
 			// While developing, shortcut to certain panels on load
-			//$('.popup.places').show();
+			$('.panel.ridetracker.show-tracked-ride').show();
 			
 			// Test the ride notification slide-down notification
 			//$('#ride-notification').delay(2000).slideDown('slow');

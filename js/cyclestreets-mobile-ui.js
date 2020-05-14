@@ -394,17 +394,22 @@ var cyclestreetsui = (function ($) {
 			 * Popup actions
 			 */
 			
-			// Hide photomap popup panel
-			$('.popup.close-button').click( function() {
-				$('.popup.photomap').hide('300');
+			// Close a popup panel
+			$('.popup .close-button').click( function() {
+				$('.popup').hide('300');
 			});
 			
 			// Flip photomap popup card
-			$('#photo-info-flip').click( function () {
+			$('.popup a.flip').click( function () {
 				$('#inner-card').addClass('flipped');
 			});
-			$('#popup-back-button').click( function () {
+			$('.popup a.back').click( function () {
 				$('#inner-card').removeClass('flipped');
+			});
+			
+			// Start navigation from a places popup card
+			$('.popup .get-directions').click( function () {
+				switchPanel ('.popup.places', '.panel.journeyplanner.select');
 			});
 			
 			
@@ -418,7 +423,7 @@ var cyclestreetsui = (function ($) {
 			//});
 			
 			// While developing, shortcut to certain panels on load
-			//$('.panel.journeyplanner.search').show();
+			$('.popup.places').show();
 			
 			// Test the ride notification slide-down notification
 			//$('#ride-notification').delay(2000).slideDown('slow');

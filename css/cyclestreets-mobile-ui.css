@@ -191,13 +191,12 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .popup.photomap {perspective: 1000px; background-color: transparent; height: 480px;}
 .popup.photomap .popup-card {border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8;}
 .popup.photomap a {position: absolute; bottom: 0; margin: 20px; padding: 0; line-height: 15px; color: #dc4f55; text-decoration: none;}
-.popup.photomap a.right {margin-left: 70%; right: 0;}
+.popup.photomap a.flip {margin-left: 70%; right: 0;}
 .popup.photomap .flip-card-inner {position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d;}
 .popup.photomap .flip-card-inner.flipped {transform: rotateY(180deg);}
 .popup.photomap .flip-card-front, .flip-card-back {position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden;}
 .popup.photomap .flip-card-front img.popup-photo {height: 85%;}
 .popup.photomap .flip-card-back {transform: rotateY(180deg); background: #212322; text-align: left;}
-.popup.photomap .flip-card-back #popup-back-button {margin-bottom: 70px;}
 .popup.photomap .flip-card-back img {margin: 15px;}
 .popup.photomap .flip-card-back hr {width: calc(100% - 40px);}
 .popup.photomap .flip-card-back ul li img {width: 30px; margin: 10px 10px 0 20px;}

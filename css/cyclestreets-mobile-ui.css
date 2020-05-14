@@ -244,7 +244,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 
 /*
- * Settings, about, feedback, and map styling panels
+ * Settings, about, feedback, map and blog styling panels
  */
 
 /* Settings panel */

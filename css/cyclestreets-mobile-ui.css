@@ -288,3 +288,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.feedback label {display: inline-block; width: 30%; margin-top: 20px;}
 .panel.feedback input {display: inline-block; width: 200px; height: 18px; line-height: 18px; margin-top: 10px; padding: 10px;}
 .panel.feedback textarea {display: inline-block; width: 200px; margin-top: 10px; padding: 10px;}
+
+/* Blog panel */
+.panel.blog {height: 90%;}
+.panel.blog h2 {padding-bottom: 5px;}
+.panel.blog object {height: 100%; width: calc(100% + 40px); margin-left: -20px; overflow:auto;}

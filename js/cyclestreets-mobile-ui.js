@@ -47,6 +47,7 @@ var cyclestreetsui = (function ($) {
 			cyclestreetsui.createMap ('map');
 			cyclestreetsui.createMap ('mini-map');
 			cyclestreetsui.createUIEvents();
+			$('.panel.journeyplanner.search').show();
 		},
 		
 		
@@ -423,7 +424,7 @@ var cyclestreetsui = (function ($) {
 			//});
 			
 			// While developing, shortcut to certain panels on load
-			$('.popup.places').show();
+			//$('.popup.places').show();
 			
 			// Test the ride notification slide-down notification
 			//$('#ride-notification').delay(2000).slideDown('slow');

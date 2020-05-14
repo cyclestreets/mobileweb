@@ -275,7 +275,7 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			// Make elevation scrubber draggable
-			$('#elevation-scrubber').draggable({axis: "x"});
+			$('.elevation-scrubber').draggable({axis: "x"});
 			
 			
 			/*

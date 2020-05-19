@@ -370,7 +370,8 @@ var cyclestreetsui = (function ($) {
 		},
 		
 		// Hide the move-map-to search box
-		hideBrowseSearchBox: function() {
+		hideBrowseSearchBox: function()
+		{
 			$('#browse-search-box').width('50px');
 			$('#glasses-icon').show();
 			$('#close-browse-box-icon').hide();
@@ -482,20 +483,20 @@ var cyclestreetsui = (function ($) {
 		popupActions: function ()
 		{
 			// Close a popup panel
-			$('.popup .close-button').click( function() {
+			$('.popup .close-button').click (function() {
 				$('.popup').hide('300');
 			});
 			
 			// Flip photomap popup card
-			$('.popup a.flip').click( function () {
+			$('.popup a.flip').click (function () {
 				$('#inner-card').addClass('flipped');
 			});
-			$('.popup a.back').click( function () {
+			$('.popup a.back').click (function () {
 				$('#inner-card').removeClass('flipped');
 			});
 			
 			// Start navigation from a places popup card
-			$('.popup .get-directions').click( function () {
+			$('.popup .get-directions').click (function () {
 				cyclestreetsui.switchPanel ('.popup.places', '.panel.journeyplanner.select');
 			});
 		},	

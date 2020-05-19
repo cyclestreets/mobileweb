@@ -507,7 +507,7 @@ var cyclestreetsui = (function ($) {
 			//});
 			
 			// While developing, shortcut to certain panels on load
-			$('.popup.places').show();
+			//$('.popup.ride-notification').delay(2000).slideDown();
 			
 			// Test the ride notification slide-down notification
 			//$('#ride-notification').delay(2000).slideDown('slow');

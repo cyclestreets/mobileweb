@@ -340,8 +340,8 @@ var cyclestreetsui = (function ($) {
 			$('#close-browse-box-icon').click(cyclestreetsui.hideBrowseSearchBox);
 			
 			// Slide up the ride notification on click
-			$('#ride-notification').click( function () {
-				$('#ride-notification').slideUp('slow');
+			$('.ride-notification').click( function () {
+				$('.ride-notification').slideUp('slow');
 			});
 		},
 		

@@ -58,7 +58,7 @@ var cyclestreetsui = (function ($) {
 			mapboxgl.accessToken = _settings.mapboxAccessToken;
 			_map = new mapboxgl.Map({
 				container: container,
-				style: 'mapbox://styles/mapbox/light-v9',
+				style: 'mapbox://styles/mapbox/streets-v11',
 				center: [_settings.defaultLocation.longitude, _settings.defaultLocation.latitude],
 				zoom: _settings.defaultLocation.zoom,
 				

@@ -148,7 +148,7 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			// Generic action to return home clicking cancel button
-			$('.cancel').click (function () {returnHome ();});
+			$('.returnHome').click (function () {returnHome ();});
 			
 			// Generic action to start a wizard
 			$('.start-wizard').click (function () {
@@ -441,30 +441,11 @@ var cyclestreetsui = (function ($) {
 			 * Settings, about and map-styles
 			 */
 			
-			// Close map-style card
-			$('.panel.map-style .action.forward').click( function () {
-				returnHome ();
-			});
-			
-			
-			// Close settings card
-			$('.panel.settings .action.forward').click( function () {
-				returnHome ();
-			});
-			
 			// Open about card
 			$('#about-cyclestreets').click( function () {
 				switchPanel ('.panel.settings', '.panel.about');
-				//_breadcrumbs.push('.panel.settings');
-				//$('.panel.settings').hide();
-				//$('.panel.about').show();
 			});
 			
-			// Close about card
-			$('.panel.about .action.forward').click( function () {
-				returnHome ();
-			});
-		
 			
 			/*
 			 * Popup actions
@@ -494,10 +475,9 @@ var cyclestreetsui = (function ($) {
 			 */
 			
 			// Capture click event
-			$(document).click(function(){
-				console.log ('Previous breadcrumbs are: ' + _breadcrumbs);
-				
-			});
+			//$(document).click(function(){
+			//	console.log ('Previous breadcrumbs are: ' + _breadcrumbs);
+			//});
 			
 			// While developing, shortcut to certain panels on load
 			//$('.panel.photomap').first().show();

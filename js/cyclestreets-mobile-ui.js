@@ -122,28 +122,35 @@ var cyclestreetsui = (function ($) {
 				$(destinationPanel).show();
 			};
 			
-			// Return to previous card
+			// Generic handler for back actions
 			$('.action.back').click(function () {
+				// Follow any directly specified href
 				var href = $(this).attr('href');
 				if (href != '#') {
-					// Find the class of the current
-					$('.panel').hide();
-					href = href.replace(/^#/, '.');
-					$('.panel' + href).show();
-				}
-				
-				// If we have stored a previous breadcrump, return to it
-				if (_breadcrumbs.length > 0) {
-					// Hide all panels
-					$('.panel').hide();
+					// Get the current panel class name
+					var currentPanel = $(this).closest('.panel').attr('class');
+					currentPanel = '.' + currentPanel.replace(/\s/g, '.');
 					
-					// Show the previous panel
-					var lastPanel = _breadcrumbs.pop();
-					$(lastPanel).first().show();
-				}
+					// Build a class name out of the href
+					href = href.replace(/^#/, '.');
+					
+					// Switch panels
+					switchPanel (currentPanel, href);
+				} 
 				else {
-					// Otherwise, if there are no breadcrumbs, return to the default home screen
-					returnHome ();	
+					// If we have stored a previous breadcrump, return to it
+					if (_breadcrumbs.length > 0) {
+						// Hide all panels
+						$('.panel').hide();
+						
+						// Show the previous panel
+						var lastPanel = _breadcrumbs.pop();
+						$(lastPanel).first().show();
+					}
+					else {
+						// Otherwise, if there are no breadcrumbs, return to the default home screen
+						returnHome ();	
+					}
 				}
 			});
 			
@@ -455,7 +462,7 @@ var cyclestreetsui = (function ($) {
 			//});
 			
 			// While developing, shortcut to certain panels on load
-			//$('.panel.photomap').first().show();
+			$('.my-rides').show();
 			
 			// Test the ride notification slide-down notification
 			//$('#ride-notification').delay(2000).slideDown('slow');

@@ -30,6 +30,13 @@ var cyclestreetsui = (function ($) {
 	// Breadcrump trail used when clicking left chevrons
 	var _breadcrumbs = [];
 	
+	var _actions = [
+		'journeyPlanner',
+		'rideTracker',
+		'settings',
+		'developerTools'
+	];
+	
 	
 	return {
 		
@@ -43,10 +50,20 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 			
-			// Create the maps, mini-maps and UI events
+			// Create the maps
 			cyclestreetsui.createMap ('map');
 			cyclestreetsui.createMap ('mini-map');
-			cyclestreetsui.createUIEvents();
+			
+			// Initialise the UI
+			cyclestreetsui.mainUI ();
+			cyclestreetsui.navBar ();
+			
+			// Initialise each section
+			$.each (_actions, function (setting, value) {
+				cyclestreetsui[value] ();
+			});
+			
+			// Show the default panel
 			$('.panel.journeyplanner.search').show();
 		},
 		
@@ -67,21 +84,18 @@ var cyclestreetsui = (function ($) {
 			});
 		},
 		
-		// Setup nav events
-		createUIEvents: function ()
-		{
-			/*
-			 * Nav bar functions
-			 */
+		
+		/*
+		 * Nav bar functions
+		 */
+		navBar: function () {
+			
 			
 			// Open the nav bar
 			$('#hamburger-menu').click(function() {$('nav').show("slide", { direction: "left" }, 300);});
 			
-			// Close the nav bar
-			var closeNav = function() {$('nav').hide("slide", { direction: "left" }, 300);};
-			
 			// Enable implicit click/touch on map as close menu
-			if ($('nav').is(':visible')) {$('#map').click(function () {resetUI ();});}
+			if ($('nav').is(':visible')) {$('#map').click(function () {cyclestreetsui.resetUI ();});}
 			
 			// Enable swipe-to-close
 			$('nav').on('swipeleft', function () {$('nav').hide("slide", { direction: "left" }, 300);});
@@ -99,7 +113,7 @@ var cyclestreetsui = (function ($) {
 				// Otherwise, close the nav and open the desired panel
 				else {
 					// Hide nav & open searchbars and all panels
-					resetUI ();
+					cyclestreetsui.resetUI ();
 					$('.panel').hide();
 				
 					// Reset the breadcrumb trail as we are starting a new "journey" from the nav
@@ -109,195 +123,27 @@ var cyclestreetsui = (function ($) {
 					$('.panel.' + className).first().show();
 				}
 			});
-			
-			
-			/*
-			 * Main UI functions
-			 */
-			
-			// Swiping down on a card closes it
-			$('.panel').on('swipedown', function () {
-				returnHome ();
-			});
-			
-			// Swiping up on a card opens it
-			$('.panel').on('swipeup', function () {
-				$(this).addClass ('open');
-			});
-			
-			
-			// Switch panel
-			var switchPanel = function (currentPanel, destinationPanel) {
-				_breadcrumbs.push(currentPanel);
-				$(currentPanel).hide();
-				$(destinationPanel).show();
-			};
-			
-			// Generic handler for back actions
-			$('.action.back').click(function () {
-				// Follow any directly specified href
-				var href = $(this).attr('href');
-				if (href != '#') {
-					// Get the current panel class name
-					var currentPanel = $(this).closest('.panel').attr('class');
-					currentPanel = '.' + currentPanel.replace(/\s/g, '.');
-					
-					// Build a class name out of the href
-					href = href.replace(/^#/, '.');
-					
-					// Switch panels
-					switchPanel (currentPanel, href);
-				} 
-				else {
-					// If we have stored a previous breadcrump, return to it
-					if (_breadcrumbs.length > 0) {
-						// Hide all panels
-						$('.panel').hide();
-						
-						// Show the previous panel
-						var lastPanel = _breadcrumbs.pop();
-						$(lastPanel).first().show();
-					}
-					else {
-						// Otherwise, if there are no breadcrumbs, return to the default home screen
-						returnHome ();	
-					}
-				}
-			});
-			
-			// Generic action to return home clicking cancel button
-			$('.returnHome').click (function () {returnHome ();});
-			
-			// Generic action to start a wizard
-			$('.start-wizard').click (function () {
-				
-				// Get current panel name and deduce the wizard name from the class name
-				var closestPanel = $(this).closest('.panel').attr('class'); // i.e., 'panel photomap'
-				var panelClass = closestPanel.split(' '); // Split the current panel, i.e. [panel, photomap]
-				panelClass.shift(); // Pop the panel class out of the array [photomap]
-				var wizardClass = panelClass.shift(); // Finally, obtain the name of the wizard 'photomap'
-				wizardClass = '.wizard' + '.' + wizardClass; // i.e., '.wizard.photomap'
-				
-				// Locate the first panel of this wizard
-				var firstWizardPanel = $(wizardClass).find('.panel').first();
-				
-				// Switch panel, and add the current panel to the breadcrumb trail
-				closestPanel = closestPanel.replace(/\s/g, '.');
-				switchPanel ('.' + closestPanel, firstWizardPanel);
-			});
-			
-			// Move forward in a wizard
-			$('.action.forward').click (function() {
-				
-				// Did we click inside a wizard?
-				var wizard = $(this).closest('.wizard');
-				if (wizard.length) {
-					
-					// Get current panel name and convert spaces into dots
-					var closestPanel = $(this).closest('.panel').attr('class');
-					closestPanel = closestPanel.replace(/\s/g, '.');
-					
-					// Get the panel class we are in, without sub-panel
-					var panelClass = closestPanel.split('.'); // Split the current panel, i.e. [panel, photomap, add-photo]
-					panelClass.pop(); // Pop the sub-panel out of the array
-					panelClass = panelClass.join('.'); // Reconstruct the string from array, i.e panel.photomap
-					panelClass = '.' + panelClass; // Add the leading dot, i.e. .panel.photomap
-					
-					// Find the next children of this panel
-					var nextPanel = $(this).closest('.panel').next(panelClass);
-					var nextPanelClass = '.' + nextPanel.attr('class').replace(/\s/g, '.');
-					
-					// Find closest data input types in this panel
-					var nearestInputs = [];
-					var inputTypes = ['input', 'select', 'textarea', 'textfield']; // Add other types
-					$.each(inputTypes, function (index, type) {
-						// Find all inputs of this type
-						var closestInputs = $('.' + closestPanel).find(type);
-						
-						// If any were found, add this to the nearestInputs array
-						if (closestInputs.length) {nearestInputs.push(closestInputs);}
-					});
-					
-					// If any of these have not been filled out, can not progress
-					var canProgress = true; // Default action is to progress
-					$.each(nearestInputs, function(index, input) {
-						var value = $(input).val();
-						if (!value) {canProgress = false;}
-					});
-					
-					// Test the progression barrier
-					if (canProgress == true) {
-						switchPanel ('.' + closestPanel, nextPanelClass);
-					}
-					else {
-						return; // #!# Should send a notification (slide-down?) to finish filling out the form
-					}
-				}
-			});
-			
-			// Reset nav and move-map search box to their default states
-			var resetUI = function () {
-				// Close the nav bar
-				closeNav ();
-				
-				// Reset the route search box to default "peeking" height
-				closeRouteSearchBox ();
-				
-				// Hide the move-map browse input field
-				hideBrowseSearchBox ();
-			};
-			
-			// Set-up the default home-screen
-			var returnHome = function () {
-				resetUI ();
-				$('.panel').hide(); // Hide all panels
-				$('.panel.journeyplanner.search').show(); // Show the default pannel, i.e. journeyplanner search
-			};
-			
-			// Show the move-map-to search box
-			$('#glasses-icon').click(function() {
-				resetUI ();
-				$('#browse-search-box').show();
-				$('#browse-search-box').addClass( 'open' );
-				$('#close-browse-box-icon').show();
-				$('#glasses-icon').hide();
-				$('#browse-search-box').animate({width: '80%',}, "slow");
-				$('#browse-search-box').focus();
-			});
-			
-			// Hide the move-map-to search box
-			var hideBrowseSearchBox = function() {
-				$('#browse-search-box').width('50px');
-				$('#glasses-icon').show();
-				$('#close-browse-box-icon').hide();
-				$('#browse-search-box').removeClass( 'open' );
-				$('#browse-search-box').hide();
-			};
-			
-			// Close the Browse search box
-			$('#close-browse-box-icon').click(hideBrowseSearchBox);
-			
-			// Slide up the ride notification on click
-			$('#ride-notification').click( function () {
-				$('#ride-notification').slideUp('slow');
-			});
-			
-			
-			/*
-			 * Journey planner functions
-			 */
-			
+		},
+		
+		// Close the nav bar
+		closeNav: function() {$('nav').hide("slide", { direction: "left" }, 300);},
+		
+		
+		/*
+		 * Journey planner functions
+		 */
+		journeyPlanner: function ()
+		{	
 			// Open the route search box
 			var routeSearchBoxFocus = function() {
-				resetUI();
+				cyclestreetsui.resetUI();
 				$('.panel.journeyplanner.search').addClass( 'open' );
 			};
 			
 			// Open the Route search box
 			$('.panel.journeyplanner.search input').focus(routeSearchBoxFocus);
 					
-			// Close the route search box
-			var closeRouteSearchBox = function() {$('.panel.journeyplanner.search').removeClass( 'open' );};
+			
 			
 			// Make route browser div dragable
 			/*
@@ -312,7 +158,7 @@ var cyclestreetsui = (function ($) {
 			
 			// Show the routing options after clicking on routing button
 			$('.panel.journeyplanner.search ul li a').click(function() {
-				switchPanel ('.panel.journeyplanner.search', '.panel.journeyplanner.select');
+				cyclestreetsui.switchPanel ('.panel.journeyplanner.search', '.panel.journeyplanner.select');
 			});
 			
 			// Display the elevation graph
@@ -373,12 +219,191 @@ var cyclestreetsui = (function ($) {
 			
 			// Make elevation scrubber draggable
 			$('.elevation-scrubber').draggable({axis: "x"});
+		},
+		
+			
+		// Close the route search box
+		closeRouteSearchBox: function() {$('.panel.journeyplanner.search').removeClass( 'open' );},
+			
+		/*
+		 * Main UI functions
+		 */
+		mainUI: function ()
+		{
+			
+			// Swiping down on a card closes it
+			$('.panel').on('swipedown', function () {
+				cyclestreetsui.returnHome ();
+			});
+			
+			// Swiping up on a card opens it
+			$('.panel').on('swipeup', function () {
+				$(this).addClass ('open');
+			});
+			
+			// Generic handler for back actions
+			$('.action.back').click(function () {
+				// Follow any directly specified href
+				var href = $(this).attr('href');
+				if (href != '#') {
+					// Get the current panel class name
+					var currentPanel = $(this).closest('.panel').attr('class');
+					currentPanel = '.' + currentPanel.replace(/\s/g, '.');
+					
+					// Build a class name out of the href
+					href = href.replace(/^#/, '.');
+					
+					// Switch panels
+					cyclestreetsui.switchPanel (currentPanel, href);
+				} 
+				else {
+					// If we have stored a previous breadcrump, return to it
+					if (_breadcrumbs.length > 0) {
+						// Hide all panels
+						$('.panel').hide();
+						
+						// Show the previous panel
+						var lastPanel = _breadcrumbs.pop();
+						$(lastPanel).first().show();
+					}
+					else {
+						// Otherwise, if there are no breadcrumbs, return to the default home screen
+						cyclestreetsui.returnHome ();	
+					}
+				}
+			});
+			
+			// Generic action to return home clicking cancel button
+			$('.returnHome').click (function () {cyclestreetsui.returnHome ();});
+			
+			// Generic action to start a wizard
+			$('.start-wizard').click (function () {
+				
+				// Get current panel name and deduce the wizard name from the class name
+				var closestPanel = $(this).closest('.panel').attr('class'); // i.e., 'panel photomap'
+				var panelClass = closestPanel.split(' '); // Split the current panel, i.e. [panel, photomap]
+				panelClass.shift(); // Pop the panel class out of the array [photomap]
+				var wizardClass = panelClass.shift(); // Finally, obtain the name of the wizard 'photomap'
+				wizardClass = '.wizard' + '.' + wizardClass; // i.e., '.wizard.photomap'
+				
+				// Locate the first panel of this wizard
+				var firstWizardPanel = $(wizardClass).find('.panel').first();
+				
+				// Switch panel, and add the current panel to the breadcrumb trail
+				closestPanel = closestPanel.replace(/\s/g, '.');
+				cyclestreetsui.switchPanel ('.' + closestPanel, firstWizardPanel);
+			});
+			
+			// Move forward in a wizard
+			$('.action.forward').click (function() {
+				
+				// Did we click inside a wizard?
+				var wizard = $(this).closest('.wizard');
+				if (wizard.length) {
+					
+					// Get current panel name and convert spaces into dots
+					var closestPanel = $(this).closest('.panel').attr('class');
+					closestPanel = closestPanel.replace(/\s/g, '.');
+					
+					// Get the panel class we are in, without sub-panel
+					var panelClass = closestPanel.split('.'); // Split the current panel, i.e. [panel, photomap, add-photo]
+					panelClass.pop(); // Pop the sub-panel out of the array
+					panelClass = panelClass.join('.'); // Reconstruct the string from array, i.e panel.photomap
+					panelClass = '.' + panelClass; // Add the leading dot, i.e. .panel.photomap
+					
+					// Find the next children of this panel
+					var nextPanel = $(this).closest('.panel').next(panelClass);
+					var nextPanelClass = '.' + nextPanel.attr('class').replace(/\s/g, '.');
+					
+					// Find closest data input types in this panel
+					var nearestInputs = [];
+					var inputTypes = ['input', 'select', 'textarea', 'textfield']; // Add other types
+					$.each(inputTypes, function (index, type) {
+						// Find all inputs of this type
+						var closestInputs = $('.' + closestPanel).find(type);
+						
+						// If any were found, add this to the nearestInputs array
+						if (closestInputs.length) {nearestInputs.push(closestInputs);}
+					});
+					
+					// If any of these have not been filled out, can not progress
+					var canProgress = true; // Default action is to progress
+					$.each(nearestInputs, function(index, input) {
+						var value = $(input).val();
+						if (!value) {canProgress = false;}
+					});
+					
+					// Test the progression barrier
+					if (canProgress == true) {
+						cyclestreetsui.switchPanel ('.' + closestPanel, nextPanelClass);
+					}
+					else {
+						return; // #!# Should send a notification (slide-down?) to finish filling out the form
+					}
+				}
+			});
+			
+			// Show the move-map-to search box
+			$('#glasses-icon').click(function() {
+				cyclestreetsui.resetUI ();
+				$('#browse-search-box').show();
+				$('#browse-search-box').addClass( 'open' );
+				$('#close-browse-box-icon').show();
+				$('#glasses-icon').hide();
+				$('#browse-search-box').animate({width: '80%',}, "slow");
+				$('#browse-search-box').focus();
+			});
+			
+			// Close the Browse search box
+			$('#close-browse-box-icon').click(cyclestreetsui.hideBrowseSearchBox);
+			
+			// Slide up the ride notification on click
+			$('#ride-notification').click( function () {
+				$('#ride-notification').slideUp('slow');
+			});
+		},
+		
+		// Hide the move-map-to search box
+		hideBrowseSearchBox: function() {
+			$('#browse-search-box').width('50px');
+			$('#glasses-icon').show();
+			$('#close-browse-box-icon').hide();
+			$('#browse-search-box').removeClass( 'open' );
+			$('#browse-search-box').hide();
+		},
+		
+		// Switch panel
+		switchPanel: function (currentPanel, destinationPanel) {
+			_breadcrumbs.push(currentPanel);
+			$(currentPanel).hide();
+			$(destinationPanel).show();
+		},
+		
+		// Reset nav and move-map search box to their default states
+		resetUI: function () {
+			// Close the nav bar
+			cyclestreetsui.closeNav ();
+			
+			// Reset the route search box to default "peeking" height
+			cyclestreetsui.closeRouteSearchBox ();
+			
+			// Hide the move-map browse input field
+			cyclestreetsui.hideBrowseSearchBox ();
+		},
+		
+		// Set-up the default home-screen
+		returnHome: function () {
+			cyclestreetsui.resetUI ();
+			$('.panel').hide(); // Hide all panels
+			$('.panel.journeyplanner.search').show(); // Show the default pannel, i.e. journeyplanner search
+		},
 			
 			
-			/*
-			 * Ride tracker actions
-			 */
-			
+		/*
+		 * Ride tracker actions
+		 */
+		rideTracker: function ()
+		{
 			// Main ridetracker panel actions
 			$('.panel.ridetracker.track .action.forward').click( function () {
 				if ($('.panel.ridetracker').hasClass('tracking')) {
@@ -390,7 +415,7 @@ var cyclestreetsui = (function ($) {
 						
 						
 						// Open the add-details panel
-						switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.add-details');
+						cyclestreetsui.switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.add-details');
 					}
 				else {
 						// Add breadcrumb to enable the back chevron functionality
@@ -412,13 +437,13 @@ var cyclestreetsui = (function ($) {
 					}
 				// Otherwise, open the My Rides panel
 				else {
-						//switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.my-rides');
+						//cyclestreetsui.switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.my-rides');
 					}
 			});
 			
 			
 			$('.panel.ridetracker.add-details .action.forward').click( function () {
-				switchPanel ('.panel.ridetracker.add-details', '.panel.ridetracker.show-tracked-ride');
+				cyclestreetsui.switchPanel ('.panel.ridetracker.add-details', '.panel.ridetracker.show-tracked-ride');
 			});
 			
 			// Enable the share sheet 
@@ -430,15 +455,17 @@ var cyclestreetsui = (function ($) {
 				};
 				navigator.share(shareData);
 			});
+		},
+		
 			
-			
-			/*
-			 * Settings, about and map-styles
-			 */
-			
+		/*
+		 * Settings, about and map-styles
+		 */
+		settings: function ()
+		{
 			// Open about card
 			$('#about-cyclestreets').click( function () {
-				switchPanel ('.panel.settings', '.panel.about');
+				cyclestreetsui.switchPanel ('.panel.settings', '.panel.about');
 			});
 			
 			
@@ -461,14 +488,15 @@ var cyclestreetsui = (function ($) {
 			
 			// Start navigation from a places popup card
 			$('.popup .get-directions').click( function () {
-				switchPanel ('.popup.places', '.panel.journeyplanner.select');
+				cyclestreetsui.switchPanel ('.popup.places', '.panel.journeyplanner.select');
 			});
+		},	
+		
 			
-			
-			/*
-			 * Developer tools
-			 */
-			
+		/*
+		 * Developer tools
+		 */
+		developerTools: function () {
 			// Capture click event
 			//$(document).click(function(){
 			//	console.log ('Previous breadcrumbs are: ' + _breadcrumbs);

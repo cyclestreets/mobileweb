@@ -115,6 +115,11 @@ var cyclestreetsui = (function ($) {
 			 * Main UI functions
 			 */
 			
+			// Swiping down on a card closes it
+			$('.panel').on('swipedown', function () {
+				returnHome ();
+			});
+			
 			// Switch panel
 			var switchPanel = function (currentPanel, destinationPanel) {
 				_breadcrumbs.push(currentPanel);
@@ -462,7 +467,7 @@ var cyclestreetsui = (function ($) {
 			//});
 			
 			// While developing, shortcut to certain panels on load
-			$('.my-rides').show();
+			//$('.my-rides').show();
 			
 			// Test the ride notification slide-down notification
 			//$('#ride-notification').delay(2000).slideDown('slow');

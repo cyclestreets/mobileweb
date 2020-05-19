@@ -283,8 +283,7 @@ var cyclestreetsui = (function ($) {
 				// Get current panel name and deduce the wizard name from the class name
 				var closestPanel = $(this).closest('.panel').attr('class'); // i.e., 'panel photomap'
 				var panelClass = closestPanel.split(' '); // Split the current panel, i.e. [panel, photomap]
-				panelClass.shift(); // Pop the panel class out of the array [photomap]
-				var wizardClass = panelClass.shift(); // Finally, obtain the name of the wizard 'photomap'
+				var wizardClass = cyclestreetsui.removeFromArray (panelClass, 'panel');
 				wizardClass = '.wizard' + '.' + wizardClass; // i.e., '.wizard.photomap'
 				
 				// Locate the first panel of this wizard
@@ -511,6 +510,16 @@ var cyclestreetsui = (function ($) {
 			
 			// Test the ride notification slide-down notification
 			//$('#ride-notification').delay(2000).slideDown('slow');
+		},
+		
+		
+		/*
+		 * Utilities
+		 */
+		removeFromArray: function (myArray, removeItem)
+		{
+			myArray.splice ($.inArray (removeItem, myArray), 1);
+			return myArray;
 		}
 	};	
 } (jQuery));

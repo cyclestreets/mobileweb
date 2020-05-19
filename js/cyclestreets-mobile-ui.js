@@ -315,31 +315,13 @@ var cyclestreetsui = (function ($) {
 					var nextPanel = $(this).closest('.panel').next(panelClass);
 					var nextPanelClass = '.' + nextPanel.attr('class').replace(/\s/g, '.');
 					
-					// Find closest data input types in this panel
-					var nearestInputs = [];
-					var inputTypes = ['input', 'select', 'textarea', 'textfield']; // Add other types
-					$.each(inputTypes, function (index, type) {
-						// Find all inputs of this type
-						var closestInputs = $('.' + currentPanel).find(type);
-						
-						// If any were found, add this to the nearestInputs array
-						if (closestInputs.length) {nearestInputs.push(closestInputs);}
-					});
-					
-					// If any of these have not been filled out, can not progress
-					var canProgress = true; // Default action is to progress
-					$.each(nearestInputs, function(index, input) {
-						var value = $(input).val();
-						if (!value) {canProgress = false;}
-					});
-					
-					// Test the progression barrier
-					if (canProgress == true) {
-						cyclestreetsui.switchPanel ('.' + closestPanel, nextPanelClass);
+					// Check whether we can progress
+					if (!cyclestreetsui.canProgress ('.' + currentPanel)) {
+						return;
 					}
-					else {
-						return; // #!# Should send a notification (slide-down?) to finish filling out the form
-					}
+					
+					// Switch the panel
+					cyclestreetsui.switchPanel ('.' + currentPanel, nextPanelClass);
 				}
 			});
 			
@@ -361,6 +343,30 @@ var cyclestreetsui = (function ($) {
 			$('#ride-notification').click( function () {
 				$('#ride-notification').slideUp('slow');
 			});
+		},
+		
+		// Determine whether any form item within the selector has been filled
+		canProgress: function (selector)
+		{
+			// Find closest data input types in this panel
+			var nearestInputs = [];
+			var inputTypes = ['input', 'select', 'textarea', 'textfield']; // Add other types
+			$.each(inputTypes, function (index, type) {
+				// Find all inputs of this type
+				var closestInputs = $(selector).find(type);
+				
+				// If any were found, add this to the nearestInputs array
+				if (closestInputs.length) {nearestInputs.push(closestInputs);}
+			});
+			
+			// If any of these have not been filled out, can not progress
+			var canProgress = true; // Default action is to progress
+			$.each(nearestInputs, function(index, input) {
+				var value = $(input).val();
+				if (!value) {canProgress = false;}
+			});
+			
+			return canProgress;
 		},
 		
 		// Hide the move-map-to search box

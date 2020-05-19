@@ -242,6 +242,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .wizard.account .panel.creating-account h2 {font-size: 14px;}
 .wizard.account .panel.creating-account img.wheel {margin-left: 15px; padding: 0 30%; width: 40%;}
 
+
 /*
  * Settings, about, feedback, map and blog styling panels
  */
@@ -284,9 +285,14 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.map-style ul li {display: inline; width: 100%;}
 
 /* Feedback panel */
-.panel.feedback label {display: inline-block; width: 30%; margin-top: 20px;}
-.panel.feedback input {display: inline-block; width: 200px; height: 18px; line-height: 18px; margin-top: 10px; padding: 10px;}
-.panel.feedback textarea {display: inline-block; width: 200px; margin-top: 10px; padding: 10px;}
+.wizard.feedback .panel.feedback label {display: inline-block; width: 30%; margin-top: 20px;}
+.wizard.feedback .panel.feedback input {display: inline-block; width: 200px; height: 18px; line-height: 18px; margin-top: 10px; padding: 10px;}
+.wizard.feedback .panel.feedback textarea {display: inline-block; width: 200px; margin-top: 10px; padding: 10px;}
+.wizard.feedback .panel.feedback-submitted {background-color: #dc4f55;}
+.wizard.feedback .panel.feedback-submitted h1, .panel.feedback-submitted  h2, .panel.feedback-submitted p {width: 60%; margin: 5px 20%; text-align: center; color: #fbf6f8;}
+.wizard.feedback .panel.feedback-submitted h1 {font-size: 32px;}
+.wizard.feedback .panel.feedback-submitted h2 {font-size: 14px;}
+.wizard.feedback .panel.feedback-submitted img.wheel {margin-left: 15px; padding: 0 30%; width: 40%;}
 
 /* Blog panel */
 .panel.blog {height: 90%;}

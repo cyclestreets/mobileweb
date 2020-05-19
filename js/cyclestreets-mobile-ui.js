@@ -57,6 +57,7 @@ var cyclestreetsui = (function ($) {
 			// Initialise the UI
 			cyclestreetsui.mainUI ();
 			cyclestreetsui.navBar ();
+			cyclestreetsui.popupActions ();
 			
 			// Initialise each section
 			$.each (_actions, function (setting, value) {
@@ -89,7 +90,6 @@ var cyclestreetsui = (function ($) {
 		 * Nav bar functions
 		 */
 		navBar: function () {
-			
 			
 			// Open the nav bar
 			$('#hamburger-menu').click(function() {$('nav').show("slide", { direction: "left" }, 300);});
@@ -225,6 +225,7 @@ var cyclestreetsui = (function ($) {
 		// Close the route search box
 		closeRouteSearchBox: function() {$('.panel.journeyplanner.search').removeClass( 'open' );},
 			
+		
 		/*
 		 * Main UI functions
 		 */
@@ -467,12 +468,14 @@ var cyclestreetsui = (function ($) {
 			$('#about-cyclestreets').click( function () {
 				cyclestreetsui.switchPanel ('.panel.settings', '.panel.about');
 			});
+		},
 			
 			
-			/*
-			 * Popup actions
-			 */
-			
+		/*
+		 * Popup actions
+		 */
+		popupActions: function ()
+		{
 			// Close a popup panel
 			$('.popup .close-button').click( function() {
 				$('.popup').hide('300');
@@ -496,14 +499,15 @@ var cyclestreetsui = (function ($) {
 		/*
 		 * Developer tools
 		 */
-		developerTools: function () {
+		developerTools: function ()
+		{
 			// Capture click event
 			//$(document).click(function(){
 			//	console.log ('Previous breadcrumbs are: ' + _breadcrumbs);
 			//});
 			
 			// While developing, shortcut to certain panels on load
-			//$('.my-rides').show();
+			$('.popup.places').show();
 			
 			// Test the ride notification slide-down notification
 			//$('#ride-notification').delay(2000).slideDown('slow');

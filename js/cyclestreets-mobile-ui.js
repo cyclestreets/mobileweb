@@ -413,30 +413,6 @@ var cyclestreetsui = (function ($) {
 			
 			
 			/*
-			 * Account management and sign-in
-			 */
-			
-			// Create account button action
-			$('.panel.sign-in .create-account').click ( function () {
-				switchPanel ('.panel.sign-in', '.panel.create-account');
-			});
-			
-			// User sign-up navigation actions
-			$('.panel.create-account .action.forward').click( function () {
-				if ( $('.panel.create-account #password').val() ) {
-					switchPanel ('.panel.create-account', '.creating-account');
-				}
-				else {
-					$('#create-account-panel').addClass('open');
-					$('#choose-username').addClass('hidden');
-					$('#choose-password').removeClass('hidden');
-					$('#choose-username-next').addClass('hidden');
-					$('#finish-account-creation').removeClass('hidden');
-				}	
-			});
-			
-			
-			/*
 			 * Settings, about and map-styles
 			 */
 			

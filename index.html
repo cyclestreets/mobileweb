@@ -61,7 +61,7 @@
 					</div>
 				</li>
 				<li class="feedback"><a href="#">Feedback</a></li>
-				<li class="sign-in"><a href="#">Sign in</a></li>
+				<li class="account"><a href="#">Sign in</a></li>
 			</ul>
 	
 			<div id="nav-footer">
@@ -502,7 +502,7 @@
 			
 			
 			<!-- Account management and creation panels -->
-			<div class="panel sign-in">
+			<div class="panel account">
 				<h2>Signin</h2>
 				<a class="action back" href="#">Cancel</a>
 				<a class="action forward" href="#">Signin <img src="assets/icon-disclosure-red-right.svg" /></a>
@@ -513,31 +513,34 @@
 				<hr />
 				<h3>Not with us yet?</h3>
 				<p>Create a Cyclestreets account and participate in an active cycling community.</p>
-				<a class="ui-button ui-button-large create-account" href="#">Create account <img src="assets/icon-disclosure-light.svg" /></a>
+				<a class="ui-button ui-button-large create-account start-wizard" href="#">Create account <img src="assets/icon-disclosure-light.svg" /></a>
 			</div>
 			
-			<div class="panel create-account">
-				<h2>Create account</h2>
-				<a id="choose-username-next" class="action forward" href="#">Next <img src="assets/icon-disclosure-red-right.svg"/></a>
-				<a id="finish-account-creation" class="action forward hidden" href="#">Finish <img src="assets/icon-disclosure-red-right.svg"/></a>
+			<div class="wizard account">
 				<form>
-					<div id="choose-username">
+					
+					<div class="panel choose-username">
+						<h2>Create account</h2>
+						<a class="action forward" href="#">Next <img src="assets/icon-disclosure-red-right.svg"/></a>
 						<p>Choose your CycleStreets username: </p>
 						<input id="username" placeholder="Username" required="required"></input>	
 					</div>
-					<div id="choose-password" class="hidden">
+					
+					<div class="panel choose-password">
+						<a class="action forward" href="#">Finish <img src="assets/icon-disclosure-red-right.svg"/></a>
 						<p>Provide the following and you're done: </p>
 						<input type="password" id="password" placeholder="Choose a password" required="required"></input>
 						<input type="email" id="email" placeholder="Enter your email" required="required"></input>	
 					</div>
+					
+					<div class="panel red creating-account">
+						<h2>Welcome to</h2>
+						<h1>CycleStreets</h1>
+						<img class="wheel" src="assets/bicycle-wheel.svg" />
+						<p>Creating your account...</p>
+					</div>
+					
 				</form>
-			</div>
-			
-			<div class="panel red creating-account">
-				<h2>Welcome to</h2>
-				<h1>CycleStreets</h1>
-				<img class="wheel" src="assets/bicycle-wheel.svg" />
-				<p>Creating your account...</p>
 			</div>
 			
 			

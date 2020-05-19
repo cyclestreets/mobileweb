@@ -151,7 +151,7 @@
 			<!-- Ridetracker and satnav panels -->
 			<div class="panel ridetracker track">
 				<h2>Ride tracker</h2>
-				<a id="my-rides-button" class="action back enabled" href="#">My rides</a>
+				<a id="my-rides-button" class="action back enabled" href="#my-rides">My rides</a>
 				<a id="cancel-tracking" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Cancel</a>
 				<a id="start-ride-tracking" class="action forward enabled" href="#">Start</a>
 				<a id="finish-tracking" class="action forward" href="#">Finish <img src="assets/icon-disclosure-red-right.svg" /></a>
@@ -285,7 +285,7 @@
 			<!-- Photomap panels -->
 			<div class="panel photomap">
 				<h2>Photomap</h2>
-				<a class="action forward" href="#"><img src="assets/icon-add-photo-rest.svg" /></a>
+				<a class="action forward start-wizard" href="#"><img src="assets/icon-add-photo-rest.svg" /></a>
 				<ul>
 					<li>
 						<label for="category">Category</label>
@@ -336,76 +336,87 @@
 					<span class="slider round"></span>
 				</label>
 			</div>
-			
-			<div class="panel photomap add-location">
-				<h2>Add location</h2>
-				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-				<a class="action forward" href="#">Continue <img src="assets/icon-disclosure-red-right.svg" /></a>
-				<br>
-				<p>If the location shown is not accurate, tap on the map below location to adjust it.</p>
-				<div id='mini-map'></div>
-			</div>
-			
-			<div class="panel photomap add-details">
-				<h2>Add details</h2>
-				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-				<a class="action forward" href="#">Upload <img src="assets/icon-disclosure-red-right.svg" /></a>
-				<img class="uploaded-image" src="placeholders/photomap-add-comments-placeholder.svg" />
+				
+			<div class="wizard photomap">
 				<form>
-					<ul>
-						<li>
-							<label for="since">Caption</label>
-							<textarea placeholder="Enter description"></textarea>
-						</li>
-						<li>
-							<label for="category">Category</label>
-							<select name="category" id="category">
-								<option value="" disabled selected>Choose</option>
-								<option value="cycleparking">Cycle parking</option>
-								<option value="obstructions">Obstruction</option>
-								<option value="track">Track</option>
-								<option value="dutchcycleways">Dutch-style cycleway</option>
-								<option value="road">Road environment</option>
-								<option value="cycleways">Cycleway</option>
-								<option value="enforcement">Enforcement</option>
-								<option value="carstorage">Car storage</option>
-								<option value="closure">Temporary closure</option>
-								<option value="roadworks">Roadworks</option>
-								<option value="bikeshops">Bike shop</option>
-								<option value="potholes">Pothole</option>
-								<option value="destinations">Destination</option>
-								<option value="signs">General sign/notice</option>
-								<option value="routesigns">Route sign</option>
-								<option value="congestion">Congestion</option>
-								<option value="bicycles">Bicycle</option>
-								<option value="general">Other</option>
-							</select>
-						</li>
-						<li>
-							<label for="metacategory">This photo represents</label>
-							<select name="metacategory" id="metacategory">
-								<option value="" disabled selected>Choose</option>
-								<option value="bad" id="severity_bad">Problem</option>
-								<option value="good" id="severity_good">Good practice</option>
-								<option value="other" id="severity_other">Infrastructure</option>
-								<option value="any" id="severity_any">Misc</option>
-								<option value="event" id="severity_event">Event</option>
-							</select>
-						</li>
-					</ul>
+					<div class="panel photomap add-photo">
+						<h2>Add photo</h2>
+						<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+						<a class="action forward" href="#">Continue <img src="assets/icon-disclosure-red-right.svg" /></a>
+						<p>Please select the photo you would like to add.</p>
+						<input type="file" required="required" /> 
+					</div>
+					
+					
+					<div class="panel photomap add-location">
+						<h2>Add location</h2>
+						<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+						<a class="action forward" href="#">Continue <img src="assets/icon-disclosure-red-right.svg" /></a>
+						<br>
+						<p>If the location shown is not accurate, tap on the map below location to adjust it.</p>
+						<div id='mini-map'></div>
+					</div>
+					
+					<div class="panel photomap add-details">
+						<h2>Add details</h2>
+						<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
+						<a class="action forward" href="#">Upload <img src="assets/icon-disclosure-red-right.svg" /></a>
+						<img class="uploaded-image" src="placeholders/photomap-add-comments-placeholder.svg" />
+						<ul>
+							<li>
+								<label for="since">Caption</label>
+								<textarea placeholder="Enter description"></textarea>
+							</li>
+							<li>
+								<label for="category">Category</label>
+								<select name="category" id="category">
+									<option value="" disabled selected>Choose</option>
+									<option value="cycleparking">Cycle parking</option>
+									<option value="obstructions">Obstruction</option>
+									<option value="track">Track</option>
+									<option value="dutchcycleways">Dutch-style cycleway</option>
+									<option value="road">Road environment</option>
+									<option value="cycleways">Cycleway</option>
+									<option value="enforcement">Enforcement</option>
+									<option value="carstorage">Car storage</option>
+									<option value="closure">Temporary closure</option>
+									<option value="roadworks">Roadworks</option>
+									<option value="bikeshops">Bike shop</option>
+									<option value="potholes">Pothole</option>
+									<option value="destinations">Destination</option>
+									<option value="signs">General sign/notice</option>
+									<option value="routesigns">Route sign</option>
+									<option value="congestion">Congestion</option>
+									<option value="bicycles">Bicycle</option>
+									<option value="general">Other</option>
+								</select>
+							</li>
+							<li>
+								<label for="metacategory">This photo represents</label>
+								<select name="metacategory" id="metacategory">
+									<option value="" disabled selected>Choose</option>
+									<option value="bad" id="severity_bad">Problem</option>
+									<option value="good" id="severity_good">Good practice</option>
+									<option value="other" id="severity_other">Infrastructure</option>
+									<option value="any" id="severity_any">Misc</option>
+									<option value="event" id="severity_event">Event</option>
+								</select>
+							</li>
+						</ul>
+					</div>
+					
+					<div class="panel red photomap uploading">
+						<img src="assets/bicycle-wheel.svg" />
+						<p>Uploading</p>
+						<progress id="photomap-upload" value="32" max="100"></progress>
+						<a class="cancel" href="#">Cancel</a>
+					</div>
+					
 				</form>
 			</div>
 			
-			<div class="panel red photomap uploading">
-				<img src="assets/bicycle-wheel.svg" />
-				<p>Uploading</p>
-				<progress id="photomap-upload" value="32" max="100"></progress>
-				<a href="#">Cancel</a>
-			</div>
-			
-			
 			<!-- Places and POI panels -->
-			<div id="places-panel" class="panel places">
+			<div class="panel places">
 				<h2>Places</h2>
 				<ul>
 					<li><a href="#"><img src="assets/icon-cycle-parking.svg" /><span>Cycle parking</span></a></li>
@@ -509,15 +520,17 @@
 				<h2>Create account</h2>
 				<a id="choose-username-next" class="action forward" href="#">Next <img src="assets/icon-disclosure-red-right.svg"/></a>
 				<a id="finish-account-creation" class="action forward hidden" href="#">Finish <img src="assets/icon-disclosure-red-right.svg"/></a>
-				<div id="choose-username">
-					<p>Choose your CycleStreets username: </p>
-					<input id="username" placeholder="Username" required></input>	
-				</div>
-				<div id="choose-password" class="hidden">
-					<p>Provide the following and you're done: </p>
-					<input type="password" id="password" placeholder="Choose a password" required></input>
-					<input type="email" id="email" placeholder="Enter your email" required></input>	
-				</div>
+				<form>
+					<div id="choose-username">
+						<p>Choose your CycleStreets username: </p>
+						<input id="username" placeholder="Username" required="required"></input>	
+					</div>
+					<div id="choose-password" class="hidden">
+						<p>Provide the following and you're done: </p>
+						<input type="password" id="password" placeholder="Choose a password" required="required"></input>
+						<input type="email" id="email" placeholder="Enter your email" required="required"></input>	
+					</div>
+				</form>
 			</div>
 			
 			<div class="panel red creating-account">

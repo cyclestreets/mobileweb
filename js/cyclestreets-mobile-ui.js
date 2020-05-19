@@ -124,6 +124,14 @@ var cyclestreetsui = (function ($) {
 			
 			// Return to previous card
 			$('.action.back').click(function () {
+				var href = $(this).attr('href');
+				if (href != '#') {
+					// Find the class of the current
+					$('.panel').hide();
+					href = href.replace(/^#/, '.');
+					$('.panel' + href).show();
+				}
+				
 				// If we have stored a previous breadcrump, return to it
 				if (_breadcrumbs.length > 0) {
 					// Hide all panels
@@ -136,6 +144,76 @@ var cyclestreetsui = (function ($) {
 				else {
 					// Otherwise, if there are no breadcrumbs, return to the default home screen
 					returnHome ();	
+				}
+			});
+			
+			// Generic action to return home clicking cancel button
+			$('.cancel').click (function () {returnHome ();});
+			
+			// Generic action to start a wizard
+			$('.start-wizard').click (function () {
+				
+				// Get current panel name and deduce the wizard name from the class name
+				var closestPanel = $(this).closest('.panel').attr('class'); // i.e., 'panel photomap'
+				var panelClass = closestPanel.split(' '); // Split the current panel, i.e. [panel, photomap]
+				panelClass.shift(); // Pop the panel class out of the array [photomap]
+				var wizardClass = panelClass.shift(); // Finally, obtain the name of the wizard 'photomap'
+				wizardClass = '.wizard' + '.' + wizardClass; // i.e., '.wizard.photomap'
+				
+				// Locate the first panel of this wizard
+				var firstWizardPanel = $(wizardClass).find('.panel').first();
+				
+				// Switch panel, and add the current panel to the breadcrumb trail
+				closestPanel = closestPanel.replace(/\s/g, '.');
+				switchPanel ('.' + closestPanel, firstWizardPanel);
+			});
+			
+			// Move forward in a wizard
+			$('.action.forward').click (function() {
+				
+				// Did we click inside a wizard?
+				var wizard = $(this).closest('.wizard');
+				if (wizard.length) {
+					
+					// Get current panel name and convert spaces into dots
+					var closestPanel = $(this).closest('.panel').attr('class');
+					closestPanel = closestPanel.replace(/\s/g, '.');
+					
+					// Get the panel class we are in, without sub-panel
+					var panelClass = closestPanel.split('.'); // Split the current panel, i.e. [panel, photomap, add-photo]
+					panelClass.pop(); // Pop the sub-panel out of the array
+					panelClass = panelClass.join('.'); // Reconstruct the string from array, i.e panel.photomap
+					panelClass = '.' + panelClass; // Add the leading dot, i.e. .panel.photomap
+					
+					// Find the next children of this panel
+					var nextPanel = $(this).closest('.panel').next(panelClass);
+					var nextPanelClass = '.' + nextPanel.attr('class').replace(/\s/g, '.');
+					
+					// Find closest data input types in this panel
+					var nearestInputs = [];
+					var inputTypes = ['input', 'select', 'textarea', 'textfield']; // Add other types
+					$.each(inputTypes, function (index, type) {
+						// Find all inputs of this type
+						var closestInputs = $('.' + closestPanel).find(type);
+						
+						// If any were found, add this to the nearestInputs array
+						if (closestInputs.length) {nearestInputs.push(closestInputs);}
+					});
+					
+					// If any of these have not been filled out, can not progress
+					var canProgress = true; // Default action is to progress
+					$.each(nearestInputs, function(index, input) {
+						var value = $(input).val();
+						if (!value) {canProgress = false;}
+					});
+					
+					// Test the progression barrier
+					if (canProgress == true) {
+						switchPanel ('.' + closestPanel, nextPanelClass);
+					}
+					else {
+						return; // #!# Should send a notification (slide-down?) to finish filling out the form
+					}
 				}
 			});
 			
@@ -315,11 +393,10 @@ var cyclestreetsui = (function ($) {
 					}
 				// Otherwise, open the My Rides panel
 				else {
-						_breadcrumbs.push ('.panel.ridetracker.track');
-						$('.panel.ridetracker.track').hide();
-						$('.panel.ridetracker.my-rides').show();
+						//switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.my-rides');
 					}
 			});
+			
 			
 			$('.panel.ridetracker.add-details .action.forward').click( function () {
 				switchPanel ('.panel.ridetracker.add-details', '.panel.ridetracker.show-tracked-ride');
@@ -333,28 +410,6 @@ var cyclestreetsui = (function ($) {
 					url: 'https://www.cyclestreets.net/journey/52327060/'
 				};
 				navigator.share(shareData);
-			});
-			
-			
-			/*
-			 *  Photomap actions
-			 */
-			
-			// Photomap panel navigation actions
-			$('.panel.photomap .action.forward').click(function() {				
-				switchPanel ('.panel.photomap', '.panel.photomap.add-location');
-			});
-			
-			$('.panel.photomap.add-location .action.forward').click(function() {				
-				switchPanel ('.panel.photomap.add-location', '.panel.photomap.add-details');
-			});
-			
-			$('.panel.photomap.add-details .action.forward').click(function() {				
-				switchPanel ('.panel.photomap.add-details', '.panel.photomap.uploading');
-			});
-			
-			$('.panel.photomap.uploading a').click(function() {				
-				returnHome ();
 			});
 			
 			
@@ -439,12 +494,13 @@ var cyclestreetsui = (function ($) {
 			 */
 			
 			// Capture click event
-			//$(document).click(function(){
-			//	console.log ('Previous breadcrumbs are: ' + _breadcrumbs);
-			//});
+			$(document).click(function(){
+				console.log ('Previous breadcrumbs are: ' + _breadcrumbs);
+				
+			});
 			
 			// While developing, shortcut to certain panels on load
-			//$('.panel.settings').show();
+			//$('.panel.photomap').first().show();
 			
 			// Test the ride notification slide-down notification
 			//$('#ride-notification').delay(2000).slideDown('slow');

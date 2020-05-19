@@ -120,6 +120,12 @@ var cyclestreetsui = (function ($) {
 				returnHome ();
 			});
 			
+			// Swiping up on a card opens it
+			$('.panel').on('swipeup', function () {
+				$(this).addClass ('open');
+			});
+			
+			
 			// Switch panel
 			var switchPanel = function (currentPanel, destinationPanel) {
 				_breadcrumbs.push(currentPanel);
@@ -294,6 +300,7 @@ var cyclestreetsui = (function ($) {
 			var closeRouteSearchBox = function() {$('.panel.journeyplanner.search').removeClass( 'open' );};
 			
 			// Make route browser div dragable
+			/*
 			$('.panel.journeyplanner.search').draggable ({
 				axis: "y",
 				refreshPositions: true,
@@ -301,6 +308,7 @@ var cyclestreetsui = (function ($) {
 				drag: function () {
 				}
 			});
+			*/
 			
 			// Show the routing options after clicking on routing button
 			$('.panel.journeyplanner.search ul li a').click(function() {

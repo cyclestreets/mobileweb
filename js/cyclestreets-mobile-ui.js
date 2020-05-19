@@ -232,8 +232,8 @@ var cyclestreetsui = (function ($) {
 			// Set-up the default home-screen
 			var returnHome = function () {
 				resetUI ();
-				$('.panel').hide();
-				$('.panel.journeyplanner.search').show();
+				$('.panel').hide(); // Hide all panels
+				$('.panel.journeyplanner.search').show(); // Show the default pannel, i.e. journeyplanner search
 			};
 			
 			// Show the move-map-to search box
@@ -292,8 +292,7 @@ var cyclestreetsui = (function ($) {
 			
 			// Show the routing options after clicking on routing button
 			$('.panel.journeyplanner.search ul li a').click(function() {
-				$('.panel.journeyplanner.search').hide();
-				$('.panel.journeyplanner.select').show();
+				switchPanel ('.panel.journeyplanner.search', '.panel.journeyplanner.select');
 			});
 			
 			// Display the elevation graph

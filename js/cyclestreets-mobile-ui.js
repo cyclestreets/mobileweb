@@ -302,11 +302,11 @@ var cyclestreetsui = (function ($) {
 				if (wizard.length) {
 					
 					// Get current panel name and convert spaces into dots
-					var closestPanel = $(this).closest('.panel').attr('class');
-					closestPanel = closestPanel.replace(/\s/g, '.');
+					var currentPanel = $(this).closest('.panel').attr('class');
+					currentPanel = currentPanel.replace(/\s/g, '.');
 					
 					// Get the panel class we are in, without sub-panel
-					var panelClass = closestPanel.split('.'); // Split the current panel, i.e. [panel, photomap, add-photo]
+					var panelClass = currentPanel.split('.'); // Split the current panel, i.e. [panel, photomap, add-photo]
 					panelClass.pop(); // Pop the sub-panel out of the array
 					panelClass = panelClass.join('.'); // Reconstruct the string from array, i.e panel.photomap
 					panelClass = '.' + panelClass; // Add the leading dot, i.e. .panel.photomap
@@ -320,7 +320,7 @@ var cyclestreetsui = (function ($) {
 					var inputTypes = ['input', 'select', 'textarea', 'textfield']; // Add other types
 					$.each(inputTypes, function (index, type) {
 						// Find all inputs of this type
-						var closestInputs = $('.' + closestPanel).find(type);
+						var closestInputs = $('.' + currentPanel).find(type);
 						
 						// If any were found, add this to the nearestInputs array
 						if (closestInputs.length) {nearestInputs.push(closestInputs);}

@@ -49,8 +49,8 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 #location-icon img {margin-right: 4px;}
 #glasses-icon {top: 95px; right: 20px; line-height: 53px;}
 #browse-search-box {display: none; position: fixed; top: 95px; right: 20px; width: 50px; height: 50px; margin: 0; background: #f5f5f5;}
-#browse-search-box.open {display: block; padding-left: 20px; padding-right: 60px; max-width: 290px; border-radius: 25px; line-height: 20px;}
-#close-browse-box-icon {display: none; top: 95px; right: 20px; z-index: 1; line-height: 60px;}
+#browse-search-box.open {display: block; padding-left: 20px; padding-right: 50px; max-width: 300px; border-radius: 25px; line-height: 20px; box-shadow: 0 0 3px gray;}
+#close-browse-box-icon {display: none; top: 95px; right: 20px; z-index: 1; line-height: 60px; box-shadow: none;}
 
 /*
  * Default panel styling

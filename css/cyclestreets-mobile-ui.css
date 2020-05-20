@@ -1,7 +1,7 @@
 /* Typography */
 h1 {font-family: 'Ropa Sans', sans-serif;}
-h2, h3, h4, h5, h6, body {font-family: 'Josefin Sans', sans-serif; color: #212322;}
-
+h2, h3, h4, h5, h6, body, input, select, textarea {font-family: 'Josefin Sans', sans-serif; color: #212322;}
+input, select, textarea {font-size: 15px;}
 /* Nav */
 nav {height: calc(100% - 20px); display: none; width: 70%; max-width: 300px; position: fixed; z-index: 20; padding-top: 20px; top: 0; left: 0; background-color: #2d2e2e; overflow-x: hidden; overflow-y: scroll; opacity: 0.95;}
 nav ul {margin: 0 20px; padding: 0; list-style: none;}

@@ -94,8 +94,8 @@ var cyclestreetsui = (function ($) {
 			// Open the nav bar
 			$('#hamburger-menu').click(function() {$('nav').show("slide", { direction: "left" }, 300);});
 			
-			// Enable implicit click/touch on map as close menu
-			if ($('nav').is(':visible')) {$('#map').click(function () {cyclestreetsui.resetUI ();});}
+			// Enable implicit click/touch on map as close menu			
+			$('#map').click(function () {if ($('nav').is(':visible')) {cyclestreetsui.resetUI ();}});
 			
 			// Enable swipe-to-close
 			$('nav').on('swipeleft', function () {$('nav').hide("slide", { direction: "left" }, 300);});

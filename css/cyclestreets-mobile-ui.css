@@ -65,7 +65,7 @@ a {text-decoration: none; color: #dc4f55;}
 a.action {position: absolute; top: 0; padding: 15px; color: #dc4f55; text-decoration: none;}
 a.action.back {left: 0;}
 a.action.forward {right: 0;}
-h2 {margin: 0; text-align: center; font-variant: small-caps;}
+h2 {margin: 5px 0 10px 0; text-align: center; font-variant: small-caps;}
 ul {margin: 0; padding: 0;}
 ul li {list-style-type: none;}
 ul li select {display: inline-block; padding: 0 20px; margin: 2px 0; width: 52%; border-radius: 25px; text-align: left; text-decoration: none; background: #DC4F55; color: #f5f5f5;}

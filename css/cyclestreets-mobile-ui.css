@@ -57,7 +57,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
  */
 
 /* Structural elements */
-.panel {display: none; position: fixed; bottom: 0; left: 0; z-index: 3; width: calc(100% - 40px); padding: 15px 20px; background-color: #fbf6f8; transition: 0.5s;}
+.panel {display: none; position: fixed; bottom: 0; left: 0; z-index: 3; width: calc(100% - 40px); padding: 15px 20px; background-color: #fbf6f8;}
 .panel::before {content:url('../assets/card-handle.svg'); position: absolute; top: -8px; margin: 0 calc((100% - 208px) / 2);}
 .panel.red::before {content:url('../assets/card-handle-red-fill.svg');}
 .hidden {display: none;}
@@ -98,7 +98,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 /* Route search panel */
 .panel.journeyplanner.search {height: 60px;}
-.panel.journeyplanner.search.open {height: 75%;}
+.panel.journeyplanner.search.open {height: auto;}
 .panel.journeyplanner.search input {position: relative; bottom: 5px; height: 50px; width: calc(100% - 40px); margin: 10px 0; padding: 0 20px; border: 0; transition: 0.5s;}
 .panel.journeyplanner.search .shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0;}
 .panel.journeyplanner.search .shortcut-icons {display: inline-block; overflow-x: scroll;}

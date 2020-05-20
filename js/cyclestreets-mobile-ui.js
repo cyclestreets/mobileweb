@@ -91,41 +91,48 @@ var cyclestreetsui = (function ($) {
 		navBar: function () {
 			
 			// Open the nav bar
-			$('#hamburger-menu').click(function() {$('nav').show("slide", { direction: "left" }, 300);});
+			$('#hamburger-menu').click(function() {
+				$('nav').show ('slide', {direction: 'left' }, 300);
+			});
 			
 			// Enable implicit click/touch on map as close menu			
-			$('#map').click(function () {if ($('nav').is(':visible')) {cyclestreetsui.resetUI ();}});
+			$('#map').click(function () {
+				if ($('nav').is (':visible')) {cyclestreetsui.resetUI ();}
+			});
 			
 			// Enable swipe-to-close
-			$('nav').on('swipeleft', function () {$('nav').hide("slide", { direction: "left" }, 300);});
+			$('nav').on('swipeleft', function () {
+				$('nav').hide ("slide", {direction: 'left'}, 300);
+			});
 			
 			// Open card from main nav items
-			$('nav ul > li').click( function () {
+			$('nav ul > li').click (function () {
+				
 				// Get the class name from the li
-				var className = this.className.split(' ')[0];
+				var className = this.className.split (' ')[0];
 				
 				// If this is the data menu item, open its sub-menu
 				if (className == 'data') {
 					// Open the Data submenu
-					$('li.data ul').slideToggle();
-				}
+					$('li.data ul').slideToggle ();
+				
 				// Otherwise, close the nav and open the desired panel
-				else {
+				} else {
 					// Hide nav & open searchbars and all panels
 					cyclestreetsui.resetUI ();
-					$('.panel').hide();
+					$('.panel').hide ();
 				
 					// Reset the breadcrumb trail as we are starting a new "journey" from the nav
 					_breadcrumbs = [];
 				
 					// Show the matching panel
-					$('.panel.' + className).first().show();
+					$('.panel.' + className).first().slideToggle(); // Slide in animations do not work smoothly
 				}
 			});
 		},
 		
 		// Close the nav bar
-		closeNav: function() {$('nav').hide("slide", { direction: "left" }, 300);},
+		closeNav: function() {$('nav').hide ("slide", {direction: "left"}, 300);},
 		
 		
 		/*
@@ -135,15 +142,15 @@ var cyclestreetsui = (function ($) {
 		{	
 			// Open the route search box
 			var routeSearchBoxFocus = function() {
-				cyclestreetsui.resetUI();
-				$('.panel.journeyplanner.search').addClass( 'open' );
+				cyclestreetsui.resetUI ();
+				$('.panel.journeyplanner.search').addClass ('open', 500);
 			};
 			
 			// Open the Route search box
-			$('.panel.journeyplanner.search input').focus(routeSearchBoxFocus);
+			$('.panel.journeyplanner.search input').focus (routeSearchBoxFocus);
 			
 			// Show the routing options after clicking on routing button
-			$('.panel.journeyplanner.search ul li a').click(function() {
+			$('.panel.journeyplanner.search ul li a').click (function() {
 				cyclestreetsui.switchPanel ('.panel.journeyplanner.search', '.panel.journeyplanner.select');
 			});
 			

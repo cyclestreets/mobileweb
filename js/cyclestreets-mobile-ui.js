@@ -33,8 +33,7 @@ var cyclestreetsui = (function ($) {
 	var _actions = [
 		'journeyPlanner',
 		'rideTracker',
-		'settings',
-		'developerTools'
+		'settings'
 	];
 	
 	
@@ -487,25 +486,7 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.switchPanel ('.popup.places', '.panel.journeyplanner.select');
 			});
 		},	
-		
 			
-		/*
-		 * Developer tools
-		 */
-		developerTools: function ()
-		{
-			// Capture click event
-			//$(document).click(function(){
-			//	console.log ('Previous breadcrumbs are: ' + _breadcrumbs);
-			//});
-			
-			// While developing, shortcut to certain panels on load
-			//$('.popup.ride-notification').delay(2000).slideDown();
-			
-			// Test the ride notification slide-down notification
-			//$('#ride-notification').delay(2000).slideDown('slow');
-		},
-		
 		
 		/*
 		 * Utilities

@@ -175,11 +175,14 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.photomap.uploading a {display: block; color: #c4c1c2; text-align: center;}
 
 /* Places card */
+.panel.places {max-height: 50%;}
 .panel.places ul {overflow-y: scroll;}
 .panel.places ul li {display: inline-block; height: 90px; width: 80px; margin: 0 28px 15px 0; vertical-align: top;}
-.panel.places ul li a {display: inline-block; width: 65px; height: 65px; margin: 2px; border: 1px solid #dc4f55; border-radius: 50%; background: #f5f5f5; color: #212322; text-decoration: none; text-align: center; box-shadow: 0 0 3px gray;}
-.panel.places ul li a img {display: block; padding: 15px;}
-.panel.places ul li a span {display: inline-block; text-align: center; word-wrap:normal; font-size: 13px; margin-top: 10px;}
+.panel.places ul li input {position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;} /* Hide the browser's default checkbox */
+.panel.places ul li label {display: inline-block; width: 65px; height: 65px; margin: 2px; border: 1px solid #dc4f55; border-radius: 50%; background: #f5f5f5; color: #212322; text-decoration: none; text-align: center; box-shadow: 0 0 3px gray;}
+.panel.places ul li input:checked ~ label {background: green;}
+.panel.places ul li label img {display: block; padding: 15px;}
+.panel.places ul li label span {display: inline-block; text-align: center; word-wrap:normal; font-size: 13px; margin-top: 10px;}
 
 
 /*

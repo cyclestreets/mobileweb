@@ -69,8 +69,8 @@ h2 {margin: 0; text-align: center; font-variant: small-caps;}
 ul {margin: 0; padding: 0;}
 ul li {list-style-type: none;}
 ul li select {display: inline-block; padding: 0 20px; margin: 2px 0; width: 52%; border-radius: 25px; text-align: left; text-decoration: none; background: #DC4F55; color: #f5f5f5;}
-textarea {display: inline-block; height: 50px; width: 65%; border-radius: 20px; padding: 10px;}
-input {border: none; line-height: 50px; margin: 5px 0; padding: 0 20px; border-radius: 50px; box-shadow: 0 0 3px gray;}
+textarea {display: inline-block; height: 50px; width: 65%; border-radius: 25px; padding: 10px; border: none; vertical-align: middle;}
+input {border: none; line-height: 50px; margin: 5px 0; padding: 0 20px; border-radius: 50px;}
 select {-webkit-appearance: none; height: 50px;}
 
 /* iOS styled elements */
@@ -285,9 +285,9 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.map-style ul li {display: inline; width: 100%;}
 
 /* Feedback panel */
-.wizard.feedback .panel.feedback label {display: inline-block; width: 30%; margin-top: 20px;}
-.wizard.feedback .panel.feedback input {display: inline-block; width: 200px; height: 18px; line-height: 18px; margin-top: 10px; padding: 10px;}
-.wizard.feedback .panel.feedback textarea {display: inline-block; width: 200px; margin-top: 10px; padding: 10px;}
+.wizard.feedback .panel.feedback label {display: inline-block; width: 80px; margin-top: 20px;}
+.wizard.feedback .panel.feedback input {display: inline-block; width: calc(100% - 120px); height: 18px; line-height: 18px; margin-top: 10px; padding: 10px;}
+.wizard.feedback .panel.feedback textarea {display: inline-block; width: calc(100% - 120px); margin-top: 10px; padding: 10px;}
 .wizard.feedback .panel.feedback-submitted {background-color: #dc4f55;}
 .wizard.feedback .panel.feedback-submitted h1, .panel.feedback-submitted  h2, .panel.feedback-submitted p {width: 60%; margin: 5px 20%; text-align: center; color: #fbf6f8;}
 .wizard.feedback .panel.feedback-submitted h1 {font-size: 32px;}

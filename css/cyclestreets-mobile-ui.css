@@ -3,7 +3,7 @@ h1 {font-family: 'Ropa Sans', sans-serif;}
 h2, h3, h4, h5, h6, body {font-family: 'Josefin Sans', sans-serif; color: #212322;}
 
 /* Nav */
-nav {height: calc(100% - 20px); display: none; width: 70%; position: fixed; z-index: 20; padding-top: 20px; top: 0; left: 0; background-color: #2d2e2e; overflow-x: hidden; overflow-y: scroll; opacity: 0.95;}
+nav {height: calc(100% - 20px); display: none; width: 70%; max-width: 300px; position: fixed; z-index: 20; padding-top: 20px; top: 0; left: 0; background-color: #2d2e2e; overflow-x: hidden; overflow-y: scroll; opacity: 0.95;}
 nav ul {margin: 0 20px; padding: 0; list-style: none;}
 nav ul ul {display: none; margin: 0; margin-left: 8px;}
 nav ul ul a {color: #c5c2c3;}

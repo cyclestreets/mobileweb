@@ -3,7 +3,7 @@ h1 {font-family: 'Ropa Sans', sans-serif;}
 h2, h3, h4, h5, h6, body {font-family: 'Josefin Sans', sans-serif; color: #212322;}
 
 /* Nav */
-nav {height: calc(100% - 20px); display: none; width: 70%; position: fixed; z-index: 20; padding-top: 20px; top: 0; left: 0; background-color: #2d2e2e; overflow-x: hidden; overflow: hidden; opacity: 0.95;}
+nav {height: calc(100% - 20px); display: none; width: 70%; position: fixed; z-index: 20; padding-top: 20px; top: 0; left: 0; background-color: #2d2e2e; overflow-x: hidden; overflow-y: scroll; opacity: 0.95;}
 nav ul {margin: 0 20px; padding: 0; list-style: none;}
 nav ul ul {display: none; margin: 0; margin-left: 8px;}
 nav ul ul a {color: #c5c2c3;}
@@ -19,13 +19,14 @@ nav li.enabled a {background: url('../assets/icon-view-pass-on-16x16.svg') right
 nav a {padding: 12px 38px; text-decoration: none; color: #fbf6f8; display: block; transition: 0.3s;}
 nav a:hover {color: #cc5959;}
 nav hr {color: #b1afb1; margin-left: 0; width: 50%;}
+nav #secondary-menu {padding-bottom: 70px;}
 nav #secondary-menu li a {font-size: 16px; color: #c5c2c3;}
 nav .badge-row {display: flex;}
 nav .text-column {width: 80%;}
 nav .badge-column {width: 20%;}
 nav .blog-badge {position: relative; margin: 0; padding: 0;}
 nav .blog-badge[data-badge]:after {content: attr(data-badge); position: absolute; right: 20px; font-size: .7em; background: #cc5959; color: white; width: 18px; height: 18px; text-align: center; line-height: 18px; border-radius: 50%; box-shadow: 0 0 1px #333;}
-nav #nav-footer {position: absolute; bottom: 0; height: 50px; width: 100%; padding: 10px; background-color: #212323; color: #b1afb1;}
+nav #nav-footer {position: fixed; bottom: 0; height: 50px; width: 100%; padding: 10px; background-color: #212323; color: #b1afb1;}
 nav #nav-footer .cyclestreets-logo {float: left; width: 50px; height: 50px;}
 nav #nav-footer h6, nav #nav-footer p, nav #nav-footer a {margin: 0 0 0 40px;}
 nav #nav-footer .logo-text {padding: 3px 0 5px 20px; color: #e1dde0; font-size: 18px; font-weight: bold; font-variant: small-caps;}

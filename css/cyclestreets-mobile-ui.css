@@ -1,13 +1,15 @@
 /* Typography */
 h1 {font-family: 'Ropa Sans', sans-serif;}
-h2, h3, h4, h5, h6, body, input, select, textarea {font-family: 'Josefin Sans', sans-serif; color: #212322;}
+h2, h3, h4, h5, h6, body, input, select, textarea, label {font-family: 'Josefin Sans', sans-serif; color: #212322;}
 input, select, textarea {font-size: 15px;}
 /* Nav */
 nav {height: calc(100% - 20px); display: none; width: 70%; max-width: 300px; position: fixed; z-index: 20; padding-top: 20px; top: 0; left: 0; background-color: #2d2e2e; overflow-x: hidden; overflow-y: scroll; opacity: 0.95;}
 nav ul {margin: 0 20px; padding: 0; list-style: none;}
 nav ul ul {display: none; margin: 0;}
-nav ul ul a {color: #c5c2c3;}
-nav ul ul li a {font-size: 16px;}
+nav ul ul a, nav ul ul li label {color: #c5c2c3;}
+nav ul ul li {padding: 10px 0;}
+nav ul ul li input {position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;} /* Hide the browser's default checkbox */
+nav ul ul li label {font-size: 16px; padding: 12px 0 12px 38px;}
 nav li {background: left no-repeat;}
 nav li a {font-size: 20px;}
 nav li.journeyplanner {background-image: url('../assets/icon-jp-red.svg');}

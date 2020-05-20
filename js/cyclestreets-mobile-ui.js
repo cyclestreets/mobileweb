@@ -142,19 +142,6 @@ var cyclestreetsui = (function ($) {
 			
 			// Open the Route search box
 			$('.panel.journeyplanner.search input').focus(routeSearchBoxFocus);
-					
-			
-			
-			// Make route browser div dragable
-			/*
-			$('.panel.journeyplanner.search').draggable ({
-				axis: "y",
-				refreshPositions: true,
-				grid: [ 50, 350 ],
-				drag: function () {
-				}
-			});
-			*/
 			
 			// Show the routing options after clicking on routing button
 			$('.panel.journeyplanner.search ul li a').click(function() {

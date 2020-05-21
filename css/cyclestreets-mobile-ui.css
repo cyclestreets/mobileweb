@@ -86,6 +86,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .slider.round {border-radius: 34px;}
 .slider.round:before {border-radius: 50%;}
 
+.wizard .action.forward {opacity: 0.3;}
+.wizard .action.forward.enabled {opacity: 1;}
 
 /*
  * Card specific styles

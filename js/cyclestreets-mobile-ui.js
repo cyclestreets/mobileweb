@@ -316,7 +316,22 @@ var cyclestreetsui = (function ($) {
 					// Switch the panel
 					cyclestreetsui.switchPanel ('.' + currentPanel, nextPanelClass);
 				}
+				
 			});
+			
+			// On every click inside a wizard, check to see if we can progress
+			$('.wizard .panel').click (function () {
+				cyclestreetsui.enableNavigation (this);
+			});
+			
+			// On every click inside a wizard, check to see if we can progress
+			$('.wizard .panel').keydown (function () {
+				cyclestreetsui.enableNavigation (this);
+			});
+			
+			 $('input:file').change(function (){
+				cyclestreetsui.enableNavigation (this);
+			 });
 			
 			// Show the move-map-to search box
 			$('#glasses-icon').click(function() {
@@ -336,6 +351,16 @@ var cyclestreetsui = (function ($) {
 			$('.ride-notification').click( function () {
 				$('.ride-notification').slideUp('slow');
 			});
+		},
+		
+		// Enable wizard navigation
+		enableNavigation: function (element) {
+			// Get current panel name and convert spaces into dots
+			var currentPanel = $(element).closest ('.panel').attr ('class');
+			currentPanel = currentPanel.replace (/\s/g, '.');
+			
+			var canProgress = cyclestreetsui.canProgress ('.' + currentPanel);
+			$('.' + currentPanel + ' .action.forward').toggleClass ('enabled', canProgress);	
 		},
 		
 		// Determine whether any form item within the selector has been filled

@@ -308,11 +308,11 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .wizard.feedback .panel.feedback label {display: inline-block; width: 80px; margin-top: 20px;}
 .wizard.feedback .panel.feedback input {display: inline-block; width: calc(100% - 120px); height: 18px; line-height: 18px; margin-top: 10px; padding: 10px;}
 .wizard.feedback .panel.feedback textarea {display: inline-block; width: calc(100% - 120px); margin-top: 10px; padding: 10px;}
-.wizard.feedback .panel.feedback-submitted {background-color: #dc4f55;}
-.wizard.feedback .panel.feedback-submitted h1, .panel.feedback-submitted  h2, .panel.feedback-submitted p {width: 60%; margin: 5px 20%; text-align: center; color: #fbf6f8;}
-.wizard.feedback .panel.feedback-submitted h1 {font-size: 32px;}
-.wizard.feedback .panel.feedback-submitted h2 {font-size: 14px;}
-.wizard.feedback .panel.feedback-submitted img.wheel {margin-left: 15px; padding: 0 30%; width: 40%;}
+.wizard.feedback .panel.feedback-submit {background-color: #dc4f55;}
+.wizard.feedback .panel.feedback-submit h1, .panel.feedback-submit  h2, .panel.feedback-submit p {width: 60%; margin: 5px 20%; text-align: center; color: #fbf6f8;}
+.wizard.feedback .panel.feedback-submit h1 {font-size: 32px;}
+.wizard.feedback .panel.feedback-submit h2 {font-size: 14px;}
+.wizard.feedback .panel.feedback-submit img.wheel {margin: 0 35%; padding: 0; width: 30%;}
 
 /* Blog panel */
 .panel.blog {height: 90%;}

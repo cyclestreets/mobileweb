@@ -94,10 +94,10 @@
 			<!-- Main UI components -->
 			<div id='map'></div>
 			
-			<a href="#" id="hamburger-menu" class="ui-button ui-button-large"><img src="assets/btn-burger-nav-rest.svg" /></a>
-			<a href="#" id="location-icon" class="ui-button"><img src="assets/icon-location-red.svg" /></a>
-			<a href="#" id="glasses-icon" class="ui-button"><img src="assets/icon-spectacles.svg" /></a>
-			<a href="#" id="close-browse-box-icon" class="ui-button"><img src="assets/icon-cross-red.svg" /></a>
+			<a href="#" id="hamburger-menu" class="ui-button ui-button-large" title="Open menu"><img src="assets/btn-burger-nav-rest.svg" /></a>
+			<a href="#" id="location-icon" class="ui-button" title="Move map to my location"><img src="assets/icon-location-red.svg" /></a>
+			<a href="#" id="glasses-icon" class="ui-button" title="Find a location on the map"><img src="assets/icon-spectacles.svg" /></a>
+			<a href="#" id="close-browse-box-icon" class="ui-button" title="Close the browse search box"><img src="assets/icon-cross-red.svg" /></a>
 			 
 			<input id="browse-search-box" type="text" placeholder="Move map to place or postcode" value="" />
 			
@@ -122,14 +122,14 @@
 				<hr />
 				<ul class="recent-journeys">
 					<li>
-						<a href="#"><img src="assets/btn-get-directions-small.svg" /></a>
+						<a href="#" title="Get directions to here"><img src="assets/btn-get-directions-small.svg" /></a>
 						<p class="destination">Nandos</p>
 						<p class="distance">7 miles</p>
 						<p class="address">Cambridge Leisure Park, Clifton Way, Cambrid...</p>
 					</li>
 					<hr />
 					<li>
-						<a href="#"><img src="assets/btn-get-directions-small.svg" /></a>
+						<a href="#" title="Get directions to here"><img src="assets/btn-get-directions-small.svg" /></a>
 						<p class="destination">Nandos</p>
 						<p class="distance">8 miles</p>
 						<p class="address">High Street, Cambridge, Cambridgeshire, CM3 7...</p>
@@ -140,8 +140,8 @@
 			
 			<div class="panel journeyplanner select">
 				<h2>Fastest</h2>
-				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-				<a class="action forward" href="#"><img src="assets/btn-get-directions-large.svg" /></a>
+				<a class="action back" href="#" title="Search for a different route"><img src="assets/icon-disclosure-red-left.svg" /></a>
+				<a class="action forward" href="#" title="Start navigation"><img src="assets/btn-get-directions-large.svg" /></a>
 				<p>Nandos</p>
 				<p class="location">Cambridge Leisure Park, Clifton Way, Cambridge, Camb…</p>
 				<ul>
@@ -169,10 +169,10 @@
 			<!-- Ridetracker and satnav panels -->
 			<div class="panel ridetracker track">
 				<h2>Ride tracker</h2>
-				<a id="my-rides-button" class="action back enabled" href="#my-rides">My rides</a>
-				<a id="cancel-tracking" class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Cancel</a>
-				<a id="start-ride-tracking" class="action forward enabled" href="#">Start</a>
-				<a id="finish-tracking" class="action forward" href="#">Finish <img src="assets/icon-disclosure-red-right.svg" /></a>
+				<a id="my-rides-button" class="action back enabled" href="#my-rides" title="View my saved rides">My rides</a>
+				<a id="cancel-tracking" class="action back" href="#" title="Cancel tracking this ride"><img src="assets/icon-disclosure-red-left.svg" /> Cancel</a>
+				<a id="start-ride-tracking" class="action forward enabled" href="#" title="Start satnav tracking mode">Start</a>
+				<a id="finish-tracking" class="action forward" href="#" title="Finish and save my tracked ride">Finish <img src="assets/icon-disclosure-red-right.svg" /></a>
 				<h3>00:00:00</h3>
 				<h4>Elapsed time</h4>
 				<h5>0.0 miles</h5>
@@ -183,8 +183,8 @@
 			
 			<div class="panel ridetracker my-rides">
 				<h2>My rides</h2>
-				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-				<a class="action forward" href="#">Edit</a>
+				<a class="action back" href="#" title="Go back to satnav tracking mode"><img src="assets/icon-disclosure-red-left.svg" /></a>
+				<a class="action forward" href="#" "title="Edit my saves rides">Edit</a>
 				<ul>
 					<li>
 						<hr />
@@ -219,8 +219,8 @@
 			
 			<div class="panel ridetracker ride-info">
 				<h2>Ride info</h2>
-				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-				<a class="action forward" href="#"><img src="assets/icon-share.svg" /></a>
+				<a class="action back" href="#" title="Go back to saved rides overview"><img src="assets/icon-disclosure-red-left.svg" /></a>
+				<a class="action forward" href="#" title="Share this ride"><img src="assets/icon-share.svg" /></a>
 				<ul>
 					<li>
 						<h3>Social</h3>
@@ -254,8 +254,8 @@
 			
 			<div class="panel ridetracker add-details">
 				<h2>Ride tracker</h2>
-				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-				<a class="action forward" href="#">Save</a>
+				<a class="action back" href="#" title="Return to tracking mode"><img src="assets/icon-disclosure-red-left.svg" /></a>
+				<a class="action forward" href="#" title="Save this ride">Save</a>
 				<ul>
 					<li>
 						<label for="category">Purpose</label>
@@ -279,8 +279,8 @@
 			
 			<div class="panel ridetracker show-tracked-ride">
 				<h2>Ride tracker</h2>
-				<a class="action back" href="#">Done</a>
-				<a class="action forward" href="#"><img src="assets/icon-share.svg" /></a>
+				<a class="action back" href="#" title="Go back to the main screen">Done</a>
+				<a class="action forward" href="#" title="Share this ride"><img src="assets/icon-share.svg" /></a>
 				<ul>
 					<li>
 						<h3>Social</h3>
@@ -303,7 +303,7 @@
 			<!-- Photomap panels -->
 			<div class="panel photomap">
 				<h2>Photomap</h2>
-				<a class="action forward start-wizard" href="#"><img src="assets/icon-add-photo-rest.svg" /></a>
+				<a class="action forward start-wizard" href="#"><img src="assets/icon-add-photo-rest.svg" title="Add photo to photomap" /></a>
 				<ul>
 					<li>
 						<label for="category">Category</label>
@@ -359,8 +359,8 @@
 				<form>
 					<div class="panel photomap add-photo">
 						<h2>Add photo</h2>
-						<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-						<a class="action forward" href="#">Continue <img src="assets/icon-disclosure-red-right.svg" /></a>
+						<a class="action back" href="#" title="Go back to the photomap main screen"><img src="assets/icon-disclosure-red-left.svg" /></a>
+						<a class="action forward" href="#" title="Go to the next step">Continue <img src="assets/icon-disclosure-red-right.svg" /></a>
 						<p>Please select the photo you would like to add.</p>
 						<input type="file" required="required" /> 
 					</div>
@@ -368,8 +368,8 @@
 					
 					<div class="panel photomap add-location">
 						<h2>Add location</h2>
-						<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-						<a class="action forward" href="#">Continue <img src="assets/icon-disclosure-red-right.svg" /></a>
+						<a class="action back" href="#" title="Select a different photo"><img src="assets/icon-disclosure-red-left.svg" /></a>
+						<a class="action forward" href="#" title="Go to the next step">Continue <img src="assets/icon-disclosure-red-right.svg" /></a>
 						<br>
 						<p>If the location shown is not accurate, tap on the map below location to adjust it.</p>
 						<div id='mini-map'></div>
@@ -377,8 +377,8 @@
 					
 					<div class="panel photomap add-details">
 						<h2>Add details</h2>
-						<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /></a>
-						<a class="action forward" href="#">Upload <img src="assets/icon-disclosure-red-right.svg" /></a>
+						<a class="action back" href="#" title="Return to the previous step"><img src="assets/icon-disclosure-red-left.svg" /></a>
+						<a class="action forward" href="#" title="Upload this photo">Upload <img src="assets/icon-disclosure-red-right.svg" /></a>
 						<img class="uploaded-image" src="placeholders/photomap-add-comments-placeholder.svg" />
 						<ul>
 							<li>
@@ -427,7 +427,7 @@
 						<img src="assets/bicycle-wheel.svg" />
 						<p>Uploading</p>
 						<progress id="photomap-upload" value="32" max="100"></progress>
-						<a class="returnHome" href="#">Cancel</a>
+						<a class="returnHome" href="#" title="Cancel upload">Cancel</a>
 					</div>
 					
 				</form>
@@ -509,13 +509,13 @@
 				<div id="inner-card" class="flip-card-inner">
 					<div class="flip-card-front popup-card">
 						<img class="popup-photo" src="placeholders/photomap-add-comments-placeholder.svg" />
-						<a href="#" class="ui-button close-button"><img src="assets/icon-cross-red.svg" /></a>
-						<a href="#"><img src="assets/icon-share.svg" /> Share</a>
-						<a class="flip" href="#"> Photo info</a>
+						<a href="#" class="ui-button close-button" title="Close this popup"><img src="assets/icon-cross-red.svg" /></a>
+						<a href="#" title="Share this location"><img src="assets/icon-share.svg" /> Share</a>
+						<a class="flip" href="#" title="Show more information"> Photo info</a>
 					</div>
 					<div class="flip-card-back popup-card">
-						<a href="#" class="back"><img src="assets/icon-disclosure-red-left.svg" /></a>
-						<a href="#" class="ui-button close-button"><img src="assets/icon-cross-red.svg" /></a>
+						<a href="#" class="back" title="Return to the front of this card"><img src="assets/icon-disclosure-red-left.svg" /></a>
+						<a href="#" class="ui-button close-button" title="Close this popup"><img src="assets/icon-cross-red.svg" /></a>
 						<br>
 						<p class="key">Category:</p>
 						<p>Cycle parking</p>
@@ -548,9 +548,9 @@
 			
 			<div class="popup places">
 				<img class="place-photo" src="placeholders/places-popup-placeholder.png" />
-				<a href="#" class="ui-button close-button"><img src="assets/icon-cross-red.svg" /></a>
+				<a href="#" class="ui-button close-button" title="Close this popup"><img src="assets/icon-cross-red.svg" /></a>
 				<h2>Mary's Greengrocers</h2>
-				<img class="get-directions" src="assets/btn-get-directions-large.svg" />
+				<a href="#" title="Get directions to this place"><img class="get-directions" src="assets/btn-get-directions-large.svg" /></a>
 				<p>34 High St, Sawston, Cambridge, Cambridgeshire, CB22 3BG</p>
 				<ul>
 					<li>
@@ -576,30 +576,33 @@
 			<!-- Account management and creation panels -->
 			<div class="panel account">
 				<h2>Signin</h2>
-				<a class="action back" href="#">Cancel</a>
-				<a class="action forward" href="#">Signin <img src="assets/icon-disclosure-red-right.svg" /></a>
+				<a class="action back" href="#" title="Close this card">Cancel</a>
+				<a class="action forward" href="#" title="Sign in">Signin <img src="assets/icon-disclosure-red-right.svg" /></a>
 				<input id="username" placeholder="Username"></input>
 				<input id="password" placeholder="Password"></input>
 				<br />
-				<a href="#">I've forgotten my password</a>
+				<a href="#" title="Recover your forgotten password">I've forgotten my password</a>
 				<hr />
 				<h3>Not with us yet?</h3>
 				<p>Create a Cyclestreets account and participate in an active cycling community.</p>
-				<a class="ui-button ui-button-large create-account start-wizard" href="#">Create account <img src="assets/icon-disclosure-light.svg" /></a>
+				<a class="ui-button ui-button-large create-account start-wizard" href="#" title="Create a CycleStreets account">Create account <img src="assets/icon-disclosure-light.svg" /></a>
 			</div>
 			
 			<div class="wizard account">
 				<form>
-					
+				
 					<div class="panel choose-username">
 						<h2>Create account</h2>
-						<a class="action forward" href="#">Next <img src="assets/icon-disclosure-red-right.svg"/></a>
+						<a class="action back" href="#" title="Cancel account creation">Cancel</a>
+						<a class="action forward" href="#" title="Go to the next step">Next <img src="assets/icon-disclosure-red-right.svg"/></a>
 						<p>Choose your CycleStreets username: </p>
 						<input id="username" placeholder="Username" required="required"></input>	
 					</div>
 					
 					<div class="panel choose-password">
-						<a class="action forward" href="#">Finish <img src="assets/icon-disclosure-red-right.svg"/></a>
+						<h2>Almost there...</h2>
+						<a class="action back" href="#" title="Return to the previous step"><img src="assets/icon-disclosure-red-left.svg" /></a>
+						<a class="action forward" href="#" title="Create your account">Finish <img src="assets/icon-disclosure-red-right.svg"/></a>
 						<p>Provide the following and you're done: </p>
 						<input type="password" id="password" placeholder="Choose a password" required="required"></input>
 						<input type="email" id="email" placeholder="Enter your email" required="required"></input>	
@@ -619,16 +622,16 @@
 			<!-- Settings, about, feedback, map-style and blog panels-->
 			<div class="panel settings">
 				<h2>Settings</h2>
-				<a id="settings-done" class="action forward returnHome" href="#">Done</a>
+				<a id="settings-done" class="action forward returnHome" href="#" title="Save your settings and close this card">Done</a>
 				<h3>Saved locations</h3>
 				<ul>
 					<li>
 						<img src="assets/icon-home-dark.svg" />
-						<a class="ui-button ui-button-large" href="#">Set your Home location <img class="disclosure" src="assets/icon-disclosure-light.svg" /></a>
+						<a class="ui-button ui-button-large" href="#" title="Set your home location">Set your Home location <img class="disclosure" src="assets/icon-disclosure-light.svg" /></a>
 					</li>
 					<li>
 						<img src="assets/icon-work-dark.svg" />
-						<a class="ui-button ui-button-large set" href="#">Fraser Street, Temple, South... <img class="disclosure" src="assets/icon-disclosure-red-right.svg" /></a>
+						<a class="ui-button ui-button-large set" href="#" title="Set your work location">Fraser Street, Temple, South... <img class="disclosure" src="assets/icon-disclosure-red-right.svg" /></a>
 					</li>
 				</ul>
 				<hr />
@@ -665,8 +668,8 @@
 			
 			<div class="panel about">
 				<h2>About</h2>
-				<a class="action back" href="#"><img src="assets/icon-disclosure-red-left.svg" /> Back</a>
-				<a class="action forward returnHome" href="#">Done</a>
+				<a class="action back" href="#" title="Return to settings screen"><img src="assets/icon-disclosure-red-left.svg" /> Back</a>
+				<a class="action forward returnHome" href="#" title="Close and return to the map">Done</a>
 				<h3>Mapping</h3>
 				<p>Mapping data courtesy of OpenStreetMap. Without OSM mappers on the ground collecting great data, the routing would not be possible. OpenStreetMap data can be used freely under the terms of the Open Data Commons Open Database License (ODbL).</p>
 				<p>OpenStreetMap is the Wiki of maps. YOU can help improve the routing and location data, by going to www.openstreetmap.org and contributing your local knowledge!</p>
@@ -691,7 +694,7 @@
 			
 			<div class="panel map-style">
 				<h2>Map style</h2>
-				<a class="action forward returnHome" href="#">Done</a>
+				<a class="action forward returnHome" href="#" title="Close and return to the map">Done</a>
 				<ul>
 					<li><a href="#"><img src="placeholders/map_style_1.png" /></a></li>
 					<li><a href="#"><img src="placeholders/map_style_2.png" /></a></li>
@@ -705,8 +708,8 @@
 					
 					<div class="panel feedback">
 						<h2>Feedback</h2>
-						<a class="action back" href="#">Cancel</a>
-						<a class="action forward" href="#">Send <img src="assets/icon-disclosure-red-right.svg" /></a>
+						<a class="action back" href="#" title="Cancel giving feedback and return to the main map">Cancel</a>
+						<a class="action forward" href="#" title="Send us your feedback">Send <img src="assets/icon-disclosure-red-right.svg" /></a>
 						<label>Your name</label>
 						<input placeholder="Enter your name"></input>
 						<br>
@@ -728,7 +731,7 @@
 			
 			<div class="panel blog">
 				<h2>Blog</h2>
-				<a class="action back" href="#">Done</a>
+				<a class="action back" href="#" title="Close the blog and return to the map">Done</a>
 				<object type="text/html" data="https://www.cyclestreets.org/news/"></object>
 			</div>
 		</main>

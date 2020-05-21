@@ -6,8 +6,8 @@ var cyclestreetsui = (function ($) {
 	var _settings = {
 		
 		// CycleStreets API
-		apiBaseUrl: 'API_BASE_URL',
-		apiKey: 'YOUR_API_KEY',
+		cyclestreetsApiBaseUrl: 'API_BASE_URL',
+		cyclestreetsApiKey: 'YOUR_API_KEY',
 		
 		// Mapbox API key
 		mapboxAccessToken: 'MAPBOX_ACCESS_TOKEN',
@@ -20,7 +20,16 @@ var cyclestreetsui = (function ($) {
 		},
 		maxBounds: null,	// Or [W,S,E,N]
 		defaultTileLayer: 'mapnik',
-		maxZoom: 20
+		maxZoom: 20,
+		
+		// Geocoder API URL; re-use of settings values represented as placeholders {%apiBaseUrl}, {%apiKey}, {%autocompleteBbox}, are supported
+		geocoderApiUrl: '{%cyclestreetsApiBaseUrl}/v2/geocoder?key={%cyclestreetsApiKey}&bounded=1&bbox={%autocompleteBbox}',
+		
+		// BBOX for autocomplete results biasing
+		autocompleteBbox: '-6.6577,49.9370,1.7797,57.6924',
+		
+		// Feedback API URL; re-use of settings values represented as placeholders {%apiBaseUrl}, {%apiKey}, are supported
+		feedbackApiUrl: '{%cyclestreetsApiBaseUrl}/v2/feedback.add?key={%cyclestreetsApiKey}'
 	};
 	
 	
@@ -65,8 +74,50 @@ var cyclestreetsui = (function ($) {
 			
 			// Show the default panel
 			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
+			
+			// Add geocoder control
+			cyclestreetsui.search ();
 		},
 		
+		// Wrapper function to add a search control
+		search: function ()
+		{
+			
+			// Geocoder URL
+			var geocoderApiUrl = cyclestreetsui.settingsPlaceholderSubstitution (_settings.geocoderApiUrl, ['cyclestreetsApiBaseUrl', 'cyclestreetsApiKey', 'autocompleteBbox']);
+			
+			// Attach the autocomplete library behaviour to the location control
+			autocomplete.addTo ('#geocoder input', {
+				sourceUrl: geocoderApiUrl,
+				select: function (event, ui) {
+					var bbox = ui.item.feature.properties.bbox.split(',');	// W,S,E,N
+					_map.fitBounds(bbox);
+					event.preventDefault();
+				}
+			});
+		},
+		
+		// Helper function to implement settings placeholder substitution in a string
+		settingsPlaceholderSubstitution: function (string, supportedPlaceholders)
+		{
+			// Substitute each placeholder
+			var placeholder;
+			$.each(supportedPlaceholders, function (index, field) {
+				placeholder = '{%' + field + '}';
+				string = string.replace(placeholder, _settings[field]);
+			});
+			
+			// Return the modified string
+			return string;
+		},
+		
+		// Function to go the map page
+		mapPageLink: function (longitude, latitude)
+		{
+			var zoom = 13;		// #!# Currently fixed - need to compute dynamically, e.g. https://github.com/mapbox/mapbox-unity-sdk/issues/1125
+			var targetUrl = '/map/' + '#' + zoom + '/' + latitude.toFixed(6) + '/' + longitude.toFixed(6);
+			window.location.href = targetUrl;
+		},
 		
 		// Create the map
 		createMap: function (container)
@@ -339,7 +390,7 @@ var cyclestreetsui = (function ($) {
 				$('#browse-search-box').addClass ('open');
 				$('#close-browse-box-icon').show ();
 				$('#glasses-icon').hide ();
-				$('#browse-search-box').animate ({width: '80%',}, "slow");
+				$('#browse-search-box').animate ({width: '70%',}, "slow");
 				$('#browse-search-box').focus ();
 			});
 			

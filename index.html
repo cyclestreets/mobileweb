@@ -9,6 +9,8 @@
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/2.0.2/jquery.mobile-events.js"></script>
 		<script src="js/lib/jquery.ui.touch-punch.js"></script>
+
+		<script src="js/lib/geocoder.js"></script>
 		<script src=".config.js"></script>
 		<script src="js/cyclestreets-mobile-ui.js"></script>
 		<script type="text/javascript"> $(function() {cyclestreetsui.initialise (config);}); </script>
@@ -98,9 +100,10 @@
 			<a href="#" id="location-icon" class="ui-button" title="Move map to my location"><img src="assets/icon-location-red.svg" /></a>
 			<a href="#" id="glasses-icon" class="ui-button" title="Find a location on the map"><img src="assets/icon-spectacles.svg" /></a>
 			<a href="#" id="close-browse-box-icon" class="ui-button" title="Close the browse search box"><img src="assets/icon-cross-red.svg" /></a>
-			 
-			<input id="browse-search-box" type="text" placeholder="Move map to place or postcode" value="" />
 			
+			<div id="geocoder">
+				<input id="browse-search-box" type="text" name="location" autocomplete="off" placeholder="Move map to place or postcode" tabindex="1" spellcheck="false" class="ui-autocomplete-input">
+			</div> 
 			
 			<!-- Journey planner panels -->
 			<div class="panel journeyplanner search">

@@ -54,7 +54,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 
 /* Geocoder autocomplete */
 .ui-autocomplete-loading {background: white url('assets/ui-anim_basic_16x16.gif') right center no-repeat;}
-.ui-autocomplete {background-color: white; z-index: 1000; width: 200px; list-style: none; margin-left: 0; padding-left: 0;  border-radius: 25px;}
+.ui-autocomplete {background-color: white; width: 200px; list-style: none; margin-left: 0; padding-left: 0; border-radius: 25px;}
 .ui-autocomplete li {list-style: none; margin-left: 0; padding-left: 0;}
 .ui-autocomplete li:first-child a {padding-top: 9px;}
 .ui-autocomplete li a {padding: 5px 15px 3px; display: block; color: #dc4f55;}

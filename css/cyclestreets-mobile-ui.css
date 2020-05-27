@@ -315,9 +315,9 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .wizard.feedback .panel.feedback-submit img.wheel {margin: 0 35%; padding: 0; width: 30%;}
 
 /* Blog panel */
-.panel.blog {height: 90%;}
-.panel.blog h2 {padding-bottom: 5px;}
-.panel.blog object {height: 100%; width: calc(100% + 40px); margin-left: -20px; overflow:auto;}
+.panel.blog, .panel.donate {height: 90%;}
+.panel.blog, .panel.donate h2 {padding-bottom: 5px;}
+.panel.blog, .panel.donate object {height: 100%; width: calc(100% + 40px); margin-left: -20px; overflow:auto;}
 
 /* Screen-size specific adjustments */
 @media screen and (max-height: 320px) {

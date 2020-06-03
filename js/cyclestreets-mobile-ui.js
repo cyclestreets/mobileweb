@@ -517,7 +517,7 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			// Show the default panel
-			//$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
+			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
 			
 			
 		},

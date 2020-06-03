@@ -7,8 +7,9 @@ nav {height: calc(100% - 20px); display: none; width: 70%; max-width: 300px; pos
 nav ul {margin: 0 20px; padding: 0; list-style: none;}
 nav ul ul {display: none; margin: 0;}
 nav ul ul a, nav ul ul li label {color: #c5c2c3;}
+nav ul li label {color: #fbf6f8;}
 nav ul ul li {padding: 10px 0;}
-nav ul ul li input {position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;} /* Hide the browser's default checkbox */
+nav ul input {position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;} /* Hide the browser's default checkbox */
 nav ul ul li label {font-size: 16px; padding: 12px 0 12px 38px;}
 nav li {background: left no-repeat;}
 nav li a {font-size: 20px;}
@@ -17,9 +18,11 @@ nav li.photomap {background-image: url('../assets/icon-photomap-red.svg');}
 nav li.places {background-image: url('../assets/icon-places-red.svg');}
 nav li.ridetracker {background-image: url('../assets/icon-ride-track-red.svg');}
 nav li.data {background-image: url('../assets/icon-data-red.svg'); background-position: 0 8px;}
-nav li.enabled a {background: url('../assets/icon-view-pass-on-16x16.svg') right no-repeat;}
+nav ul li ul li label {display: inline-block; width: 212px; padding: 2.5px 0 2.5px 38px; }
+nav li.enabled a, nav ul li ul li.enabled label {background: url('../assets/icon-view-pass-on-16x16.svg') right no-repeat;}
 nav a {padding: 12px 38px; text-decoration: none; color: #fbf6f8; display: block; transition: 0.3s;}
-nav a:hover {color: #cc5959;}
+nav a, nav label {transition: 0.3s;}
+nav a:hover, nav label:hover {color: #cc5959;}
 nav hr {color: #b1afb1; margin-left: 0; width: 50%;}
 nav #secondary-menu {padding-bottom: 70px;}
 nav #secondary-menu li a {font-size: 16px; color: #c5c2c3;}

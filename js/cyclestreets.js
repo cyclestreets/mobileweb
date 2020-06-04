@@ -509,7 +509,7 @@ var cyclestreetsui = (function ($) {
 			cyclestreetsui.popupActions ();
 			
 			// Initialise developerTools
-			cyclestreetsui.developerTools ();
+			//cyclestreetsui.developerTools ();
 			
 			// Initialise each section
 			$.each (_actions, function (setting, value) {

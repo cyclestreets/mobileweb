@@ -13,13 +13,13 @@ nav ul input {position: absolute; opacity: 0; cursor: pointer; height: 0; width:
 nav ul ul li label {font-size: 16px; padding: 12px 0 12px 38px;}
 nav li {background: left no-repeat;}
 nav li a {font-size: 20px;}
-nav li.journeyplanner {background-image: url('../assets/icon-jp-red.svg');}
-nav li.photomap {background-image: url('../assets/icon-photomap-red.svg');}
-nav li.places {background-image: url('../assets/icon-places-red.svg');}
-nav li.ridetracker {background-image: url('../assets/icon-ride-track-red.svg');}
-nav li.data {background-image: url('../assets/icon-data-red.svg'); background-position: 0 8px;}
+nav li.journeyplanner {background-image: url('/assets/icon-jp-red.svg');}
+nav li.photomap {background-image: url('/assets/icon-photomap-red.svg');}
+nav li.places {background-image: url('/assets/icon-places-red.svg');}
+nav li.ridetracker {background-image: url('/assets/icon-ride-track-red.svg');}
+nav li.data {background-image: url('/assets/icon-data-red.svg'); background-position: 0 8px;}
 nav ul li ul li label {display: inline-block; width: 212px; padding: 2.5px 0 2.5px 38px; }
-nav li.enabled a, nav ul li ul li.enabled label {background: url('../assets/icon-view-pass-on-16x16.svg') right no-repeat;}
+nav li.enabled a, nav ul li ul li.enabled label {background: url('/assets/icon-view-pass-on-16x16.svg') right no-repeat;}
 nav a {padding: 12px 38px; text-decoration: none; color: #fbf6f8; display: block; transition: 0.3s;}
 nav a, nav label {transition: 0.3s;}
 nav a:hover, nav label:hover {color: #cc5959;}
@@ -70,8 +70,8 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 
 /* Structural elements */
 .panel {display: none; position: fixed; bottom: 0; left: 0; z-index: 3; width: calc(100% - 40px); padding: 15px 20px; background-color: #fbf6f8;}
-.panel::before {content:url('../assets/card-handle.svg'); position: absolute; top: -8px; margin: 0 calc((100% - 208px) / 2);}
-.panel.red::before {content:url('../assets/card-handle-red-fill.svg');}
+.panel::before {content:url('/assets/card-handle.svg'); position: absolute; top: -8px; margin: 0 calc((100% - 208px) / 2);}
+.panel.red::before {content:url('/assets/card-handle-red-fill.svg');}
 .hidden {display: none;}
 
 /* Standard card elements */
@@ -129,7 +129,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search .recent-journeys li p {margin: 10px 0;}
 .panel.journeyplanner.search .recent-journeys li p.destination {display: inline; font-size: 16px; line-height: 19px;}
 .panel.journeyplanner.search .recent-journeys li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
-.panel.journeyplanner.search .recent-journeys li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('../assets/icon-cyclist-small.svg');} 
+.panel.journeyplanner.search .recent-journeys li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('/assets/icon-cyclist-small.svg');}
 .panel.journeyplanner.search .recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
 .panel.journeyplanner.search .recent-journeys li a {position: absolute; right: 0px;}
 

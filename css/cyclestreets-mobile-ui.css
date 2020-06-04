@@ -304,7 +304,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.map-style ul li input:checked ~ label img {width: 140px; height: 140px; border-color: #cc5959; border-radius: 15px;}
 .panel.map-style ul li label {display: inline-block;}
 .panel.map-style ul li label img {display: block; width: 120px; height: 120px; margin: 15px; border: 1px solid transparent; border-radius: 10%;}
-.panel.map-style ul li label span {display: block; text-align: center; margin: 0 auto 10px;}
+.panel.map-style ul li label span {display: block; text-overflow: ellipsis; text-align: center; margin: 0 auto 10px;}
 .panel.map-style ul li label p {display: block; white-space: normal; width: 100px; height: 25px; font-size: 12px; margin: 0 auto; text-align: center;}
 
 /* Feedback panel */

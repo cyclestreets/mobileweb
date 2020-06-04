@@ -1,0 +1,4 @@
+.config.js
+
+# Leaflet.LayerViewer library comes from separate repo at https://github.com/cyclestreets/Mapboxgljs.LayerViewer
+js/lib/Mapboxgljs.LayerViewer/

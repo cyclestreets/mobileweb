@@ -71,7 +71,7 @@
 						</li>
 						<li class="data"><a href="#">Data</a>
 							<ul>
-								<li class="collisions enabled">
+								<li class="collisions">
 									<input type="checkbox" name="show[]" id="show_collisions" />
 									<label for="show_collisions">Collisions</label>
 								</li>
@@ -295,7 +295,7 @@
 						<li>
 							<label for="category">Purpose</label>
 							<select name="category" id="category">
-								<option value="" disabled selected>Choose</option>
+								<option value="">All</option>
 								<option value="cycleparking">Cycle parking</option>
 								<option value="obstructions">Obstruction</option>
 								<option value="track">Track</option>
@@ -344,7 +344,7 @@
 							<li>
 								<label for="category">Category</label>
 								<select name="category" id="category">
-									<option value="" disabled selected>Choose</option>
+									<option value="">All</option>
 									<option value="cycleparking">Cycle parking</option>
 									<option value="obstructions">Obstruction</option>
 									<option value="track">Track</option>
@@ -368,7 +368,7 @@
 							<li>
 								<label for="metacategory">Good or bad</label>
 								<select name="metacategory" id="metacategory">
-									<option value="" disabled selected>Choose</option>
+									<option value="">All</option>
 									<option value="bad" id="severity_bad">Problem</option>
 									<option value="good" id="severity_good">Good practice</option>
 									<option value="other" id="severity_other">Infrastructure</option>
@@ -386,7 +386,7 @@
 						<hr />
 						<p>Only show reports with photos</p>
 						<label class="switch">
-							<input type="checkbox" id="photo-reports">
+							<input type="checkbox" name="suppressplaceholders" id="photomap_suppressplaceholders" value="1" checked="checked">
 							<span class="slider round"></span>
 						</label>
 					</form>
@@ -425,7 +425,7 @@
 								<li>
 									<label for="category">Category</label>
 									<select name="category">
-										<option value="" disabled selected>Choose</option>
+										<option value="">All</option>
 										<option value="cycleparking">Cycle parking</option>
 										<option value="obstructions">Obstruction</option>
 										<option value="track">Track</option>
@@ -449,7 +449,7 @@
 								<li>
 									<label for="metacategory">This photo represents</label>
 									<select name="metacategory">
-										<option value="" disabled selected>Choose</option>
+										<option value="">All</option>
 										<option value="bad" id="severity_bad">Problem</option>
 										<option value="good" id="severity_good">Good practice</option>
 										<option value="other" id="severity_other">Infrastructure</option>

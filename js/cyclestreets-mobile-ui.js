@@ -6,7 +6,7 @@ var cyclestreetsui = (function ($) {
 	var _settings = {
 		
 		// CycleStreets API
-		apiBaseUrl: 'API_BASE_URL',
+		apiBaseUrl: 'https://api.cyclestreets.net',
 		apiKey: 'YOUR_API_KEY',
 		
 		// Mapbox API key

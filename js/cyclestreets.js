@@ -30,20 +30,31 @@ var cyclestreetsui = (function ($) {
 		enableScale: true,
 		
 		// First-run welcome message
-		firstRunMessageHtml: '<p>Welcome to CycleStreets.</p>'
+		firstRunMessageHtml: '<p>Welcome to CycleStreets.</p>',
+
+		// Images; size set in CSS with .itinerarymarker
+		images: {
+			start: '/images/wisps/start.png',
+			waypoint: '/images/wisps/waypoint.png',
+			finish: '/images/wisps/finish.png'
+		}
 		
 	};
 	
-	// Breadcrump trail used when clicking left chevrons
-	var _breadcrumbs = [];
-	
+	// Class properties
+	var _map = null;
+	var _breadcrumbs = []; // Breadcrump trail used when clicking left chevrons
+	var _isMobileDevice = true;
+	var _panningEnabled = false;
+
+	// Enable panels and additional functionality
 	var _actions = [
 		'journeyPlanner',
 		'rideTracker',
 		'settings',
 		'feedback'
 	];
-	
+
 	// Layer definitions
 	var _layerConfig = {
 		
@@ -499,7 +510,8 @@ var cyclestreetsui = (function ($) {
 			
 			// Run the layerviewer for these settings and layers
 			layerviewer.initialise (_settings, _layerConfig);
-			
+			_map = layerviewer.getMap ();
+
 			// Autocomplete
 			cyclestreetsui.autocomplete ();
 			
@@ -512,9 +524,12 @@ var cyclestreetsui = (function ($) {
 			//cyclestreetsui.developerTools ();
 			
 			// Initialise each section
-			$.each (_actions, function (setting, value) {
-				cyclestreetsui[value] ();
+			$.each (_actions, function (setting, action) {
+				cyclestreetsui[action] ();
 			});
+
+			// Add routing
+			cyclestreetsui.routing ();
 			
 			// Show the default panel
 			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
@@ -522,7 +537,12 @@ var cyclestreetsui = (function ($) {
 			
 		},
 		
-		
+		// Routing
+		routing: function ()
+		{
+			// Delegate to separate class
+			routing.initialise (_settings, _map, _isMobileDevice, _panningEnabled);
+		},
 		
 		// Autocomplete
 		autocomplete: function ()

@@ -1,0 +1,71 @@
+/* Routing */
+.itinerarymarker {width: 30px; height: 40px; cursor: pointer;}
+.mapboxgl-popup {width: 200px;}
+.mapboxgl-popup-content {text-align: center; font-size: 1.2em; border-radius: 5px; box-shadow: 5px 5px 10px #888;}
+.mapboxgl-ctrl-group h2 {font-size: 1em;}
+.mapboxgl-ctrl-group p {margin: 0 0 5px;}
+.mapboxgl-ctrl-group.local {width: 120px; padding: 6px;}
+.mapboxgl-ctrl-group.local ul {list-style: none; padding: 0; margin: 0;}
+.mapboxgl-ctrl-group.local ul li {padding: 0; margin: 0; font-size: 1em;}
+.mapboxgl-ctrl-group.local a {color: black;}
+
+/* Geocoder */
+#geocoder {position: absolute; top: 10px; left: 10px; z-index: 1001;}
+#geocoder input {padding: 5px; font-size: 1em; color: #603; width: 300px;}
+#geocoder input.ui-autocomplete-loading {background: white url('../images/ui-anim_basic_16x16.gif') right center no-repeat;}
+#geocoder input, .ui-autocomplete {border: 1px solid #eee; box-shadow: 5px 5px 10px 0px rgba(28,28,28,0.5);}
+.ui-autocomplete {background-color: white; z-index: 1000; width: 200px; list-style: none; margin-left: 0; padding-left: 0;}
+.ui-autocomplete li {list-style: none; margin-left: 0; padding-left: 0;}
+.ui-autocomplete li a {padding: 7px; display: block; color: #603;}
+.ui-autocomplete li a span {color: gray; font-size: 0.81em;}
+.ui-autocomplete li a.ui-state-active {cursor: pointer; background-color: #f7f7f7;}
+
+/* UI control */
+#routeplanning #clearroute {display: block; text-align: right;}
+.mapboxgl-ctrl-group#routeplanning {width: 300px; background-color: #ddd;}
+#routeplanning input {width: 95%;}
+#routeplanning h2 {font-size: 1.4em;}
+#routeplanning .geocoder {margin-bottom: 5px; padding: 5px;}
+#routeplanning #results.ui-tabs {border: 0; padding: 0; border-radius: 0; margin-top: 20px;}
+#routeplanning #results.ui-tabs ul#strategies li a {padding: 5px 7px;}
+#routeplanning #results.ui-tabs ul#strategies .ui-tabs-active {background-color: #eee;}
+#routeplanning .ui-widget-header, #routeplanning .ui-widget-content {background-color: transparent;}
+#routeplanning #itineraries {background-color: white;}
+#routeplanning #results.ui-tabs #itineraries {height: 500px; overflow-y: auto;}
+#routeplanning #results.ui-tabs .ui-tabs-panel {padding: 15px 10px;}
+#routeplanning table.itinerary tr {cursor: zoom-in;}
+#routeplanning .travelmode {font-size: 1.3em;}
+#routeplanning h3 {color: #603;}
+#routeplanning h3.right {float: right;}
+
+/* Popups */
+.strategypopup {max-width: 100px; max-height: 80px; cursor: pointer;}
+.strategypopup .details {padding: 5px;}
+.strategypopup .details p {padding: 0; margin: 0 0 5px;}
+
+/* Table style */
+table.lines {border-collapse: collapse;}
+.lines td, .lines th {border-bottom: 1px solid #e9e9e9; padding: 6px 4px 2px; vertical-align: top; text-align: left;}
+.lines tr:first-child {border-top: 1px solid #e9e9e9;}
+
+/* Turns - copied from OSRM */
+.turnsicons {background-image: url('../images/turns/turns.svg'); -webkit-background-size: 455px 20px; background-size: 455px 20px; background-repeat: no-repeat; margin: 0; content: ''; display: inline-block; vertical-align: top; width: 20px; height: 20px; opacity: 0.5;}
+.turnsicon-continue         {background-position: 2px 0px;}
+.turnsicon-sharp-right      {background-position: -24px 0px;}
+.turnsicon-turn-right       {background-position: -50px 0px;}
+.turnsicon-bear-right       {background-position: -74px 0px;}
+.turnsicon-u-turn           {background-position: -101px 0px;}
+.turnsicon-sharp-left       {background-position: -127px 0px;}
+.turnsicon-turn-left        {background-position: -150px 0px;}
+.turnsicon-bear-left        {background-position: -175px 0px;}
+.turnsicon-depart           {background-position: -202px 0px;}
+.turnsicon-enter-roundabout {background-position: -227px 0px;}
+.turnsicon-arrive           {background-position: -253px 0px;}
+.turnsicon-via              {background-position: -278px 0px;}
+.turnsicon-fork             {background-position: -305px 0px;}
+.turnsicon-ramp-right       {background-position: -331px 0px;}
+.turnsicon-ramp-left        {background-position: -352px 0px;}
+.turnsicon-merge-left       {background-position: -376px 0px;}
+.turnsicon-merge-right      {background-position: -403px 0px;}
+.turnsicon-end              {background-position: -429px 0px;}
+

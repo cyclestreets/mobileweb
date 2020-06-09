@@ -51,8 +51,7 @@ var cyclestreetsui = (function ($) {
 	var _actions = [
 		'journeyPlanner',
 		'rideTracker',
-		'settings',
-		'feedback'
+		'settings'
 	];
 
 	// Layer definitions
@@ -1074,47 +1073,6 @@ var cyclestreetsui = (function ($) {
 			// Open about card
 			$('#about-cyclestreets').click (function () {
 				cyclestreetsui.switchPanel ('.panel.settings', '.panel.about');
-			});
-		},
-		
-		
-		/*
-		 * Feedback handlers
-		 */
-		// Feedback box and handler
-		feedback: function ()
-		{			
-			$('.feedback .action.forward').click (function () {
-				
-				// Feedback URL; re-use of settings values is supported, represented as placeholders {%apiBaseUrl}, {%apiKey}
-				var feedbackApiUrl = cyclestreetsui.settingsPlaceholderSubstitution (_settings.feedbackApiUrl, ['apiBaseUrl', 'apiKey']);
-				
-				// Locate the form
-				var form = $('.feedback form');
-				
-				// Send the feedback via AJAX
-				$.ajax({
-					url: feedbackApiUrl,
-					type: form.attr('method'),
-					data: form.serialize()
-				}).done (function (result) {
-						
-					// Detect API error
-					if ('error' in result) {
-						$('.feedback-submit.error p').text (result.error);
-						cyclestreetsui.switchPanel ('.panel', '.feedback-submit.error');
-					
-					// Normal result; NB result.id is the feedback number
-					} else {
-						cyclestreetsuiswitchPanel ('.panel', '.feedback-submit.submitted');
-					}
-					
-				}).fail (function (failure) {
-					if (failure.responseJSON.error) {
-						$('.feedback-submit.error p').text (failure.responseJSON.error);
-					}
-					cyclestreetsui.switchPanel ('.panel', '.feedback-submit.error');
-				});
 			});
 		},
 		

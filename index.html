@@ -737,7 +737,6 @@
 				
 				<div class="wizard feedback">
 					<form method="post" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
-						
 						<div class="panel feedback">
 							<h2>Feedback</h2>
 							<a class="action back" href="#" title="Cancel giving feedback and return to the main map">Cancel</a>
@@ -750,6 +749,7 @@
 							<br>
 							<label>Feedback</label>
 							<textarea name="comments" required="required" placeholder="Your feedback"></textarea>
+							<input type="hidden" name="type" value="other">
 						</div>
 				
 						<div class="panel red feedback-submit submitting">
@@ -757,7 +757,7 @@
 							<img class="wheel" src="/images/bicycle-wheel.svg" alt="Bicycle wheel" />
 							<p>Your feedback is being submitted.</p>
 						</div>
-				
+						
 						<div class="panel red feedback-submit submitted">
 							<h1>Thank you!</h1>
 							<img class="wheel" src="/images/tick-green.png" alt="Green checkmark" />
@@ -767,7 +767,6 @@
 						<div class="panel red feedback-submit error">
 							<p>An error occured while submitting your feedback.</p>
 						</div>
-					
 					</form>
 				</div>
 				

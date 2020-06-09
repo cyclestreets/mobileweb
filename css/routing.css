@@ -9,7 +9,7 @@
 .mapboxgl-ctrl-group.local ul li {padding: 0; margin: 0; font-size: 1em;}
 .mapboxgl-ctrl-group.local a {color: black;}
 
-/* Geocoder */
+/* Geocoder 
 #geocoder {position: absolute; top: 10px; left: 10px; z-index: 1001;}
 #geocoder input {padding: 5px; font-size: 1em; color: #603; width: 300px;}
 #geocoder input.ui-autocomplete-loading {background: white url('../images/ui-anim_basic_16x16.gif') right center no-repeat;}
@@ -19,7 +19,7 @@
 .ui-autocomplete li a {padding: 7px; display: block; color: #603;}
 .ui-autocomplete li a span {color: gray; font-size: 0.81em;}
 .ui-autocomplete li a.ui-state-active {cursor: pointer; background-color: #f7f7f7;}
-
+*/
 /* UI control */
 #routeplanning #clearroute {display: block; text-align: right;}
 .mapboxgl-ctrl-group#routeplanning {width: 300px; background-color: #ddd;}

@@ -204,7 +204,13 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
  * Popup panels
  */
 
-.popup {display: none; position: fixed; left: 0; bottom: 0; padding: 0; margin: 0 5% 20% 5%; width: 90%;}
+
+ /* Vex dialog custom styling */
+.vex.vex-theme-plain .vex-content {border-radius: 25px;}
+.vex.vex-theme-plain .vex-dialog-button.vex-dialog-button-primary {border-radius: 10px; background: #cc5959;}
+.vex.vex-theme-plain .vex-content {font-family: 'Josefin Sans', sans-serif;}
+
+.popup {display: none; position: fixed; left: 0; bottom: 0; padding: 0; margin: 0 5% 20% 5%; width: 250px;}
 .popup a.ui-button.close-button {position: absolute; top: 0; right: 0; margin: 10px; line-height: 60px;}
 
 /* Photomap popup */

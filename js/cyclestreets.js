@@ -570,11 +570,10 @@ var cyclestreetsui = (function ($) {
 			});
 
 			// Add routing
-			cyclestreetsui.routing ();
+			//cyclestreetsui.routing ();
 			
 			// Show the default panel
 			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
-			
 			
 		},
 		

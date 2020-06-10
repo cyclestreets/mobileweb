@@ -236,17 +236,59 @@ var cyclestreetsui = (function ($) {
 				datetime: 'friendlydate'
 			},
 			iconField: 'iconUrl',		// icons specified in the field value
-			popupHtml:
-				  '<p><a href="/photomap/{properties.id}/" id="details" data-url="{properties.apiUrl}&thumbnailsize=800"><img src="{properties.thumbnailUrl}" /></a></p>'
+			useManualPopup: '.popup.photomap',
+			popupHtml: {selector: '.popup.photomap'},
+			//popupHtml: '', Populated automatically in initialise
+			/*
+			//popupOld: '<div class="popup photomap">'
+				+ '<div class="inner-card flip-card-inner">'
+				+ '<div class="flip-card-front popup-card">'
+				+ '<img class="popup-photo" src="placeholders/photomap-add-comments-placeholder.svg" alt="Photo" />'
+				+ '<a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a>'
+				+ '<a href="#" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /> Share</a>'
+				+ '<a class="flip" href="#" title="Show more information"> Photo info</a>'
+				+ '</div>'
+				+ '<div class="flip-card-back popup-card">'
+				+ '<a href="#" class="back" title="Return to the front of this card"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a>'
+				+ '<a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a>'
+				+ '<br>'
+				+ '<p class="key">Category:</p>'
+				+ '<p>Cycle parking</p>'
+				+ '<br>	'
+				+ '<p class="key">Type:</p>'
+				+ '<p>Neutral</p>'
+				+ '<hr /><ul>'
+				+ '<li><img src="/images/icon-user.svg" alt="User icon" />'
+				+ '<p>timbo</p>'
+				+ '</li>'
+				+ '<li>'
+				+ '<img src="/images/icon-clock.svg" alt="Clock icon" />'
+				+ '<p>1:16pm, 8th August, 2018</p>'
+				+ '</li>'
+				+ '<li>'
+				+ '<img src="/images/icon-hashtag.svg" alt="Photo number" />'
+				+ '<p>92334</p>'
+				+ '</li>'
+				+ '<li>'
+				+ '<img src="/images/icon-copyright.svg" alt="Copyright" />'
+				+ '<p>CC Attribution-Share Alike (by-sa)</p>'
+				+ '</li>'
+				+ '</ul>'
+				+ '</div></div></div>'
+
+
+
+				+ '<p><a href="/photomap/{properties.id}/" id="details" data-url="{properties.apiUrl}&thumbnailsize=800"><img src="{properties.thumbnailUrl}" /></a></p>'
 				+ '<div class="scrollable">'
 				+ '<strong>{properties.captionHtml}</strong>'
 				+ '</div>'
 				+ '<table>'
-				+ '<tr><td>Date:</td><td>{properties.datetime}</td></tr>'
+				+ '<tr><td>Datsdsde:</td><td>{properties.datetime}</td></tr>'
 				+ '<tr><td>By:</td><td>{properties.username}</td></tr>'
 				+ '<tr><td>Category:</td><td>{properties.categoryName} &mdash; {properties.metacategoryName}</td></tr>'
 				+ '</table>'
 				+ '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>',
+			*/
 			detailsOverlay: 'apiUrl',
 			overlayHtml:
 				  '<table class="fullimage">'
@@ -1089,10 +1131,10 @@ var cyclestreetsui = (function ($) {
 			
 			// Flip photomap popup card
 			$('.popup a.flip').click (function () {
-				$('#inner-card').addClass('flipped');
+				$('.inner-card').addClass('flipped');
 			});
 			$('.popup a.back').click (function () {
-				$('#inner-card').removeClass('flipped');
+				$('.inner-card').removeClass('flipped');
 			});
 			
 			// Start navigation from a places popup card

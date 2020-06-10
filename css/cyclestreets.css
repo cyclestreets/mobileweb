@@ -212,6 +212,13 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 .popup {display: none; position: fixed; left: 0; bottom: 0; padding: 0; margin: 0 5% 20% 5%; width: 250px;}
 .popup a.ui-button.close-button {position: absolute; top: 0; right: 0; margin: 10px; line-height: 60px;}
+#map .popup {display: block;}
+
+/* Override mapbox GL popup characteristics */
+/* Marker tweaks */
+.mapboxgl-popup-close-button {display: none;}
+.mapboxgl-popup-content {padding: 0; width: 180px; background: transparent; box-shadow: none;}
+.mapboxgl-popup-content-wrapper {padding: 1%;}
 
 /* Photomap popup */
 .popup.photomap {perspective: 1000px; background-color: transparent; height: 480px;}

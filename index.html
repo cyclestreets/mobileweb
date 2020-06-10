@@ -65,24 +65,25 @@
 		<!-- Hamburger menu -->
 			<nav>
 				<!-- <a href="#" id="closeNavButton" class="close-nav-button"><img src="/images/icon-cross-red.svg"></a> Include close button? -->
-				<div id="selector">
+				<div class="selector">
 					<ul>
 						<li class="journeyplanner">
 							<a href="#">Journey planner</a>
 						</li>
 						<li class="photomap">
 							<input type="checkbox" name="show[]" id="show_photomap" />						
-								<a href="#"><label for="show_photomap">Photomap</label></a>							
+							<a href="#"><label for="show_photomap">Photomap</label></a>							
 						</li>
-						<li class="places">
-							<a id="places-menu-item" href="#">Places</a>
+						<li class="pois">
+							<input type="checkbox" name="show[]" id="show_pois" />						
+							<a href="#"><label for="show_pois">Places</label></a>
 						</li>
 						<li class="ridetracker">
 							<a href="#">Ride tracker</a>
 						</li>
 						<li class="data"><a href="#">Data</a>
 							<ul>
-								<li class="collisions">
+								<li>
 									<input type="checkbox" name="show[]" id="show_collisions" />
 									<label for="show_collisions">Collisions</label>
 								</li>
@@ -482,81 +483,69 @@
 				</div>
 				
 				<!-- Places and POI panels -->
-				<div class="panel places">
+				<div class="panel pois">
 					<h2>Places</h2>
-					<ul>
-						<li>
-							<input id="cycle-parking" type="checkbox">
-							<label for="cycle-parking">
-								<img src="/images/icon-cycle-parking.svg" alt="Cycle parking icon" />
-								<span>Cycle parking</span>
-							</label>
-						</li>
-						<li>
-							<input id="atm" type="checkbox">
-							<label for="atm">
-								<img src="/images/icon-atm-red.svg" alt="ATM icon" />
-								<span>ATM</span>
-							</label>
-						</li>
-						<li>
-							<input id="car-park" type="checkbox">
-							<label for="car-park">
-								<img src="/images/icon-car-park-pos.svg" alt="Car park icon" />
-								<span>Car park</span>
-							</label>
-						</li>
-						<li>
-							<input id="underground" type="checkbox">
-							<label for="underground">
-								<img src="/images/icon-underground-pos.svg" alt="Underground icon" />
-								<span>Underground</span>
-							</label>
-						</li>
-						<li>
-							<input id="bike-shop" type="checkbox">
-							<label for="bike-shop">
-								<img src="/images/icon-bike-shops-pos.svg" alt="Bike shop icon" />
-								<span>Bike shops</span>
-							</label>
-						</li>
-						<li>
-							<input id="greengrocer" type="checkbox">
-							<label for="greengrocer">
-								<img src="/images/icon-greengrocer-neg.svg" alt="Greengrocer icon" />
-								<span>Greengrocer</span>
-							</label>
-						</li>
-						<li>
-							<input id="supermarket" type="checkbox">
-							<label for="supermarket">
-								<img src="/images/icon-supermarket-pos.svg" alt="Supermarket icon" />
-								<span>Supermarket</span>
-							</label>
-						</li>
-						<li>
-							<input id="tourist-info" type="checkbox">
-							<label for="tourist-info">
-								<img src="/images/icon-tourist-info-pos.svg" alt="Tourist info icon" />
-								<span>Tourist info</span>
-							</label>
-						</li>
-						<li>
-							<input id="viewpoint" type="checkbox">
-							<label for="viewpoint">
-								<img src="/images/icon-viewpoint-neg.svg" alt="Viewpoint icon" />
-								<span>Viewpoint</span>
-							</label>
-						</li>
-					</ul>
+					<form>
+						<ul>
+							<li>
+								<input id="cycleparking" type="checkbox" name="type" value="cycleparking">
+								<label for="cycleparking">
+									<img src="/images/icon-cycle-parking.svg" alt="Cycle parking icon" />
+									<span>Cycle parking</span>
+								</label>
+							</li>
+							<li>
+								<input id="atms" type="checkbox" name="type" value="atms" >
+								<label for="atms">
+									<img src="/images/icon-atm-red.svg" alt="ATM icon" />
+									<span>ATM</span>
+								</label>
+							</li>
+							<li>
+								<input id="bikeshops" type="checkbox" name="type" value="bikeshops" >
+								<label for="bikeshops">
+									<img src="/images/icon-bike-shops-pos.svg" alt="Bike shop icon" />
+									<span>Bike shops</span>
+								</label>
+							</li>
+							<li>
+								<input id="conveniencestores" type="checkbox" name="type" value="conveniencestores" >
+								<label for="conveniencestores">
+									<img src="/images/icon-greengrocer-neg.svg" alt="Greengrocer icon" />
+									<span>Greengrocer</span>
+								</label>
+							</li>
+							<li>
+								<input id="supermarkets" type="checkbox" name="type" value="supermarkets" >
+								<label for="supermarkets">
+									<img src="/images/icon-supermarket-pos.svg" alt="Supermarket icon" />
+									<span>Supermarket</span>
+								</label>
+							</li>
+							<li>
+								<input id="touristinformation" type="checkbox" name="type" value="touristinformation" >
+								<label for="touristinformation">
+									<img src="/images/icon-tourist-info-pos.svg" alt="Tourist info icon" />
+									<span>Tourist info</span>
+								</label>
+							</li>
+							<li>
+								<input id="viewpoints" type="checkbox" name="type" value="viewpoints" >
+								<label for="viewpoints">
+									<img src="/images/icon-viewpoint-neg.svg" alt="Viewpoint icon" />
+									<span>Viewpoint</span>
+								</label>
+							</li>
+						</ul>
+					</form>
 				</div>
 				
 				
 				<!-- Popups and notification bars -->
 				<div class="popup photomap">
-					<div id="inner-card" class="flip-card-inner">
+					<div class="inner-card flip-card-inner">
 						<div class="flip-card-front popup-card">
-							<img class="popup-photo" src="placeholders/photomap-add-comments-placeholder.svg" alt="Photo" />
+							<img class="popup-photo" src="{properties.thumbnailUrl}" alt="Photo" />
 							<a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a>
 							<a href="#" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /> Share</a>
 							<a class="flip" href="#" title="Show more information"> Photo info</a>
@@ -566,23 +555,23 @@
 							<a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a>
 							<br>
 							<p class="key">Category:</p>
-							<p>Cycle parking</p>
+							<p>{properties.categoryName}</p>
 							<br>	
 							<p class="key">Type:</p>
-							<p>Neutral</p>
+							<p>{properties.metacategoryName}</p>
 							<hr />
 							<ul>
 								<li>
 									<img src="/images/icon-user.svg" alt="User icon" />
-									<p>timbo</p>
+									<p>{properties.username}</p>
 								</li>
 								<li>
 									<img src="/images/icon-clock.svg" alt="Clock icon" />
-									<p>1:16pm, 8th August, 2018</p>
+									<p>{properties.datetime}</p>
 								</li>
 								<li>
 									<img src="/images/icon-hashtag.svg" alt="Photo number" />
-									<p>92334</p>
+									<p>{properties.id}</p>
 								</li>
 								<li>
 									<img src="/images/icon-copyright.svg" alt="Copyright" />

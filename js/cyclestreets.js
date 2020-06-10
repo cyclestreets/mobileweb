@@ -169,14 +169,14 @@ var cyclestreetsui = (function ($) {
 				  '<p>Average distance: <strong>{properties.distance}km</strong>'
 		},
 		
-		cycleparking: {
+		pois: {
 			apiCall: '/v2/pois.locations',
 			apiFixedParameters: {
-				type: 'cycleparking',
 				fields: 'id,name,osmTags[capacity,access,bicycle_parking,covered],nodeId',
 				limit: 400
 			},
 			iconUrl: '/images/icons/cycleparking_good.svg',
+			//iconField: 'iconUrl',		// icons specified in the field value
 			iconSize: [24, 24],
 			popupHtml:
 				  '<p><strong>Cycle parking</strong></p>'

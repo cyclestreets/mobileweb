@@ -54,7 +54,8 @@ var cyclestreetsui = (function ($) {
 	var _actions = [
 		'journeyPlanner',
 		'rideTracker',
-		'settings'
+		'settings',
+		'pois'
 	];
 
 	// Layer definitions
@@ -1108,6 +1109,26 @@ var cyclestreetsui = (function ($) {
 			});
 		},
 		
+
+		/*
+		 * POIS selection screen actions
+		 */
+		pois: function ()
+		{
+			// Workaround until CycleStreets POIS API supports multiple types
+			$('.panel.pois input').click (function () {
+				// What POI did we click on?	
+				var clicked_poi_id = $(this).attr('id');
+				
+				// If any other POIS are selected, deselect these			
+				$.each($('.panel.pois input:checked'), function (index, input) {
+					if (input.id != clicked_poi_id) {
+						$(input).prop('checked', false);
+					}
+				});
+			});
+		},
+
 			
 		/*
 		 * Settings, about and map-styles

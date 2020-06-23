@@ -32,6 +32,9 @@ var cyclestreetsui = (function ($) {
 		// First-run welcome message
 		firstRunMessageHtml: '<p>Welcome to CycleStreets.</p>',
 
+		// Use existing geolocation button instead of Mapbox's
+		geolocationElementId: 'geolocate-button',
+
 		// Images; size set in CSS with .itinerarymarker
 		images: {
 			start: '/images/wisps/start.png',

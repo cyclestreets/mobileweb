@@ -801,6 +801,7 @@ var cyclestreetsui = (function ($) {
 		 */
 		journeyPlanner: function ()
 		{	
+
 			// Open the route search box, if not already open
 			var routeSearchBoxFocus = function() {
 				if (!$('.panel.journeyplanner.search').hasClass('open')) {

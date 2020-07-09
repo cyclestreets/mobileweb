@@ -788,18 +788,53 @@ var cyclestreetsui = (function ($) {
 		 */
 		journeyPlanner: function ()
 		{	
-			// Open the route search box
+			// Open the route search box, if not already open
 			var routeSearchBoxFocus = function() {
-				cyclestreetsui.resetUI ();
-				$('.panel.journeyplanner.search').addClass ('open', 500);
+				if (!$('.panel.journeyplanner.search').hasClass('open')) {
+					cyclestreetsui.resetUI ();
+					$('.panel.journeyplanner.search').addClass ('open', 500);
+
+					// Resize map element
+					cyclestreetsui.fitMap ('.panel.journeyplanner.search');
+					
+					// Drop a pin in the middle of the map as our default start position
+					routing.addMapCenter ();
+
+					// Show the get routes button 
+					// #¡# This should be shown only when waypoints.length > 2
+					$('.panel.journeyplanner.search #getRoutes').show({duration: 500});
+
+					// Show the other input boxes
+					$('.panel.journeyplanner.search input').show({duration: 500});
+				}
 			};
+
+			// Handler for add waypoints button
+			$('.panel.journeyplanner.search a.addWaypoint').click (function () {
+				var waypointElement = $(this);
+				
+				routing.addWaypointGeocoder (waypointElement)
+			});
+
+			// Handler for find routes button
+			$('.panel.journeyplanner.search #getRoutes').click (function () {
+				// Get routes from waypoints already on the map
+				routing.plannable (); // Will plan the route and create the result tabs
+
+				// Switch to the card containing the tabs
+				cyclestreetsui.switchPanel ('.panel.journeyplanner.search', '.panel.journeyplanner.select');
+
+				// Resize map element
+				cyclestreetsui.fitMap ('.panel.journeyplanner.select');
+
+			});
 			
 			// Open the Route search box
-			$('.panel.journeyplanner.search input').focus (routeSearchBoxFocus);
+			$('.panel.journeyplanner.search #end').focus (routeSearchBoxFocus);
 			
 			// Show the routing options after clicking on routing button
 			$('.panel.journeyplanner.search ul li a').click (function () {
-				cyclestreetsui.switchPanel ('.panel.journeyplanner.search', '.panel.journeyplanner.select');
+				cyclestreetsui.switchPanel ('.panel.journeyplanner.search', '.panel.journeyplanner.choose');
 			});
 			
 			// Display the elevation graph
@@ -907,11 +942,16 @@ var cyclestreetsui = (function ($) {
 						// Show the previous panel
 						var lastPanel = _breadcrumbs.pop ();
 						$(lastPanel).first ().show ();
+
 					}
 					else {
 						// Otherwise, if there are no breadcrumbs, return to the default home screen
 						cyclestreetsui.returnHome ();	
 					}
+
+					// Resize map element
+					cyclestreetsui.fitMap ();
+					
 				}
 			});
 			
@@ -1049,6 +1089,9 @@ var cyclestreetsui = (function ($) {
 			_breadcrumbs.push (currentPanel);
 			$(currentPanel).hide ();
 			$(destinationPanel).show ();
+
+			// Resize map element
+			cyclestreetsui.fitMap (destinationPanel);
 		},
 		
 		// Reset nav and move-map search box to their default states

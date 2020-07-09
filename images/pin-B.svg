@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="44" height="50" viewBox="0 0 44 50">
+  <defs>
+    <path id="path-2" fill-rule="evenodd" d="M0 22C0 9.85786915 9.85786915 0 22 0c12.1421318 0 22 9.85786915 22 22 0 10.45318985-7.30618668 19.21338654-17.08614159 21.44818497l-3.06841468 4.09122085-1.0454445 1.39392853c-.39999961.53333283-1.19999885.53333283-1.59999847 0l-4.11386108-5.48514938C7.30618477 41.21338654 0 32.45318604 0 22z"/>
+    <linearGradient id="linearGradient-3" x1="22" x2="22" y1="0" y2="49.333" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="rgb(0,0,0)" stop-opacity="0"/>
+      <stop offset="1" stop-color="rgb(0,0,0)"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <g>
+      <g opacity=".5" transform="translate(1 35)">
+        <path fill="rgb(33,35,34)" fill-rule="evenodd" d="M22.0764119 14.11190891l-.88496337.57210033c-.18040714.0788678-.35457965.06557753-.44860403 0l-3.11479309-1.7862139C10.40510983 12.23523261 2.35905263 9.63605507.11079083 6.53062406-1.1611975 2.92385998 8.68848636 0 20.96714652 0 33.24580667 0 43.09549053 2.92385998 41.8235022 6.53062406c-2.24826179 3.105431-10.294319 5.70460855-17.51726057 6.36717128l-2.22982972 1.21411357z"/>
+      </g>
+    </g>
+    <g>
+      <use fill="rgb(220,79,85)" xlink:href="#path-2"/>
+      <use fill="url(#linearGradient-3)" xlink:href="#path-2"/>
+    </g>
+    <text font-size="0" style="white-space:pre">
+      <tspan x="8.5" y="33" fill="rgb(255,255,255)" font-family="Josefin Sans" font-size="16" font-weight="700" style="white-space:pre;text-transform:none">B</tspan>
+    </text>
+    <path fill="rgb(255,255,255)" fill-rule="evenodd" d="M18.2619773 7C13 22 29.66945298 25.52850802 24.36638946 37 34.5 30.5 21 19 31 10.76271765 26.15168628 12.19665415 21.32407018 11.0150222 18.2619773 7z"/>
+  </g>
+</svg>

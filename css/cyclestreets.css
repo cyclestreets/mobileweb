@@ -119,7 +119,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search input {position: relative; bottom: 5px; height: 50px; width: calc(100% - 40px); margin: 10px 0; padding: 0 20px; border: 0; transition: 0.5s;}
 .panel.journeyplanner.search.open input {width: calc(100% - 120px); padding-left: 50px;}
 .panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; left: 25px; margin-top: 12px; }
-.panel.journeyplanner.search a.addWaypoint {display: none; position: absolute; top: 60px; right: 60px;}
+.panel.journeyplanner.search a.addWaypoint {display: none; position: relative; top: 50px; right: 10px;}
 .panel.journeyplanner.search.open a.removeWaypoint {display: inline-block;}
 .panel.journeyplanner.search.open a.addWaypoint {display: inline-block;}
 .panel.journeyplanner.search #getRoutes {display: none; position: absolute; right: 0;}

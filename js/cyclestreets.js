@@ -805,7 +805,7 @@ var cyclestreetsui = (function ($) {
 					$('.panel.journeyplanner.search').addClass ('open', 500);
 
 					// Resize map element
-					cyclestreetsui.fitMap ('.panel.journeyplanner.search');
+					cyclestreetsui.fitMap ();
 					
 					// Drop a pin in the middle of the map as our default start position
 					routing.addMapCenter ();
@@ -818,13 +818,6 @@ var cyclestreetsui = (function ($) {
 					$('.panel.journeyplanner.search input').show({duration: 500});
 				}
 			};
-
-			// Handler for add waypoints button
-			$('.panel.journeyplanner.search a.addWaypoint').click (function () {
-				var waypointElement = $(this);
-				
-				routing.addWaypointGeocoder (waypointElement)
-			});
 
 			// Handler for find routes button
 			$('.panel.journeyplanner.search #getRoutes').click (function () {

@@ -768,6 +768,9 @@ var cyclestreetsui = (function ($) {
 				
 					// Show the matching panel
 					$('.panel.' + className).first ().slideToggle (); // Slide in animations do not work smoothly
+
+					// Resize map element
+					cyclestreetsui.fitMap ();
 				}
 			});
 		},
@@ -1114,6 +1117,9 @@ var cyclestreetsui = (function ($) {
 			cyclestreetsui.resetUI ();
 			$('.panel').hide (); // Hide all panels
 			$('.panel.journeyplanner.search').show (); // Show the default pannel, i.e. journeyplanner search
+			
+			// Resize map element
+			cyclestreetsui.fitMap ();
 		},
 			
 			

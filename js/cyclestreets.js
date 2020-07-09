@@ -43,7 +43,10 @@ var cyclestreetsui = (function ($) {
 		},
 
 		// Whether to plan routes the moment the map is clicked rather than wait until a routing button is pressed
-		planRoutingOnMapClick: false
+		planRoutingOnMapClick: false,
+
+		// Whether to show the primitive Mapbox toolbox
+		showToolBox: false
 		
 	};
 	

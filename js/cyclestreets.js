@@ -40,7 +40,10 @@ var cyclestreetsui = (function ($) {
 			start: '/images/wisps/start.png',
 			waypoint: '/images/wisps/waypoint.png',
 			finish: '/images/wisps/finish.png'
-		}
+		},
+
+		// Whether to plan routes the moment the map is clicked rather than wait until a routing button is pressed
+		planRoutingOnMapClick: false
 		
 	};
 	

@@ -41,7 +41,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
  * Main UI
  */
 
-#map {position:absolute; top:0; bottom:0; left: 0; width:100%;}
+#map {position:absolute; top: 0; bottom: 0; left: 0; width:100%;}
 
 /* Main UI icons and input boxes */
 .ui-button {display: block; position: fixed; width: 50px; height: 50px; line-height: 50px; border: 0 solid #f5f5f5; border-radius: 50%; background: #f5f5f5; text-align: center; box-shadow: 0 0 3px gray;}
@@ -57,13 +57,14 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 #close-browse-box-icon {display: none; top: 95px; right: 20px; z-index: 1; line-height: 60px; box-shadow: none;}
 
 /* Geocoder autocomplete */
-.ui-autocomplete-loading {background: white url('assets/ui-anim_basic_16x16.gif') right center no-repeat;}
+.ui-autocomplete-loading {background: white url('../images/ui-anim_basic_16x16.gif') right center no-repeat;}
 .ui-autocomplete {background-color: white; width: 200px; list-style: none; margin-left: 0; padding-left: 0; border-radius: 25px;}
 .ui-autocomplete li {list-style: none; margin-left: 0; padding-left: 0;}
 .ui-autocomplete li:first-child a {padding-top: 9px;}
 .ui-autocomplete li a {padding: 5px 15px 3px; display: block; color: #dc4f55;}
 .ui-autocomplete li a span {color: gray; font-size: 0.81em;}
 .ui-autocomplete li a.ui-state-active {cursor: pointer; background-color: #fbf6f8;}
+.ui-autocomplete {z-index: 100}
 
 /*
  * Default panel styling
@@ -114,7 +115,14 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 /* Route search panel */
 .panel.journeyplanner.search {height: 60px;}
 .panel.journeyplanner.search.open {height: auto;}
+.panel.journeyplanner.search #start {display: none;}
 .panel.journeyplanner.search input {position: relative; bottom: 5px; height: 50px; width: calc(100% - 40px); margin: 10px 0; padding: 0 20px; border: 0; transition: 0.5s;}
+.panel.journeyplanner.search.open input {width: calc(100% - 120px); padding-left: 50px;}
+.panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; left: 25px; margin-top: 12px; }
+.panel.journeyplanner.search a.addWaypoint {display: none; position: absolute; top: 60px; right: 60px;}
+.panel.journeyplanner.search.open a.removeWaypoint {display: inline-block;}
+.panel.journeyplanner.search.open a.addWaypoint {display: inline-block};
+.panel.journeyplanner.search #getRoutes  {display: none; margin-right: -20px;}
 .panel.journeyplanner.search .shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0;}
 .panel.journeyplanner.search .shortcut-icons {display: inline-block; overflow-x: scroll;}
 .panel.journeyplanner.search .shortcut-icons li a {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}
@@ -134,7 +142,10 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search .recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
 .panel.journeyplanner.search .recent-journeys li a {position: absolute; right: 0px;}
 
+/* Route results panel */
+
 /* Route speed select panel */
+.panel.journeyplanner.select {height: 200px;}
 .panel.journeyplanner.select p {margin-top: 15px; text-align: center;}
 .panel.journeyplanner.select p.location {font-size: 13px; margin: 10px; padding: 0; color: #8e8c8c;}
 .panel.journeyplanner.select ul {margin: 15px 0 0 0; padding: 0;}

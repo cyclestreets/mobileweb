@@ -577,7 +577,7 @@ var cyclestreetsui = (function ($) {
 			});
 
 			// Add routing
-			//cyclestreetsui.routing ();
+			cyclestreetsui.routing ();
 			
 			// Show the default panel
 			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
@@ -764,6 +764,23 @@ var cyclestreetsui = (function ($) {
 		
 		// Close the nav bar
 		closeNav: function() {$('nav').hide ("slide", {direction: "left"}, 300);},
+
+		// Fit the map to any opened card
+		// Accepts an element, or attempts to find the open panel
+		fitMap: function (element = false) 
+		{
+			// If no element is shown, find the open card
+			if (!element) {
+				// There should only ever be one visible card
+				element = $('.panel:visible').first();
+			} 
+				
+			var height = $(element).height();
+
+			// Resize div, and resize map to fit the new div size
+			$('#map').css({bottom: height});
+			_map.resize();
+		},
 		
 		
 		/*

@@ -121,8 +121,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; left: 25px; margin-top: 12px; }
 .panel.journeyplanner.search a.addWaypoint {display: none; position: absolute; top: 60px; right: 60px;}
 .panel.journeyplanner.search.open a.removeWaypoint {display: inline-block;}
-.panel.journeyplanner.search.open a.addWaypoint {display: inline-block};
-.panel.journeyplanner.search #getRoutes  {display: none; margin-right: -20px;}
+.panel.journeyplanner.search.open a.addWaypoint {display: inline-block;}
+.panel.journeyplanner.search #getRoutes {display: none; position: absolute; right: 0;}
 .panel.journeyplanner.search .shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0;}
 .panel.journeyplanner.search .shortcut-icons {display: inline-block; overflow-x: scroll;}
 .panel.journeyplanner.search .shortcut-icons li a {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}

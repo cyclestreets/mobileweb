@@ -11,8 +11,8 @@
 		<script src="/js/lib/jquery.ui.touch-punch.js"></script>
 
 		<!-- Mapbox -->
-		<script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
-		<link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel='stylesheet' />
+		<script src='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js'></script>
+		<link href='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css' rel='stylesheet' />
 		
 		<script src="/js/lib/mapbox-gl-draw/mapbox-gl-draw.js"></script>
 		<link rel="stylesheet" href="/js/lib/mapbox-gl-draw/mapbox-gl-draw.css" />
@@ -153,6 +153,7 @@
 				
 				<!-- Journey planner panels -->
 				<div class="panel journeyplanner search">
+					<a id="getRoutes" href="#" title="Start navigation"><img src="/images/btn-get-directions-large.svg" alt="Arrow pointing right" /></a>
 					<div id="journeyPlannerInputs">
 						<div class="inputDiv">
 							<input id="start" name="waypoint0" type="text" spellcheck="false" class="geocoder" placeholder="Your current location" value="" />
@@ -164,7 +165,6 @@
 							<a href="#" class="removeWaypoint"><img src="/images/btn-clear-field-red.svg" alt="Remove waypoint" /></a>
 						</div>
 					</div>
-					<a id="getRoutes" class="action forward" href="#" title="Start navigation"><img src="/images/btn-get-directions-large.svg" alt="Arrow pointing right" /></a>
 					<div class="shortcuts">
 						<ul class="shortcut-icons">
 							<li><a href="#" class="ui-button"><img src="/images/icon-home.svg" alt="Home icon" /></a></li>

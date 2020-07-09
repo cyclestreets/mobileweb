@@ -37,16 +37,23 @@ var cyclestreetsui = (function ($) {
 
 		// Images; size set in CSS with .itinerarymarker
 		images: {
-			start: '/images/wisps/start.png',
-			waypoint: '/images/wisps/waypoint.png',
-			finish: '/images/wisps/finish.png'
+			start: '/images/pin-A.svg',
+			waypoint: '/images/pin-V.svg',
+			finish: '/images/pin-B.svg'
 		},
 
 		// Whether to plan routes the moment the map is clicked rather than wait until a routing button is pressed
 		planRoutingOnMapClick: false,
 
 		// Whether to show the primitive Mapbox toolbox
-		showToolBox: false
+		showToolBox: false,
+
+		// Images; size set in CSS with .itinerarymarker
+		images: {
+			start: '/images/itinerarymarkers/start.png',
+			waypoint: '/images/itinerarymarkers/waypoint.png',
+			finish: '/images/itinerarymarkers/finish.png'
+		},
 		
 	};
 	

@@ -802,6 +802,9 @@ var cyclestreetsui = (function ($) {
 		journeyPlanner: function ()
 		{	
 
+			// Hide the final waypoint add button
+			$('.panel.journeyplanner.search #journeyPlannerInputs').children().last().children('a.addWaypoint').hide();
+			
 			// Open the route search box, if not already open
 			var routeSearchBoxFocus = function() {
 				if (!$('.panel.journeyplanner.search').hasClass('open')) {
@@ -820,6 +823,8 @@ var cyclestreetsui = (function ($) {
 
 					// Show the other input boxes
 					$('.panel.journeyplanner.search input').show({duration: 500});
+
+					$('.panel.journeyplanner.search #end').attr('placeholder', 'Where do you want to go?');
 				}
 			};
 
@@ -916,9 +921,11 @@ var cyclestreetsui = (function ($) {
 		{
 			
 			// Swiping down on a card closes it
+			/*
 			$('.panel').on('swipedown', function () {
 				cyclestreetsui.returnHome ();
 			});
+			*/
 			
 			// Swiping up on a card opens it
 			$('.panel').on('swipeup', function () {

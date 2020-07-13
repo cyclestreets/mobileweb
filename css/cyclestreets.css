@@ -87,6 +87,7 @@ ul li {list-style-type: none;}
 ul li select {display: inline-block; margin: 2px 0; padding: 0 20px; width: calc(100% - 120px); border-radius: 25px; text-align: left; text-decoration: none; background: #dc4f55; color: #f5f5f5;}
 textarea {display: inline-block; margin: 2px 0; padding: 10px 20px; height: 50px; width: calc(100% - 160px); border: none; border-radius: 25px; vertical-align: middle;}
 input {margin: 5px 0; padding: 0 20px; line-height: 50px; width: calc(100% - 100px); border: none; border-radius: 25px;}
+input:focus {outline: auto 2px Highlight; outline: auto 2px -webkit-focus-ring-color;}
 select {-webkit-appearance: none; height: 50px;}
 hr {margin-top: 10px; margin-bottom: 10px;}
 
@@ -116,13 +117,15 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search {height: 60px;}
 .panel.journeyplanner.search.open {height: auto;}
 .panel.journeyplanner.search #start {display: none;}
+.panel.journeyplanner.search #getRoutes {display: none; position: absolute; right: 0;}
 .panel.journeyplanner.search input {position: relative; bottom: 5px; height: 50px; width: calc(100% - 40px); margin: 10px 0; padding: 0 20px; border: 0; transition: 0.5s;}
-.panel.journeyplanner.search.open input {width: calc(100% - 120px); padding-left: 50px;}
-.panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; left: 25px; margin-top: 12px; }
+.panel.journeyplanner.search a.reorderWaypoint {display: none; position: absolute; left: 310px; margin-top: 20px; }
+.panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; left: 27px; margin-top: 13px; }
 .panel.journeyplanner.search a.addWaypoint {display: none; position: relative; top: 50px; right: 10px;}
+.panel.journeyplanner.search.open input {width: calc(100% - 120px); padding-left: 50px;}
+.panel.journeyplanner.search.open a.reorderWaypoint {display: inline-block;}
 .panel.journeyplanner.search.open a.removeWaypoint {display: inline-block;}
 .panel.journeyplanner.search.open a.addWaypoint {display: inline-block;}
-.panel.journeyplanner.search #getRoutes {display: none; position: absolute; right: 0;}
 .panel.journeyplanner.search .shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0;}
 .panel.journeyplanner.search .shortcut-icons {display: inline-block; overflow-x: scroll;}
 .panel.journeyplanner.search .shortcut-icons li a {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}

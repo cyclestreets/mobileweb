@@ -808,10 +808,11 @@ var cyclestreetsui = (function ($) {
 			// Open the route search box, if not already open
 			var routeSearchBoxFocus = function() {
 				if (!$('.panel.journeyplanner.search').hasClass('open')) {
+					// Close all other search boxes, menus, etc...
 					cyclestreetsui.resetUI ();
-					$('.panel.journeyplanner.search').addClass ('open', 500);
 
-					// Resize map element
+					// Expand card, and resize map
+					$('.panel.journeyplanner.search').addClass ('open', 500);
 					cyclestreetsui.fitMap ();
 					
 					// Drop a pin in the middle of the map as our default start position
@@ -824,9 +825,17 @@ var cyclestreetsui = (function ($) {
 					// Show the other input boxes
 					$('.panel.journeyplanner.search input').show({duration: 500});
 
+					// Change the search placeholder to prompt user input
 					$('.panel.journeyplanner.search #end').attr('placeholder', 'Where do you want to go?');
+					
 				}
 			};
+
+			// Hide the shortcuts if we are adding a waypoint 
+			$('.panel.journeyplanner.search').on('click', 'a.addWaypoint', function(e) {
+				$('.shortcuts').hide();
+				cyclestreetsui.fitMap();
+			});
 
 			// Handler for find routes button
 			$('.panel.journeyplanner.search #getRoutes').click (function () {

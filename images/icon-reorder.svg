@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25.409" height="21.409" viewBox="0 0 25.409 21.409">
+  <g transform="translate(4.7046301 4.7046301)">
+    <g opacity=".5">
+      <path fill="none" stroke="rgb(142,140,140)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2" d="M0 11h16"/>
+    </g>
+    <g opacity=".5">
+      <path fill="none" stroke="rgb(142,140,140)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2" d="M0 6h16"/>
+    </g>
+    <g opacity=".5">
+      <path fill="none" stroke="rgb(142,140,140)" stroke-linecap="round" stroke-linejoin="miter" stroke-width="2" d="M0 1h16"/>
+    </g>
+  </g>
+</svg>

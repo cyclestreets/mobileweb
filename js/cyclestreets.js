@@ -804,7 +804,10 @@ var cyclestreetsui = (function ($) {
 
 			// Hide the final waypoint add button
 			$('.panel.journeyplanner.search #journeyPlannerInputs').children().last().children('a.addWaypoint').hide();
-			
+
+			// Change opacity of #getRoutes link until routing has enabled it
+			$('.panel.journeyplanner.search #getRoutes').css('opacity',0.3);
+
 			// Open the route search box, if not already open
 			var routeSearchBoxFocus = function() {
 				if (!$('.panel.journeyplanner.search').hasClass('open')) {
@@ -839,6 +842,11 @@ var cyclestreetsui = (function ($) {
 
 			// Handler for find routes button
 			$('.panel.journeyplanner.search #getRoutes').click (function () {
+				// Do not proceeed if we do not have enough waypoints
+				if (routing.getWaypoints().length < 2) {
+					return false;
+				}
+				
 				// Get routes from waypoints already on the map
 				routing.plannable (); // Will plan the route and create the result tabs
 

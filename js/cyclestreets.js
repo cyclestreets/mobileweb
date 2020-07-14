@@ -14,9 +14,9 @@ var cyclestreetsui = (function ($) {
 		
 		// Initial lat/long/zoom of map and tile layer
 		defaultLocation: {
-			latitude: 51.51137,
-			longitude: -0.10498,
-			zoom: 17
+			latitude: 53.78,
+			longitude: -2.37,
+			zoom: 5
 		},
 		defaultTileLayer: 'opencyclemap',
 		
@@ -45,7 +45,7 @@ var cyclestreetsui = (function ($) {
 		// Whether to plan routes the moment the map is clicked rather than wait until a routing button is pressed
 		planRoutingOnMapClick: false,
 
-		// Whether to show the primitive Mapbox toolbox
+		// Whether to show the basic Mapbox toolbox
 		showToolBox: false,
 
 		// Images; size set in CSS with .itinerarymarker

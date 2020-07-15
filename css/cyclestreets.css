@@ -119,8 +119,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search #start {display: none;}
 .panel.journeyplanner.search #getRoutes {display: none; position: absolute; right: 0;}
 .panel.journeyplanner.search input {position: relative; bottom: 5px; height: 50px; width: calc(100% - 40px); margin: 10px 0; padding: 0 20px; border: 0; transition: 0.5s;}
-.panel.journeyplanner.search a.reorderWaypoint {display: none; position: absolute; left: 310px; margin-top: 20px; }
-.panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; left: 27px; margin-top: 13px; }
+.panel.journeyplanner.search a.reorderWaypoint {display: none; position: absolute; left: 310px; margin-top: 20px;}
+.panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; left: 27px; margin-top: 13px;}
 .panel.journeyplanner.search a.addWaypoint {display: none; position: relative; top: 50px; right: 10px;}
 .panel.journeyplanner.search.open input {width: calc(100% - 120px); padding-left: 50px;}
 .panel.journeyplanner.search.open a.reorderWaypoint {display: inline-block;}
@@ -145,18 +145,26 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search .recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
 .panel.journeyplanner.search .recent-journeys li a {position: absolute; right: 0px;}
 
-/* Route results panel */
-
 /* Route speed select panel */
-.panel.journeyplanner.select {height: 200px;}
+.panel.journeyplanner.select {max-height: 350px;}
+.panel.journeyplanner.select *:focus {outline: none;}
+.panel.journeyplanner.select a.action {margin-right: -20px;}
 .panel.journeyplanner.select p {margin-top: 15px; text-align: center;}
-.panel.journeyplanner.select p.location {font-size: 13px; margin: 10px; padding: 0; color: #8e8c8c;}
+.panel.journeyplanner.select p.location {font-size: 13px; margin: 10px; padding: 10px 0; color: #8e8c8c;}
+.panel.journeyplanner.select ul.journeyStats {padding-bottom: 15px;}
+.panel.journeyplanner.select #resultsTabs {max-height: 350px; padding-left: 20px; margin-top: -9px;}
+.panel.journeyplanner.select #strategies {border-bottom: 1px solid grey;}
+.panel.journeyplanner.select #itineraries {max-height: 350px; overflow: scroll;}
+.panel.journeyplanner.select .ui-tabs-tab {margin: 0 5px; padding: 0 10px; border: 1px solid #AAA; background: #ECECEC; display: inline-block; border-top-left-radius: 5px; border-top-right-radius: 5px;}
+.panel.journeyplanner.select .ui-tabs-active {background-color: #dc4f55; opacity: 0.8;}
 .panel.journeyplanner.select ul {margin: 15px 0 0 0; padding: 0;}
+.panel.journeyplanner.select h2 {text-align: center; font-size: 20px;}
 .panel.journeyplanner.select ul li {list-style-type: none; display: inline-block;}
 .panel.journeyplanner.select ul li img {display: inline-block; margin: 0 0 0 30px; padding: 0;}
 .panel.journeyplanner.select ul li p {display: inline-block; margin: 0; padding: 0; text-align: left;}
-.panel.journeyplanner.select #elevation-chart-container {position: absolute; bottom: 0; left: 0; height: 80px; width: 100%;}
+.panel.journeyplanner.select .elevation-chart-container {position: absolute; bottom: 0; left: 0; height: 80px; width: 100%;}
 .panel.journeyplanner.select span.elevation {position: absolute; bottom: 15px; right: 15px; padding: 5px; color: #ffffff; background-color: #212322; opacity: .75; border-radius: 40px; line-height: 20px;}
+.panel.journeyplanner.select .elevation-scrubber {position: absolute; bottom: 0px;}
 .panel.journeyplanner.select span img {padding: 0 5px 0 0;}
 
 /* Ridetracker specific card styles */

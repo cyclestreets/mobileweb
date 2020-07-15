@@ -806,7 +806,7 @@ var cyclestreetsui = (function ($) {
 			$('.panel.journeyplanner.search #journeyPlannerInputs').children().last().children('a.addWaypoint').hide();
 
 			// Change opacity of #getRoutes link until routing has enabled it
-			$('.panel.journeyplanner.search #getRoutes').css('opacity',0.3);
+			$('.panel.journeyplanner.search #getRoutes').css('opacity', 0.3);
 
 			// Open the route search box, if not already open
 			var routeSearchBoxFocus = function() {
@@ -816,7 +816,6 @@ var cyclestreetsui = (function ($) {
 
 					// Expand card, and resize map
 					$('.panel.journeyplanner.search').addClass ('open', 500);
-					cyclestreetsui.fitMap ();
 					
 					// Drop a pin in the middle of the map as our default start position
 					routing.addMapCenter ();

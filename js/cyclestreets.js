@@ -1010,6 +1010,35 @@ var cyclestreetsui = (function ($) {
 			$('.ride-notification').click( function () {
 				$('.ride-notification').slideUp ('slow');
 			});
+
+			// Save all the inputs as cookies
+			$('.save').click (function (event) {
+				// Find closest data input types in this panel
+				var currentPanel = $(event.target).closest ('.panel');
+				var nearestInputs = [];
+				var inputTypes = ['input', 'select', 'range', 'textarea', 'textfield']; // Add other types
+				$.each(inputTypes, function (index, type) {
+					// Find all inputs of this type
+					var closestInputs = $(currentPanel).find (type);
+					
+					// If any were found, add this to the nearestInputs array
+					if (closestInputs.length) {
+						$.each(closestInputs, function (index, input) {
+							nearestInputs.push (input);
+						});
+					}
+				});
+				
+				// Save each value in the cookie
+				$.each(nearestInputs, function (index, input) {
+					$.cookie($(input).attr('id'), $(input).val());
+				});
+			})
+
+			// On startup, load any input values from cookies
+			$.each($.cookie(), function (inputId, cookie){
+				$('#' + inputId).val(cookie);
+			});
 		},
 		
 		// Enable wizard navigation

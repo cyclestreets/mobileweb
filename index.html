@@ -18,6 +18,7 @@
 		<link rel="stylesheet" href="/js/lib/mapbox-gl-draw/mapbox-gl-draw.css" />
 		
 		<script src="/js/lib/js-cookie/js.cookie.js"></script>
+		<script src="/js/lib/jquery-cookie/jquery.cookie.js"></script>
 	
 		<!-- Vex dialogs; see: https://github.hubspot.com/vex/ -->
 		<script src="/js/lib/vex-4.1.0/dist/js/vex.combined.min.js"></script>
@@ -685,7 +686,7 @@
 				<!-- Settings, about, feedback, map-style and blog panels-->
 				<div class="panel settings">
 					<h2>Settings</h2>
-					<a id="settings-done" class="action forward returnHome" href="#" title="Save your settings and close this card">Done</a>
+					<a id="settings-done" class="action forward returnHome save" href="#" title="Save your settings and close this card">Done</a>
 					<h3>Saved locations</h3>
 					<ul>
 						<li>
@@ -700,7 +701,7 @@
 					<hr />
 					<h3>Route speed & units</h3>
 					<img class="cycle-left" src="/images/icon-dutch-cycle-large.svg" alt="Icon of a dutch bicycle" />
-					<input type="range" min="1" max="3" value="1" class="speed-slider" id="myRange">
+					<input type="range" min="1" max="3" value="1" class="speed-slider" id="cycling-speed">
 					<img class="cycle-right" src="/images/icon-race-cycle-large.svg" alt="Icon of a racing bicycle" />
 					<p class="speed">10 mph</p>
 					<p class="speed">12 mph</p>

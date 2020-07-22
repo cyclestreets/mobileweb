@@ -61,7 +61,8 @@ var cyclestreetsui = (function ($) {
 	var _map = null;
 	var _breadcrumbs = []; // Breadcrump trail used when clicking left chevrons
 	var _isMobileDevice = true;
-	var _panningEnabled = false;
+	var _panningEnabled = false
+	var _recentJourneys = []; // Used for storing the latest planned routes
 
 	// Enable panels and additional functionality
 	var _actions = [
@@ -802,6 +803,9 @@ var cyclestreetsui = (function ($) {
 		journeyPlanner: function ()
 		{	
 
+			// Retrieve and populate the search panel with recent journeys
+			cyclestreetsui.buildRecentJourneys ();
+			
 			// Hide the final waypoint add button
 			$('.panel.journeyplanner.search #journeyPlannerInputs').children().last().children('a.addWaypoint').hide();
 
@@ -845,6 +849,9 @@ var cyclestreetsui = (function ($) {
 				if (routing.getWaypoints().length < 2) {
 					return false;
 				}
+
+				// Save the search in cookie
+				cyclestreetsui.addToRecentJourneys ();
 				
 				// Get routes from waypoints already on the map
 				routing.plannable (); // Will plan the route and create the result tabs
@@ -865,6 +872,50 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.switchPanel ('.panel.journeyplanner.search', '.panel.journeyplanner.choose');
 			});
 			
+		},
+
+
+		// Function to read the recent journeys stored in a cookie, and populate the search panel
+		buildRecentJourneys: function () 
+		{
+			// Read the recent journeys from a cookie, or initialise a new array if none are saved
+			_recentJourneys = ($.cookie ('recentJourneys') ? $.parseJSON($.cookie('recentJourneys')) : []);
+			
+			// Construct HTML for each journey
+			var html = '';
+			$.each (_recentJourneys, function (index, journeyObject) { 
+				html += '<li><a href="#" title="Get directions to here"><img src="/images/btn-get-directions-small.svg" alt="Arrow pointing to the right" /></a>';
+				html += '<p class="destination">' + journeyObject.destination + '</p>';
+				html += '<p class="distance">7 miles</p>';
+				html += '<p class="address">from ' + journeyObject.origin + '</p>';
+				html += '</li><hr />';
+			});
+
+			// Append this to the journey search card
+			$('.recent-journeys').append (html);
+
+		},
+
+
+		addToRecentJourneys: function ()
+		{
+			// Read the recent journeys from a cookie, or initialise a new array if none are saved
+			_recentJourneys = ($.cookie ('recentJourneys') ? $.parseJSON($.cookie('recentJourneys')) : []);
+			
+			// Find the first and last input values, which contains the geocoded destination
+			var origin = $('.panel.journeyplanner input').first().val();
+			var destination = $('.panel.journeyplanner input').last().val();
+
+			// Build the journey object
+			var journey = 
+			{
+				'origin': origin,
+				'destination': destination
+			}
+
+			// Add this to the _recentJourneys array, and update the cookie
+			_recentJourneys.push (journey);
+			$.cookie('recentJourneys', JSON.stringify(_recentJourneys));
 		},
 		
 			

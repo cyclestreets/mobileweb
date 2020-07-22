@@ -806,6 +806,24 @@ var cyclestreetsui = (function ($) {
 			// Retrieve and populate the search panel with recent journeys
 			cyclestreetsui.buildRecentJourneys ();
 			
+			// Clicking on a recent journey searches for that route again
+			$('.getRecentJourneyDirections').click (function () {
+				// Which recent journey was it? Access the index of the <li> we clicked
+				var recentJourneyIndex = $('.getRecentJourneyDirections').index (this);
+				var journey = _recentJourneys[recentJourneyIndex];
+				routing.setWaypoints (journey.waypoints);
+
+				// Get routes from waypoints already on the map
+				routing.plannable (); // Will plan the route and create the result tabs
+
+				// Switch to the card containing the tabs
+				cyclestreetsui.switchPanel ('.panel.journeyplanner.search', '.panel.journeyplanner.select');
+
+				// Resize map element
+				cyclestreetsui.fitMap ('.panel.journeyplanner.select');
+
+			});
+			
 			// Hide the final waypoint add button
 			$('.panel.journeyplanner.search #journeyPlannerInputs').children().last().children('a.addWaypoint').hide();
 
@@ -867,11 +885,6 @@ var cyclestreetsui = (function ($) {
 			// Open the Route search box
 			$('.panel.journeyplanner.search #end').focus (routeSearchBoxFocus);
 			
-			// Show the routing options after clicking on routing button
-			$('.panel.journeyplanner.search ul li a').click (function () {
-				cyclestreetsui.switchPanel ('.panel.journeyplanner.search', '.panel.journeyplanner.choose');
-			});
-			
 		},
 
 
@@ -884,7 +897,7 @@ var cyclestreetsui = (function ($) {
 			// Construct HTML for each journey
 			var html = '';
 			$.each (_recentJourneys, function (index, journeyObject) { 
-				html += '<li><a href="#" title="Get directions to here"><img src="/images/btn-get-directions-small.svg" alt="Arrow pointing to the right" /></a>';
+				html += '<li class="getRecentJourneyDirections"><a href="#" title="Get directions to here"><img src="/images/btn-get-directions-small.svg" alt="Arrow pointing to the right" /></a>';
 				html += '<p class="destination">' + journeyObject.destination + '</p>';
 				html += '<p class="distance">7 miles</p>';
 				html += '<p class="address">from ' + journeyObject.origin + '</p>';
@@ -905,12 +918,14 @@ var cyclestreetsui = (function ($) {
 			// Find the first and last input values, which contains the geocoded destination
 			var origin = $('.panel.journeyplanner input').first().val();
 			var destination = $('.panel.journeyplanner input').last().val();
+			var waypoints = routing.getWaypoints ();
 
 			// Build the journey object
 			var journey = 
 			{
 				'origin': origin,
-				'destination': destination
+				'destination': destination,
+				'waypoints': waypoints
 			}
 
 			// Add this to the _recentJourneys array, and update the cookie

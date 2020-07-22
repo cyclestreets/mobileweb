@@ -1022,7 +1022,7 @@ var cyclestreetsui = (function ($) {
 				// Find closest data input types in this panel
 				var currentPanel = $(event.target).closest ('.panel');
 				var nearestInputs = [];
-				var inputTypes = ['input', 'select', 'range', 'textarea', 'textfield']; // Add other types
+				var inputTypes = ['input', 'select', 'range', 'textarea', 'textfield', '.segmented-control li.active']; // Add other types
 				$.each(inputTypes, function (index, type) {
 					// Find all inputs of this type
 					var closestInputs = $(currentPanel).find (type);
@@ -1034,16 +1034,30 @@ var cyclestreetsui = (function ($) {
 						});
 					}
 				});
-				
+
 				// Save each value in the cookie
 				$.each(nearestInputs, function (index, input) {
-					$.cookie($(input).attr('id'), $(input).val());
+					if ($(input).attr('type') == 'checkbox') {
+						$.cookie($(input).attr('id'), $(input).prop('checked'));
+					} else if ($(input).is ('li')) {
+						var segmentedControlId = $(input).parent().prop('id');
+						$.cookie(segmentedControlId, $(input).prop('id'));
+					} else {
+						$.cookie($(input).attr('id'), $(input).val());
+					}
 				});
 			})
 
 			// On startup, load any input values from cookies
-			$.each($.cookie(), function (inputId, cookie){
-				$('#' + inputId).val(cookie);
+			$.each($.cookie(), function (inputId, value){
+				if ($('#' + inputId).attr('type') == 'checkbox') {
+					$('#' + inputId).prop('checked', value == 'true');
+				} else if ($('#' + inputId).hasClass ('segmented-control')) {
+					$('#' + inputId).children ('li').removeClass ('active'); // Disable any default settings
+					$('#' + value).addClass ('active'); // Add active class to the saved <li> item
+				} else {
+					$('#' + inputId).val(value);
+				}
 			});
 		},
 		

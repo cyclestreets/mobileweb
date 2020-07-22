@@ -137,14 +137,15 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
 .panel.journeyplanner.search ul.segmented-control label:hover {background: #fafafa;}
 .panel.journeyplanner.search hr {width: calc(100% + 40px); margin: 10px 0 10px -20px;}
-.panel.journeyplanner.search ul.recent-journeys {max-height: 250px; overflow: scroll;}
+.panel.journeyplanner.search ul.recent-journeys {max-height: 250px; overflow-y: scroll; margin-right: -35px;}
+.panel.journeyplanner.search .recent-journeys hr {width: 100%; margin-right: -10px;}
 .panel.journeyplanner.search .recent-journeys li {padding-right: 15px;}
 .panel.journeyplanner.search .recent-journeys li p {margin: 10px 0;}
 .panel.journeyplanner.search .recent-journeys li p.destination {display: inline; font-size: 16px; line-height: 19px;}
 .panel.journeyplanner.search .recent-journeys li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
 .panel.journeyplanner.search .recent-journeys li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('/images/icon-cyclist-small.svg');}
 .panel.journeyplanner.search .recent-journeys li p.distance, p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
-.panel.journeyplanner.search .recent-journeys li a {position: absolute; right: 0px;}
+.panel.journeyplanner.search .recent-journeys li a {float: right;}
 
 /* Route speed select panel */
 .panel.journeyplanner.select {max-height: 350px;}

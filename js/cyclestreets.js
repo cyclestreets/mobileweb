@@ -1007,8 +1007,14 @@ var cyclestreetsui = (function ($) {
 			$('#close-browse-box-icon').click (cyclestreetsui.hideBrowseSearchBox);
 			
 			// Slide up the ride notification on click
-			$('.ride-notification').click( function () {
+			$('.ride-notification').click (function () {
 				$('.ride-notification').slideUp ('slow');
+			});
+
+			// Activate segmented controls, i.e., when a list item is clicked, activate it and deactivate all other list items
+			$('.segmented-control li').click (function (){
+				$(this).addClass ('active');
+				$(this).siblings ('li').removeClass ('active');
 			});
 
 			// Save all the inputs as cookies

@@ -26,6 +26,7 @@ nav a:hover, nav label:hover {color: #cc5959;}
 nav hr {color: #b1afb1; margin-left: 0; width: 50%;}
 nav #secondary-menu {padding-bottom: 70px;}
 nav #secondary-menu li a {font-size: 16px; color: #c5c2c3;}
+nav #secondary-menu li a:hover {color: #cc5959;}
 nav .badge-row {display: flex;}
 nav .text-column {width: 80%;}
 nav .badge-column {width: 20%;}

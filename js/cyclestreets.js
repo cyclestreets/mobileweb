@@ -1414,6 +1414,9 @@ var cyclestreetsui = (function ($) {
 				// Update the location cookie, and also the settings card
 				cyclestreetsui.updateSettingsSavedLocations (cookieObject);
 
+				// Turn off singleMarkerMode #¡# Any clicking out of this mode should disable it automatically
+				routing.setSingleMarkerMode (false);
+				
 				// Switch back to settings
 				cyclestreetsui.switchPanel ('.panel.journeyplanner.setLocation', '.panel.settings');
 			});

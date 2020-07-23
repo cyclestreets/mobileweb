@@ -54,6 +54,9 @@ var cyclestreetsui = (function ($) {
 			waypoint: '/images/itinerarymarkers/waypoint.png',
 			finish: '/images/itinerarymarkers/finish.png'
 		},
+
+		// Array with default POI(s) to show when opening the POIs card. This can either be a single POI or multiple
+		defaultPoi: ['cycleparking']
 		
 	};
 	
@@ -63,6 +66,7 @@ var cyclestreetsui = (function ($) {
 	var _isMobileDevice = true;
 	var _panningEnabled = false
 	var _recentSearches = []; // Used for storing the latest planned routes
+	var _poisActivated = [] // Used for storing the POIs activated
 
 	// Enable panels and additional functionality
 	var _actions = [
@@ -920,8 +924,8 @@ var cyclestreetsui = (function ($) {
 			_recentSearches = ($.cookie ('recentJourneys') ? $.parseJSON($.cookie('recentJourneys')) : []);
 			
 			// Find the first and last input values, which contains the geocoded destination
-			var origin = $('.panel.journeyplanner input').first().val();
-			var destination = $('.panel.journeyplanner input').last().val();
+			var origin = $('.panel.journeyplanner.search input').first().val();
+			var destination = $('.panel.journeyplanner.search input').last().val();
 			var waypoints = routing.getWaypoints ();
 
 			// Build the journey object
@@ -1272,18 +1276,65 @@ var cyclestreetsui = (function ($) {
 		 */
 		pois: function ()
 		{
-			// Workaround until CycleStreets POIS API supports multiple types
+			// At startup, retrieve the POIS from cookie or set as defaults
+			cyclestreetsui.retrievePoisCookie ();
+			
+			// On clicking a POI, save the new POI selection to a cookie
+			// Also, deselect all other POIs (workaround until API supports multiple types)
 			$('.panel.pois input').click (function () {
 				// What POI did we click on?	
-				var clicked_poi_id = $(this).attr('id');
+				var clickedPoiId = $(this).attr('id');
+				console.log (clickedPoiId, _poisActivated);
+				// If this is the last POI selected, leave it on
+				if($.inArray(clickedPoiId, _poisActivated) !== -1) {
+					return false;
+				}
 				
 				// If any other POIS are selected, deselect these			
 				$.each($('.panel.pois input:checked'), function (index, input) {
-					if (input.id != clicked_poi_id) {
+					if (input.id != clickedPoiId) {
 						$(input).prop('checked', false);
 					}
 				});
+
+				// Update the POIs cookie
+				cyclestreetsui.updatePoisCookie ();
 			});
+
+		},
+
+		
+		// Function to read the POIs currently selected, and save them to a cookie
+		updatePoisCookie: function ()
+		{	
+			// Find the first and last input values, which contains the geocoded destination
+			var poisActivated = $('.panel.pois input:checked');	
+
+			// Rebuild the cookie storage object
+			_poisActivated = []; 
+			$.each($(poisActivated), function (index, input) {
+				_poisActivated.push($(input).prop('id'));
+			});
+
+
+			// Overwrite the POIS cookie and update the class variable
+			$.cookie('poisActivated', JSON.stringify(_poisActivated));
+		},
+
+		
+		// Function to retrieve the POIs cookie and update the POIs card
+		retrievePoisCookie: function ()
+		{
+			// Read the recent journeys from a cookie, or read the default array if no cookie present
+			var poisActivated = ($.cookie ('poisActivated') ? $.parseJSON($.cookie('poisActivated')) : _settings['defaultPoi']);
+			
+			// Loop through each POI ID and check the checkbox
+			$.each($(poisActivated), function (index, poiID) {
+				$('#' + poiID).attr("checked", true);
+				_poisActivated.push(poiID);
+			});
+
+			// Write this to the class variable
 		},
 
 			

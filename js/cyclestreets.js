@@ -752,7 +752,7 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			// Open card from main nav items
-			$('nav ul > li').click (function () {
+			$('nav ul > li').click (function (event) {
 				
 				// Get the class name from the li
 				var className = this.className.split (' ')[0];
@@ -764,6 +764,38 @@ var cyclestreetsui = (function ($) {
 				
 				// Otherwise, close the nav and open the desired panel
 				} else {
+					
+					// Enable clicking on the eye icon to deactivate a layer
+					// If the target is <a href> and not directly the <label>, check to see if we are clicking the eye of a checkbox
+					// If either POI or Photomap layers are deactivated, clicking the label will activate the layer with the default settings
+					// If these laers are activated, clicking on the label should simply open the card; clicking the eye will deactivate the layer
+					// However, if we are clicking on a Data submenu item, there is no card attached, and we DO want to activate/deactivate when clicking the label
+					
+					// If we are clicking on a Data submenu item, toggle the item on/off and close the menu
+					if ($(event.target).parents('li.data').length) {
+						cyclestreetsui.resetUI ();
+						$('.panel').hide ();
+						return true;
+					}
+					
+					// If we are clicking the Eye icon on active Photomap or POI menu item
+					if ($(event.target).is('a') && ($(event.target).parents('li.photomap').length || $(event.target).parents('li.pois').length)) {
+						var inputElement = $(event.currentTarget).find ('input').first();
+						
+						if ($(inputElement).prop ('checked') == true) {
+							$(inputElement).prop ('checked', false);
+							layerviewer.toggleDataLayer (inputElement[0]);		
+						}
+
+						// Do not switch to this card
+						return false;
+					
+					// Clicking the input/label of an activated Photomap/POI layer should not disable the layer, only open the card
+					} else if ($(event.target).closest('li').hasClass ('enabled')) { 
+						event.preventDefault ()
+						$(event.target).prop ('checked', true); // We just disactivated the input by clicking it, reactivte it
+					}
+					
 					// Hide nav & open searchbars and all panels
 					cyclestreetsui.resetUI ();
 					$('.panel').hide ();
@@ -772,7 +804,7 @@ var cyclestreetsui = (function ($) {
 					_breadcrumbs = [];
 				
 					// Show the matching panel
-					$('.panel.' + className).first ().slideToggle (); // Slide in animations do not work smoothly
+					$('.panel.' + className).first ().slideToggle ();
 
 					// Resize map element
 					cyclestreetsui.fitMap ();
@@ -1275,7 +1307,7 @@ var cyclestreetsui = (function ($) {
 		 * POIS selection screen actions
 		 */
 		pois: function ()
-		{
+		{	
 			// At startup, retrieve the POIS from cookie or set as defaults
 			cyclestreetsui.retrievePoisCookie ();
 			
@@ -1284,7 +1316,7 @@ var cyclestreetsui = (function ($) {
 			$('.panel.pois input').click (function () {
 				// What POI did we click on?	
 				var clickedPoiId = $(this).attr('id');
-				console.log (clickedPoiId, _poisActivated);
+
 				// If this is the last POI selected, leave it on
 				if($.inArray(clickedPoiId, _poisActivated) !== -1) {
 					return false;

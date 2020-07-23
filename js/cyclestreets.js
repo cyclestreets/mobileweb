@@ -775,6 +775,7 @@ var cyclestreetsui = (function ($) {
 					if ($(event.target).parents('li.data').length) {
 						cyclestreetsui.resetUI ();
 						$('.panel').hide ();
+						cyclestreetsui.fitMap ();
 						return true;
 					}
 					

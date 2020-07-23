@@ -1103,12 +1103,7 @@ var cyclestreetsui = (function ($) {
 			// Show the move-map-to search box
 			$('#glasses-icon').click (function() {
 				cyclestreetsui.resetUI ();
-				$('#browse-search-box').show ();
-				$('#browse-search-box').addClass ('open');
-				$('#close-browse-box-icon').show ();
-				$('#glasses-icon').hide ();
-				$('#browse-search-box').animate ({width: '70%',}, "slow");
-				$('#browse-search-box').focus ();
+				cyclestreetsui.openBrowseSearchBar ();
 			});
 			
 			// Close the Browse search box
@@ -1167,6 +1162,18 @@ var cyclestreetsui = (function ($) {
 					$('#' + inputId).val(value);
 				}
 			});
+		},
+
+
+		// Function to open the browse search bar (move map to)
+		openBrowseSearchBar: function ()
+		{	
+			$('#browse-search-box').show ();
+			$('#browse-search-box').addClass ('open');
+			$('#close-browse-box-icon').show ();
+			$('#glasses-icon').hide ();
+			$('#browse-search-box').animate ({width: '70%',}, "slow");
+			$('#browse-search-box').focus ();
 		},
 		
 		// Enable wizard navigation
@@ -1393,13 +1400,22 @@ var cyclestreetsui = (function ($) {
 				// Divine the type of location we are setting
 				_settingLocationName = this.id.replace('Location', ''); // i.e., 'home'
 				
-				// Switch to the find location panel
+				// Update the text on the find location panel, and switch to it
+				$('.panel.journeyplanner.setLocation').find('h2').first().text ('Set your ' + _settingLocationName + ' location');
 				cyclestreetsui.switchPanel ('.panel.settings', '.panel.journeyplanner.setLocation');
+
+				// Change the browse search bar placeholder and open it
+				$('#browseSearchBox').attr ('placeholder', 'Search or click the map to set a location');
+				cyclestreetsui.openBrowseSearchBar ();
 			});
 
 			// After clicking save, save the frequent location
 			$('.panel.journeyplanner.setLocation a.action.forward').click (function () {
 				
+				// Hide the browse search box and reset the placeholder
+				cyclestreetsui.hideBrowseSearchBox ();
+				$('#browseSearchBox').attr ('placeholder', 'Move map to place or postcode');
+
 				// Get the saved marker location
 				var singleMarkerLocation = routing.getSingleMarkerLocation ();
 				var reverseGeocodedLocation = $('.panel.journeyplanner.setLocation input').first().val();

@@ -192,44 +192,22 @@
 					</div>
 				</div>
 				
+				<!-- Panel that displays route details, turn-by-turn, an elevation graph-->
 				<div class="panel journeyplanner select">
 					<a class="action back" id="clearroute" href="#" title="Search for a different route"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a>
 					<a class="action forward" href="#" title="Start navigation"><img src="/images/btn-get-directions-large.svg" alt="Arrow pointing right" /></a>
-					
 					<div id="resultsTabs">
 						<!-- Placeholder for the results tabs (div id="results")-->
 					</div>
-					
 				</div>
 				
-				<div class="panel journeyplanner choose">
-					<h2>Fastest</h2>
-					<a class="action back" id="clearroute" href="#" title="Search for a different route"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a>
-					<a class="action forward" href="#" title="Start navigation"><img src="/images/btn-get-directions-large.svg" alt="Arrow pointing right" /></a>
-					<p>Nandos</p>
-					<p class="location">Cambridge Leisure Park, Clifton Way, Cambridge, Camb…</p>
-					<ul>
-						<li>
-							<img src="/images/icon-cyclist.svg" alt="Icon of a cyclist" />
-							<p>7 miles</p>
-						</li>
-						<li>
-							<img src="/images/icon-clock.svg" alt="Clock icon" />
-							<p>8 mins</p>
-						</li>
-						<li>
-							<img src="/images/icon-flame.svg" alt="Flame icon" />
-							<p>251 cals</p>
-						</li>
-					</ul>
-					<div id="elevation-chart-container">
-						<canvas id="elevationChart"></canvas>	
-					</div>
-					<span class="elevation"><img src="/images/icon-elevation.svg" alt="Elevation icon" />32m elevation</span>
-					<a href="#" class="elevation-scrubber"><img src="/images/elevation-dragger.svg" alt="Dragger icon" /></a>
+				<!-- Panel used while setting home/work location from the settings panel -->
+				<div class="panel journeyplanner setLocation">
+					<a class="action back" href="#" title="Back to settings"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a>
+					<a class="action forward" href="#" title="Save location">Save <img src="/images/icon-disclosure-red-right.svg" alt="Save location" /></a>
+					<input id="home" name="waypointFrequentLocation" type="text" spellcheck="false" class="geocoder" placeholder="Search or click the map to set location" value="" />
 				</div>
-				
-				
+
 				<!-- Ridetracker and satnav panels -->
 				<div class="panel ridetracker track">
 					<h2>Ride tracker</h2>
@@ -679,13 +657,13 @@
 					<a id="settings-done" class="action forward returnHome save" href="#" title="Save your settings and close this card">Done</a>
 					<h3>Saved locations</h3>
 					<ul>
-						<li>
+						<li class="setSavedLocation" id='homeLocation'>
 							<img src="/images/icon-home-dark.svg" alt="Home icon" />
-							<a class="ui-button ui-button-large" href="#" title="Set your home location">Set your Home location <img class="disclosure" src="/images/icon-disclosure-light.svg" alt="Right chevron" /></a>
+							<a class="ui-button ui-button-large" href="#" title="Set your home location">Set your home location <img class="disclosure" src="/images/icon-disclosure-light.svg" alt="Set home location" /></a>
 						</li>
-						<li>
+						<li class="setSavedLocation" id="workLocation">
 							<img src="/images/icon-work-dark.svg" alt="Work icon" />
-							<a class="ui-button ui-button-large set" href="#" title="Set your work location">Fraser Street, Temple, South... <img class="disclosure" src="/images/icon-disclosure-red-right.svg" alt="Right chevron" /></a>
+							<a class="ui-button ui-button-large" href="#" title="Set your work location">Set your work location <img class="disclosure" src="/images/icon-disclosure-light.svg" alt="Set work location" /></a>
 						</li>
 					</ul>
 					<hr />

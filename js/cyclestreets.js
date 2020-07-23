@@ -65,8 +65,9 @@ var cyclestreetsui = (function ($) {
 	var _breadcrumbs = []; // Breadcrump trail used when clicking left chevrons
 	var _isMobileDevice = true;
 	var _panningEnabled = false
-	var _recentSearches = []; // Used for storing the latest planned routes
-	var _poisActivated = [] // Used for storing the POIs activated
+	var _recentSearches = []; // Store the latest planned routes
+	var _poisActivated = []; // Store the POIs activated
+	var _settingLocationName = null // When we are setting a frequent location, save which kind of location
 
 	// Enable panels and additional functionality
 	var _actions = [
@@ -594,7 +595,7 @@ var cyclestreetsui = (function ($) {
 			// Add routing
 			cyclestreetsui.routing ();
 			
-			// Show the default panel
+			// Show the default panel, after a slight pleasing delay
 			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
 			
 		},
@@ -1380,6 +1381,106 @@ var cyclestreetsui = (function ($) {
 			$('#about-cyclestreets').click (function () {
 				cyclestreetsui.switchPanel ('.panel.settings', '.panel.about');
 			});
+
+			// On startup, retrieve any saved frequent locations from the cookie
+			cyclestreetsui.retrieveSavedLocations ();
+
+			// When setting a saved location, open a card with a geocoder
+			$('.setSavedLocation').click (function () {
+				// Set single marker mode
+				routing.setSingleMarkerMode (true);
+				
+				// Divine the type of location we are setting
+				_settingLocationName = this.id.replace('Location', ''); // i.e., 'home'
+				
+				// Switch to the find location panel
+				cyclestreetsui.switchPanel ('.panel.settings', '.panel.journeyplanner.setLocation');
+			});
+
+			// After clicking save, save the frequent location
+			$('.panel.journeyplanner.setLocation a.action.forward').click (function () {
+				
+				// Get the saved marker location
+				var singleMarkerLocation = routing.getSingleMarkerLocation ();
+				var reverseGeocodedLocation = $('.panel.journeyplanner.setLocation input').first().val();
+
+				// Assemble the cookie object
+				var cookieObject = {
+					'title': _settingLocationName,
+					'coordinates': singleMarkerLocation,
+					'address': reverseGeocodedLocation
+				};
+				
+				// Update the location cookie, and also the settings card
+				cyclestreetsui.updateSettingsSavedLocations (cookieObject);
+
+				// Switch back to settings
+				cyclestreetsui.switchPanel ('.panel.journeyplanner.setLocation', '.panel.settings');
+			});
+		},
+
+
+		// Function to update saved locations (home, work) in Settings panel
+		updateSettingsSavedLocations: function (cookieObject)
+		{
+			// Retrieve the savedLocations cookie and parse it
+			var savedLocations = ($.cookie ('savedLocations') ? $.parseJSON($.cookie('savedLocations')) : []);
+
+			// Search through the locations, and if we already have this location, update it
+			var updatedLocation = false;
+			$.each(savedLocations, function (indexInArray, savedLocation) { 	
+				if (savedLocation.title == cookieObject.title) {
+					 savedLocations[indexInArray] = cookieObject;
+					 updatedLocation = true;
+				}
+			});
+
+			// As we didn't have this location saved, add it as a new location
+			if (!updatedLocation) {
+				savedLocations.push (cookieObject);
+			}
+			
+			// Store the savedLocations array as a cookie
+			$.cookie('savedLocations', JSON.stringify(savedLocations));
+
+			// Update the labels in the app
+			cyclestreetsui.retrieveSavedLocations ();
+		},
+
+
+		// Function to search cookies for saved work/home locations, and update the settings card with the locations
+		retrieveSavedLocations: function ()
+		{
+			// Read the saved locations from a cookie, or initialise a new array if none are saved
+			var savedLocations = ($.cookie ('savedLocations') ? $.parseJSON($.cookie('savedLocations')) : []);
+
+			// Find and update any locations we need for the settings panel
+			var locations = ['home', 'work'];
+			var savedLocation = null;
+			var elementId = null;
+			$.each(locations, function (indexInArray, locationName) { 
+				savedLocation = savedLocations.find (obj => obj.title == locationName);
+
+				// If we found a saved location, locate that label and update it in the settings panel
+				if (savedLocation) {
+					// Update the label on the button
+					elementId = locationName + 'Location';
+					var text = savedLocation.address;
+					var buttonElement = $('#' + elementId).find ('a').first ();
+					buttonElement.text (text);
+
+					// Also add class 'set' to change button colour
+					buttonElement.addClass ('set');
+
+				}
+			});
+		},
+
+
+		// Getter for settingLocationName, used to define which frequent location we are in the process of setting
+		getSettingLocationName: function ()
+		{
+			return _settingLocationName;
 		},
 		
 			

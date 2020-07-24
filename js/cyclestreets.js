@@ -1405,7 +1405,8 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.switchPanel ('.panel.settings', '.panel.journeyplanner.setLocation');
 
 				// Change the browse search bar placeholder and open it
-				$('#browseSearchBox').attr ('placeholder', 'Search or click the map to set a location');
+				$('#browse-search-box').val('');
+				$('#browse-search-box').attr ('placeholder', 'Search or click the map to set a location');
 				cyclestreetsui.openBrowseSearchBar ();
 			});
 
@@ -1414,7 +1415,7 @@ var cyclestreetsui = (function ($) {
 				
 				// Hide the browse search box and reset the placeholder
 				cyclestreetsui.hideBrowseSearchBox ();
-				$('#browseSearchBox').attr ('placeholder', 'Move map to place or postcode');
+				$('#browse-search-box').attr ('placeholder', 'Move map to place or postcode');
 
 				// Get the saved marker location
 				var singleMarkerLocation = routing.getSingleMarkerLocation ();

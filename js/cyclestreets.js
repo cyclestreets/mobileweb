@@ -1437,6 +1437,17 @@ var cyclestreetsui = (function ($) {
 				// Switch back to settings
 				cyclestreetsui.switchPanel ('.panel.journeyplanner.setLocation', '.panel.settings');
 			});
+
+
+			// When clicking cancel, exit singleMarkerMode
+			$('.panel.journeyplanner.setLocation a.action.back').click (function () {
+				// Turn off singleMarkerMode #¡# Any clicking out of this mode should disable it automatically
+				routing.setSingleMarkerMode (false);
+
+				// Reset the browse search bar placeholder and close it
+				cyclestreetsui.hideBrowseSearchBox ();
+				$('#browse-search-box').attr ('placeholder', 'Move map to place or postcode');
+			});
 		},
 
 

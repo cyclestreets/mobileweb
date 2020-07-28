@@ -11,6 +11,9 @@ var cyclestreetsui = (function ($) {
 		
 		// Mapbox API key
 		mapboxApiKey: 'MAPBOX_ACCESS_TOKEN',
+
+		// Login-in URL
+		userAuthenticationUrl: '{%apiBaseUrl}/v2/user.authenticate?key={%apiKey}',
 		
 		// Initial lat/long/zoom of map and tile layer
 		defaultLocation: {
@@ -74,7 +77,8 @@ var cyclestreetsui = (function ($) {
 		'journeyPlanner',
 		'rideTracker',
 		'settings',
-		'pois'
+		'pois',
+		'loginAndSignup'
 	];
 
 	// Layer definitions
@@ -758,6 +762,12 @@ var cyclestreetsui = (function ($) {
 				// Get the class name from the li
 				var className = this.className.split (' ')[0];
 				
+				// If we clicked the sign out buttom, sign out and do not open the account panel
+				if ($(this).hasClass ('signOut')) {
+					cyclestreetsui.signOut ();	
+					return;
+				}
+				
 				// If this is the data menu item, open its sub-menu
 				if (className == 'data') {
 					// Open the Data submenu
@@ -1110,8 +1120,8 @@ var cyclestreetsui = (function ($) {
 			$('#close-browse-box-icon').click (cyclestreetsui.hideBrowseSearchBox);
 			
 			// Slide up the ride notification on click
-			$('.ride-notification').click (function () {
-				$('.ride-notification').slideUp ('slow');
+			$('.notification').click (function () {
+				$('.notification').slideUp ('slow');
 			});
 
 			// Activate segmented controls, i.e., when a list item is clicked, activate it and deactivate all other list items
@@ -1513,7 +1523,105 @@ var cyclestreetsui = (function ($) {
 		{
 			return _settingLocationName;
 		},
-		
+
+
+		/*
+		 * Log-in and sign-up
+		 */
+		loginAndSignup: function ()
+		{
+			// On launch, log the user in if we find a cookie
+			cyclestreetsui.updateLoggedInStatus ();
+			
+			// Sign a user in
+			$('.panel.account a.action.forward').click (function() {
+
+				// Switch to the logging in panel
+				cyclestreetsui.switchPanel ('.panel', '.panel.creating-account');
+				$('.panel.creating-account p').text ('Logging in...');
+				
+				// Feedback URL; re-use of settings values is supported, represented as placeholders {%apiBaseUrl}, {%apiKey}
+				var userAuthenticationUrl = layerviewer.settingsPlaceholderSubstitution(_settings.userAuthenticationUrl, ['apiBaseUrl', 'apiKey']);
+
+				// Locate the form
+				var loginDetails = $('.panel.account form');
+
+				// Send the feedback via AJAX
+				$.ajax({
+					url: userAuthenticationUrl,
+					type: loginDetails.attr('method'),
+					data: loginDetails.serialize()
+				}).done(function (result) {
+					// Detect API error
+					if ('error' in result) {
+						$('.feedback-submit.error p').text(result.error);
+						cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
+
+						// Normal result; NB result.id is the feedback number
+					} else { // Save the login cookie
+						// Switch to the logging in panel
+						cyclestreetsui.switchPanel ('.panel', '.panel.logged-in');
+
+						// Encode the credentials in base 64
+						var identifier = btoa(unescape(encodeURIComponent($('.panel.account input[name ="identifier"]').val())));
+						var password = btoa(unescape(encodeURIComponent($('.panel.account input[name ="password"]').val())));
+						
+						var credentials = {
+							'identifier': identifier,
+							'password': password
+						}; 
+
+						// Update the login status
+						cyclestreetsui.updateLoggedInStatus (credentials);
+					}
+
+				}).fail(function (failure) {
+					if (failure.responseJSON.error) {
+						$('.feedback-submit.error p').text(failure.responseJSON.error);
+					}
+					cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
+				});
+				
+			});
+		},
+
+
+		// Function to update log-in status. Optionally accepts an object with credentials
+		// On receiving a credentials object, these are stored to a cookie and the app state is updated to reflect logged-in status
+		// Without arguments, will check for stored cookie, and update the user status
+		updateLoggedInStatus: function (credentials = false)
+		{
+			// If we are receiving credentials
+			if (credentials) {
+				// Store the new credentials in the cookie
+				$.cookie('credentials', JSON.stringify(credentials));
+			}
+
+			// Update navbar
+			if ($.cookie('credentials')) {
+				$('nav li.account a').text ('Sign out');
+				$('nav li.account').addClass ('signOut');
+			} else {
+				$('nav li.account a').text ('Sign in');
+				$('nav li.account').removeClass ('signOut');
+			}
+		},
+
+
+		// Function to sign a user out
+		signOut: function () 
+		{
+			// Delete the credentials cookie
+			$.removeCookie('credentials');
+			
+			// Update the status of the nav bar
+			cyclestreetsui.updateLoggedInStatus ();
+
+			// Display a dropdown, indicating the user has signed out
+			cyclestreetsui.resetUI ();
+			cyclestreetsui.displayNotification ('You have logged out.', '/images/tick-green.png');
+		},
+
 			
 		/*
 		 * Popup actions
@@ -1538,6 +1646,16 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.switchPanel ('.popup.places', '.panel.journeyplanner.select');
 			});
 		},	
+
+		
+		// Display a notification popup with a message 
+		displayNotification: function (notificationText, imageSrc) 
+		{
+			$('.popup.system-notification img').attr('src', imageSrc);
+			$('.popup.system-notification p.direction').text (notificationText);
+
+			$('.popup.system-notification').slideDown('slow');
+		},
 			
 		
 		/*

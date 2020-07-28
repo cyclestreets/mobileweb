@@ -617,14 +617,22 @@
 					<h2>Signin</h2>
 					<a class="action back" href="#" title="Close this card">Cancel</a>
 					<a class="action forward" href="#" title="Sign in">Signin <img src="/images/icon-disclosure-red-right.svg" alt="Right chevron" /></a>
-					<input id="signin_username" placeholder="Username" />
-					<input id="signin_password" placeholder="Password" />
+					<form method="post" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
+						<input name="identifier" required="required" placeholder="Username" />
+						<input name="password" type="password" required="required" placeholder="Password" />
+					</form>
 					<br />
 					<a href="#" title="Recover your forgotten password">I've forgotten my password</a>
 					<hr />
 					<h3>Not with us yet?</h3>
 					<p>Create a Cyclestreets account and participate in an active cycling community.</p>
 					<a class="ui-button ui-button-large create-account start-wizard" href="#" title="Create a CycleStreets account">Create account <img src="/images/icon-disclosure-light.svg" /></a>
+				</div>
+
+				<div class="panel red logged-in">
+					<a class="action forward returnHome white" href="#" title="Close and return to the map">Done</a>
+					<img class="wheel" src="/images/tick-green.png" alt="Green checkmark" />
+					<p>You have successfully logged in.</p>
 				</div>
 				
 				<div class="wizard account">

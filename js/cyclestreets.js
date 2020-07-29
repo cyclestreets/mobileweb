@@ -82,6 +82,7 @@ var cyclestreetsui = (function ($) {
 	var _poisActivated = []; // Store the POIs activated
 	var _settingLocationName = null; // When we are setting a frequent location, save which kind of location
 	var _shortcutLocations = ['home', 'work']; // Store shortcut locations in settings menu and JP card
+	var _notificationQueue = []; // Store any notifications in a queue
 
 	// Enable panels and additional functionality
 	var _actions = [
@@ -1841,13 +1842,40 @@ var cyclestreetsui = (function ($) {
 		// Display a notification popup with a message 
 		displayNotification: function (notificationText, imageSrc) 
 		{
-			// Set the image and text
-			$('.popup.system-notification img').attr('src', imageSrc);
-			$('.popup.system-notification p.direction').text (notificationText);
+			
+			// Add this notification to the queue
+			_notificationQueue.push ({'notificationText': notificationText, 'imageSrc': imageSrc});
+			
+			// If the display daemon is already working through a queue, let it do it's job
+			if ($('.popup.system-notification').queue ('fx').length) {
+				return;
+			} else {
+				// Otherwise start to work through the notification queue
+				cyclestreetsui.notificationDaemon ();
+			}
+			
+		},
 
-			// Slide down the notification, and hide it after 4 seconds
-			$('.popup.system-notification').slideDown('slow');
-			$('.popup.system-notification').delay(2500).slideUp('slow');
+		// Function to work through a queue of notifications. Will exit after the last notification is shown
+		notificationDaemon: function ()
+		{
+			// If there are items in the queue that haven't been displayed
+			var notification = null;
+			if (_notificationQueue.length) {
+				
+				// Pop the array
+				notification = _notificationQueue.pop ();
+				
+				// Set the image and text
+				$('.popup.system-notification img').attr('src', notification.imageSrc);
+				$('.popup.system-notification p.direction').text (notification.notificationText);
+
+				// Slide down the notification, and hide it after a delay
+				// Upon completetion, call this function again
+				$('.popup.system-notification').slideDown('slow');
+				$('.popup.system-notification').delay(2500).slideUp('slow', cyclestreetsui.notificationDaemon);
+			} 
+				
 		},
 			
 		

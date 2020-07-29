@@ -601,7 +601,7 @@ var cyclestreetsui = (function ($) {
 			cyclestreetsui.popupActions ();
 			
 			// Initialise developerTools
-			//cyclestreetsui.developerTools ();
+			cyclestreetsui.developerTools ();
 			
 			// Initialise each section
 			$.each (_actions, function (setting, action) {
@@ -1955,6 +1955,20 @@ var cyclestreetsui = (function ($) {
 		{
 			myArray.splice ($.inArray (removeItem, myArray), 1);
 			return myArray;
+		},
+		
+
+		/*
+		 * Developer tools
+		 */
+		developerTools: function ()
+		{
+			$('.panel').hide ();
+			$('.panel.ridetracker.ride-info').show ();
+			//$('.panel.journeyplanner.select').show ();
+			//$('#tabs').tabs();
+			//console.log($('.popup.photomap').prop('outerHTML'));
 		}
+		
 	};	
 } (jQuery));

@@ -1801,10 +1801,13 @@ var cyclestreetsui = (function ($) {
 		// Display a notification popup with a message 
 		displayNotification: function (notificationText, imageSrc) 
 		{
+			// Set the image and text
 			$('.popup.system-notification img').attr('src', imageSrc);
 			$('.popup.system-notification p.direction').text (notificationText);
 
+			// Slide down the notification, and hide it after 4 seconds
 			$('.popup.system-notification').slideDown('slow');
+			$('.popup.system-notification').delay(2500).slideUp('slow');
 		},
 			
 		

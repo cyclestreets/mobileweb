@@ -17,6 +17,9 @@ var cyclestreetsui = (function ($) {
 
 		// Account creation URL
 		accountCreationUrl: '{%apiBaseUrl}/v2/user.create?key={%apiKey}',
+
+		// Password reset URL #¡# No API support yet
+		passwordResetUrl: 'https://www.cyclestreets.net/signin/resetpassword/',
 		
 		// Initial lat/long/zoom of map and tile layer
 		defaultLocation: {
@@ -1675,6 +1678,33 @@ var cyclestreetsui = (function ($) {
 				// Remove the password from the sign-up card
 				$('input[name="password"]').val ('');
 				
+			});
+
+
+			// Clicking Recover Password switches to that card
+			$('.forgottenPassword').click (function () {
+				cyclestreetsui.switchPanel ('.panel.account', '.panel.reset-password');
+			});
+			
+			// Password recovery handler
+			$('.panel.reset-password a.action.forward').click (function() 
+			{	
+				// Locate the form
+				var accountDetails = $('.panel.reset-password input[name="email"]');
+
+				// Send the log-in data via AJAX
+				$.ajax({
+					url: _settings.passwordResetUrl,
+					type: 'POST',
+					data: accountDetails.serialize()
+				});
+
+				// Display a dropdown, indicating the reset email has been requested
+				cyclestreetsui.resetUI ();
+				cyclestreetsui.displayNotification ("We've sent an email with recovery instructions.", '/images/tick-green.png');
+
+				// Blank the input field
+				$('.panel.reset-password input').val ('');
 			});
 		},
 

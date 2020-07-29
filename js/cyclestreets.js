@@ -964,7 +964,11 @@ var cyclestreetsui = (function ($) {
 			
 			// Open the Route search box on focusing or clicking on any JP geocoder input
 			$('.panel.journeyplanner.search input').focus (openJourneyPlannerCard);
-			$('.panel.journeyplanner.search input').click (openJourneyPlannerCard);
+			$('.panel.journeyplanner.search input').click ( function () {
+				if (!$('.panel.journeyplanner.search').hasClass ('open')) {
+					cyclestreetsui.openJourneyPlannerCard;
+				}
+			});
 			
 		},
 

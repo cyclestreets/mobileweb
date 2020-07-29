@@ -78,6 +78,7 @@ var cyclestreetsui = (function ($) {
 	var _isMobileDevice = true;
 	var _panningEnabled = false
 	var _recentJourneys = []; // Store the latest planned routes
+	var _recentSearches = []; // Store recent searches, used to populate the JP card
 	var _poisActivated = []; // Store the POIs activated
 	var _settingLocationName = null; // When we are setting a frequent location, save which kind of location
 	var _shortcutLocations = ['home', 'work']; // Store shortcut locations in settings menu and JP card
@@ -861,8 +862,22 @@ var cyclestreetsui = (function ($) {
 		journeyPlanner: function ()
 		{	
 
-			// Retrieve and populate the search panel with recent journeys
+			// Retrieve and populate the search panel with recent searches and journeys
 			cyclestreetsui.buildRecentJourneys ();
+			cyclestreetsui.buildRecentSearches ();
+			
+			// Enable recent searches and recent journeys to show
+			$('.panel.journeyplanner.search .segmented-control li').click (function (event){
+				// Build the ul name from the label that was clicked
+				var ulClass = event.target.textContent.toLowerCase().replace (' ', '-');
+
+				// Hide all recent item panels except the one we clicked on
+				$('.panel.journeyplanner.search .recent-items ul').hide ();
+				$('.panel.journeyplanner.search .recent-items ul.' + ulClass).show('slide', {direction: 'up'}, 300);
+			});
+
+			// On startup, show the default option (recent searches)
+			$('.panel.journeyplanner.search .recent-items ul.recent-journeys').hide ();
 			
 			// Clicking on a recent journey searches for that route again
 			$('.getRecentJourneyDirections').click (function () {
@@ -975,7 +990,7 @@ var cyclestreetsui = (function ($) {
 
 			// Construct HTML for each journey
 			var html = '';
-			if (_recentJourneys.length) { // If there are no recent journeys
+			if (_recentJourneys.length) { // If there are recent journeys
 				$.each (_recentJourneys, function (index, journeyObject) { 
 					html += '<li class="getRecentJourneyDirections"><a href="#" title="Get directions to here"><img src="/images/btn-get-directions-small.svg" alt="Arrow pointing to the right" /></a>';
 					html += '<p class="destination">' + journeyObject.destination + '</p>';
@@ -984,11 +999,36 @@ var cyclestreetsui = (function ($) {
 					html += '</li><hr />';
 				});
 			} else {
-				html += '<li><ul><p class="address">Your recent searches will appear here.</p></li></ul>';
+				html += '<li><p class="address">Your recent journeys will appear here.</p></li>';
 			}
 			
 			// Append this to the journey search card
 			$('.recent-journeys').append (html);
+
+		},
+
+		// Function to read the recent searches stored in a cookie, and populate the search panel
+		buildRecentSearches: function () 
+		{
+			// Read the recent searches from a cookie, or initialise a new array if none are saved
+			_recentSearches = ($.cookie ('recentSearches') ? $.parseJSON($.cookie('recenrecentSearchestJourneys')) : []);
+
+			// Construct HTML for each search
+			var html = '';
+			if (_recentSearches.length) { // If there are recent journeys
+				$.each (_recentJourneys, function (index, journeyObject) { 
+					html += '<li class="getRecentJourneyDirections"><a href="#" title="Get directions to here"><img src="/images/btn-get-directions-small.svg" alt="Arrow pointing to the right" /></a>';
+					html += '<p class="destination">' + journeyObject.destination + '</p>';
+					html += '<p class="distance">7 miles</p>';
+					html += '<p class="address">from ' + journeyObject.origin + '</p>';
+					html += '</li><hr />';
+				});
+			} else {
+				html += '<li><p class="address">Your recent searches will appear here.</p></li>';
+			}
+			
+			// Append this to the journey search card
+			$('.recent-searches').append (html);
 
 		},
 

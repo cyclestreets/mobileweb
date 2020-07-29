@@ -121,7 +121,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search #start {display: none;}
 .panel.journeyplanner.search #getRoutes {display: none; position: absolute; right: 0;}
 .panel.journeyplanner.search input {position: relative; bottom: 5px; height: 50px; width: calc(100% - 40px); margin: 10px 0; padding: 0 20px; border: 0; transition: 0.5s;}
-.panel.journeyplanner.search a.reorderWaypoint {display: none; position: absolute; left: 310px; margin-top: 20px;}
+.panel.journeyplanner.search a.reorderWaypoint {display: none; position: absolute; right: 80px; margin-top: 20px;}
 .panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; left: 27px; margin-top: 13px;}
 .panel.journeyplanner.search a.addWaypoint {display: none; position: relative; top: 50px; right: 10px;}
 .panel.journeyplanner.search.open input {width: calc(100% - 120px); padding-left: 50px;}

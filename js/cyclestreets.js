@@ -77,7 +77,7 @@ var cyclestreetsui = (function ($) {
 	var _breadcrumbs = []; // Breadcrump trail used when clicking left chevrons
 	var _isMobileDevice = true;
 	var _panningEnabled = false
-	var _recentSearches = []; // Store the latest planned routes
+	var _recentJourneys = []; // Store the latest planned routes
 	var _poisActivated = []; // Store the POIs activated
 	var _settingLocationName = null; // When we are setting a frequent location, save which kind of location
 	var _shortcutLocations = ['home', 'work']; // Store shortcut locations in settings menu and JP card
@@ -868,7 +868,7 @@ var cyclestreetsui = (function ($) {
 			$('.getRecentJourneyDirections').click (function () {
 				// Which recent journey was it? Access the index of the <li> we clicked
 				var recentJourneyIndex = $('.getRecentJourneyDirections').index (this);
-				var journey = _recentSearches[recentJourneyIndex];
+				var journey = _recentJourneys[recentJourneyIndex];
 				routing.setWaypoints (journey.waypoints);
 
 				// Get routes from waypoints already on the map
@@ -971,12 +971,12 @@ var cyclestreetsui = (function ($) {
 		buildRecentJourneys: function () 
 		{
 			// Read the recent journeys from a cookie, or initialise a new array if none are saved
-			_recentSearches = ($.cookie ('recentJourneys') ? $.parseJSON($.cookie('recentJourneys')) : []);
+			_recentJourneys = ($.cookie ('recentJourneys') ? $.parseJSON($.cookie('recentJourneys')) : []);
 
 			// Construct HTML for each journey
 			var html = '';
-			if (_recentSearches.length) { // If there are no recent journeys
-				$.each (_recentSearches, function (index, journeyObject) { 
+			if (_recentJourneys.length) { // If there are no recent journeys
+				$.each (_recentJourneys, function (index, journeyObject) { 
 					html += '<li class="getRecentJourneyDirections"><a href="#" title="Get directions to here"><img src="/images/btn-get-directions-small.svg" alt="Arrow pointing to the right" /></a>';
 					html += '<p class="destination">' + journeyObject.destination + '</p>';
 					html += '<p class="distance">7 miles</p>';
@@ -996,7 +996,7 @@ var cyclestreetsui = (function ($) {
 		addToRecentJourneys: function ()
 		{
 			// Read the recent journeys from a cookie, or initialise a new array if none are saved
-			_recentSearches = ($.cookie ('recentJourneys') ? $.parseJSON($.cookie('recentJourneys')) : []);
+			_recentJourneys = ($.cookie ('recentJourneys') ? $.parseJSON($.cookie('recentJourneys')) : []);
 			
 			// Find the first and last input values, which contains the geocoded destination
 			var origin = $('.panel.journeyplanner.search input').first().val();
@@ -1012,8 +1012,8 @@ var cyclestreetsui = (function ($) {
 			}
 
 			// Add this to the _recentJourneys array, and update the cookie
-			_recentSearches.push (journey);
-			$.cookie('recentJourneys', JSON.stringify(_recentSearches));
+			_recentJourneys.push (journey);
+			$.cookie('recentJourneys', JSON.stringify(_recentJourneys));
 		},
 		
 			

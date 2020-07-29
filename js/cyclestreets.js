@@ -779,6 +779,11 @@ var cyclestreetsui = (function ($) {
 					cyclestreetsui.signOut ();	
 					return;
 				}
+
+				// If we clicked the blog button, consider the latest post as read
+				if ($(this).hasClass ('blog')) {
+					cyclestreetsui.setMostRecentBlogPostAsViewed ();	
+				}
 				
 				// If this is the data menu item, open its sub-menu
 				if (className == 'data') {
@@ -1204,6 +1209,8 @@ var cyclestreetsui = (function ($) {
 			
 			// Slide up the ride notification on click
 			$('.notification').click (function () {
+				// If there is a queue of 'fx', we dequeue the current notification immediately, rather than waiting for the delay
+				$('.notification').dequeue ();
 				$('.notification').slideUp ('slow');
 			});
 
@@ -1485,6 +1492,9 @@ var cyclestreetsui = (function ($) {
 			// On startup, retrieve any saved frequent locations from the cookie
 			cyclestreetsui.retrieveSavedLocations ();
 
+			// On startup, retrieve the latest blog post, and cross-check against saved cookie
+			cyclestreetsui.checkLatestBlogPost ();
+
 			// When setting a saved location, open a card with a geocoder
 			$('.setSavedLocation').click (function () {
 				// Set single marker mode
@@ -1543,6 +1553,50 @@ var cyclestreetsui = (function ($) {
 			});
 		},
 
+		// Function to find the latest blog post, and alert the user of its existence
+		checkLatestBlogPost: function ()
+		{		
+			$.ajax({
+				url: 'https://www.cyclestreets.org/wp-json/wp/v2/posts',
+				type: 'GET'
+			}).done (function (result) {
+				// Get the latest viewed blog post ID from coookie
+				var lastViewedBlogPostId = ($.cookie ('lastViewedBlogPostId') ? $.parseJSON($.cookie('lastViewedBlogPostId')) : false);
+
+				// Find this ID in the result array
+				var newBlogPostCount = 0;
+				if (lastViewedBlogPostId) {
+					var lastViewedBlogPostIndex = result.findIndex(blogPost =>blogPost.id == lastViewedBlogPostId);
+					if (markerIndex == 0) {
+						// We have seen the latest blog post
+						return;
+					} else if (markerIndex > -1) {
+						// The amount of new blog posts is equal to our marker index
+						newBlogPostCount = markerIndex
+					} else { // i.e., could not find this ID
+						// Otherwise, there are 10 new blog posts (the API retrieval limit)
+						newBlogPostCount = 10;
+					}					
+				} else {newBlogPostCount = 10;}
+
+				// Display a notification
+				var notificationText = 'There are ' + newBlogPostCount + ((newBlogPostCount == 1) ? ' new blog post.': ' new blog posts.');
+				cyclestreetsui.displayNotification (notificationText, '/images/icon-hashtag.svg')
+
+			});	
+		},
+
+		// Function to set the latest blog post as the most recently viewed post
+		setMostRecentBlogPostAsViewed: function ()
+		{
+			$.ajax({
+				url: 'https://www.cyclestreets.org/wp-json/wp/v2/posts',
+				type: 'GET'
+			}).done (function (result) {
+				var latestBlogPostId = result.shift ().id;
+				$.cookie('lastViewedBlogPostId', JSON.stringify(latestBlogPostId));
+			});
+		},
 
 		// Function to update saved locations (home, work) in Settings panel
 		updateSettingsSavedLocations: function (cookieObject)

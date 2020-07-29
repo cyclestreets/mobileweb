@@ -904,29 +904,9 @@ var cyclestreetsui = (function ($) {
 			// Change opacity of #getRoutes link until routing has enabled it
 			$('.panel.journeyplanner.search #getRoutes').css('opacity', 0.3);
 
-			// Open the route search box, if not already open
-			var routeSearchBoxFocus = function() {
-				if (!$('.panel.journeyplanner.search').hasClass('open')) {
-					// Close all other search boxes, menus, etc...
-					cyclestreetsui.resetUI ();
-
-					// Expand card, and resize map
-					$('.panel.journeyplanner.search').addClass ('open', 500);
-					
-					// Drop a pin in the middle of the map as our default start position
-					routing.addMapCenter ();
-
-					// Show the get routes button 
-					// #¡# This should be shown only when waypoints.length > 2
-					$('.panel.journeyplanner.search #getRoutes').show({duration: 500});
-
-					// Show the other input boxes
-					$('.panel.journeyplanner.search input').show({duration: 500});
-
-					// Change the search placeholder to prompt user input
-					$('.panel.journeyplanner.search #end').attr('placeholder', 'Where do you want to go?');
-					
-				}
+			// Handler to open the journey planner card
+			var openJourneyPlannerCard = function() {
+				cyclestreetsui.openJourneyPlannerCard ();
 			};
 
 			// Hide the shortcuts if we are adding a waypoint 
@@ -977,9 +957,35 @@ var cyclestreetsui = (function ($) {
 
 			});
 			
-			// Open the Route search box
-			$('.panel.journeyplanner.search #end').focus (routeSearchBoxFocus);
+			// Open the Route search box on focusing on any JP geocoder input
+			$('.panel.journeyplanner.search input').focus (openJourneyPlannerCard);
 			
+		},
+
+
+		// Handler to open the journey planner card
+		openJourneyPlannerCard: function() 
+		{
+			if (!$('.panel.journeyplanner.search').hasClass ('open')) {
+				// Close all other search boxes, menus, etc...
+				cyclestreetsui.resetUI ();
+
+				// Expand card, and resize map
+				$('.panel.journeyplanner.search').addClass ('open', 500);
+				
+				// Drop a pin in the middle of the map as our default start position
+				routing.addMapCenter ();
+
+				// Show the get routes button 
+				// #¡# This should be shown only when waypoints.length > 2
+				$('.panel.journeyplanner.search #getRoutes').show ({duration: 500});
+
+				// Show the other input boxes
+				$('.panel.journeyplanner.search input').show ({duration: 500});
+
+				// Change the search placeholder to prompt user input
+				$('.panel.journeyplanner.search #end').attr ('placeholder', 'Where do you want to go?');
+			}
 		},
 
 
@@ -1076,10 +1082,15 @@ var cyclestreetsui = (function ($) {
 			*/
 			
 			// Swiping up on a card opens it
-			$('.panel').on('swipeup', function () {
-				$(this).addClass ('open');
+			$('.panel').on('swipeup', function (event) {
+				// If this is the JP card, trigger open event
+				if ($(event.target).is ('.panel, .journeyplanner, .search')) {
+					cyclestreetsui.openJourneyPlannerCard ();
+				} else {
+					$(this).addClass ('open');
+				}
 			});
-			
+
 			// Generic handler for back actions
 			$('.action.back').click (function () {
 				// Follow any directly specified href

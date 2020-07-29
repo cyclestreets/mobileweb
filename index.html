@@ -579,6 +579,8 @@
 					</div>
 				</div>
 				
+
+				<!-- POI popup card -->
 				<div class="popup places">
 					<img class="place-photo" src="placeholders/places-popup-placeholder.png" alt="Image of location" />
 					<a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a>
@@ -597,6 +599,8 @@
 					</ul>
 				</div>
 				
+				
+				<!-- Ride (satnav) turn-by-turn notification -->
 				<div class="popup notification ride-notification">
 					<img src="/images/arrow-straight.svg" alt="Direction arrow" />
 					<p class="direction">Straight on Station Road</p>
@@ -606,6 +610,7 @@
 				</div>
 
 
+				<!-- System drop-down notification -->
 				<div class="popup notification system-notification">
 					<img src="/images/arrow-straight.svg" alt="Direction arrow" />
 					<p class="direction">Popup placeholder text</p>
@@ -613,6 +618,7 @@
 				
 				
 				<!-- Account management and creation panels -->
+				<!-- Sign-in/ sign-up panel -->
 				<div class="panel account">
 					<h2>Signin</h2>
 					<a class="action back" href="#" title="Close this card">Cancel</a>
@@ -620,6 +626,7 @@
 					<form method="post" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
 						<input name="identifier" required="required" placeholder="Username" />
 						<input name="password" type="password" required="required" placeholder="Password" />
+						<img class="showOrHidePassword" src="/images/icon-eye.svg" alt="Show or hide password" />
 					</form>
 					<br />
 					<a href="#" title="Recover your forgotten password">I've forgotten my password</a>
@@ -629,21 +636,23 @@
 					<a class="ui-button ui-button-large create-account start-wizard" href="#" title="Create a CycleStreets account">Create account <img src="/images/icon-disclosure-light.svg" /></a>
 				</div>
 
+				<!-- Panel that shows on successful log-in -->
 				<div class="panel red logged-in">
 					<a class="action forward returnHome white" href="#" title="Close and return to the map">Done</a>
 					<img class="wheel" src="/images/tick-green.png" alt="Green checkmark" />
 					<p>You have successfully logged in.</p>
 				</div>
 				
+				<!-- Account creation wizard -->
 				<div class="wizard account">
-					<form>
+					<form method="post" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
 					
 						<div class="panel choose-username">
 							<h2>Create account</h2>
 							<a class="action back" href="#" title="Cancel account creation">Cancel</a>
 							<a class="action forward" href="#" title="Go to the next step">Next <img src="/images/icon-disclosure-red-right.svg" alt="Right chevron" /></a>
 							<p>Choose your CycleStreets username: </p>
-							<input id="username" placeholder="Username" required="required" />
+							<input name="username" placeholder="Username" required="required" />
 						</div>
 						
 						<div class="panel choose-password">
@@ -651,8 +660,9 @@
 							<a class="action back" href="#" title="Return to the previous step"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a>
 							<a class="action forward" href="#" title="Create your account">Finish <img src="/images/icon-disclosure-red-right.svg" alt="Right chevron" /></a>
 							<p>Provide the following and you're done: </p>
-							<input type="signup_password" id="password" placeholder="Choose a password" required="required" />
-							<input type="signup_email" id="email" placeholder="Enter your email" required="required" />	
+							<input name="password" type="password" required="required" placeholder="Choose a password" />
+							<img class="showOrHidePassword" src="/images/icon-eye.svg" alt="Show or hide password" />
+							<input name="email" type="email"placeholder="Enter your email" required="required" />	
 						</div>
 						
 						<div class="panel red creating-account">

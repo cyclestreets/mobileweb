@@ -14,6 +14,9 @@ var cyclestreetsui = (function ($) {
 
 		// Login-in URL
 		userAuthenticationUrl: '{%apiBaseUrl}/v2/user.authenticate?key={%apiKey}',
+
+		// Account creation URL
+		accountCreationUrl: '{%apiBaseUrl}/v2/user.create?key={%apiKey}',
 		
 		// Initial lat/long/zoom of map and tile layer
 		defaultLocation: {
@@ -1535,32 +1538,56 @@ var cyclestreetsui = (function ($) {
 		{
 			// On launch, log the user in if we find a cookie
 			cyclestreetsui.updateLoggedInStatus ();
+
+			// Enable masking/unmasking of password fields
+			$('.showOrHidePassword').click (function () {
+				this.previousElementSibling.type = $(this).hasClass ('show') ? 'text' : 'password';
+				$(this).toggleClass ('show');
+				$(this).attr ('src', $(this).hasClass ('show') ? '/images/icon-eye.svg' : '/images/icon-eye-false.svg');
+			});
 			
-			// Sign a user in
+			// Upon typing into a password field, reveal the showOrHidePassword eye icon
+			$('input[name="password').on ('input', function (event) {
+				// Which panel is this (i.e. log-in, sign-up)
+				var panel = $(event.target).closest ('.panel');
+				var passwordMaskImage = $(panel).find ('.showOrHidePassword').first ();
+				// If we can't find a password mask image, return
+				if (!passwordMaskImage) {return;}
+
+				// On this panel, if there is any input in the password field, show the ucon
+				if ($(event.target).val().length) {
+					$(passwordMaskImage).show ();
+				} else {
+					$(passwordMaskImage).hide ();
+				}
+
+			});
+			
+			// Sign-in handler
 			$('.panel.account a.action.forward').click (function() {
 
-				// Switch to the logging in panel
+				// Switch to log-in panel
 				cyclestreetsui.switchPanel ('.panel', '.panel.creating-account');
 				$('.panel.creating-account p').text ('Logging in...');
 				
-				// Feedback URL; re-use of settings values is supported, represented as placeholders {%apiBaseUrl}, {%apiKey}
+				// Build the authentication URL
 				var userAuthenticationUrl = layerviewer.settingsPlaceholderSubstitution(_settings.userAuthenticationUrl, ['apiBaseUrl', 'apiKey']);
 
 				// Locate the form
 				var loginDetails = $('.panel.account form');
 
-				// Send the feedback via AJAX
+				// Send the log-in data via AJAX
 				$.ajax({
 					url: userAuthenticationUrl,
 					type: loginDetails.attr('method'),
 					data: loginDetails.serialize()
-				}).done(function (result) {
+				}).done(function (result) 
+				{	
 					// Detect API error
 					if ('error' in result) {
 						$('.feedback-submit.error p').text(result.error);
 						cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
 
-						// Normal result; NB result.id is the feedback number
 					} else { // Save the login cookie
 						// Switch to the logging in panel
 						cyclestreetsui.switchPanel ('.panel', '.panel.logged-in');
@@ -1584,6 +1611,62 @@ var cyclestreetsui = (function ($) {
 					}
 					cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
 				});
+
+				// Remove the password from the log-in card
+				$('.panel.account input[name="password"]').val ('');
+				
+			});
+
+
+			// Sign-up handler
+			$('.wizard.account .panel.choose-password a.action.forward').click (function() {
+
+				// Switch to creating account panel
+				$('.panel.creating-account p').text ('Creating your account...');
+				cyclestreetsui.switchPanel ('.panel', '.panel.creating-account');
+				
+				// Build the authentication URL
+				var accountCreationUrl = layerviewer.settingsPlaceholderSubstitution(_settings.accountCreationUrl, ['apiBaseUrl', 'apiKey']);
+
+				// Locate the form
+				var accountDetails = $('.wizard.account form');
+
+				// Send the log-in data via AJAX
+				$.ajax({
+					url: accountCreationUrl,
+					type: accountDetails.attr('method'),
+					data: accountDetails.serialize()
+				}).done(function (result) 
+				{	
+					// Detect API error
+					if ('error' in result) {
+						// Is this a username or password error? Based on error message, write the correct card to the breadcrumb trail
+						var returnToWhichPanel = null;
+						if (~result.error.indexOf('username')) {
+							returnToWhichPanel = '.panel.choose-username';
+						} else {
+							returnToWhichPanel= '.panel.choose-password';
+						}
+						
+						// Display the error panel with error message
+						$('.feedback-submit.error p').text(result.error);
+						$('.panel').hide (); // Workaround so that the back button goes back to the correct panel
+						cyclestreetsui.switchPanel(returnToWhichPanel, '.feedback-submit.error');
+
+					} else { // Display success message
+						cyclestreetsui.switchPanel ('.panel', '.panel.logged-in');
+						$('.panel.logged-in p').text (result.successmessage);
+					}
+
+				}).fail(function (failure) {
+					if (failure.responseJSON.error) {
+						$('.feedback-submit.error p').text(failure.responseJSON.error);
+					}
+					cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
+				});
+
+				// Remove the password from the sign-up card
+				$('input[name="password"]').val ('');
 				
 			});
 		},
@@ -1591,7 +1674,7 @@ var cyclestreetsui = (function ($) {
 
 		// Function to update log-in status. Optionally accepts an object with credentials
 		// On receiving a credentials object, these are stored to a cookie and the app state is updated to reflect logged-in status
-		// Without arguments, will check for stored cookie, and update the user status
+		// Without arguments, will check for stored cookie, and update the user status/interface
 		updateLoggedInStatus: function (credentials = false)
 		{
 			// If we are receiving credentials
@@ -1619,6 +1702,9 @@ var cyclestreetsui = (function ($) {
 			
 			// Update the status of the nav bar
 			cyclestreetsui.updateLoggedInStatus ();
+
+			// Remove the password from the log-in card
+			$('.panel.account input[name="password"]').val ('');
 
 			// Display a dropdown, indicating the user has signed out
 			cyclestreetsui.resetUI ();

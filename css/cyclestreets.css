@@ -301,6 +301,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.account h3 {width: 100%; line-height: 30px; text-align: center; margin-bottom: 0;}
 .panel.account p {margin: 0 20px; padding: 0; text-align: left;}
 .panel.account .create-account {position: relative; width: 50%; height: 50px; margin: 10px auto; border-radius: 50px; color: #fbf6f8;}
+.panel.account img.showOrHidePassword {display: none; position: absolute; right: 40px; top: 132px;}
 
 /* Create account specific card styles */
 .wizard.account input {width: calc(100% - 40px);}
@@ -309,6 +310,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .wizard.account .panel.creating-account h1 {font-size: 32px;}
 .wizard.account .panel.creating-account h2 {font-size: 14px;}
 .wizard.account .panel.creating-account img.wheel {margin-left: 15px; padding: 0 30%; width: 40%;}
+.wizard.account img.showOrHidePassword {display: none; position: absolute; right: 40px; bottom: 95px;}
 
 /*
  * Settings, about, feedback, map and blog styling panels

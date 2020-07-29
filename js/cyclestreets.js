@@ -59,7 +59,10 @@ var cyclestreetsui = (function ($) {
 		},
 
 		// Array with default POI(s) to show when opening the POIs card. This can either be a single POI or multiple
-		defaultPoi: ['cycleparking']
+		defaultPoi: ['cycleparking'],
+
+		// Hide default LayerViewer message area and legend
+		hideExtraMapControls: true
 		
 	};
 	

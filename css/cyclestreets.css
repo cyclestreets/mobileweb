@@ -92,6 +92,7 @@ input {margin: 5px 0; padding: 0 20px; line-height: 50px; width: calc(100% - 100
 input:focus {outline: auto 2px Highlight; outline: auto 2px -webkit-focus-ring-color;}
 select {-webkit-appearance: none; height: 50px;}
 hr {margin-top: 10px; margin-bottom: 10px;}
+.disabled {opacity: 0.5;}
 
 /* iOS styled elements */
 .switch {position: relative; float: right; width: 60px; height: 34px;}

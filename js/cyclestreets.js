@@ -79,7 +79,8 @@ var cyclestreetsui = (function ($) {
 	var _panningEnabled = false
 	var _recentSearches = []; // Store the latest planned routes
 	var _poisActivated = []; // Store the POIs activated
-	var _settingLocationName = null // When we are setting a frequent location, save which kind of location
+	var _settingLocationName = null; // When we are setting a frequent location, save which kind of location
+	var _shortcutLocations = ['home', 'work']; // Store shortcut locations in settings menu and JP card
 
 	// Enable panels and additional functionality
 	var _actions = [
@@ -938,6 +939,27 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.fitMap ('.panel.journeyplanner.select');
 
 			});
+
+			// Handler for shortcut icons
+			$('.panel.journeyplanner.search .shortcut-icons').click (function () {
+				
+				// Did we click a saved shortcut location, or a POI?
+				var link = $(event.target).closest ('a');
+				var shortcutLocationName = false;
+				$.each(_shortcutLocations, function (indexInArray, locationName) { 
+					if ($(link).hasClass (locationName)) {
+						shortcutLocationName = locationName;
+					}
+				});
+
+				// If we clicked on a shortcut location which is ntot set, display an alert
+				var savedLocation = cyclestreetsui.retrieveSavedLocations ().find (obj => obj.title == shortcutLocationName);
+				if (!savedLocation) {
+					cyclestreetsui.displayNotification ("You can set your " + shortcutLocationName + " location in Settings.", '/images/icon-' + shortcutLocationName + '.svg');
+				}
+				
+
+			});
 			
 			// Open the Route search box
 			$('.panel.journeyplanner.search #end').focus (routeSearchBoxFocus);
@@ -1503,12 +1525,11 @@ var cyclestreetsui = (function ($) {
 		{
 			// Read the saved locations from a cookie, or initialise a new array if none are saved
 			var savedLocations = ($.cookie ('savedLocations') ? $.parseJSON($.cookie('savedLocations')) : []);
-
+			
 			// Find and update any locations we need for the settings panel
-			var locations = ['home', 'work'];
 			var savedLocation = null;
 			var elementId = null;
-			$.each(locations, function (indexInArray, locationName) { 
+			$.each(_shortcutLocations, function (indexInArray, locationName) { 
 				savedLocation = savedLocations.find (obj => obj.title == locationName);
 
 				// If we found a saved location, locate that label and update it in the settings panel
@@ -1522,8 +1543,12 @@ var cyclestreetsui = (function ($) {
 					// Also add class 'set' to change button colour
 					buttonElement.addClass ('set');
 
+					// Enable the corresponding item in the Journey Planner card
+					$('.shortcut-icons a.' + locationName).removeClass ('disabled');
 				}
 			});
+
+			return savedLocations;
 		},
 
 
@@ -1563,7 +1588,6 @@ var cyclestreetsui = (function ($) {
 				} else {
 					$(passwordMaskImage).hide ();
 				}
-
 			});
 			
 			// Sign-in handler

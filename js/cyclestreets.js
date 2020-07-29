@@ -1656,6 +1656,13 @@ var cyclestreetsui = (function ($) {
 					} else { // Display success message
 						cyclestreetsui.switchPanel ('.panel', '.panel.logged-in');
 						$('.panel.logged-in p').text (result.successmessage);
+
+						// Prefill the log-in page with the user registration username
+						var username = $('.panel.choose-username input[name="username"]').val();
+						$('.panel.account input[name="identifier"]').val (username);
+
+						// Blank all the user registration wizard inputs
+						$('.wizard.account input').val ('');
 					}
 
 				}).fail(function (failure) {

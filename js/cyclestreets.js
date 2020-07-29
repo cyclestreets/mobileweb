@@ -1846,7 +1846,7 @@ var cyclestreetsui = (function ($) {
 			// Add this notification to the queue
 			_notificationQueue.push ({'notificationText': notificationText, 'imageSrc': imageSrc});
 			
-			// If the display daemon is already working through a queue, let it do it's job
+			// If the display daemon is already working through a queue, let it do its job
 			if ($('.popup.system-notification').queue ('fx').length) {
 				return;
 			} else {
@@ -1856,6 +1856,7 @@ var cyclestreetsui = (function ($) {
 			
 		},
 
+
 		// Function to work through a queue of notifications. Will exit after the last notification is shown
 		notificationDaemon: function ()
 		{
@@ -1864,7 +1865,7 @@ var cyclestreetsui = (function ($) {
 			if (_notificationQueue.length) {
 				
 				// Pop the array
-				notification = _notificationQueue.pop ();
+				notification = _notificationQueue.shift ();
 				
 				// Set the image and text
 				$('.popup.system-notification img').attr('src', notification.imageSrc);

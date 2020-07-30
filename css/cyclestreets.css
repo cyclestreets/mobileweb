@@ -248,7 +248,6 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
  * Popup panels
  */
 
-
  /* Vex dialog custom styling */
 .vex.vex-theme-plain .vex-content {border-radius: 25px;}
 .vex.vex-theme-plain .vex-dialog-button.vex-dialog-button-primary {border-radius: 10px; background: #cc5959;}

@@ -1970,8 +1970,9 @@ var cyclestreetsui = (function ($) {
 		 */
 		developerTools: function ()
 		{
-			$('.panel').hide ();
-			$('.panel.ridetracker.ride-info').show ();
+			
+			//$('.panel').hide ();
+			//$('.popup.photomap').show ();
 			//$('.panel.journeyplanner.select').show ();
 			//$('#tabs').tabs();
 			//console.log($('.popup.photomap').prop('outerHTML'));

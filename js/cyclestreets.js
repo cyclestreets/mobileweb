@@ -610,11 +610,18 @@ var cyclestreetsui = (function ($) {
 
 			// Add routing
 			cyclestreetsui.routing ();
+
+			// Get POIS icon URLs
+			//cyclestreetsui.getPoisIconUrls ();
+
+			// Trigger geolocation to find the user's location at startup
+			layerviewer.triggerGeolocation ();
 			
 			// Show the default panel, after a slight pleasing delay
 			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
 			
 		},
+		
 		
 		// Routing
 		routing: function ()

@@ -247,15 +247,10 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .vex.vex-theme-plain .vex-dialog-button.vex-dialog-button-primary {border-radius: 10px; background: #cc5959;}
 .vex.vex-theme-plain .vex-content {font-family: 'Josefin Sans', sans-serif;}
 
-.popup {display: none; position: fixed; left: 0; bottom: 0; padding: 0; margin: 0 5% 20% 5%; width: 250px;}
+/* Popup card default styling */
+#map .popup {display: block;} 
+.popup {display: none; position: fixed; left: 0; bottom: 0; padding: 0; margin: 0 5% 20% 5%; width: 80%; max-width: 400px;}
 .popup a.ui-button.close-button {position: absolute; top: 0; right: 0; margin: 10px; line-height: 60px;}
-#map .popup {display: block;}
-
-/* Override mapbox GL popup characteristics */
-/* Marker tweaks */
-.mapboxgl-popup-close-button {display: none;}
-.mapboxgl-popup-content {padding: 0; width: 180px; background: transparent; box-shadow: none;}
-.mapboxgl-popup-content-wrapper {padding: 1%;}
 
 /* Photomap popup */
 .popup.photomap {perspective: 1000px; background-color: transparent; height: 480px;}
@@ -284,7 +279,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .popup.places ul li p {margin: 10px; display: inline-block; width: 200px;}
 .popup.places ul li p.phone {color: #dc4f55;}
 
-/* Ride notification slide-down */
+/* System notification slide-down */
 .popup.notification {position: relative; margin: 20px 7.5%; padding: 10px; width: 80%; height: 60px; border-radius: 8px; background-color: #fbf6f8; transition: none;}
 .popup.notification img {height: 30px; width: 30px; background-color: #dc4f55; border-radius: 5px; padding: 15px; margin-right: 10px; float: left}
 .popup.notification p {display: inline-block; margin: 0 0 0 10px;}

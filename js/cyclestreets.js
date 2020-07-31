@@ -12,14 +12,11 @@ var cyclestreetsui = (function ($) {
 		// Mapbox API key
 		mapboxApiKey: 'MAPBOX_ACCESS_TOKEN',
 
-		// Login-in URL
+		// API URLs
 		userAuthenticationUrl: '{%apiBaseUrl}/v2/user.authenticate?key={%apiKey}',
-
-		// Account creation URL
 		accountCreationUrl: '{%apiBaseUrl}/v2/user.create?key={%apiKey}',
-
-		// Password reset URL #¡# No API support yet
 		passwordResetUrl: 'https://www.cyclestreets.net/signin/resetpassword/',
+		photomapAddUrl: '{%apiBaseUrl}/v2/photomap.add?key={%apiKey}',
 		
 		// Initial lat/long/zoom of map and tile layer
 		defaultLocation: {
@@ -83,12 +80,14 @@ var cyclestreetsui = (function ($) {
 	var _settingLocationName = null; // When we are setting a frequent location, save which kind of location
 	var _shortcutLocations = ['home', 'work']; // Store shortcut locations in settings menu and JP card
 	var _notificationQueue = []; // Store any notifications in a queue
+	var _photomapUploadImage = []; // Store the Photomap upload photo while proceeding through the wizard
 
 	// Enable panels and additional functionality
 	var _actions = [
 		'journeyPlanner',
 		'rideTracker',
 		'settings',
+		'photomap',
 		'pois',
 		'loginAndSignup'
 	];
@@ -1106,6 +1105,20 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 
+			// Handler for authenticated links
+			$('.authenticated').click (function (event) {
+				// If user isn't logged in, stop
+				if (!cyclestreetsui.updateLoggedInStatus ()) {
+					// Display a notification
+					cyclestreetsui.displayNotification ("Please log-in to access this feature.", '/images/icon-user.svg');
+					
+					// Stop any further events from occuring
+					event.preventDefault ();
+					event.stopImmediatePropagation ();
+					return false;
+				}
+			});
+
 			// Generic handler for back actions
 			$('.action.back').click (function () {
 				// Follow any directly specified href
@@ -1174,22 +1187,29 @@ var cyclestreetsui = (function ($) {
 					var currentPanel = $(this).closest ('.panel').attr ('class');
 					currentPanel = currentPanel.replace (/\s/g, '.');
 					
+					// Check whether we can progress
+					if (!cyclestreetsui.canProgress ('.' + currentPanel)) {
+						var notificationText = 'Please fill out all items in this panel to continue.';
+						cyclestreetsui.displayNotification (notificationText, '/images/icon-tourist-info-pos.svg')
+						return;
+					}
+
 					// Get the panel class we are in, without sub-panel
 					var panelClass = currentPanel.split ('.'); // Split the current panel, i.e. [panel, photomap, add-photo]
 					panelClass.pop(); // Pop the sub-panel out of the array
 					panelClass = panelClass.join ('.'); // Reconstruct the string from array, i.e panel.photomap
 					panelClass = '.' + panelClass; // Add the leading dot, i.e. .panel.photomap
 					
-					// Find the next children of this panel
+					// Find the next children of this panel, if we have any
 					var nextPanel = $(this).closest ('.panel').next (panelClass);
-					var nextPanelClass = '.' + nextPanel.attr ('class').replace (/\s/g, '.');
-					
-					// Check whether we can progress
-					if (!cyclestreetsui.canProgress ('.' + currentPanel)) {
-						return;
+					if (nextPanel.length) {
+						var nextPanelClass = '.' + nextPanel.attr ('class').replace (/\s/g, '.');
 					}
+					
 					// Switch the panel
-					cyclestreetsui.switchPanel ('.' + currentPanel, nextPanelClass);
+					if (nextPanel.length) {
+						cyclestreetsui.switchPanel ('.' + currentPanel, nextPanelClass);
+					}
 				}
 				
 			});
@@ -1199,11 +1219,12 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.enableNavigation (this);
 			});
 			
-			// On every click inside a wizard, check to see if we can progress
+			// On every keydown inside a wizard, check to see if we can progress
 			$('.wizard .panel').keydown (function () {
 				cyclestreetsui.enableNavigation (this);
 			});
 			
+			// On every input file change inside a wizard, check to see if we can progress
 			 $('input:file').change(function (){
 				cyclestreetsui.enableNavigation (this);
 			 });
@@ -1316,6 +1337,12 @@ var cyclestreetsui = (function ($) {
 				var value = $(input).val ();
 				if (!value) {canProgress = false;}
 			});
+
+			// Special handler for Photomap upload form and setLocation, where we are setting a location on the map
+			// If we haven't set a location (i.e., photo upload was a PNG and user hasn't searched for a location), don't progress
+			if (selector == '.panel.photomap.add-location' || selector == '.panel.journeyplanner.setLocation') {
+				if (!routing.getSingleMarkerLocation ().length) {canProgress = false;}
+			}
 			
 			return canProgress;
 		},
@@ -1488,7 +1515,166 @@ var cyclestreetsui = (function ($) {
 			// Write this to the class variable
 		},
 
+
+
+		/*
+		 * Photomap upload screen
+		 */
+		photomap: function ()
+		{					
+			// When file input is changed, display a preview picture
+			$('#photomapFileUpload').on('change', function () {
+				if (typeof (FileReader) != "undefined") {
+					// Empty the image holder from any previous photomap
+					var image_holder = $(".photomapFileUploadPreview");
+					image_holder.empty();
+		
+					// Initialise new FileReader and show image
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						$("<img />", {
+							"src": e.target.result,
+							"class": "thumb-image"
+						}).appendTo(image_holder);
+		
+					}
+					image_holder.show();
+					_photomapUploadImage = $(this)[0].files[0];
+					reader.readAsDataURL(_photomapUploadImage);
+					
+				} else {
+					// Display an error 
+					var notificationText = 'You can not upload photos on this device';
+					cyclestreetsui.displayNotification (notificationText, '/images/icon-photomap-red.svg')
+				}
+			});
+
+			// After clicking next, zoom the map to the location of the image
+			$('.panel.photomap.add-photo a.action.forward').click (function () {
+				// Set single marker mode
+				routing.setSingleMarkerMode (true);
+
+				// Delete any saved frequent lat lon
+				routing.resetFrequentLocation ();
+				
+				// Zoom to the lat lon of this image and set a marker
+				cyclestreetsui.zoomToImageLatLon (_photomapUploadImage);
+			});
+
+			// On add location screen, check for a saved location
+			$('.panel.photomap.add-location a.action.forward').click (function (event) {
+				// If we haven't set a location (i.e., photo upload was a PNG and user hasn't searched for a location), don't progress
+				var location = routing.getSingleMarkerLocation ();
+				if (location.length < 1) {
+					var notificationText = 'Please set a location for this photo.';
+					cyclestreetsui.displayNotification (notificationText, '/images/icon-add-photo-rest.svg')
+					return;
+				}
+				
+				// Stop single marker mode
+				// #¡# Should also be set if we cancel out of the location page
+				routing.setSingleMarkerMode (false);
+			});
+
+			// On add location screen, check for a saved location
+			$('.panel.photomap.add-details a.action.forward').click (function (event) {
+				// If we can progress, then send an ajax call
+				var currentPanel = $(this).closest ('.panel').attr ('class').replace (/\s/g, '.');
+				if (cyclestreetsui.canProgress ('.' + currentPanel)) {
+					// Build the authentication URL
+					var photomapAddUrl = layerviewer.settingsPlaceholderSubstitution(_settings.photomapAddUrl, ['apiBaseUrl', 'apiKey']);
+
+					// Build a formData object, and append the variegated data
+					var photomapUploadForm = new FormData ();
+					var formData = $('.wizard.photomap form').serializeArray();
+					$.each(formData, function (indexInArray, formObject) { 
+						photomapUploadForm.append(formObject.name, formObject.value);
+					});
+
+					// Assemble additional data elements
+					// User identifier and password
+					var credentials = ($.cookie ('credentials') ? $.parseJSON($.cookie('credentials')) : []);
+					photomapUploadForm.append ('username', atob(credentials.identifier));
+					photomapUploadForm.append ('password', atob(credentials.password));
+					
+					// Attach the photo, as binary payload
+					photomapUploadForm.append('mediaupload', _photomapUploadImage, 'filename');
+
+					// Send the photomap upload data via AJAX
+					$.ajax({
+						url: photomapAddUrl,
+						type: $('.wizard.photomap form').attr('method'),
+						data: photomapUploadForm,
+						processData: false,
+						contentType: false,
+					}).done(function (result) 
+					{	
+						// Detect API error
+						if ('error' in result) {
+							$('.feedback-submit.error p').text(result.error);
+							cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
+
+						} else { 
+							// Display a notification
+							cyclestreetsui.displayNotification ('Photo uploaded successfully', '/images/tick-green.png')
+
+							// Return home
+							cyclestreetsui.returnHome ();
+						}
+
+					}).fail(function (failure) {
+						if (failure.responseJSON.error) {
+							$('.feedback-submit.error p').text(failure.responseJSON.error);
+						}
+						cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
+					});
+				}
+			});
+
+		},
+
+
+		// Function to get lat/lon from image
+		zoomToImageLatLon: function (imageFile)
+		{	
+			EXIF.getData(imageFile, function () {
+				// Calculate latitude decimal
+				console.log (this.exifdata);
+				var latDegree = Number(this.exifdata.GPSLatitude[0].numerator)/Number(this.exifdata.GPSLatitude[0].denominator);
+				var latMinute = Number(this.exifdata.GPSLatitude[1].numerator)/Number(this.exifdata.GPSLatitude[1].denominator);
+				var latSecond = Number(this.exifdata.GPSLatitude[2].numerator)/Number(this.exifdata.GPSLatitude[2].denominator);
+				var latDirection = this.exifdata.GPSLatitudeRef;
+
+				var latFinal = cyclestreetsui.convertDMSToDD(latDegree, latMinute, latSecond, latDirection);
+
+				// Calculate longitude decimal
+				var lonDegree = Number(this.exifdata.GPSLongitude[0].numerator)/Number(this.exifdata.GPSLongitude[0].denominator);
+				var lonMinute = Number(this.exifdata.GPSLongitude[1].numerator)/Number(this.exifdata.GPSLongitude[1].denominator);
+				var lonSecond = Number(this.exifdata.GPSLongitude[2].numerator)/Number(this.exifdata.GPSLongitude[2].denominator);
+				var lonDirection = this.exifdata.GPSLongitudeRef;
+
+				var lonFinal = cyclestreetsui.convertDMSToDD(lonDegree, lonMinute, lonSecond, lonDirection);
+
+				// Zoom the map to the marker location
+				_map.flyTo({center: [lonFinal, latFinal]});
+
+				// Set a marker at this location
+				routing.setFrequentLocation ({'lng': lonFinal, 'lat': latFinal, 'label': null});
+			});
+		},
+
+		// Function to convert degrees, minutes, seconds to decimal
+		convertDMSToDD: function (degrees, minutes, seconds, direction) 
+		{	
+			var dd = (Number(degrees) + Number(minutes)/60 + Number(seconds)/3600).toFixed(6)
+			if (direction == "S" || direction == "W") {
+				dd = dd * -1; 
+			}
 			
+			return dd;
+		},
+
+	
 		/*
 		 * Settings, about and map-styles
 		 */
@@ -1507,6 +1693,9 @@ var cyclestreetsui = (function ($) {
 
 			// When setting a saved location, open a card with a geocoder
 			$('.setSavedLocation').click (function () {
+				// Delete any saved frequent lat lon
+				routing.resetFrequentLocation ();
+				
 				// Set single marker mode
 				routing.setSingleMarkerMode (true);
 				
@@ -1523,9 +1712,17 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.openBrowseSearchBar ();
 			});
 
+
 			// After clicking save, save the frequent location
-			$('.panel.journeyplanner.setLocation a.action.forward').click (function () {
-				
+			$('.panel.journeyplanner.setLocation a.action.forward').click (function (event) {
+				// If we haven't set a location, don't progress
+				var location = routing.getSingleMarkerLocation ();
+				if (location.length < 1) {
+					var notificationText = 'Please set a location.';
+					cyclestreetsui.displayNotification (notificationText, '/images/icon-photomap-red.svg')
+					return;
+				}
+
 				// Hide the browse search box and reset the placeholder
 				cyclestreetsui.hideBrowseSearchBox ();
 				$('#browse-search-box').attr ('placeholder', 'Move map to place or postcode');
@@ -1736,8 +1933,8 @@ var cyclestreetsui = (function ($) {
 						cyclestreetsui.switchPanel ('.panel', '.panel.logged-in');
 
 						// Encode the credentials in base 64
-						var identifier = btoa(unescape(encodeURIComponent($('.panel.account input[name ="identifier"]').val())));
-						var password = btoa(unescape(encodeURIComponent($('.panel.account input[name ="password"]').val())));
+						var identifier = btoa(unescape(encodeURIComponent($('.panel.account input[name="identifier"]').val())));
+						var password = btoa(unescape(encodeURIComponent($('.panel.account input[name="password"]').val())));
 						
 						var credentials = {
 							'identifier': identifier,

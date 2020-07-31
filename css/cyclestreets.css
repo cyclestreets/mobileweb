@@ -224,10 +224,11 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.photomap ul li label {display: inline-block; width: 100px;}
 .panel.photomap p {display: inline; line-height: 35px;}
 .panel.photomap hr {width: calc(100% + 40px); margin-left: -20px;}
-.panel.photomap.add-location #mini-map {height: 335px; width:100%;}
+.panel.photomap .photomapFileUploadPreview {max-width: 100%; height: auto; max-height: 400px; overflow: hidden;}
+.panel.photomap .photomapFileUploadPreview img {max-width: 100%; height: auto;}
+.panel.photomap.add-photo input {width: 100%;}
 .panel.photomap.add-details ul li label {display: inline-block; width: 100px;}
 .panel.photomap.add-details img {border-radius: 25px;}
-.panel.photomap.add-details img.uploaded-image {width: 100%; height: 200px;}
 .panel.photomap.uploading {background-color: #dc4f55;}
 .panel.photomap.uploading img {margin-left: 15px; padding: 0 30%; width: 40%;}
 .panel.photomap.uploading p {display: inline-block; width: 40%; margin: 10px 30%; color: #fbf6f8; text-align: center;}
@@ -288,7 +289,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 /* System notification slide-down */
 .popup.notification {position: relative; margin: 20px 7.5%; padding: 10px; width: 80%; height: 60px; border-radius: 8px; background-color: #fbf6f8; transition: none;}
-.popup.notification img {height: 30px; width: 30px; background-color: #dc4f55; border-radius: 5px; padding: 15px; margin-right: 10px; float: left}
+.popup.notification img {height: 30px; width: 30px; background-color: #fefefe; border: 1px solid  #dc4f55; border-radius: 5px; padding: 15px; margin-right: 10px; float: left}
 .popup.notification p {display: inline-block; margin: 0 0 0 10px;}
 .popup.notification p.direction {width: 200px; margin-top: 10px; font-size: 17px;}
 .popup.notification p.time {color: #dc4f55; margin-top: 10px; font-size: 14px;}

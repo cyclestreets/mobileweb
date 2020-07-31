@@ -151,7 +151,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search .recent-items li a {float: right;}
 
 /* Route speed select panel */
-.panel.journeyplanner.select {max-height: 350px;}
+.panel.journeyplanner.select {max-height: 350px; transition: 0.5s;}
 .panel.journeyplanner.select *:focus {outline: none;}
 .panel.journeyplanner.select a.action {margin-right: -20px;}
 .panel.journeyplanner.select p {margin-top: 15px; text-align: center;}

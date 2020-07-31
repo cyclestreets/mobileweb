@@ -1606,6 +1606,12 @@ var cyclestreetsui = (function ($) {
 					photomapUploadForm.append ('username', atob(credentials.identifier));
 					photomapUploadForm.append ('password', atob(credentials.password));
 					
+					// User defined latitude and longitude
+					var markerLocation = routing.getSingleMarkerLocation ();
+					markerLocation = markerLocation.pop();
+					photomapUploadForm.append ('latitude', Number(markerLocation.lat));
+					photomapUploadForm.append ('longitude', Number(markerLocation.lng));
+
 					// Attach the photo, as binary payload
 					photomapUploadForm.append('mediaupload', _photomapUploadImage, 'filename');
 
@@ -1624,6 +1630,12 @@ var cyclestreetsui = (function ($) {
 							cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
 
 						} else { 
+							// Set single marker mode
+							routing.setSingleMarkerMode (false);
+
+							// Delete any saved frequent lat lon
+							routing.resetFrequentLocation ();
+							
 							// Display a notification
 							cyclestreetsui.displayNotification ('Photo uploaded successfully', '/images/tick-green.png')
 

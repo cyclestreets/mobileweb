@@ -1774,21 +1774,24 @@ var cyclestreetsui = (function ($) {
 				var newBlogPostCount = 0;
 				if (lastViewedBlogPostId) {
 					var lastViewedBlogPostIndex = result.findIndex(blogPost =>blogPost.id == lastViewedBlogPostId);
-					if (markerIndex == 0) {
+					if (lastViewedBlogPostIndex == 0) {
 						// We have seen the latest blog post
 						return;
-					} else if (markerIndex > -1) {
+					} else if (lastViewedBlogPostIndex > -1) {
 						// The amount of new blog posts is equal to our marker index
-						newBlogPostCount = markerIndex
+						newBlogPostCount = lastViewedBlogPostIndex
 					} else { // i.e., could not find this ID
 						// Otherwise, there are 10 new blog posts (the API retrieval limit)
 						newBlogPostCount = 10;
-					}					
-				} else {newBlogPostCount = 10;}
-
-				// Display a notification
-				var notificationText = 'There are ' + newBlogPostCount + ((newBlogPostCount == 1) ? ' new blog post.': ' new blog posts.');
-				cyclestreetsui.displayNotification (notificationText, '/images/icon-hashtag.svg')
+					}	
+					
+					// Display a notification
+					var notificationText = 'There are ' + newBlogPostCount + ((newBlogPostCount == 1) ? ' new blog post.': ' new blog posts.');
+					cyclestreetsui.displayNotification (notificationText, '/images/icon-hashtag.svg')
+				} else {
+					// New user, set the msot recent blog post as viewed
+					cyclestreetsui.setMostRecentBlogPostAsViewed ();
+				}
 
 			});	
 		},

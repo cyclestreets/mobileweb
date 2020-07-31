@@ -1948,16 +1948,18 @@ var cyclestreetsui = (function ($) {
 						cyclestreetsui.updateLoggedInStatus (credentials);
 					}
 
+					// Remove the password from the log-in card
+					$('.panel.account input[name="password"]').val ('');
+
 				}).fail(function (failure) {
 					if (failure.responseJSON.error) {
 						$('.feedback-submit.error p').text(failure.responseJSON.error);
 					}
 					cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
-				});
 
-				// Remove the password from the log-in card
-				$('.panel.account input[name="password"]').val ('');
-				
+					// Remove the password from the log-in card
+					$('.panel.account input[name="password"]').val ('');
+				});
 			});
 
 
@@ -2052,6 +2054,7 @@ var cyclestreetsui = (function ($) {
 		// Function to update log-in status. Optionally accepts an object with credentials
 		// On receiving a credentials object, these are stored to a cookie and the app state is updated to reflect logged-in status
 		// Without arguments, will check for stored cookie, and update the user status/interface
+		// Will return a boolean, indicating whether the user is logged in
 		updateLoggedInStatus: function (credentials = false)
 		{
 			// If we are receiving credentials
@@ -2064,9 +2067,11 @@ var cyclestreetsui = (function ($) {
 			if ($.cookie('credentials')) {
 				$('nav li.account a').text ('Sign out');
 				$('nav li.account').addClass ('signOut');
+				return true;
 			} else {
 				$('nav li.account a').text ('Sign in');
 				$('nav li.account').removeClass ('signOut');
+				return false;
 			}
 		},
 

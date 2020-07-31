@@ -1561,6 +1561,15 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.zoomToImageLatLon (_photomapUploadImage);
 			});
 
+			// On exiting add-location screen, heading backwards, cancel single marker mode
+			$('.panel.photomap.add-location a.action.back').click (function (event) {
+				// Set single marker mode
+				routing.setSingleMarkerMode (false);
+
+				// Delete any saved frequent lat lon
+				routing.resetFrequentLocation ();
+			});
+			
 			// On add location screen, check for a saved location
 			$('.panel.photomap.add-location a.action.forward').click (function (event) {
 				// If we haven't set a location (i.e., photo upload was a PNG and user hasn't searched for a location), don't progress

@@ -288,8 +288,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .popup.places ul li p.phone {color: #dc4f55;}
 
 /* System notification slide-down */
-.popup.notification {position: relative; margin: 20px 7.5%; padding: 10px; width: 80%; height: 60px; border-radius: 8px; background-color: #fbf6f8; transition: none;}
-.popup.notification img {height: 30px; width: 30px; background-color: #fefefe; border: 1px solid  #dc4f55; border-radius: 5px; padding: 15px; margin-right: 10px; float: left}
+.popup.notification {position: relative; margin: 20px 7.5%; padding: 10px; width: 80%; height: 60px; border-radius: 8px; background-color: #fbf6f8; transition: none; z-index: 99;}
+.popup.notification img {height: 30px; width: 30px; background-color: #fefefe; border-radius: 5px; padding: 15px; margin-right: 10px; float: left}
 .popup.notification p {display: inline-block; margin: 0 0 0 10px;}
 .popup.notification p.direction {width: 200px; margin-top: 10px; font-size: 17px;}
 .popup.notification p.time {color: #dc4f55; margin-top: 10px; font-size: 14px;}

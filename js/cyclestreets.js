@@ -1252,7 +1252,15 @@ var cyclestreetsui = (function ($) {
 				});
 			})
 
-			// On startup, load any input values from cookies
+			// Load and apply and cookies (settings, etc)
+			cyclestreetsui.loadAndApplyCookies ();
+
+			
+		},
+
+		// On startup, load any input values from cookies
+		loadAndApplyCookies: function ()
+		{	
 			$.each($.cookie(), function (inputId, value){
 				if ($('#' + inputId).attr('type') == 'checkbox') {
 					$('#' + inputId).prop('checked', value == 'true');
@@ -1264,7 +1272,6 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 		},
-
 
 		// Function to open the browse search bar (move map to)
 		openBrowseSearchBar: function ()

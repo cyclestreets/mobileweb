@@ -77,8 +77,6 @@ var cyclestreetsui = (function ($) {
 	var _breadcrumbs = []; // Breadcrump trail used when clicking left chevrons
 	var _isMobileDevice = true;
 	var _panningEnabled = false
-	var _recentJourneys = []; // Store the latest planned routes
-	var _recentSearches = []; // Store recent searches, used to populate the JP card
 	var _poisActivated = []; // Store the POIs activated
 	var _settingLocationName = null; // When we are setting a frequent location, save which kind of location
 	var _shortcutLocations = ['home', 'work']; // Store shortcut locations in settings menu and JP card
@@ -878,8 +876,8 @@ var cyclestreetsui = (function ($) {
 		{	
 
 			// Retrieve and populate the search panel with recent searches and journeys
-			cyclestreetsui.buildRecentJourneys ();
-			cyclestreetsui.buildRecentSearches ();
+			routing.buildRecentJourneys ();
+			routing.buildRecentSearches ();
 			
 			// Enable recent searches and recent journeys to show
 			$('.panel.journeyplanner.search .segmented-control li').click (function (event){
@@ -898,7 +896,8 @@ var cyclestreetsui = (function ($) {
 			$('.getRecentJourneyDirections').click (function () {
 				// Which recent journey was it? Access the index of the <li> we clicked
 				var recentJourneyIndex = $('.getRecentJourneyDirections').index (this);
-				var journey = _recentJourneys[recentJourneyIndex];
+				var recentJourneys = routing.getRecentJourneys ();
+				var journey = recentJourneys[recentJourneyIndex];
 				routing.setWaypoints (journey.waypoints);
 
 				// Get routes from waypoints already on the map
@@ -910,6 +909,20 @@ var cyclestreetsui = (function ($) {
 				// Resize map element
 				cyclestreetsui.fitMap ('.panel.journeyplanner.select');
 
+			});
+
+			// Clicking on a recent searches adds this to the next available input, but does not plan the route
+			$('.recentSearch').click (function () {
+				// Which recent search was it? Access the index of the <li> we clicked
+				var recentSearchIndex = $('.recentSearch').index (this);
+				var recentSearches = routing.getRecentSearches ();
+				var waypoint = recentSearches[recentSearchIndex];
+				
+				// Remove the label, so that the routing library automatically adds this to the correct empty geocoder input
+				waypoint.label = null;
+
+				// Add this to the map and input geocoder
+				routing.addWaypointMarker (waypoint);
 			});
 			
 			// Hide the final waypoint add button
@@ -946,7 +959,7 @@ var cyclestreetsui = (function ($) {
 				}
 
 				// Save the search in cookie
-				cyclestreetsui.addToRecentJourneys ();
+				routing.addToRecentJourneys ();
 				
 				// Get routes from waypoints already on the map
 				routing.plannable (); // Will plan the route and create the result tabs
@@ -1014,81 +1027,6 @@ var cyclestreetsui = (function ($) {
 			}
 		},
 
-
-		// Function to read the recent journeys stored in a cookie, and populate the search panel
-		buildRecentJourneys: function () 
-		{
-			// Read the recent journeys from a cookie, or initialise a new array if none are saved
-			_recentJourneys = ($.cookie ('recentJourneys') ? $.parseJSON($.cookie('recentJourneys')) : []);
-
-			// Construct HTML for each journey
-			var html = '';
-			if (_recentJourneys.length) { // If there are recent journeys
-				$.each (_recentJourneys, function (index, journeyObject) { 
-					html += '<li class="getRecentJourneyDirections"><a href="#" title="Get directions to here"><img src="/images/btn-get-directions-small.svg" alt="Arrow pointing to the right" /></a>';
-					html += '<p class="destination">' + journeyObject.destination + '</p>';
-					html += '<p class="distance">7 miles</p>';
-					html += '<p class="address">from ' + journeyObject.origin + '</p>';
-					html += '</li><hr />';
-				});
-			} else {
-				html += '<li><p class="address">Your recent journeys will appear here.</p></li>';
-			}
-			
-			// Append this to the journey search card
-			$('.recent-journeys').append (html);
-
-		},
-
-		// Function to read the recent searches stored in a cookie, and populate the search panel
-		buildRecentSearches: function () 
-		{
-			// Read the recent searches from a cookie, or initialise a new array if none are saved
-			_recentSearches = ($.cookie ('recentSearches') ? $.parseJSON($.cookie('recenrecentSearchestJourneys')) : []);
-
-			// Construct HTML for each search
-			var html = '';
-			if (_recentSearches.length) { // If there are recent journeys
-				$.each (_recentJourneys, function (index, journeyObject) { 
-					html += '<li class="getRecentJourneyDirections"><a href="#" title="Get directions to here"><img src="/images/btn-get-directions-small.svg" alt="Arrow pointing to the right" /></a>';
-					html += '<p class="destination">' + journeyObject.destination + '</p>';
-					html += '<p class="distance">7 miles</p>';
-					html += '<p class="address">from ' + journeyObject.origin + '</p>';
-					html += '</li><hr />';
-				});
-			} else {
-				html += '<li><p class="address">Your recent searches will appear here.</p></li>';
-			}
-			
-			// Append this to the journey search card
-			$('.recent-searches').append (html);
-
-		},
-
-
-		addToRecentJourneys: function ()
-		{
-			// Read the recent journeys from a cookie, or initialise a new array if none are saved
-			_recentJourneys = ($.cookie ('recentJourneys') ? $.parseJSON($.cookie('recentJourneys')) : []);
-			
-			// Find the first and last input values, which contains the geocoded destination
-			var origin = $('.panel.journeyplanner.search input').first().val();
-			var destination = $('.panel.journeyplanner.search input').last().val();
-			var waypoints = routing.getWaypoints ();
-
-			// Build the journey object
-			var journey = 
-			{
-				'origin': origin,
-				'destination': destination,
-				'waypoints': waypoints
-			}
-
-			// Add this to the _recentJourneys array, and update the cookie
-			_recentJourneys.push (journey);
-			$.cookie('recentJourneys', JSON.stringify(_recentJourneys));
-		},
-		
 			
 		// Close the route search box
 		closeRouteSearchBox: function() {$('.panel.journeyplanner.search').removeClass ('open');},
@@ -1671,8 +1609,8 @@ var cyclestreetsui = (function ($) {
 		zoomToImageLatLon: function (imageFile)
 		{	
 			EXIF.getData(imageFile, function () {
+				
 				// Calculate latitude decimal
-				console.log (this.exifdata);
 				var latDegree = Number(this.exifdata.GPSLatitude[0].numerator)/Number(this.exifdata.GPSLatitude[0].denominator);
 				var latMinute = Number(this.exifdata.GPSLatitude[1].numerator)/Number(this.exifdata.GPSLatitude[1].denominator);
 				var latSecond = Number(this.exifdata.GPSLatitude[2].numerator)/Number(this.exifdata.GPSLatitude[2].denominator);

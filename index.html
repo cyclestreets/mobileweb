@@ -165,6 +165,7 @@
 					<a href="#" id="glasses-icon" class="ui-button" title="Find a location on the map"><img src="/images/icon-spectacles.svg" alt="Spectacles icon" /></a>
 					<a href="#" id="close-browse-box-icon" class="ui-button" title="Close the browse search box"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a>
 					<input id="browse-search-box" type="text" name="location" autocomplete="off" placeholder="Move map to place or postcode" tabindex="1" spellcheck="false" class="ui-autocomplete-input" />
+					<span class="loader"></span>
 				</div> 
 				
 				<!-- Journey planner panels -->
@@ -173,12 +174,14 @@
 					<div id="journeyPlannerInputs">
 						<div class="inputDiv">
 							<input id="start" name="waypoint0" type="text" spellcheck="false" class="geocoder" placeholder="Your current location" value="" />
+							<span class="loader" style="border-bottom-color:#7ac064;"></span>
 							<a class="removeWaypoint" href="#"><img src="/images/btn-clear-field-green.svg" alt="Remove waypoint" /></a>
 							<a class="addWaypoint" href="#" title="Add waypoint"><img src="/images/icon-add-waypoint.svg" alt="Add waypoint" /></a>
 							<a class="reorderWaypoint" href="#" title="Reorder waypoint"><img src="/images/icon-reorder.svg" /></a>
 						</div>
 						<div class="inputDiv">
 							<input id="end" name="waypoint1" type="text" spellcheck="false" class="geocoder" placeholder="Get somewhere from here" value="" />
+							<span class="loader" style="border-bottom-color:#e54124;"></span>
 							<a href="#" class="removeWaypoint"><img src="/images/btn-clear-field-red.svg" alt="Remove waypoint" /></a>
 							<a class="addWaypoint" href="#" title="Add waypoint"><img src="/images/icon-add-waypoint.svg" alt="Add waypoint" /></a>
 							<a class="reorderWaypoint" href="#" title="Reorder waypoint"><img src="/images/icon-reorder.svg" /></a>

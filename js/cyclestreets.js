@@ -65,7 +65,10 @@ var cyclestreetsui = (function ($) {
 		defaultPoi: ['cycleparking'],
 
 		// Hide default LayerViewer message area and legend
-		hideExtraMapControls: true
+		hideExtraMapControls: true,
+
+		// Whether to prompt before clearing route
+		promptBeforeClearingRoute: false
 		
 	};
 	

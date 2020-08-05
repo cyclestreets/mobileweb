@@ -977,17 +977,24 @@ var cyclestreetsui = (function ($) {
 				
 				// Did we click a saved shortcut location, or a POI?
 				var link = $(event.target).closest ('a');
-				var shortcutLocationName = 'favourite'; // Default favourite location name
+				var shortcutLocationName = false; // Default favourite location name
 				$.each(_shortcutLocations, function (indexInArray, locationName) { 
 					if ($(link).hasClass (locationName)) {
 						shortcutLocationName = locationName;
 					}
 				});
 
-				// If we clicked on a shortcut location which is not set, display an alert
+				// If we clicked on a shortcut location which is not set, display an alert, otherwise, add it to the geocoder inputs
 				var savedLocation = cyclestreetsui.retrieveSavedLocations ().find (obj => obj.title == shortcutLocationName);
 				if (!savedLocation) {
 					cyclestreetsui.displayNotification ("You can set your " + shortcutLocationName + " location in Settings.", '/images/icon-' + shortcutLocationName + '.svg');
+					return;
+				} else {
+					// Otherwise, add this waypoint to the geocoder inputs
+					// Strip the waypoint of it label, so the routing library can attribute it automatically
+					var waypoint = savedLocation.coordinates.pop();
+					waypoint.label = null;
+					routing.addWaypointMarker (waypoint);
 				}
 				
 

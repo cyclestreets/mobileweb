@@ -924,9 +924,18 @@ var cyclestreetsui = (function ($) {
 			};
 
 			// Hide the shortcuts if we are adding a waypoint 
-			$('.panel.journeyplanner.search').on('click', 'a.addWaypoint', function(e) {
+			$('.panel.journeyplanner.search').on('click', 'a.addWaypoint', function() {
 				$('.shortcuts').hide();
 				cyclestreetsui.fitMap();
+			});
+
+			// Show the shortcuts if we have remove all but 2 geocoder inputs
+			$('.panel.journeyplanner.search').on('click', 'a.removeWaypoint', function() {
+				// Check if we have 3 inputs, one will be removed in the routing library after this function is called
+				if ($('.inputDiv').length = 3) {
+					$('.shortcuts').show();
+					cyclestreetsui.fitMap();
+				}
 			});
 
 			// Handler for find routes button
@@ -955,14 +964,14 @@ var cyclestreetsui = (function ($) {
 				
 				// Did we click a saved shortcut location, or a POI?
 				var link = $(event.target).closest ('a');
-				var shortcutLocationName = false;
+				var shortcutLocationName = 'favourite'; // Default favourite location name
 				$.each(_shortcutLocations, function (indexInArray, locationName) { 
 					if ($(link).hasClass (locationName)) {
 						shortcutLocationName = locationName;
 					}
 				});
 
-				// If we clicked on a shortcut location which is ntot set, display an alert
+				// If we clicked on a shortcut location which is not set, display an alert
 				var savedLocation = cyclestreetsui.retrieveSavedLocations ().find (obj => obj.title == shortcutLocationName);
 				if (!savedLocation) {
 					cyclestreetsui.displayNotification ("You can set your " + shortcutLocationName + " location in Settings.", '/images/icon-' + shortcutLocationName + '.svg');

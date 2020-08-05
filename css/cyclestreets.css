@@ -149,6 +149,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search .recent-items li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('/images/icon-cyclist-small.svg');}
 .panel.journeyplanner.search .recent-items li p.distance, .panel.journeyplanner.search .recent-items p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
 .panel.journeyplanner.search .recent-items li a {float: right;}
+.panel.journeyplanner.search .recent-items ul.recent-searches li a {padding-right: 20px;}
+.panel.journeyplanner.search .recent-items ul.recent-searches li p.destination {line-height: 34px;}
 
 /* Route speed select panel */
 .panel.journeyplanner.select {max-height: 350px; transition: 0.5s;}

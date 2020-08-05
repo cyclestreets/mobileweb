@@ -96,6 +96,7 @@ input:focus {outline: auto 2px Highlight; outline: auto 2px -webkit-focus-ring-c
 select {-webkit-appearance: none; height: 50px;}
 hr {margin-top: 10px; margin-bottom: 10px;}
 .disabled {opacity: 0.5;}
+.grayscale {filter: grayscale(100%); -webkit-filter: grayscale(100%);}
 
 /* iOS styled elements */
 .switch {position: relative; float: right; width: 60px; height: 34px;}

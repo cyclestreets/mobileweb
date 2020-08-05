@@ -983,7 +983,14 @@ var cyclestreetsui = (function ($) {
 				// If we clicked on a shortcut location which is not set, display an alert, otherwise, add it to the geocoder inputs
 				var savedLocation = cyclestreetsui.retrieveSavedLocations ().find (obj => obj.title == shortcutLocationName);
 				if (!savedLocation) {
-					cyclestreetsui.displayNotification ("You can set your " + shortcutLocationName + " location in Settings.", '/images/icon-' + shortcutLocationName + '.svg');
+					cyclestreetsui.displayNotification (
+						"You can set your " + shortcutLocationName + " location in Settings.", 
+						'/images/icon-' + shortcutLocationName + '.svg',
+						function () {
+							// Callback function to switch to settings
+							cyclestreetsui.switchPanel ('.panel.journeyplanner.search', '.panel.settings');
+						}
+					);
 					return;
 				} else {
 					// Otherwise, add this waypoint to the geocoder inputs
@@ -996,6 +1003,9 @@ var cyclestreetsui = (function ($) {
 
 			// Handler for user location button in JP
 			$('.panel.journeyplanner.search a.locationTracking').click (function () {
+				// Enable this button (remove grayscale)
+				$(this).removeClass ('grayscale');
+				
 				// Retrieve the geolocatuon from layerviewer
 				var geolocation = layerviewer.getGeolocation ();
 				var geolocationLngLat = geolocation._accuracyCircleMarker._lngLat;
@@ -1080,7 +1090,14 @@ var cyclestreetsui = (function ($) {
 				if (!cyclestreetsui.updateLoggedInStatus ()) 
 				{	
 					// Display a notification
-					cyclestreetsui.displayNotification ("Please log-in to access this feature.", '/images/icon-user.svg');
+					cyclestreetsui.displayNotification (
+						'Please log-in to access this feature.', 
+						'/images/icon-user.svg',
+						function () {
+							// Callback function to switch to log-in
+							cyclestreetsui.switchPanel ('.panel', '.panel.account');
+						}
+					);
 					
 					// Stop any further events from occuring
 					event.preventDefault ();
@@ -1209,11 +1226,7 @@ var cyclestreetsui = (function ($) {
 			$('#close-browse-box-icon').click (cyclestreetsui.hideBrowseSearchBox);
 			
 			// Slide up the ride notification on click
-			$('.notification').click (function () {
-				// If there is a queue of 'fx', we dequeue the current notification immediately, rather than waiting for the delay
-				$('.notification').dequeue ();
-				$('.notification').slideUp ('slow');
-			});
+			cyclestreetsui.setDefaultNotificationClickBehaviour ();
 
 			// Activate segmented controls, i.e., when a list item is clicked, activate it and deactivate all other list items
 			$('.segmented-control li').click (function (){
@@ -2118,11 +2131,15 @@ var cyclestreetsui = (function ($) {
 
 		
 		// Display a notification popup with a message 
-		displayNotification: function (notificationText, imageSrc) 
+		displayNotification: function (notificationText, imageSrc, callback = false) 
 		{
 			
 			// Add this notification to the queue
-			_notificationQueue.push ({'notificationText': notificationText, 'imageSrc': imageSrc});
+			_notificationQueue.push ({
+				'notificationText': notificationText, 
+				'imageSrc': imageSrc,
+				'callback': callback
+			});
 			
 			// If the display daemon is already working through a queue, let it do its job
 			if ($('.popup.system-notification').queue ('fx').length) {
@@ -2146,15 +2163,32 @@ var cyclestreetsui = (function ($) {
 				notification = _notificationQueue.shift ();
 				
 				// Set the image and text
-				$('.popup.system-notification img').attr('src', notification.imageSrc);
+				$('.popup.system-notification img').attr ('src', notification.imageSrc);
 				$('.popup.system-notification p.direction').text (notification.notificationText);
+
+				// If we received a callback, change the click event to this
+				if (notification.callback) {
+					$('.notification').one ('click', function () {
+						notification.callback ();
+					});
+				}
 
 				// Slide down the notification, and hide it after a delay
 				// Upon completetion, call this function again
-				$('.popup.system-notification').slideDown('slow');
-				$('.popup.system-notification').delay(2500).slideUp('slow', cyclestreetsui.notificationDaemon);
+				$('.popup.system-notification').slideDown ('slow');
+				$('.popup.system-notification').delay (2500).slideUp ('slow', cyclestreetsui.notificationDaemon);
 			} 
-				
+		},
+
+
+		setDefaultNotificationClickBehaviour: function () 
+		{
+			// Slide up the ride notification on click
+			$('.notification').on ('click', function () {
+				// If there is a queue of 'fx', we dequeue the current notification immediately, rather than waiting for the delay
+				$('.notification').dequeue ();
+				$('.notification').slideUp ('slow');
+			});
 		},
 			
 		

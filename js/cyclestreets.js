@@ -768,6 +768,9 @@ var cyclestreetsui = (function ($) {
 			// Enable implicit click/touch on map as close menu			
 			$('#map').click(function () {
 				if ($('nav').is (':visible')) {cyclestreetsui.resetUI ();}
+				
+				cyclestreetsui.openJourneyPlannerCard ();
+
 			});
 			
 			// Enable swipe-to-close
@@ -926,37 +929,30 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			// Hide the final waypoint add button
-			$('.panel.journeyplanner.search #journeyPlannerInputs').children().last().children('a.addWaypoint').hide();
+			$('.panel.journeyplanner.search #journeyPlannerInputs').children ().last ().children ('a.addWaypoint').hide();
 
 			// Change opacity of #getRoutes link until routing has enabled it
-			$('.panel.journeyplanner.search #getRoutes').css('opacity', 0.3);
-
-			// Handler to open the journey planner card
-			var openJourneyPlannerCard = function() {
-				cyclestreetsui.openJourneyPlannerCard ();
-			};
+			$('.panel.journeyplanner.search #getRoutes').css ('opacity', 0.3);
 
 			// Hide the shortcuts if we are adding a waypoint 
 			$('.panel.journeyplanner.search').on('click', 'a.addWaypoint', function() {
-				$('.shortcuts').hide();
-				cyclestreetsui.fitMap();
+				$('.shortcuts').hide ();
+				cyclestreetsui.fitMap ();
 			});
 
-			// Show the shortcuts if we have remove all but 2 geocoder inputs
+			// Show the shortcuts if we have removed all but 2 geocoder inputs
 			$('.panel.journeyplanner.search').on('click', 'a.removeWaypoint', function() {
 				// Check if we have 3 inputs, one will be removed in the routing library after this function is called
 				if ($('.inputDiv').length = 3) {
-					$('.shortcuts').show();
-					cyclestreetsui.fitMap();
+					$('.shortcuts').show ();
+					cyclestreetsui.fitMap ();
 				}
 			});
 
 			// Handler for find routes button
 			$('.panel.journeyplanner.search #getRoutes').click (function () {
 				// Do not proceeed if we do not have enough waypoints
-				if (routing.getWaypoints().length < 2) {
-					return false;
-				}
+				if (routing.getWaypoints ().length < 2) {return false;}
 
 				// Save the search in cookie
 				routing.addToRecentJourneys ();
@@ -992,25 +988,40 @@ var cyclestreetsui = (function ($) {
 				} else {
 					// Otherwise, add this waypoint to the geocoder inputs
 					// Strip the waypoint of it label, so the routing library can attribute it automatically
-					var waypoint = savedLocation.coordinates.pop();
+					var waypoint = savedLocation.coordinates.pop ();
 					waypoint.label = null;
 					routing.addWaypointMarker (waypoint);
 				}
-				
+			});
 
+			// Handler for user location button in JP
+			$('.panel.journeyplanner.search a.locationTracking').click (function () {
+				// Retrieve the geolocatuon from layerviewer
+				var geolocation = layerviewer.getGeolocation ();
+				var geolocationLngLat = geolocation._accuracyCircleMarker._lngLat;
+
+				// Build the waypoint to be "dropped" into map
+				var waypoint = {lng: geolocationLngLat.lng, lat: geolocationLngLat.lat, label: 'waypoint0'};
+				routing.addWaypointMarker (waypoint);
 			});
 			
 			// Open the Route search box on focusing or clicking on any JP geocoder input
-			$('.panel.journeyplanner.search input').focus (openJourneyPlannerCard);
-			$('.panel.journeyplanner.search input').click ( function () {
-				$(this).focus ();
+			$('.panel.journeyplanner.search input').focus (function (){
+				cyclestreetsui.openJourneyPlannerCard ();
+				routing.setMarkerAtUserLocation ();
 			});
-			
+
+			// Clicking a input panel focuses it -> fix for bug where clicking input on iOS would not trigger this
+			$('.panel.journeyplanner.search input').click ( function () {$(this).focus ();});
+
+
 		},
 
 
-		// Handler to open the journey planner card
-		openJourneyPlannerCard: function() 
+		// Handler to open the journey planner card. Accept addMapCenter as variable.
+		// addMapCenter: true -> opening the card will set a pin in the device map center
+		// addMapCenter: false -> opening the map will put a starting pin at the user's location
+		openJourneyPlannerCard: function (addMapCenter = false) 
 		{
 			if (!$('.panel.journeyplanner.search').hasClass ('open')) {
 				// Close all other search boxes, menus, etc...
@@ -1020,10 +1031,11 @@ var cyclestreetsui = (function ($) {
 				$('.panel.journeyplanner.search').addClass ('open', 500);
 				
 				// Drop a pin in the middle of the map as our default start position
-				routing.addMapCenter ();
+				if (addMapCenter) {
+					routing.addMapCenter ();
+				} 
 
 				// Show the get routes button 
-				// #¡# This should be shown only when waypoints.length > 2
 				$('.panel.journeyplanner.search #getRoutes').show ({duration: 500});
 
 				// Show the other input boxes
@@ -1065,7 +1077,8 @@ var cyclestreetsui = (function ($) {
 			// Handler for authenticated links
 			$('.authenticated').click (function (event) {
 				// If user isn't logged in, stop
-				if (!cyclestreetsui.updateLoggedInStatus ()) {
+				if (!cyclestreetsui.updateLoggedInStatus ()) 
+				{	
 					// Display a notification
 					cyclestreetsui.displayNotification ("Please log-in to access this feature.", '/images/icon-user.svg');
 					
@@ -1208,7 +1221,7 @@ var cyclestreetsui = (function ($) {
 				$(this).siblings ('li').removeClass ('active');
 			});
 
-			// Save all the inputs as cookies
+			// On clicking button with class save, save associated inputs in a cookie
 			$('.save').click (function (event) {
 				// Find closest data input types in this panel
 				var currentPanel = $(event.target).closest ('.panel');

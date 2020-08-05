@@ -36,7 +36,7 @@ var cyclestreetsui = (function ($) {
 		enableScale: true,
 		
 		// First-run welcome message
-		firstRunMessageHtml: '<p>Welcome to CycleStreets.</p>',
+		firstRunMessageHtml: false,
 
 		// Use existing geolocation button instead of Mapbox's
 		geolocationElementId: 'geolocate-button',

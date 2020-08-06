@@ -746,12 +746,14 @@ var cyclestreetsui = (function ($) {
 				routing.disableMapClickListening (true);
 			});
 			
-			// Enable implicit click/touch on map as close menu			
-			$('#map').click(function (e) {
+			// Map click handler
+			$('#map').click(function () {
+				// Enable implicit click/touch on map as close menu			
 				if ($('nav').is (':visible')) {
 					$('nav').hide ('slide', {direction: 'left'}, 300);
-					routing.disableMapClickListening (false);
+					routing.disableMapClickListening (false); // Enable routing library to listen for map clicks 
 				} else {
+					// Otherwise, open the JP card, as the routing library will add a marker on this click
 					cyclestreetsui.openJourneyPlannerCard ();
 				}
 			});
@@ -765,6 +767,9 @@ var cyclestreetsui = (function ($) {
 			// Open card from main nav items
 			$('nav ul > li').click (function (event) {
 				
+				// Enable map click event listening
+				routing.disableMapClickListening (false); // Enable routing library to listen for map clicks 
+
 				// Get the class name from the li
 				var className = this.className.split (' ')[0];
 				

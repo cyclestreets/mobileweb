@@ -211,21 +211,18 @@ var cyclestreetsui = (function ($) {
 		pois: {
 			apiCall: '/v2/pois.locations',
 			apiFixedParameters: {
-				fields: 'id,name,osmTags[capacity,access,bicycle_parking,covered],nodeId',
-				limit: 400
+				//fields: 'id,name,iconUrl,osmTags[capacity,access,bicycle_parking,covered],nodeId',
+				limit: 400,
+				thumbnailsize: 300,
+				datetime: 'friendlydate'
 			},
-			iconUrl: '/images/icons/cycleparking_good.svg',
-			//iconField: 'iconUrl',		// icons specified in the field value
+			iconField: 'iconUrl', 	// icons specified in the field value
 			iconSize: [24, 24],
-			popupHtml:
-				  '<p><strong>Cycle parking</strong></p>'
-				+ '<table>'
-				+ '<tr><td>Spaces:</td><td>{properties.Capacity}</td></tr>'
-				+ '<tr><td>Access:</td><td>{properties.Access}</tr>'
-				+ '<tr><td>Type:</td><td>{properties.Bicycle_parking}</tr>'
-				+ '<tr><td>Covered?:</td><td>{properties.Covered}</tr>'
-				+ '</table>'
-				+ '<p class="edit"><a href="https://www.openstreetmap.org/edit?node={properties.nodeId}" target="_blank">Add/edit details</a></p>'
+			popupHtml: '<img class="place-photo" src="placeholders/places-popup-placeholder.png" alt="Image of location" /><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><h2>{place}</h2>'
+			+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>34 High St, Sawston, Cambridge, Cambridgeshire, CB22 3BG</p>'
+			+ '<ul><li><img src="/images/icon-clock.svg" alt="Opening times" /><p>Open today: 09:00 - 17:30</p></li><li>'
+			+ '<img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">01223 576790</p></li></ul>',
+			popupCallback: function (renderDetailsHtml) {cyclestreetsui.displayPoiPopup (renderDetailsHtml);}
 		},
 		
 		// https://data.police.uk/docs/method/crime-street/
@@ -275,59 +272,13 @@ var cyclestreetsui = (function ($) {
 				datetime: 'friendlydate'
 			},
 			iconField: 'iconUrl',		// icons specified in the field value
-			useManualPopup: '.popup.photomap',
-			popupHtml: {selector: '.popup.photomap'},
-			//popupHtml: '', Populated automatically in initialise
-			/*
-			//popupOld: '<div class="popup photomap">'
-				+ '<div class="inner-card flip-card-inner">'
-				+ '<div class="flip-card-front popup-card">'
-				+ '<img class="popup-photo" src="placeholders/photomap-add-comments-placeholder.svg" alt="Photo" />'
-				+ '<a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a>'
-				+ '<a href="#" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /> Share</a>'
-				+ '<a class="flip" href="#" title="Show more information"> Photo info</a>'
-				+ '</div>'
-				+ '<div class="flip-card-back popup-card">'
-				+ '<a href="#" class="back" title="Return to the front of this card"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a>'
-				+ '<a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a>'
-				+ '<br>'
-				+ '<p class="key">Category:</p>'
-				+ '<p>Cycle parking</p>'
-				+ '<br>	'
-				+ '<p class="key">Type:</p>'
-				+ '<p>Neutral</p>'
-				+ '<hr /><ul>'
-				+ '<li><img src="/images/icon-user.svg" alt="User icon" />'
-				+ '<p>timbo</p>'
-				+ '</li>'
-				+ '<li>'
-				+ '<img src="/images/icon-clock.svg" alt="Clock icon" />'
-				+ '<p>1:16pm, 8th August, 2018</p>'
-				+ '</li>'
-				+ '<li>'
-				+ '<img src="/images/icon-hashtag.svg" alt="Photo number" />'
-				+ '<p>92334</p>'
-				+ '</li>'
-				+ '<li>'
-				+ '<img src="/images/icon-copyright.svg" alt="Copyright" />'
-				+ '<p>CC Attribution-Share Alike (by-sa)</p>'
-				+ '</li>'
-				+ '</ul>'
-				+ '</div></div></div>'
-
-
-
-				+ '<p><a href="/photomap/{properties.id}/" id="details" data-url="{properties.apiUrl}&thumbnailsize=800"><img src="{properties.thumbnailUrl}" /></a></p>'
-				+ '<div class="scrollable">'
-				+ '<strong>{properties.captionHtml}</strong>'
-				+ '</div>'
-				+ '<table>'
-				+ '<tr><td>Datsdsde:</td><td>{properties.datetime}</td></tr>'
-				+ '<tr><td>By:</td><td>{properties.username}</td></tr>'
-				+ '<tr><td>Category:</td><td>{properties.categoryName} &mdash; {properties.metacategoryName}</td></tr>'
-				+ '</table>'
-				+ '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>',
-			*/
+			popupHtmlTemplateSelector: '.popup.photomap',
+			popupCallback: function (renderDetailsHtml) {cyclestreetsui.displayPhotomapPopup (renderDetailsHtml);},
+			popupHtml: '<div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><img class="popup-photo" src="{properties.thumbnailUrl}" alt="Photo" />' 
+				+ '<a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><a href="#" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /> Share</a><a class="flip" href="#" title="Show more information"> Photo info</a></div>'
+				+ '<div class="flip-card-back popup-card"><a href="#" class="back" title="Return to the front of this card"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><br>' 
+				+ '<p class="key">Category:</p><p>{properties.categoryName}</p><br>	<p class="key">Type:</p><p>{properties.metacategoryName}</p><hr /><ul><li><img src="/images/icon-user.svg" alt="User icon" /><p>{properties.username}</p></li>'
+				+ '<li><img src="/images/icon-clock.svg" alt="Clock icon" /><p>{properties.datetime}</p></li><li><img src="/images/icon-hashtag.svg" alt="Photo number" /><p>{properties.id}</p></li><li><img src="/images/icon-copyright.svg" alt="Copyright" /><p>CC Attribution-Share Alike (by-sa)</p></li></ul></div></div>',
 			detailsOverlay: 'apiUrl',
 			overlayHtml:
 				  '<table class="fullimage">'
@@ -858,16 +809,21 @@ var cyclestreetsui = (function ($) {
 
 		// Fit the map to any opened card
 		// Accepts an element, or attempts to find the open panel
-		fitMap: function (element = false) 
+		fitMap: function (fullscreen = false, element = false) 
 		{
-			// If no element is shown, find the open card
-			if (!element) {
+			var height = null;
+			
+			// If we are fullscreen, set height as 0
+			if (fullscreen) {
+				height = 0;
+			} else if (!element) { // If no element is shown, find the open card
 				// There should only ever be one visible card
 				element = $('.panel:visible').first();
-			} 
+				height = $(element).height();
+			} else { // Find the height of the passed-in element
+				height = $(element).height();
+			}
 				
-			var height = $(element).height();
-
 			// Resize div, and resize map to fit the new div size
 			$('#map').css({bottom: height});
 			_map.resize();
@@ -1496,7 +1452,6 @@ var cyclestreetsui = (function ($) {
 				// Update the POIs cookie
 				cyclestreetsui.updatePoisCookie ();
 			});
-
 		},
 
 		
@@ -1531,6 +1486,17 @@ var cyclestreetsui = (function ($) {
 			});
 		},
 
+
+		// Display a POI popup
+		displayPoiPopup: function ()
+		{
+			$('.panel').hide ();
+			var fullscreen = true;
+			cyclestreetsui.fitMap (fullscreen);
+
+			// Get the HTML for the popup
+			$('.popup.places').show ();
+		},
 
 
 		/*
@@ -1667,7 +1633,16 @@ var cyclestreetsui = (function ($) {
 					});
 				}
 			});
+		},
 
+		// Display a Photomap popup
+		displayPhotomapPopup: function (renderedDetailsHtml)
+		{
+			$('.panel').hide ();
+			var fullscreen = true;
+			cyclestreetsui.fitMap (fullscreen);
+			$('.popup.photomap').html (renderedDetailsHtml);
+			$('.popup.photomap').show ();
 		},
 
 		// Function to get lat/lon from image
@@ -2136,20 +2111,20 @@ var cyclestreetsui = (function ($) {
 		popupActions: function ()
 		{
 			// Close a popup panel
-			$('.popup .close-button').click (function() {
+			$(document).on('click', '.popup .close-button', function() {
 				$('.popup').hide('300');
 			});
 			
 			// Flip photomap popup card
-			$('.popup a.flip').click (function () {
+			$(document).on('click', '.popup a.flip', function () {
 				$('.inner-card').addClass('flipped');
 			});
-			$('.popup a.back').click (function () {
+			$(document).on('click', '.popup a.back', function () {
 				$('.inner-card').removeClass('flipped');
 			});
 			
 			// Start navigation from a places popup card
-			$('.popup .get-directions').click (function () {
+			$(document).on('click', '.popup .get-directions', function () {
 				cyclestreetsui.switchPanel ('.popup.places', '.panel.journeyplanner.select');
 			});
 		},	
@@ -2206,6 +2181,7 @@ var cyclestreetsui = (function ($) {
 		},
 
 
+		// Function to provide the default notification click behaviour
 		setDefaultNotificationClickBehaviour: function () 
 		{
 			// Slide up the ride notification on click

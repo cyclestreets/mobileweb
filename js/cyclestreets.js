@@ -218,11 +218,14 @@ var cyclestreetsui = (function ($) {
 			},
 			iconField: 'iconUrl', 	// icons specified in the field value
 			iconSize: [24, 24],
-			popupHtml: '<img class="place-photo" src="placeholders/places-popup-placeholder.png" alt="Image of location" /><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><h2>{place}</h2>'
-			+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>34 High St, Sawston, Cambridge, Cambridgeshire, CB22 3BG</p>'
-			+ '<ul><li><img src="/images/icon-clock.svg" alt="Opening times" /><p>Open today: 09:00 - 17:30</p></li><li>'
-			+ '<img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">01223 576790</p></li></ul>',
-			popupCallback: function (renderDetailsHtml) {cyclestreetsui.displayPoiPopup (renderDetailsHtml);}
+			popupHtml: 
+				  '<img class="place-photo" src="placeholders/places-popup-placeholder.png" alt="Image of location" /><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><h2>{place}</h2>'
+				+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>34 High St, Sawston, Cambridge, Cambridgeshire, CB22 3BG</p>'
+				+ '<ul><li><img src="/images/icon-clock.svg" alt="Opening times" /><p>Open today: 09:00 - 17:30</p></li><li>'
+				+ '<img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">01223 576790</p></li></ul>',
+			popupCallback: function (renderDetailsHtml) {
+				cyclestreetsui.displayPoiPopup (renderDetailsHtml);
+			}
 		},
 		
 		// https://data.police.uk/docs/method/crime-street/
@@ -273,8 +276,11 @@ var cyclestreetsui = (function ($) {
 			},
 			iconField: 'iconUrl',		// icons specified in the field value
 			popupHtmlTemplateSelector: '.popup.photomap',
-			popupCallback: function (renderDetailsHtml) {cyclestreetsui.displayPhotomapPopup (renderDetailsHtml);},
-			popupHtml: '<div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><img class="popup-photo" src="{properties.thumbnailUrl}" alt="Photo" />' 
+			popupCallback: function (renderDetailsHtml) {
+				cyclestreetsui.displayPhotomapPopup (renderDetailsHtml);
+			},
+			popupHtml: 
+			      '<div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><img class="popup-photo" src="{properties.thumbnailUrl}" alt="Photo" />' 
 				+ '<a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><a href="#" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /> Share</a><a class="flip" href="#" title="Show more information"> Photo info</a></div>'
 				+ '<div class="flip-card-back popup-card"><a href="#" class="back" title="Return to the front of this card"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><br>' 
 				+ '<p class="key">Category:</p><p>{properties.categoryName}</p><br>	<p class="key">Type:</p><p>{properties.metacategoryName}</p><hr /><ul><li><img src="/images/icon-user.svg" alt="User icon" /><p>{properties.username}</p></li>'
@@ -558,7 +564,7 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui[action] ();
 			});
 
-			// Add routing
+			// Intialise routing library
 			cyclestreetsui.routing ();
 
 			// Get POIS icon URLs
@@ -579,6 +585,7 @@ var cyclestreetsui = (function ($) {
 			routing.initialise (_settings, _map, _isMobileDevice, _panningEnabled);
 		},
 		
+
 		// Autocomplete
 		autocomplete: function ()
 		{

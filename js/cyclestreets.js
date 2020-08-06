@@ -271,7 +271,7 @@ var cyclestreetsui = (function ($) {
 			apiFixedParameters: {
 				fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,iconUrl,categoryName,metacategoryName,datetime,apiUrl',
 				limit: 150,
-				thumbnailsize: 300,
+				thumbnailsize: 1000,
 				datetime: 'friendlydate'
 			},
 			iconField: 'iconUrl',		// icons specified in the field value
@@ -613,7 +613,7 @@ var cyclestreetsui = (function ($) {
 			});
 		},
 		
-		
+
 		// Function to go the map page
 		mapPageLink: function (longitude, latitude)
 		{
@@ -626,8 +626,8 @@ var cyclestreetsui = (function ($) {
 		/*
 		 * Nav bar functions
 		 */
-		navBar: function () {
-			
+		navBar: function () 
+		{	
 			// Open the nav bar
 			$('#hamburger-menu').click(function() {
 				$('nav').show ('slide', {direction: 'left' }, 300);

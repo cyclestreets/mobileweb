@@ -743,6 +743,8 @@ var cyclestreetsui = (function ($) {
 			// Open the nav bar
 			$('#hamburger-menu').click(function() {
 				$('nav').show ('slide', {direction: 'left' }, 300);
+				
+				// Don't listen for map clicks while the menu is open
 				routing.disableMapClickListening (true);
 			});
 			
@@ -752,6 +754,9 @@ var cyclestreetsui = (function ($) {
 				if ($('nav').is (':visible')) {
 					$('nav').hide ('slide', {direction: 'left'}, 300);
 					routing.disableMapClickListening (false); // Enable routing library to listen for map clicks 
+				// If the browse search box is open, close it
+				} else if ($('#browse-search-box').hasClass ('open')) {
+					cyclestreetsui.resetUI ();
 				} else {
 					// Otherwise, open the JP card, as the routing library will add a marker on this click
 					cyclestreetsui.openJourneyPlannerCard ();
@@ -833,6 +838,14 @@ var cyclestreetsui = (function ($) {
 				
 					// Show the matching panel
 					$('.panel.' + className).first ().slideToggle ();
+
+					// The Journey Planner card should open, as well, rather than simply displaying the card in minimised position
+					if (className == 'journeyplanner') {
+						cyclestreetsui.openJourneyPlannerCard ();
+					} else {
+						// Set the JP back to the default minimised state
+						$('.panel.journeyplanner.search').removeClass ('open');
+					}
 
 					// Resize map element
 					cyclestreetsui.fitMap ();
@@ -932,7 +945,7 @@ var cyclestreetsui = (function ($) {
 			$('.panel.journeyplanner.search #journeyPlannerInputs').children ().last ().children ('a.addWaypoint').hide();
 
 			// Change opacity of #getRoutes link until routing has enabled it
-			$('.panel.journeyplanner.search #getRoutes').css ('opacity', 0.3);
+			$('.panel.journeyplanner.search #getRoutes').addClass ('grayscale', 500);
 
 			// Hide the shortcuts if we are adding a waypoint 
 			$('.panel.journeyplanner.search').on('click', 'a.addWaypoint', function() {
@@ -1038,17 +1051,14 @@ var cyclestreetsui = (function ($) {
 				// Close all other search boxes, menus, etc...
 				cyclestreetsui.resetUI ();
 
+				// Show the other input boxes
+				$('.panel.journeyplanner.search input').show ();
+
 				// Expand card, and resize map
-				$('.panel.journeyplanner.search').addClass ('open', 500);
+				$('.panel.journeyplanner.search').addClass ('open', 450);
 				
 				// Drop a pin in the middle of the map as our default start position
 				if (addMapCenter) {routing.addMapCenter ();} 
-
-				// Show the get routes button 
-				$('.panel.journeyplanner.search #getRoutes').show ({duration: 500});
-
-				// Show the other input boxes
-				$('.panel.journeyplanner.search input').show ({duration: 500});
 
 				// Change the search placeholder to prompt user input
 				$('.panel.journeyplanner.search #end').attr ('placeholder', 'Where do you want to go?');
@@ -1259,6 +1269,9 @@ var cyclestreetsui = (function ($) {
 			$('#glasses-icon').click (function() {
 				cyclestreetsui.resetUI ();
 				cyclestreetsui.openBrowseSearchBar ();
+
+				// Disable listening to the map, so we can click outside and close this box without adding a marker
+				routing.disableMapClickListening (true);
 			});
 			
 			// Close the Browse search box
@@ -1357,6 +1370,7 @@ var cyclestreetsui = (function ($) {
 			$('#close-browse-box-icon').hide ();
 			$('#browse-search-box').removeClass ('open');
 			$('#browse-search-box').hide ();
+			routing.disableMapClickListening (false);
 		},
 		
 		// Switch panel

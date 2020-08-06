@@ -743,17 +743,23 @@ var cyclestreetsui = (function ($) {
 			// Open the nav bar
 			$('#hamburger-menu').click(function() {
 				$('nav').show ('slide', {direction: 'left' }, 300);
+				routing.disableMapClickListening (true);
 			});
 			
 			// Enable implicit click/touch on map as close menu			
-			$('#map').click(function () {
-				if ($('nav').is (':visible')) {cyclestreetsui.resetUI ();}
-				cyclestreetsui.openJourneyPlannerCard ();
+			$('#map').click(function (e) {
+				if ($('nav').is (':visible')) {
+					$('nav').hide ('slide', {direction: 'left'}, 300);
+					routing.disableMapClickListening (false);
+				} else {
+					cyclestreetsui.openJourneyPlannerCard ();
+				}
 			});
 			
 			// Enable swipe-to-close
 			$('nav').on('swipeleft', function () {
 				$('nav').hide ('slide', {direction: 'left'}, 300);
+				routing.disableMapClickListening (false);
 			});
 			
 			// Open card from main nav items
@@ -912,8 +918,6 @@ var cyclestreetsui = (function ($) {
 			// Handler for clearing recent searches and journeys
 			$('.clearRecentSearches').click (function () {routing.clearRecentSearches ();})
 			$('.clearRecentJourneys').click (function () {routing.clearRecentJourneys ();})
-
-
 
 			/* 
 			* JP: inputs and route buttons 
@@ -1370,6 +1374,9 @@ var cyclestreetsui = (function ($) {
 			
 			// Hide the move-map browse input field
 			cyclestreetsui.hideBrowseSearchBox ();
+
+			// Enable listening to the map
+			routing.disableMapClickListening (false);
 		},
 		
 		// Set-up the default home-screen

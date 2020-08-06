@@ -587,12 +587,11 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 			
-			
 			// Run the layerviewer for these settings and layers
 			layerviewer.initialise (_settings, _layerConfig);
 			_map = layerviewer.getMap ();
 
-			// Autocomplete
+			// Enable autocomplete for geocoder inputs
 			cyclestreetsui.autocomplete ();
 			
 			// Initialise the UI
@@ -619,7 +618,6 @@ var cyclestreetsui = (function ($) {
 			
 			// Show the default panel, after a slight pleasing delay
 			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
-			
 		},
 		
 		
@@ -652,24 +650,6 @@ var cyclestreetsui = (function ($) {
 								}
 							}));
 						}
-					});
-				}
-			});
-		},
-		
-		// Layer-specific behaviour
-		tflCid: function ()
-		{
-			// Provide drop-down filters based on feature type, firstly getting the schema from the server
-			$.ajax({
-				url: _settings.apiBaseUrl + '/v2/infrastructure.schema?dataset=tflcid&key=' + _settings.apiKey,
-				success: function (schema) {
-					
-					// Load description for type dropdown and filters
-					var field = $("form #tflcid select[name='type']").val ();
-					cyclestreetsui.setFilters (schema, field);
-					$("form #tflcid select[name='type']").on ('change', function () {
-						cyclestreetsui.setFilters (schema, this.value);
 					});
 				}
 			});
@@ -768,9 +748,7 @@ var cyclestreetsui = (function ($) {
 			// Enable implicit click/touch on map as close menu			
 			$('#map').click(function () {
 				if ($('nav').is (':visible')) {cyclestreetsui.resetUI ();}
-				
 				cyclestreetsui.openJourneyPlannerCard ();
-
 			});
 			
 			// Enable swipe-to-close
@@ -878,6 +856,10 @@ var cyclestreetsui = (function ($) {
 		journeyPlanner: function ()
 		{	
 
+			/* 
+			* JP: Recent searches and journeys 
+			*/
+
 			// Retrieve and populate the search panel with recent searches and journeys
 			routing.buildRecentJourneys ();
 			routing.buildRecentSearches ();
@@ -911,7 +893,6 @@ var cyclestreetsui = (function ($) {
 
 				// Resize map element
 				cyclestreetsui.fitMap ('.panel.journeyplanner.select');
-
 			});
 
 			// Clicking on a recent searches adds this to the next available input, but does not plan the route
@@ -927,6 +908,16 @@ var cyclestreetsui = (function ($) {
 				// Add this to the map and input geocoder
 				routing.addWaypointMarker (waypoint);
 			});
+
+			// Handler for clearing recent searches and journeys
+			$('.clearRecentSearches').click (function () {routing.clearRecentSearches ();})
+			$('.clearRecentJourneys').click (function () {routing.clearRecentJourneys ();})
+
+
+
+			/* 
+			* JP: inputs and route buttons 
+			*/
 			
 			// Hide the final waypoint add button
 			$('.panel.journeyplanner.search #journeyPlannerInputs').children ().last ().children ('a.addWaypoint').hide();
@@ -965,8 +956,34 @@ var cyclestreetsui = (function ($) {
 
 				// Resize map element
 				cyclestreetsui.fitMap ('.panel.journeyplanner.select');
-
 			});
+
+			// Handler for user location button in JP
+			$('.panel.journeyplanner.search a.locationTracking').click (function () {
+				// Enable this button (remove grayscale)
+				$(this).removeClass ('grayscale');
+				
+				// Retrieve the geolocatuon from layerviewer
+				var geolocation = layerviewer.getGeolocation ();
+				var geolocationLngLat = geolocation._accuracyCircleMarker._lngLat;
+
+				// Build the waypoint to be "dropped" into map
+				var waypoint = {lng: geolocationLngLat.lng, lat: geolocationLngLat.lat, label: 'waypoint0'};
+				routing.addWaypointMarker (waypoint);
+			});
+			
+			// Open the Route search box on focusing or clicking on any JP geocoder input
+			$('.panel.journeyplanner.search input').focus (function (){
+				cyclestreetsui.openJourneyPlannerCard ();
+				routing.setMarkerAtUserLocation ();
+			});
+
+			// Clicking a input panel focuses it -> fix for bug where clicking input on iOS would not trigger this
+			$('.panel.journeyplanner.search input').click ( function () {$(this).focus ();});
+
+			/* 
+			* JP: favourite and shortcut buttons
+			*/
 
 			// Handler for shortcut icons
 			$('.panel.journeyplanner.search .shortcut-icons').click (function () {
@@ -1000,31 +1017,6 @@ var cyclestreetsui = (function ($) {
 					routing.addWaypointMarker (waypoint);
 				}
 			});
-
-			// Handler for user location button in JP
-			$('.panel.journeyplanner.search a.locationTracking').click (function () {
-				// Enable this button (remove grayscale)
-				$(this).removeClass ('grayscale');
-				
-				// Retrieve the geolocatuon from layerviewer
-				var geolocation = layerviewer.getGeolocation ();
-				var geolocationLngLat = geolocation._accuracyCircleMarker._lngLat;
-
-				// Build the waypoint to be "dropped" into map
-				var waypoint = {lng: geolocationLngLat.lng, lat: geolocationLngLat.lat, label: 'waypoint0'};
-				routing.addWaypointMarker (waypoint);
-			});
-			
-			// Open the Route search box on focusing or clicking on any JP geocoder input
-			$('.panel.journeyplanner.search input').focus (function (){
-				cyclestreetsui.openJourneyPlannerCard ();
-				routing.setMarkerAtUserLocation ();
-			});
-
-			// Clicking a input panel focuses it -> fix for bug where clicking input on iOS would not trigger this
-			$('.panel.journeyplanner.search input').click ( function () {$(this).focus ();});
-
-
 		},
 
 
@@ -1041,9 +1033,7 @@ var cyclestreetsui = (function ($) {
 				$('.panel.journeyplanner.search').addClass ('open', 500);
 				
 				// Drop a pin in the middle of the map as our default start position
-				if (addMapCenter) {
-					routing.addMapCenter ();
-				} 
+				if (addMapCenter) {routing.addMapCenter ();} 
 
 				// Show the get routes button 
 				$('.panel.journeyplanner.search #getRoutes').show ({duration: 500});
@@ -1068,6 +1058,7 @@ var cyclestreetsui = (function ($) {
 		{
 			
 			// Swiping down on a card closes it
+			// This is temporarily disabled while debugging in Safari
 			/*
 			$('.panel').on('swipedown', function () {
 				cyclestreetsui.returnHome ();
@@ -1084,7 +1075,12 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 
-			// Handler for authenticated links
+
+			/*
+			* Card generic handlers: authenticate, save, wizard, forward, backward
+			*/
+
+			// Handler for authenticated links, prompts user to log-in
 			$('.authenticated').click (function (event) {
 				// If user isn't logged in, stop
 				if (!cyclestreetsui.updateLoggedInStatus ()) 
@@ -1105,6 +1101,37 @@ var cyclestreetsui = (function ($) {
 					return false;
 				}
 			});
+
+			// On clicking button with class save, save associated inputs in a cookie
+			$('.save').click (function (event) {
+				// Find closest data input types in this panel
+				var currentPanel = $(event.target).closest ('.panel');
+				var nearestInputs = [];
+				var inputTypes = ['input', 'select', 'range', 'textarea', 'textfield', '.segmented-control li.active']; // Add other types
+				$.each(inputTypes, function (index, type) {
+					// Find all inputs of this type
+					var closestInputs = $(currentPanel).find (type);
+					
+					// If any were found, add this to the nearestInputs array
+					if (closestInputs.length) {
+						$.each(closestInputs, function (index, input) {
+							nearestInputs.push (input);
+						});
+					}
+				});
+
+				// Save each value in the cookie
+				$.each(nearestInputs, function (index, input) {
+					if ($(input).attr('type') == 'checkbox') {
+						$.cookie($(input).attr('id'), $(input).prop('checked'));
+					} else if ($(input).is ('li')) {
+						var segmentedControlId = $(input).parent().prop('id');
+						$.cookie(segmentedControlId, $(input).prop('id'));
+					} else {
+						$.cookie($(input).attr('id'), $(input).val());
+					}
+				});
+			})
 
 			// Generic handler for back actions
 			$('.action.back').click (function () {
@@ -1139,8 +1166,45 @@ var cyclestreetsui = (function ($) {
 
 					// Resize map element
 					cyclestreetsui.fitMap ();
-					
 				}
+			});
+			
+			// Move forward in a wizard
+			$('.action.forward').click (function() {
+				
+				// Did we click inside a wizard?
+				var wizard = $(this).closest ('.wizard');
+				if (wizard.length) {
+					
+					// Get current panel name and convert spaces into dots
+					var currentPanel = $(this).closest ('.panel').attr ('class');
+					currentPanel = currentPanel.replace (/\s/g, '.');
+					
+					// Check whether we can progress
+					if (!cyclestreetsui.canProgress ('.' + currentPanel)) {
+						var notificationText = 'Please fill out all items in this panel to continue.';
+						cyclestreetsui.displayNotification (notificationText, '/images/icon-tourist-info-pos.svg')
+						return;
+					}
+					
+					// Get the panel class we are in, without sub-panel
+					var panelClass = currentPanel.split ('.'); // Split the current panel, i.e. [panel, photomap, add-photo]
+					panelClass.pop(); // Pop the sub-panel out of the array
+					panelClass = panelClass.join ('.'); // Reconstruct the string from array, i.e panel.photomap
+					panelClass = '.' + panelClass; // Add the leading dot, i.e. .panel.photomap
+					
+					// Find the next children of this panel, if we have any
+					var nextPanel = $(this).closest ('.panel').next (panelClass);
+					if (nextPanel.length) {
+						var nextPanelClass = '.' + nextPanel.attr ('class').replace (/\s/g, '.');
+					}
+					
+					// Switch the panel
+					if (nextPanel.length) {
+						cyclestreetsui.switchPanel ('.' + currentPanel, nextPanelClass);
+					}
+				}
+				
 			});
 			
 			// Generic action to return home clicking cancel button
@@ -1162,45 +1226,7 @@ var cyclestreetsui = (function ($) {
 				closestPanel = closestPanel.replace (/\s/g, '.');
 				cyclestreetsui.switchPanel ('.' + closestPanel, firstWizardPanel);
 			});
-			
-			// Move forward in a wizard
-			$('.action.forward').click (function() {
-				
-				// Did we click inside a wizard?
-				var wizard = $(this).closest ('.wizard');
-				if (wizard.length) {
-					
-					// Get current panel name and convert spaces into dots
-					var currentPanel = $(this).closest ('.panel').attr ('class');
-					currentPanel = currentPanel.replace (/\s/g, '.');
-					
-					// Check whether we can progress
-					if (!cyclestreetsui.canProgress ('.' + currentPanel)) {
-						var notificationText = 'Please fill out all items in this panel to continue.';
-						cyclestreetsui.displayNotification (notificationText, '/images/icon-tourist-info-pos.svg')
-						return;
-					}
 
-					// Get the panel class we are in, without sub-panel
-					var panelClass = currentPanel.split ('.'); // Split the current panel, i.e. [panel, photomap, add-photo]
-					panelClass.pop(); // Pop the sub-panel out of the array
-					panelClass = panelClass.join ('.'); // Reconstruct the string from array, i.e panel.photomap
-					panelClass = '.' + panelClass; // Add the leading dot, i.e. .panel.photomap
-					
-					// Find the next children of this panel, if we have any
-					var nextPanel = $(this).closest ('.panel').next (panelClass);
-					if (nextPanel.length) {
-						var nextPanelClass = '.' + nextPanel.attr ('class').replace (/\s/g, '.');
-					}
-					
-					// Switch the panel
-					if (nextPanel.length) {
-						cyclestreetsui.switchPanel ('.' + currentPanel, nextPanelClass);
-					}
-				}
-				
-			});
-			
 			// On every click inside a wizard, check to see if we can progress
 			$('.wizard .panel').click (function () {
 				cyclestreetsui.enableNavigation (this);
@@ -1215,6 +1241,10 @@ var cyclestreetsui = (function ($) {
 			 $('input:file').change(function (){
 				cyclestreetsui.enableNavigation (this);
 			 });
+
+			/*
+			* Main UI buttons: browse, segmented controls
+			*/
 			
 			// Show the move-map-to search box
 			$('#glasses-icon').click (function() {
@@ -1234,38 +1264,11 @@ var cyclestreetsui = (function ($) {
 				$(this).siblings ('li').removeClass ('active');
 			});
 
-			// On clicking button with class save, save associated inputs in a cookie
-			$('.save').click (function (event) {
-				// Find closest data input types in this panel
-				var currentPanel = $(event.target).closest ('.panel');
-				var nearestInputs = [];
-				var inputTypes = ['input', 'select', 'range', 'textarea', 'textfield', '.segmented-control li.active']; // Add other types
-				$.each(inputTypes, function (index, type) {
-					// Find all inputs of this type
-					var closestInputs = $(currentPanel).find (type);
-					
-					// If any were found, add this to the nearestInputs array
-					if (closestInputs.length) {
-						$.each(closestInputs, function (index, input) {
-							nearestInputs.push (input);
-						});
-					}
-				});
+			/*
+			* Functions to run at startup
+			*/
 
-				// Save each value in the cookie
-				$.each(nearestInputs, function (index, input) {
-					if ($(input).attr('type') == 'checkbox') {
-						$.cookie($(input).attr('id'), $(input).prop('checked'));
-					} else if ($(input).is ('li')) {
-						var segmentedControlId = $(input).parent().prop('id');
-						$.cookie(segmentedControlId, $(input).prop('id'));
-					} else {
-						$.cookie($(input).attr('id'), $(input).val());
-					}
-				});
-			})
-
-			// Load and apply and cookies (settings, etc)
+			// On startup, load and apply and cookies (settings, etc)
 			cyclestreetsui.loadAndApplyCookies ();
 
 			
@@ -1394,7 +1397,6 @@ var cyclestreetsui = (function ($) {
 						$('#cancel-tracking, #finish-tracking').removeClass ('enabled');
 						$('#my-rides-button, #start-ride-tracking').addClass ('enabled');
 						
-						
 						// Open the add-details panel
 						cyclestreetsui.switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.add-details');
 					}
@@ -1501,8 +1503,6 @@ var cyclestreetsui = (function ($) {
 				$('#' + poiID).attr("checked", true);
 				_poisActivated.push(poiID);
 			});
-
-			// Write this to the class variable
 		},
 
 
@@ -1643,7 +1643,6 @@ var cyclestreetsui = (function ($) {
 			});
 
 		},
-
 
 		// Function to get lat/lon from image
 		zoomToImageLatLon: function (imageFile)

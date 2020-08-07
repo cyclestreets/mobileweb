@@ -632,12 +632,8 @@ var cyclestreetsui = (function ($) {
 		navBar: function () 
 		{	
 			// Open the nav bar
-			$('#hamburger-menu').click(function() {
-				$('nav').show ('slide', {direction: 'left' }, 300);
-				
-				// Don't listen for map clicks while the menu is open
-				routing.disableMapClickListening (true);
-			});
+			$('#hamburger-menu').click(function() {cyclestreetsui.openNav ();});
+			$(_settings.dataLoadingSpinnerSelector).click(function() {cyclestreetsui.openNav ();});
 			
 			// Map click handler
 			$('#map').click(function () {
@@ -742,6 +738,14 @@ var cyclestreetsui = (function ($) {
 					cyclestreetsui.fitMap ();
 				}
 			});
+		},
+
+		// Open the nav bar
+		openNav: function () {
+			$('nav').show ('slide', {direction: 'left' }, 300);
+				
+			// Don't listen for map clicks while the menu is open
+			routing.disableMapClickListening (true);
 		},
 		
 		// Close the nav bar

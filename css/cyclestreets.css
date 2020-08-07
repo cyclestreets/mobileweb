@@ -129,7 +129,9 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search {height: 60px;}
 .panel.journeyplanner.search.open {height: auto;}
 .panel.journeyplanner.search #start {display: none;}
-.panel.journeyplanner.search #getRoutes {display: none; position: absolute; right: 0;}
+.panel.journeyplanner.search #getRoutes {display: none; position: absolute; right: 0; transition: transform .2s;}
+.panel.journeyplanner.search #getRoutes.grayscale:hover {transform: scale(1.0);}
+.panel.journeyplanner.search #getRoutes:hover {transform: scale(1.1);}
 .panel.journeyplanner.search input {position: relative; bottom: 5px; height: 50px; width: calc(100% - 40px); margin: 10px 0; padding: 0 20px; border: 0; transition: transform .2s;}
 .panel.journeyplanner.search input:hover {transform: scale(1.05);}
 .panel.journeyplanner.search .loader {display: none; position: absolute; left: 27px; margin-top: 10px; margin-left: -3px; width: 38px; height: 38px;}
@@ -152,18 +154,21 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search ul.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
 .panel.journeyplanner.search ul.segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
 .panel.journeyplanner.search ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
-.panel.journeyplanner.search ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
-.panel.journeyplanner.search ul.segmented-control label:hover {background: #fafafa;}
+.panel.journeyplanner.search ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer; transition: transform .2s;}
+.panel.journeyplanner.search ul.segmented-control label:hover {background: #fafafa; transform: scale(1.05);}
 .panel.journeyplanner.search hr {width: calc(100% + 40px); margin: 10px 0 10px -20px;}
 .panel.journeyplanner.search ul.recent-journeys, .panel.journeyplanner.search ul.recent-searches {max-height: 250px; overflow-y: scroll; margin-right: -35px;}
 .panel.journeyplanner.search .recent-items hr {width: 100%; margin-right: -10px;}
-.panel.journeyplanner.search .recent-items li {padding-right: 15px;}
+.panel.journeyplanner.search .recent-items li {padding-right: 15px; transition: transform .2s;}
+.panel.journeyplanner.search .recent-items li:hover {transform: translate(10px, 0);}
+.panel.journeyplanner.search .recent-items li:hover > a {transform: translate(-10px, 0) scale(1.15);}
 .panel.journeyplanner.search .recent-items li p {margin: 10px 0;}
 .panel.journeyplanner.search .recent-items li p.destination {display: inline; font-size: 16px; line-height: 19px;}
 .panel.journeyplanner.search .recent-items li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
-.panel.journeyplanner.search .recent-items li p.distance {float: right; padding: 0 0 0 20px; background: left no-repeat; background-image: url('/images/icon-cyclist-small.svg');}
+.panel.journeyplanner.search .recent-items li p.distance {float: right; padding: 0 20px 0 20px; background: left no-repeat; background-image: url('/images/icon-cyclist-small.svg');}
 .panel.journeyplanner.search .recent-items li p.distance, .panel.journeyplanner.search .recent-items p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
-.panel.journeyplanner.search .recent-items li a {float: right;}
+.panel.journeyplanner.search .recent-items li a {float: right; transition: transform .2s;}
+.panel.journeyplanner.search .recent-items li a:hover {transform: scale(1.12);}
 .panel.journeyplanner.search .recent-items ul.recent-searches li a {padding-right: 20px;}
 .panel.journeyplanner.search .recent-items ul.recent-searches li p.destination {line-height: 34px;}
 /* Route speed select panel */

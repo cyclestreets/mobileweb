@@ -865,7 +865,11 @@ var cyclestreetsui = (function ($) {
 			// Handler for find routes button
 			$('.panel.journeyplanner.search #getRoutes').click (function () {
 				// Do not proceeed if we do not have enough waypoints
-				if (routing.getWaypoints ().length < 2) {return false;}
+				if (routing.getWaypoints ().length < 2) {
+					cyclestreetsui.animateElement ('#getRoutes', 'headShake');
+					cyclestreetsui.displayNotification ('You must add at least 2 waypoints to plan a journey', '/images/icon-places-red.svg');
+					return false;
+				}
 
 				// Save the search in cookie
 				routing.addToRecentJourneys ();
@@ -975,7 +979,7 @@ var cyclestreetsui = (function ($) {
 		 */
 		mainUI: function ()
 		{
-			
+						
 			// Swiping down on a card closes it
 			// This is temporarily disabled while debugging in Safari
 			/*
@@ -985,7 +989,7 @@ var cyclestreetsui = (function ($) {
 			*/
 			
 			// Swiping up on a card opens it
-			$('.panel').on('swipeup', function (event) {
+			$('.panel').on ('swipeup', function (event) {
 				// If this is the JP card, trigger open event
 				if ($(event.target).is ('.panel, .journeyplanner, .search')) {
 					cyclestreetsui.openJourneyPlannerCard ();
@@ -1195,6 +1199,29 @@ var cyclestreetsui = (function ($) {
 
 			
 		},
+
+		// Animate an element, passing in the selector and animation class
+		animateElement: function (element, animation, prefix = 'animate__')
+		{
+			// Create a promise and return it
+			new Promise((resolve, reject) => {
+				const animationName = `${prefix}${animation}`;
+				const node = document.querySelector(element);
+
+				node.classList.add(`${prefix}animated`, animationName);
+
+				// When the animation ends, we clean the classes and resolve the Promise
+				function handleAnimationEnd() {
+					node.classList.remove(`${prefix}animated`, animationName);
+					node.removeEventListener('animationend', handleAnimationEnd);
+
+					resolve('Animation ended');
+				}
+
+				node.addEventListener('animationend', handleAnimationEnd);
+			});
+		},
+				
 
 		// On startup, load any input values from cookies
 		loadAndApplyCookies: function ()
@@ -1589,6 +1616,7 @@ var cyclestreetsui = (function ($) {
 			$('.popup.photomap').show ();
 		},
 
+
 		// Function to get lat/lon from image
 		zoomToImageLatLon: function (imageFile)
 		{	
@@ -1862,14 +1890,14 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			// Sign-in handler
-			$('.panel.account a.action.forward').click (function() {
-
-				// Switch to log-in panel
-				cyclestreetsui.switchPanel ('.panel', '.panel.creating-account');
-				$('.panel.creating-account p').text ('Logging in...');
+			$('.panel.account a.action.forward').click (function () {
+				
+				// Hide the action forward
+				$('.panel.account a.action.forward').hide ();
+				$('.panel.account .loader').show ();
 				
 				// Build the authentication URL
-				var userAuthenticationUrl = layerviewer.settingsPlaceholderSubstitution(_settings.userAuthenticationUrl, ['apiBaseUrl', 'apiKey']);
+				var userAuthenticationUrl = layerviewer.settingsPlaceholderSubstitution (_settings.userAuthenticationUrl, ['apiBaseUrl', 'apiKey']);
 
 				// Locate the form
 				var loginDetails = $('.panel.account form');
@@ -1877,14 +1905,20 @@ var cyclestreetsui = (function ($) {
 				// Send the log-in data via AJAX
 				$.ajax({
 					url: userAuthenticationUrl,
-					type: loginDetails.attr('method'),
-					data: loginDetails.serialize()
+					type: loginDetails.attr ('method'),
+					data: loginDetails.serialize ()
 				}).done(function (result) 
 				{	
+					$('.panel.account a.action.forward').show ();
+					$('.panel.account .loader').hide ();
+
 					// Detect API error
 					if ('error' in result) {
-						$('.feedback-submit.error p').text(result.error);
-						cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
+						cyclestreetsui.displayNotification (result.error, '/images/icon-tourist-info-pos.svg');
+
+						if (result.error.includes ('password')) {
+							cyclestreetsui.animateElement ('.panel.account input[name="password"]', 'shakeX');
+						}
 
 					} else { // Save the login cookie
 						// Switch to the logging in panel
@@ -1914,6 +1948,7 @@ var cyclestreetsui = (function ($) {
 
 					// Remove the password from the log-in card
 					$('.panel.account input[name="password"]').val ('');
+
 				});
 			});
 

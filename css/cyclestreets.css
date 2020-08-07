@@ -12,7 +12,8 @@ nav ul ul li {padding: 10px 0;}
 nav ul input {position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;} /* Hide the browser's default checkbox */
 nav ul ul li label {font-size: 16px; padding: 12px 0 12px 38px;}
 nav li {background: left no-repeat;}
-nav li a {font-size: 20px;}
+nav li a {font-size: 20px; transition: transform .4s;}
+nav li a:hover {transform: scale(1.03);}
 nav li.journeyplanner {background-image: url('/images/icon-jp-red.svg');}
 nav li.photomap {background-image: url('/images/icon-photomap-red.svg');}
 nav li.pois {background-image: url('/images/icon-places-red.svg');}
@@ -45,9 +46,9 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 #map {position:absolute; top: 0; bottom: 0; left: 0; width:100%;}
 
 /* Main UI icons and input boxes */
-.ui-button {display: block; position: fixed; width: 50px; height: 50px; line-height: 50px; border: 0 solid #f5f5f5; border-radius: 50%; background: #f5f5f5; text-align: center; box-shadow: 0 0 3px gray;}
-.ui-button-large {width: 65px; height: 65px; background: #cc5959;}
-
+.ui-button {display: block; position: fixed; width: 50px; height: 50px; line-height: 50px; border: 0 solid #f5f5f5; border-radius: 50%; background: #f5f5f5; text-align: center; box-shadow: 0 0 3px gray; transition: transform .2s;}
+.ui-button-large {width: 65px; height: 65px; background: #cc5959; transition: transform .2s;}
+.ui-button:hover, .ui-button-large:hover {transform: scale(1.1);}
 #hamburger-menu {top: 20px; left: 20px;}
 .mainLoadingSpinner {width: 65px; height: 65px; border-radius: 50%; display: none; position: fixed; top: 20px; left: 20px; background: linear-gradient(0deg, rgba(204, 89, 89, 0.2) 33%, #e1dde0 100%); box-sizing: border-box; animation: rotation 1s linear infinite;}
 #geolocate-button {top: 30px; right: 20px; line-height: 64px;}
@@ -82,9 +83,10 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 
 /* Standard card elements */
 a {text-decoration: none; color: #dc4f55;}
-a.action {position: absolute; top: 0; padding: 15px; line-height: 35px; color: #dc4f55; text-decoration: none;}
-a.action.back {left: 0;}
-a.action.forward {right: 0;}
+a.action {position: absolute; top: 0; margin-top: 12px; padding: 10px; color: #dc4f55; text-decoration: none; border-radius: 20px;}
+a.action:hover {background-color: rgba(204, 89, 89, 0.2);}
+a.action.back {left: 0; margin-left: 3px;}
+a.action.forward {right: 0; margin-right: 3px;}
 a.action.forward.white {color: #ffffff;}
 h2 {margin: 5px 0 10px 0; text-align: center; font-variant: small-caps;}
 ul {margin: 0; padding: 0;}
@@ -97,6 +99,10 @@ select {-webkit-appearance: none; height: 50px;}
 hr {margin-top: 10px; margin-bottom: 10px;}
 .disabled {opacity: 0.5;}
 .grayscale {filter: grayscale(100%); -webkit-filter: grayscale(100%);}
+.zoom {transition: transform .2s;}  
+.zoom:hover {transform: scale(1.1);}
+.redHover {border-radius: 20px; padding: 10px;}
+.redHover:hover {background-color: rgba(204, 89, 89, 0.2);}
 
 /* iOS styled elements */
 .switch {position: relative; float: right; width: 60px; height: 34px;}
@@ -107,7 +113,6 @@ input:checked + .slider {background-color: #dc4f55;}
 input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transform: translateX(26px); transform: translateX(26px);}
 .slider.round {border-radius: 34px;}
 .slider.round:before {border-radius: 50%;}
-
 .wizard .action.forward {opacity: 0.3;}
 .wizard .action.forward.enabled {opacity: 1;}
 
@@ -160,7 +165,6 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search .recent-items li a {float: right;}
 .panel.journeyplanner.search .recent-items ul.recent-searches li a {padding-right: 20px;}
 .panel.journeyplanner.search .recent-items ul.recent-searches li p.destination {line-height: 34px;}
-
 /* Route speed select panel */
 .panel.journeyplanner.select {max-height: 350px; transition: 0.5s;}
 .panel.journeyplanner.select *:focus {outline: none;}
@@ -312,6 +316,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
  */
 
 /* Sign-in panel specific styles */
+.panel.account .loader {display: none; position: absolute; right: 5px; top: 5px; margin: 10px 10px 0 0; width: 32px; height: 32px;}
 .panel.account input {width: calc(100% - 40px); margin: 5px auto;}
 .panel.account h3 {width: 100%; line-height: 30px; text-align: center; margin-bottom: 0;}
 .panel.account p {margin: 0 20px; padding: 0; text-align: left;}
@@ -333,7 +338,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 /* Settings panel */
 .panel.settings h3 {width: 100%; text-align: center; margin: 10px 0;}
-.panel.settings hr {width: calc(100% + 40px); margin: 5px 0 5px -20px;}
+.panel.settings hr {width: calc(100% + 40px); margin: 5px 0 10px -20px;}
 .panel.settings ul {padding: 10px;}
 .panel.settings ul li img {display: inline-block; padding: 10px 0; vertical-align: middle;}
 .panel.settings ul li a {display: inline-block; color: #dc4f55; text-decoration: none;}
@@ -356,6 +361,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.settings ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
 .panel.settings ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
 .panel.settings ul.segmented-control label:hover {background: #fafafa;}
+.panel.settings #about-cyclestreets {margin-top: 10px;}
 
 /* About panel */
 .panel.about {max-height: 80%; width: calc(100% - 40px); overflow-y: scroll;}

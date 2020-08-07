@@ -33,6 +33,9 @@
 		<link rel="stylesheet" href="/js/lib/vex-4.1.0/dist/css/vex.css" />
 		<link rel="stylesheet" href="/js/lib/vex-4.1.0/dist/css/vex-theme-plain.css" />
 
+		<!-- Animations -->
+		<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+
 		<!-- GeoJSON parser for flat JSON; see: https://www.npmjs.com/package/geojson -->
 		<!--<script src="https://unpkg.com/geojson@0.5.0/geojson.js"></script>-->
 		<script src="/js/lib/GeoJSON.js/geojson.js"></script>
@@ -176,17 +179,17 @@
 						<div class="inputDiv">
 							<input id="start" name="waypoint0" type="text" spellcheck="false" class="geocoder locationTracking" placeholder="Your current location" value="" />
 							<span class="loader" style="border-bottom-color:#7ac064;"></span>
-							<a class="removeWaypoint" href="#"><img src="/images/btn-clear-field-green.svg" alt="Remove waypoint" /></a>
-							<a class="addWaypoint" href="#" title="Add waypoint"><img src="/images/icon-add-waypoint.svg" alt="Add waypoint" /></a>
-							<a class="locationTracking" href="#" title="Turn off location tracking"><img src="/images/icon-location-small.svg" alt="Turn off location tracking" /></a>
-							<a class="reorderWaypoint" href="#" title="Reorder waypoint"><img src="/images/icon-reorder.svg" /></a>
+							<a class="removeWaypoint zoom" href="#"><img src="/images/btn-clear-field-green.svg" alt="Remove waypoint" /></a>
+							<a class="addWaypoint zoom" href="#" title="Add waypoint"><img src="/images/icon-add-waypoint.svg" alt="Add waypoint" /></a>
+							<a class="locationTracking zoom" href="#" title="Turn off location tracking"><img src="/images/icon-location-small.svg" alt="Turn off location tracking" /></a>
+							<a class="reorderWaypoint zoom" href="#" title="Reorder waypoint"><img src="/images/icon-reorder.svg" /></a>
 						</div>
 						<div class="inputDiv">
 							<input id="end" name="waypoint1" type="text" spellcheck="false" class="geocoder" placeholder="Get somewhere from here" value="" />
 							<span class="loader" style="border-bottom-color:#e54124;"></span>
-							<a href="#" class="removeWaypoint"><img src="/images/btn-clear-field-red.svg" alt="Remove waypoint" /></a>
-							<a class="addWaypoint" href="#" title="Add waypoint"><img src="/images/icon-add-waypoint.svg" alt="Add waypoint" /></a>
-							<a class="reorderWaypoint" href="#" title="Reorder waypoint"><img src="/images/icon-reorder.svg" /></a>
+							<a href="#" class="removeWaypoint zoom"><img src="/images/btn-clear-field-red.svg" alt="Remove waypoint" /></a>
+							<a class="addWaypoint zoom" href="#" title="Add waypoint"><img src="/images/icon-add-waypoint.svg" alt="Add waypoint" /></a>
+							<a class="reorderWaypoint zoom" href="#" title="Reorder waypoint"><img src="/images/icon-reorder.svg" /></a>
 						</div>
 					</div>
 					<div class="shortcuts">
@@ -641,13 +644,14 @@
 					<h2>Signin</h2>
 					<a class="action back" href="#" title="Close this card">Cancel</a>
 					<a class="action forward" href="#" title="Sign in">Signin <img src="/images/icon-disclosure-red-right.svg" alt="Right chevron" /></a>
+					<span class="loader" style="border-bottom-color:#e54124;"></span>
 					<form method="post" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
 						<input name="identifier" required="required" placeholder="Username" />
 						<input name="password" type="password" required="required" placeholder="Password" />
 						<img class="showOrHidePassword" src="/images/icon-eye.svg" alt="Show or hide password" />
 					</form>
 					<br />
-					<a class="forgottenPassword" href="#" title="Recover your forgotten password">I've forgotten my password</a>
+					<a class="forgottenPassword redHover" href="#" title="Recover your forgotten password">I've forgotten my password...</a>
 					<hr />
 					<h3>Not with us yet?</h3>
 					<p>Create a Cyclestreets account and participate in an active cycling community.</p>
@@ -749,7 +753,7 @@
 					</label>
 					-->
 					<hr />
-					<a id="about-cyclestreets">About CycleStreets <img class="disclosure" src="/images/icon-disclosure-red-right.svg" alt="Right chevron" /></a>
+					<a id="about-cyclestreets" class="redHover">About CycleStreets...</a>
 					
 				</div>
 				

@@ -217,7 +217,8 @@ var cyclestreetsui = (function ($) {
 				//fields: 'id,name,iconUrl,osmTags[capacity,access,bicycle_parking,covered],nodeId',
 				limit: 400,
 				thumbnailsize: 300,
-				datetime: 'friendlydate'
+				datetime: 'friendlydate',
+				iconsize: 24
 			},
 			iconField: 'iconUrl', 	// icons specified in the field value
 			iconSize: [24, 24],

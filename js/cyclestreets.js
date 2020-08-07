@@ -845,7 +845,7 @@ var cyclestreetsui = (function ($) {
 			$('.panel.journeyplanner.search #journeyPlannerInputs').children ().last ().children ('a.addWaypoint').hide();
 
 			// Change opacity of #getRoutes link until routing has enabled it
-			$('.panel.journeyplanner.search #getRoutes').addClass ('grayscale', 500);
+			$('.panel.journeyplanner.search #getRoutes').addClass ('grayscale', 500);			
 
 			// Hide the shortcuts if we are adding a waypoint 
 			$('.panel.journeyplanner.search').on('click', 'a.addWaypoint', function() {

@@ -68,7 +68,10 @@ var cyclestreetsui = (function ($) {
 		hideExtraMapControls: true,
 
 		// Whether to prompt before clearing route
-		promptBeforeClearingRoute: false
+		promptBeforeClearingRoute: false,
+
+		// Custom data loading spinner selector for layerviewer. For layer specific spinner, should contain layerId
+		dataLoadingSpinnerSelector: '.mainLoadingSpinner'
 		
 	};
 	

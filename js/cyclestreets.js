@@ -901,8 +901,10 @@ var cyclestreetsui = (function ($) {
 			
 			// Open the Route search box on focusing or clicking on any JP geocoder input
 			$('.panel.journeyplanner.search input').focus (function (){
-				cyclestreetsui.openJourneyPlannerCard ();
-				routing.setMarkerAtUserLocation ();
+				if (!$('.panel.journeyplanner.search').hasClass ('open')) {
+					cyclestreetsui.openJourneyPlannerCard ();
+					routing.setMarkerAtUserLocation ();
+				}
 			});
 
 			// Clicking a input panel focuses it -> fix for bug where clicking input on iOS would not trigger this

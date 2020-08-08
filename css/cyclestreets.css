@@ -126,20 +126,20 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 
 /* Route search panel */
-.panel.journeyplanner.search {height: 60px;}
+.panel.journeyplanner.search {height: 42px;}
 .panel.journeyplanner.search.open {height: auto;}
 .panel.journeyplanner.search #start {display: none;}
-.panel.journeyplanner.search #getRoutes {display: none; position: absolute; right: 0; transition: transform .2s;}
+.panel.journeyplanner.search #getRoutes {display: none; position: absolute; right: 0; top: 3px; transition: transform .2s;}
 .panel.journeyplanner.search #getRoutes.grayscale:hover {transform: scale(1.0);}
 .panel.journeyplanner.search #getRoutes:hover {transform: scale(1.1);}
-.panel.journeyplanner.search input {position: relative; bottom: 5px; height: 50px; width: calc(100% - 40px); margin: 10px 0; padding: 0 20px; border: 0; transition: transform .2s;}
+.panel.journeyplanner.search input {position: relative; bottom: 5px; height: 45px; width: calc(100% - 40px); padding: 0 20px; border: 0; transition: transform .2s;}
 .panel.journeyplanner.search input:hover {transform: scale(1.05);}
-.panel.journeyplanner.search .loader {display: none; position: absolute; left: 27px; margin-top: 10px; margin-left: -3px; width: 38px; height: 38px;}
+.panel.journeyplanner.search .loader {display: none; position: absolute; left: 27px; margin-top: 4px; margin-left: -3px; width: 38px; height: 38px;}
 .panel.journeyplanner.search .ui-autocomplete-loading + .loader {display: inline-block;}
-.panel.journeyplanner.search a.reorderWaypoint {display: none; position: absolute; right: 80px; margin-top: 20px;}
-.panel.journeyplanner.search a.locationTracking {display: none; position: absolute; right: 115px; margin-top: 22px;}
-.panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; left: 27px; margin-top: 13px;}
-.panel.journeyplanner.search a.addWaypoint {display: none; position: relative; top: 50px; right: 10px;}
+.panel.journeyplanner.search a.reorderWaypoint {display: none; position: absolute; right: 80px; margin-top: 13px;}
+.panel.journeyplanner.search a.locationTracking {display: none; position: absolute; right: 115px; margin-top: 17px;}
+.panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; left: 27px; margin-top: 7px;}
+.panel.journeyplanner.search a.addWaypoint {display: none; position: relative; top: 35px; right: 14px;}
 .panel.journeyplanner.search.open input {width: calc(100% - 120px); padding-left: 50px; transform: scale(1);}
 .panel.journeyplanner.search.open a.reorderWaypoint {display: inline-block;}
 .panel.journeyplanner.search.open a.removeWaypoint {display: inline-block;}

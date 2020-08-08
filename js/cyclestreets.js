@@ -912,26 +912,72 @@ var cyclestreetsui = (function ($) {
 			* JP: favourite and shortcut buttons
 			*/
 
-			// Handler for shortcut icons
-			$('.panel.journeyplanner.search .shortcut-icons').click (function () {
-				
-				// Did we click a saved shortcut location, or a POI?
+			// On startup, populate the POI shortcuts by mirroring the Places card
+			cyclestreetsui.buildJourneyPlannerPoiShortcuts ();
+			
+			// Handler for shortcut icons. User can click on frequent locations, which will drop a map pin
+			// Alternatively, user can click on a POI, which will enable that layer
+			$('.panel.journeyplanner.search .shortcut-icons').on ('click', function (event) 
+			{
+				// Build the link by getting the closest a (we might have clicked on img or a)
 				var link = $(event.target).closest ('a');
+				
+				// Handling for clicking on a POI
+				if ($(link).hasClass ('poi')) {
+					
+					// Build the POI ID
+					var clickedPoiId = $(link).data ('poi');
+					
+					// If this is the last POI selected, visually disable all JP pois and turn off the layer
+					if($.inArray(clickedPoiId, _poisActivated) !== -1 && !$(link).hasClass ('disabled')) {
+						$('.panel.journeyplanner.search ul.shortcut-icons a.poi').addClass ('disabled');
+						$('#show_pois').attr ('checked', false).trigger ('change');
+						return;
+					}
+
+					// While API only supports one type, ensure that the JP state mirrors the Places card
+					$.each ($('.panel.journeyplanner.search ul.shortcut-icons a.poi'), function (indexInArray, input) { 
+						if ($(input).data ('poi') != clickedPoiId) {
+							$(input).addClass ('disabled');
+						} else {
+							$(input).removeClass ('disabled');
+						}
+					});
+
+					// Enable the POI layer input (check navbar input)
+					$('#show_pois').attr ('checked', true).trigger ('change');
+					
+					// Mirror the POI layout on the Places card
+					$.each ($('.panel.pois input'), function (index, input) {
+						if (input.id != clickedPoiId) {
+							$(input).attr ('checked', false).trigger ('change');
+						} else {
+							$(input).attr ('checked', true).trigger ('change');
+						}
+					});
+
+					// Update the POIs cookie
+					cyclestreetsui.updatePoisCookie ();	
+					return; // Exit here 
+				}
+				
+				// We clicked a shortcut, not a POI. Which one?
 				var shortcutLocationName = false; // Default favourite location name
 				$.each(_shortcutLocations, function (indexInArray, locationName) { 
+					// Check to see if it has been defined
 					if ($(link).hasClass (locationName)) {
 						shortcutLocationName = locationName;
+						return; // i.e. exit the loop
 					}
 				});
-
+		
 				// If we clicked on a shortcut location which is not set, display an alert, otherwise, add it to the geocoder inputs
 				var savedLocation = cyclestreetsui.retrieveSavedLocations ().find (obj => obj.title == shortcutLocationName);
 				if (!savedLocation) {
 					cyclestreetsui.displayNotification (
 						"You can set your " + shortcutLocationName + " location in Settings.", 
 						'/images/icon-' + shortcutLocationName + '.svg',
-						function () {
-							// Callback function to switch to settings
+						function () { // Callback function to switch to settings
 							cyclestreetsui.switchPanel ('.panel.journeyplanner.search', '.panel.settings');
 						}
 					);
@@ -944,6 +990,22 @@ var cyclestreetsui = (function ($) {
 					routing.addWaypointMarker (waypoint);
 				}
 			});
+		},
+
+
+		// Function to mirror the Places POIs and place them in the Journey Planner shortcuts section
+		buildJourneyPlannerPoiShortcuts () 
+		{
+			var html = '';
+			var poiId = null;
+			var poiIconSrc = null;
+			$.each($('.panel.pois ul li :input'), function (indexInArray, input) { 
+				poiId = $(input).val ();
+				poiIconSrc = $(input).siblings ('label').find ('img'). prop ('src');
+				html += '<li><a href="#" class="ui-button poi disabled" data-poi="' + poiId + '"><img src="' +poiIconSrc +'" /></a></li>';
+			});
+
+			$('.shortcut-icons').append (html);
 		},
 
 
@@ -1399,15 +1461,16 @@ var cyclestreetsui = (function ($) {
 		 * POIS selection screen actions
 		 */
 		pois: function ()
-		{	
+		{		
 			// At startup, retrieve the POIS from cookie or set as defaults
 			cyclestreetsui.retrievePoisCookie ();
-			
-			// On clicking a POI, save the new POI selection to a cookie
-			// Also, deselect all other POIs (workaround until API supports multiple types)
-			$('.panel.pois input').click (function () {
+
+			// On clicking a POI, toggle status 
+			$('.panel.pois input').click (function (event) {
 				// What POI did we click on?	
 				var clickedPoiId = $(this).attr('id');
+				
+				// Also, deselect all other POIs (workaround until API supports multiple types)		
 
 				// If this is the last POI selected, leave it on
 				if($.inArray(clickedPoiId, _poisActivated) !== -1) {
@@ -1417,7 +1480,9 @@ var cyclestreetsui = (function ($) {
 				// If any other POIS are selected, deselect these			
 				$.each($('.panel.pois input:checked'), function (index, input) {
 					if (input.id != clickedPoiId) {
-						$(input).prop('checked', false);
+						$(input).prop ('checked', false);
+					} else {
+						$(input).prop ('checked', true);
 					}
 				});
 

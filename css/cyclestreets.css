@@ -146,9 +146,14 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search.open a.addWaypoint {display: inline-block;}
 .panel.journeyplanner.search.open a.locationTracking {display: inline-block;}
 .panel.journeyplanner.search.open #getRoutes {display: inline-block;}
-.panel.journeyplanner.search .shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0;}
-.panel.journeyplanner.search .shortcut-icons {display: inline-block; overflow-x: scroll;}
-.panel.journeyplanner.search .shortcut-icons li a {position: relative; float: left; width: 42px; height: 42px; line-height: 55px; margin: 5px; background: #cc5959; color: #f5f5f5;}
+
+.panel.journeyplanner.search .shortcutHorizontalScroll {display: block; overflow-x: scroll; width: calc(100% + 40px); margin: 0 0 0 -20px; scrollbar-width: none;}
+.panel.journeyplanner.search ul.shortcut-icons {list-style-type: none; width: 530px; padding: 0; margin: 0; display: block; scrollbar-width: none;}
+.panel.journeyplanner.search ul.shortcut-icons li a {position: relative; float: left; width: 42px; height: 42px; line-height: 55px; margin: 5px; background: #cc5959; color: #f5f5f5;}
+.panel.journeyplanner.search ul.shortcut-icons li a.poi {opacity: 1; background-color: #fefefe; border-color: #dc4f55; border: 1px solid; border-radius: 50%;}
+.panel.journeyplanner.search ul.shortcut-icons li a.poi.disabled {opacity: .5; border-color: transparent;}
+.panel.journeyplanner.search ul.shortcut-icons li a.poi img {width: 60%; height: 60%;}
+
 .panel.journeyplanner.search ul.segmented-control {display: table; width: 80%; margin: 10px 7.5%; padding: 0;}
 .panel.journeyplanner.search ul.segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
 .panel.journeyplanner.search ul.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
@@ -157,6 +162,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 7px; border: 1px solid #ddd; text-align: center; cursor: pointer; transition: transform .2s;}
 .panel.journeyplanner.search ul.segmented-control label:hover {background: #fafafa; transform: scale(1.05);}
 .panel.journeyplanner.search hr {width: calc(100% + 40px); margin: 10px 0 10px -20px;}
+
 .panel.journeyplanner.search ul.recent-journeys, .panel.journeyplanner.search ul.recent-searches {max-height: 250px; overflow-y: scroll; margin-right: -35px;}
 .panel.journeyplanner.search .recent-items hr {width: 100%; margin-right: -10px;}
 .panel.journeyplanner.search .recent-items li {padding-right: 15px; transition: transform .2s;}
@@ -171,6 +177,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search .recent-items li a:hover {transform: scale(1.12);}
 .panel.journeyplanner.search .recent-items ul.recent-searches li a {padding-right: 20px;}
 .panel.journeyplanner.search .recent-items ul.recent-searches li p.destination {line-height: 34px;}
+
 /* Route speed select panel */
 .panel.journeyplanner.select {max-height: 350px; transition: 0.5s;}
 .panel.journeyplanner.select *:focus {outline: none;}

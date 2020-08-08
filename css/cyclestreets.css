@@ -148,13 +148,13 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search.open #getRoutes {display: inline-block;}
 .panel.journeyplanner.search .shortcut-icons {list-style-type: none; width: 1500px; padding: 0; margin: 0;}
 .panel.journeyplanner.search .shortcut-icons {display: inline-block; overflow-x: scroll;}
-.panel.journeyplanner.search .shortcut-icons li a {position: relative; float: left; line-height: 60px; margin: 5px; background: #cc5959; color: #f5f5f5;}
+.panel.journeyplanner.search .shortcut-icons li a {position: relative; float: left; width: 42px; height: 42px; line-height: 55px; margin: 5px; background: #cc5959; color: #f5f5f5;}
 .panel.journeyplanner.search ul.segmented-control {display: table; width: 80%; margin: 10px 7.5%; padding: 0;}
 .panel.journeyplanner.search ul.segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
 .panel.journeyplanner.search ul.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
 .panel.journeyplanner.search ul.segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
 .panel.journeyplanner.search ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
-.panel.journeyplanner.search ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer; transition: transform .2s;}
+.panel.journeyplanner.search ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 7px; border: 1px solid #ddd; text-align: center; cursor: pointer; transition: transform .2s;}
 .panel.journeyplanner.search ul.segmented-control label:hover {background: #fafafa; transform: scale(1.05);}
 .panel.journeyplanner.search hr {width: calc(100% + 40px); margin: 10px 0 10px -20px;}
 .panel.journeyplanner.search ul.recent-journeys, .panel.journeyplanner.search ul.recent-searches {max-height: 250px; overflow-y: scroll; margin-right: -35px;}

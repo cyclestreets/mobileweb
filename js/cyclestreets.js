@@ -838,12 +838,14 @@ var cyclestreetsui = (function ($) {
 			});
 
 			// Handler for clearing recent searches and journeys
-			$('.clearRecentSearches').click (function () {routing.clearRecentSearches ();})
-			$('.clearRecentJourneys').click (function () {routing.clearRecentJourneys ();})
+			$('.clearRecentSearches').on ('click', function () {routing.clearRecentSearches ();})
+			$('.clearRecentJourneys').on ('click', function () {routing.clearRecentJourneys ();})
 
+			
 			/* 
 			* JP: inputs and route buttons 
 			*/
+
 			
 			// Hide the final waypoint add button
 			$('.panel.journeyplanner.search #journeyPlannerInputs').children ().last ().children ('a.addWaypoint').hide();

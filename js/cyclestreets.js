@@ -788,6 +788,9 @@ var cyclestreetsui = (function ($) {
 			// Retrieve and populate the search panel with recent searches and journeys
 			routing.buildRecentJourneys ();
 			routing.buildRecentSearches ();
+
+			// Check for geolocation status
+			cyclestreetsui.checkForGeolocationStatus ();
 			
 			// Enable recent searches and recent journeys to show
 			$('.panel.journeyplanner.search .segmented-control li').click (function (event){
@@ -992,6 +995,41 @@ var cyclestreetsui = (function ($) {
 					routing.addWaypointMarker (waypoint);
 				}
 			});
+		},
+
+
+		// Function to ascertain the geolocation status of the brwoser
+		checkForGeolocationStatus ()
+		{
+			// On startup, check the geolocation status of the browser
+			function getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(showPosition, showError);
+				} else {
+					vex.dialog.alert ('Geolocation is not supported by this browser.');
+				}
+			}
+
+			function showPosition (position) {}
+
+			function showError(error) {
+				switch (error.code) {
+					case error.PERMISSION_DENIED:
+						vex.dialog.alert ('Please allow the browser to access your location.');	
+						break;
+					case error.POSITION_UNAVAILABLE:
+						vex.dialog.alert ('Location information is unavailable.');	
+						break;
+					case error.TIMEOUT:
+						vex.dialog.alert ('The request to get user location timed out.');
+						break;
+					case error.UNKNOWN_ERROR:
+						vex.dialog.alert ('An unknown error occurred.');
+						break;
+				}
+			}
+
+			getLocation();
 		},
 
 

@@ -633,11 +633,11 @@ var cyclestreetsui = (function ($) {
 		navBar: function () 
 		{	
 			// Open the nav bar
-			$('#hamburger-menu').click(function() {cyclestreetsui.openNav ();});
-			$(_settings.dataLoadingSpinnerSelector).click(function() {cyclestreetsui.openNav ();});
+			$('#hamburger-menu').click (function() {cyclestreetsui.openNav ();});
+			$(_settings.dataLoadingSpinnerSelector).click (function() {cyclestreetsui.openNav ();});
 			
 			// Map click handler
-			$('#map').click(function () {
+			$('#map').click (function () {
 				// Enable implicit click/touch on map as close menu			
 				if ($('nav').is (':visible')) {
 					$('nav').hide ('slide', {direction: 'left'}, 300);
@@ -652,7 +652,7 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			// Enable swipe-to-close
-			$('nav').on('swipeleft', function () {
+			$('nav').on ('swipeleft', function () {
 				$('nav').hide ('slide', {direction: 'left'}, 300);
 				routing.disableMapClickListening (false);
 			});
@@ -1009,12 +1009,17 @@ var cyclestreetsui = (function ($) {
 					navigator.geolocation.getCurrentPosition(showPosition, showError);
 				} else {
 					vex.dialog.alert ('Geolocation is not supported by this browser.');
+					routing.setGeolocationAvailability (false);
 				}
 			}
 
 			function showPosition (position) {}
 
 			function showError(error) {
+				// Set geolocation as unavailable 
+				routing.setGeolocationAvailability (false);
+				
+				// Display a user message
 				switch (error.code) {
 					case error.PERMISSION_DENIED:
 						vex.dialog.alert ('Please allow the browser to access your location.');	

@@ -806,7 +806,7 @@ var cyclestreetsui = (function ($) {
 			$('.panel.journeyplanner.search .recent-items ul.recent-journeys').hide ();
 			
 			// Clicking on a recent journey searches for that route again
-			$('.getRecentJourneyDirections').click (function () {
+			$(document).on ('click', '.getRecentJourneyDirections', function () {
 				// Which recent journey was it? Access the index of the <li> we clicked
 				var recentJourneyIndex = $('.getRecentJourneyDirections').index (this);
 				var recentJourneys = routing.getRecentJourneys ();
@@ -824,7 +824,7 @@ var cyclestreetsui = (function ($) {
 			});
 
 			// Clicking on a recent searches adds this to the next available input, but does not plan the route
-			$('.recentSearch').click (function () {
+			$(document).on ('click', '.recentSearch', function () {
 				// Which recent search was it? Access the index of the <li> we clicked
 				var recentSearchIndex = $('.recentSearch').index (this);
 				var recentSearches = routing.getRecentSearches ();

@@ -1787,6 +1787,9 @@ var cyclestreetsui = (function ($) {
 			// On startup, retrieve the latest blog post, and cross-check against saved cookie
 			cyclestreetsui.checkLatestBlogPost ();
 
+			// On startup, write the desired distance unit to the routing library
+			cyclestreetsui.setDistanceUnit ();
+
 			// When setting a saved location, open a card with a geocoder
 			$('.setSavedLocation').click (function () {
 				// Delete any saved frequent lat lon
@@ -1854,6 +1857,23 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.hideBrowseSearchBox ();
 				$('#browse-search-box').attr ('placeholder', 'Move map to place or postcode');
 			});
+
+			
+			// Special handler to write distance units to routing library
+			$('.panel.settings #settings-done').click (function () {
+				cyclestreetsui.setDistanceUnit ();
+			});
+		},
+
+		
+		// Set the distance unit
+		setDistanceUnit: function () 
+		{
+			// Get the active distance unit
+			var activeDistanceUnit = $('#miles-or-kilometers li.active').prop ('id');
+				
+			// Write this to routing library
+			routing.setDistanceUnit (activeDistanceUnit);
 		},
 
 		// Function to find the latest blog post, and alert the user of its existence

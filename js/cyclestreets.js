@@ -838,8 +838,8 @@ var cyclestreetsui = (function ($) {
 			});
 
 			// Handler for clearing recent searches and journeys
-			$('.clearRecentSearches').on ('click', function () {routing.clearRecentSearches ();})
-			$('.clearRecentJourneys').on ('click', function () {routing.clearRecentJourneys ();})
+			$(document).on ('click', '.clearRecentSearches', function () {routing.clearRecentSearches ();})
+			$(document).on ('click', '.clearRecentJourneys', function () {routing.clearRecentJourneys ();})
 
 			
 			/* 

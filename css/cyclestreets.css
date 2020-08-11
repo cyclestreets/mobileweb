@@ -151,10 +151,10 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 .panel.journeyplanner.search .shortcutHorizontalScroll {display: block; overflow-x: scroll; width: calc(100% + 40px); margin: 0 0 0 -20px; scrollbar-width: none;}
 .panel.journeyplanner.search ul.shortcut-icons {list-style-type: none; width: 530px; padding: 0; margin: 0; display: block; scrollbar-width: none;}
-.panel.journeyplanner.search ul.shortcut-icons li a {position: relative; float: left; width: 42px; height: 42px; line-height: 55px; margin: 5px; background: #cc5959; color: #f5f5f5;}
+.panel.journeyplanner.search ul.shortcut-icons li a {position: relative; float: left; width: 36px; height: 36px; line-height: 48px; margin: 5px; background: #cc5959; color: #f5f5f5;}
 .panel.journeyplanner.search ul.shortcut-icons li a.poi {opacity: 1; background-color: #fefefe; border-color: #dc4f55; border: 1px solid; border-radius: 50%;}
 .panel.journeyplanner.search ul.shortcut-icons li a.poi.disabled {opacity: .5; border-color: transparent;}
-.panel.journeyplanner.search ul.shortcut-icons li a.poi img {width: 60%; height: 60%;}
+.panel.journeyplanner.search ul.shortcut-icons li a.poi img {width: 56%; height: 56%;}
 
 .panel.journeyplanner.search ul.segmented-control {display: table; width: 80%; margin: 5px 7.5%; padding: 0;}
 .panel.journeyplanner.search ul.segmented-control li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}
@@ -163,7 +163,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
 .panel.journeyplanner.search ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 7px; border: 1px solid #ddd; text-align: center; cursor: pointer; transition: transform .2s;}
 .panel.journeyplanner.search ul.segmented-control label:hover {background: #fafafa; transform: scale(1.05);}
-.panel.journeyplanner.search hr {width: calc(100% + 40px); margin: 10px 0 10px -20px;}
+.panel.journeyplanner.search hr {width: calc(100% + 40px); margin: 4px 0 4px -20px;}
 
 .panel.journeyplanner.search ul.recent-journeys, .panel.journeyplanner.search ul.recent-searches {max-height: 100px; overflow-y: scroll; margin-right: -35px;}
 .panel.journeyplanner.search ul.recent-journeys a.clearRecentJourneys, .panel.journeyplanner.search ul.recent-searches a.clearRecentSearches {padding-bottom: 10px;}

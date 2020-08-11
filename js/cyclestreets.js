@@ -1036,7 +1036,7 @@ var cyclestreetsui = (function ($) {
 				}
 			}
 
-			getLocation();
+			getLocation ();
 		},
 
 
@@ -1091,12 +1091,9 @@ var cyclestreetsui = (function ($) {
 		{
 						
 			// Swiping down on a card closes it
-			// This is temporarily disabled while debugging in Safari
-			/*
 			$('.panel').on('swipedown', function () {
 				cyclestreetsui.returnHome ();
 			});
-			*/
 			
 			// Swiping up on a card opens it
 			$('.panel').on ('swipeup', function (event) {

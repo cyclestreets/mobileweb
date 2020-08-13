@@ -7,7 +7,7 @@ nav {height: calc(100% - 20px); display: none; width: 70%; max-width: 300px; pos
 nav ul {margin: 0 20px; padding: 0; list-style: none;}
 nav ul ul {display: none; margin: 0;}
 nav ul ul a, nav ul ul li label {color: #c5c2c3;}
-nav ul li label {color: #fbf6f8;}
+nav ul li label {color: #fbf6f8; cursor: pointer;}
 nav ul ul li {padding: 10px 0;}
 nav ul input {position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;} /* Hide the browser's default checkbox */
 nav ul ul li label {font-size: 16px; padding: 12px 0 12px 38px;}

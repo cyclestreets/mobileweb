@@ -141,7 +141,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search a.locationTracking {display: none; position: absolute; right: 115px; margin-top: 17px;}
 .panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; left: 27px; margin-top: 8px;}
 .panel.journeyplanner.search a.addWaypoint {display: none; position: relative; top: 35px; right: 14px;}
-.panel.journeyplanner.search.open input {width: calc(100% - 120px); padding-left: 50px; transform: scale(1);}
+.panel.journeyplanner.search.open input {width: calc(100% - 140px); padding-left: 50px; padding-right: 40px; transform: scale(1);}
+.panel.journeyplanner.search.open .inputDiv:first-of-type input {padding-right: 60px; width: calc(100% - 160px);}
 .panel.journeyplanner.search.open .inputDiv:last-of-type input {bottom: 0;}
 .panel.journeyplanner.search.open a.reorderWaypoint {display: inline-block;}
 .panel.journeyplanner.search.open a.removeWaypoint {display: inline-block;}

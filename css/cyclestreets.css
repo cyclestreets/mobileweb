@@ -76,7 +76,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
  */
 
 /* Structural elements */
-.panel {display: none; position: fixed; bottom: 0; left: 0; z-index: 3; width: calc(100% - 40px); padding: 15px 20px; background-color: #fbf6f8;}
+.panel {display: none; position: fixed; bottom: 0; left: 0; z-index: 3; width: calc(100% - 40px); padding: 15px 20px; background-color: #fbf6f8;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
 .panel::before {content:url('/images/card-handle.svg'); position: absolute; top: -8px; margin: 0 calc((100% - 208px) / 2);}
 .panel.red::before {content:url('/images/card-handle-red-fill.svg');}
 .hidden {display: none;}

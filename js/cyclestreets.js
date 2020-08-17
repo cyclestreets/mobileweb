@@ -855,10 +855,12 @@ var cyclestreetsui = (function ($) {
 			$('.panel.journeyplanner.search #getRoutes').addClass ('grayscale', 500).css ('opacity', '0.3');			
 
 			// Hide the shortcuts if we are adding a waypoint 
+			/*
 			$('.panel.journeyplanner.search').on('click', 'a.addWaypoint', function() {
 				$('.shortcuts').hide ();
 				cyclestreetsui.fitMap ();
 			});
+			
 
 			// Show the shortcuts if we have removed all but 2 geocoder inputs
 			$('.panel.journeyplanner.search').on('click', 'a.removeWaypoint', function() {
@@ -868,6 +870,7 @@ var cyclestreetsui = (function ($) {
 					cyclestreetsui.fitMap ();
 				}
 			});
+			*/
 
 			// Handler for find routes button
 			$('.panel.journeyplanner.search #getRoutes').click (function () {

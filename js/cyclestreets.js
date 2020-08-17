@@ -223,7 +223,7 @@ var cyclestreetsui = (function ($) {
 			iconField: 'iconUrl', 	// icons specified in the field value
 			iconSize: [24, 24],
 			popupHtml: 
-				  '<img class="place-photo" src="placeholders/places-popup-placeholder.png" alt="Image of location" /><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><h2>{place}</h2>'
+				  '<div class="data" data-coordinates="{geometry.coordinates}"></div><img class="place-photo" src="placeholders/places-popup-placeholder.png" alt="Image of location" /><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><h2>{properties.name}</h2>'
 				+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>34 High St, Sawston, Cambridge, Cambridgeshire, CB22 3BG</p>'
 				+ '<ul><li><img src="/images/icon-clock.svg" alt="Opening times" /><p>Open today: 09:00 - 17:30</p></li><li>'
 				+ '<img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">01223 576790</p></li></ul>',
@@ -279,7 +279,6 @@ var cyclestreetsui = (function ($) {
 				datetime: 'friendlydate'
 			},
 			iconField: 'iconUrl',		// icons specified in the field value
-			popupHtmlTemplateSelector: '.popup.photomap',
 			popupCallback: function (renderDetailsHtml) {
 				cyclestreetsui.displayPhotomapPopup (renderDetailsHtml);
 			},
@@ -1085,7 +1084,9 @@ var cyclestreetsui = (function ($) {
 
 			
 		// Close the route search box
-		closeRouteSearchBox: function() {$('.panel.journeyplanner.search').removeClass ('open');},
+		closeRouteSearchBox: function() {
+			$('.panel.journeyplanner.search').removeClass ('open');
+		},
 			
 		
 		/*
@@ -1573,13 +1574,14 @@ var cyclestreetsui = (function ($) {
 
 
 		// Display a POI popup
-		displayPoiPopup: function ()
+		displayPoiPopup: function (renderedDetailsHtml)
 		{
 			$('.panel').hide ();
 			var fullscreen = true;
 			cyclestreetsui.fitMap (fullscreen);
 
 			// Get the HTML for the popup
+			$('.popup.places').html (renderedDetailsHtml);
 			$('.popup.places').show ();
 		},
 
@@ -2236,9 +2238,22 @@ var cyclestreetsui = (function ($) {
 				$('.inner-card').removeClass('flipped');
 			});
 			
-			// Start navigation from a places popup card
-			$(document).on('click', '.popup .get-directions', function () {
-				cyclestreetsui.switchPanel ('.popup.places', '.panel.journeyplanner.select');
+			// Add a waypoint from a popup card
+			$(document).on('click', '.popup .get-directions', function (event) {
+				// Get lat and long of this new waypoint
+				var popupCard = $(event.target.offsetParent);
+				var coordinates = $(popupCard).children ('.data').first ().data ('coordinates').split (',');
+				var longitude = coordinates[0];
+				var latitude = coordinates[1];
+
+				// Assemble a new waypoints
+				var waypoint = {lng: longitude, lat: latitude, label: null}; // label determined automatically by routing library
+				routing.addWaypointMarker (waypoint);
+
+				// Hide popup and open JP card
+				$('.popup.places').hide ();
+				$('.panel.journeyplanner.search').removeClass ('open');
+				cyclestreetsui.openJourneyPlannerCard ();
 			});
 		},	
 

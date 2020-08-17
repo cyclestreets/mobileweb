@@ -553,7 +553,7 @@ var cyclestreetsui = (function ($) {
 			_map = layerviewer.getMap ();
 
 			// Enable autocomplete for geocoder inputs
-			cyclestreetsui.autocomplete ();
+			//cyclestreetsui.autocomplete ();
 			
 			// Initialise the UI
 			cyclestreetsui.mainUI ();

@@ -284,11 +284,12 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.displayPhotomapPopup (renderDetailsHtml);
 			},
 			popupHtml: 
-			      '<div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><img class="popup-photo" src="{properties.thumbnailUrl}" alt="Photo" />' 
+			      '<div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><span class="loader"></span><img class="popup-photo" src="{properties.thumbnailUrl}" alt="Photo" />' 
 				+ '<a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><a href="#" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /> Share</a><a class="flip" href="#" title="Show more information"> Photo info</a></div>'
 				+ '<div class="flip-card-back popup-card"><a href="#" class="back" title="Return to the front of this card"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><br>' 
-				+ '<p class="key">Category:</p><p>{properties.categoryName}</p><br>	<p class="key">Type:</p><p>{properties.metacategoryName}</p><hr /><ul><li><img src="/images/icon-user.svg" alt="User icon" /><p>{properties.username}</p></li>'
-				+ '<li><img src="/images/icon-clock.svg" alt="Clock icon" /><p>{properties.datetime}</p></li><li><img src="/images/icon-hashtag.svg" alt="Photo number" /><p>{properties.id}</p></li><li><img src="/images/icon-copyright.svg" alt="Copyright" /><p>CC Attribution-Share Alike (by-sa)</p></li></ul></div></div>',
+				+ '<p class="key">Category: </p><p>{properties.categoryName}</p><br>	<p class="key">Type: </p><p>{properties.metacategoryName}</p><hr /><ul><li><img src="/images/icon-user.svg" alt="User icon" /><p>{properties.username}</p></li>'
+				+ '<li><img src="/images/icon-clock.svg" alt="Clock icon" /><p>{properties.datetime}</p></li><li><img src="/images/icon-hashtag.svg" alt="Photo number" /><p>{properties.id}</p></li><li><img src="/images/icon-copyright.svg" alt="Copyright" /><p>{properties.licenseName}</p></li></ul></div></div>',
+			//popupHtml: {'popupHtmlSelector': '.inner-card.flip-card-inner'},
 			detailsOverlay: 'apiUrl',
 			overlayHtml:
 				  '<table class="fullimage">'

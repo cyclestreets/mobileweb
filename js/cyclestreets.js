@@ -214,7 +214,7 @@ var cyclestreetsui = (function ($) {
 		pois: {
 			apiCall: '/v2/pois.locations',
 			apiFixedParameters: {
-				//fields: 'id,name,iconUrl,osmTags[capacity,access,bicycle_parking,covered],nodeId',
+				fields: 'id,latitude,longitude,name,osmTags,website,editlink',
 				limit: 400,
 				thumbnailsize: 300,
 				datetime: 'friendlydate',
@@ -224,9 +224,9 @@ var cyclestreetsui = (function ($) {
 			iconSize: [24, 24],
 			popupHtml: 
 				  '<div class="data" data-coordinates="{geometry.coordinates}"></div><img class="place-photo" src="placeholders/places-popup-placeholder.png" alt="Image of location" /><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><h2>{properties.name}</h2>'
-				+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>34 High St, Sawston, Cambridge, Cambridgeshire, CB22 3BG</p>'
-				+ '<ul><li><img src="/images/icon-clock.svg" alt="Opening times" /><p>Open today: 09:00 - 17:30</p></li><li>'
-				+ '<img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">01223 576790</p></li></ul>',
+				+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>{osmTags.addr:housenumber} {osmTags.addr:street} {osmTags.addr:city} {osmTags.addr:postcode}</p>'
+				+ '<ul><li><img src="/images/icon-clock.svg" alt="Opening times" /><p>{osmTags.opening_hours}</p></li><li>'
+				+ '<img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">01223 576790</p></li></ul><a href="#" class="share" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /></a>',
 			popupCallback: function (renderDetailsHtml) {
 				cyclestreetsui.displayPoiPopup (renderDetailsHtml);
 			}
@@ -1537,6 +1537,19 @@ var cyclestreetsui = (function ($) {
 
 				// Update the POIs cookie
 				cyclestreetsui.updatePoisCookie ();
+			});
+
+			// Enable the POI share sheet 
+			$(document).on ('click', '.popup.places a.share', function (event) {
+				var popupCardElement = $(event.target).closest ('.popup.places');
+				var poiTitle = $(popupCardElement).find ('h2').first ().text ();
+
+				const shareData = {
+					title: poiTitle,
+					text: 'View a place on CycleStreets!',
+					url: 'https://www.cyclestreets.net/'
+				};
+				navigator.share (shareData);
 			});
 		},
 

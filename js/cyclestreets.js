@@ -1097,8 +1097,11 @@ var cyclestreetsui = (function ($) {
 						
 			// Swiping down on a card closes it
 			$('.panel').on('swipedown', function () {
-				cyclestreetsui.returnHome ();
+				if (!routing.getInputDragStatus ()){
+					cyclestreetsui.returnHome ();
+				}
 			});
+			
 			
 			// Swiping up on a card opens it
 			$('.panel').on ('swipeup', function (event) {

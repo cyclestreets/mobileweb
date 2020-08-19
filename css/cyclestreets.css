@@ -316,7 +316,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 /* Places popup */
 .popup.places {height: 90%; max-height: 550px; width: 90%; max-width: 300px; margin: 6% 10% 25%; border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8; position: absolute; z-index: 20;}
-.popup.places img.place-photo {height: 60%; padding-bottom: 10px;}
+.popup.places .place-photo {height: 60%; padding-bottom: 10px;}
+.popup.places .place-photo iframe {height: 100%;}
 .popup.places h2 {display: inline-block; width: 50%; font-size: 30px;font-variant: normal; margin: 0 0 0 20px; text-align: left;}
 .popup.places img.get-directions {float: right;}
 .popup.places a.share {position: absolute; right: 15px; bottom: 15px;}

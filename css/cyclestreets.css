@@ -163,7 +163,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search ul.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
 .panel.journeyplanner.search ul.segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
 .panel.journeyplanner.search ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
-.panel.journeyplanner.search ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 7px; border: 1px solid #ddd; text-align: center; cursor: pointer; transition: transform .2s;}
+.panel.journeyplanner.search ul.segmented-control label {display: block; margin: 0 -1px -1px 0; width: 9em; padding: 7px; border: 1px solid #ddd; text-align: center; cursor: pointer; transition: transform .2s;}
 .panel.journeyplanner.search ul.segmented-control label:hover {background: #fafafa; transform: scale(1.05);}
 .panel.journeyplanner.search hr {width: calc(100% + 40px); margin: 4px 0 4px -20px;}
 
@@ -200,7 +200,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.select ul.ui-tabs-nav li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
 .panel.journeyplanner.select ul.ui-tabs-nav li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
 .panel.journeyplanner.select ul.ui-tabs-nav .ui-tabs-active label {color: #f5f5f5; background-color: #cc5959;}
-.panel.journeyplanner.select ul.ui-tabs-nav label {display: block; margin: 0 -1px -1px 0; padding: 7px; border: 1px solid #ddd; text-align: center; cursor: pointer;}
+.panel.journeyplanner.select ul.ui-tabs-nav label {display: block; margin: 0 -1px -1px 0; width: 5em; padding: 7px; border: 1px solid #ddd; text-align: center; cursor: pointer;}
 .panel.journeyplanner.select ul.ui-tabs-nav .ui-tabs-tab:hover {background: #fafafa;}
 
 .strategypopup {max-width: 150px; width: auto; max-height: 80px; cursor: pointer;}
@@ -382,7 +382,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.settings ul.segmented-control li:first-child label {border-top-left-radius: 30px; border-bottom-left-radius: 30px;}
 .panel.settings ul.segmented-control li:last-child label {border-top-right-radius: 30px; border-bottom-right-radius: 30px;}
 .panel.settings ul.segmented-control li.active label {color: #f5f5f5; background-color: #cc5959;}
-.panel.settings ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; text-align: center; cursor: pointer;}
+.panel.settings ul.segmented-control label {display: block; margin: 0 -1px -1px 0; padding: 1em .25em; border: 1px solid #ddd; width: 110px; text-align: center; cursor: pointer;}
 .panel.settings ul.segmented-control label:hover {background: #fafafa;}
 .panel.settings #about-cyclestreets {margin-top: 10px;}
 

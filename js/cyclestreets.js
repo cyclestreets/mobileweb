@@ -224,8 +224,8 @@ var cyclestreetsui = (function ($) {
 			iconSize: [24, 24],
 			popupHtml: 
 				  '<div class="data" data-coordinates="{geometry.coordinates}"></div><img class="place-photo" src="placeholders/places-popup-placeholder.png" alt="Image of location" /><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><h2>{properties.name}</h2>'
-				+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>{osmTags.addr:housenumber} {osmTags.addr:street} {osmTags.addr:city} {osmTags.addr:postcode}</p>'
-				+ '<ul><li><img src="/images/icon-clock.svg" alt="Opening times" /><p>{osmTags.opening_hours}</p></li><li>'
+				+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>{properties.osmTags.addr:street} {properties.osmTags.addr:city} {properties.osmTags.addr:postcode}</p>'
+				+ '<ul><li><img src="/images/icon-clock.svg" alt="Opening times" /><p>{properties.osmTags.opening_hours}</p></li><li>'
 				+ '<img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">01223 576790</p></li></ul><a href="#" class="share" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /></a>',
 			popupCallback: function (renderDetailsHtml) {
 				cyclestreetsui.displayPoiPopup (renderDetailsHtml);
@@ -757,7 +757,6 @@ var cyclestreetsui = (function ($) {
 		// If a timeout is specified, which is useful when animations are queued, the function will only execute after the time has expired
 		fitMap: function (element = false, fullscreen = false, timeout = 0) 
 		{
-			console.log (fullscreen, element, timeout);
 			setTimeout (function() {
 				var height = null;
 			

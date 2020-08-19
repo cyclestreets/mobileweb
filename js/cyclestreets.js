@@ -1599,7 +1599,7 @@ var cyclestreetsui = (function ($) {
 		// Display a POI popup
 		displayPoiPopup: function (renderedDetailsHtml)
 		{
-			$('.panel').hide ();
+			$('.panel:visible').first ().addClass ('minimised');
 			var fullscreen = true;
 			var destinationPanel = null;
 			cyclestreetsui.fitMap (destinationPanel, fullscreen);

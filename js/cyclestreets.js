@@ -754,24 +754,29 @@ var cyclestreetsui = (function ($) {
 
 		// Fit the map to any opened card
 		// Accepts an element, or attempts to find the open panel
-		fitMap: function (fullscreen = false, element = false) 
+		// If a timeout is specified, which is useful when animations are queued, the function will only execute after the time has expired
+		fitMap: function (element = false, fullscreen = false, timeout = 0) 
 		{
-			var height = null;
+			console.log (fullscreen, element, timeout);
+			setTimeout (function() {
+				var height = null;
 			
-			// If we are fullscreen, set height as 0
-			if (fullscreen) {
-				height = 0;
-			} else if (!element) { // If no element is shown, find the open card
-				// There should only ever be one visible card
-				element = $('.panel:visible').first();
-				height = $(element).height();
-			} else { // Find the height of the passed-in element
-				height = $(element).height();
-			}
-				
-			// Resize div, and resize map to fit the new div size
-			$('#map').css({bottom: height});
-			_map.resize();
+				// If we are fullscreen, set height as 0
+				if (fullscreen) {
+					height = 0;
+				} else if (!element) { // If no element is shown, find the open card
+					// There should only ever be one visible card
+					element = $('.panel:visible').first ();
+					height = $(element).height ();
+				} else { // Find the height of the passed-in element
+					height = $(element).height ();
+				}
+					
+				// Resize div, and resize map to fit the new div size
+				$('#map').css ({bottom: height});
+				_map.resize ();
+			}, timeout);
+			
 		},
 		
 		
@@ -852,24 +857,6 @@ var cyclestreetsui = (function ($) {
 
 			// Change opacity of #getRoutes link until routing has enabled it
 			$('.panel.journeyplanner.search #getRoutes').addClass ('grayscale', 500).css ('opacity', '0.3');			
-
-			// Hide the shortcuts if we are adding a waypoint 
-			/*
-			$('.panel.journeyplanner.search').on('click', 'a.addWaypoint', function() {
-				$('.shortcuts').hide ();
-				cyclestreetsui.fitMap ();
-			});
-			
-
-			// Show the shortcuts if we have removed all but 2 geocoder inputs
-			$('.panel.journeyplanner.search').on('click', 'a.removeWaypoint', function() {
-				// Check if we have 3 inputs, one will be removed in the routing library after this function is called
-				if ($('.inputDiv').length = 3) {
-					$('.shortcuts').show ();
-					cyclestreetsui.fitMap ();
-				}
-			});
-			*/
 
 			// Handler for find routes button
 			$('.panel.journeyplanner.search #getRoutes').click (function () {
@@ -1096,9 +1083,14 @@ var cyclestreetsui = (function ($) {
 		{
 						
 			// Swiping down on a card closes it
-			$('.panel').on('swipedown', function () {
+			$('.panel').on ('swipedown', function () {
+				// Prevent card from closing if we are reordering a input geocoder
 				if (!routing.getInputDragStatus ()){
-					cyclestreetsui.returnHome ();
+					$(this).addClass ('minimised', 400);
+					var element = this;
+					var fullscreen = false;
+					var timeout = 400;
+					cyclestreetsui.fitMap (element, fullscreen, timeout);
 				}
 			});
 			
@@ -1109,7 +1101,22 @@ var cyclestreetsui = (function ($) {
 				if ($(event.target).is ('.panel, .journeyplanner, .search')) {
 					cyclestreetsui.openJourneyPlannerCard ();
 				} else {
-					$(this).addClass ('open');
+					$(this).removeClass ('minimised', 400);
+					var element = this;
+					var fullscreen = false;
+					var timeout = 400;
+					cyclestreetsui.fitMap (element, fullscreen, timeout);
+				}
+			});
+
+			// Clicking on a minimised card expands it
+			$('.panel').on ('click', function (event) {
+				if ($(this).hasClass ('minimised')) {
+					$(this).removeClass ('minimised', 400);
+					var element = this;
+					var fullscreen = false;
+					var timeout = 400;
+					cyclestreetsui.fitMap (element, fullscreen, timeout);
 				}
 			});
 
@@ -1594,7 +1601,8 @@ var cyclestreetsui = (function ($) {
 		{
 			$('.panel').hide ();
 			var fullscreen = true;
-			cyclestreetsui.fitMap (fullscreen);
+			var destinationPanel = null;
+			cyclestreetsui.fitMap (destinationPanel, fullscreen);
 
 			// Get the HTML for the popup
 			$('.popup.places').html (renderedDetailsHtml);
@@ -1736,16 +1744,33 @@ var cyclestreetsui = (function ($) {
 					});
 				}
 			});
+
+					
+			// Enable the share sheet 
+			$(document).on ('click', '.popup.photomap a.share', function (event) {
+				console.log (event);
+				
+				// #¡# Need to get the photo metadata and populate this shareData
+				const shareData = {
+					title: 'Photo intelligence',
+					text: 'View a photo about cycling!',
+					url: 'https://www.cyclestreets.net/journey/52327060/'
+				};
+				console.log (shareData);
+				navigator.share (shareData);
+			});
 		},
 
 		// Display a Photomap popup
 		displayPhotomapPopup: function (renderedDetailsHtml)
 		{
 			$('.panel').hide ();
-			var fullscreen = true;
-			cyclestreetsui.fitMap (fullscreen);
 			$('.popup.photomap').html (renderedDetailsHtml);
 			$('.popup.photomap').show ();
+			
+			var fullscreen = true;
+			var panel = null;
+			cyclestreetsui.fitMap (panel, fullscreen);
 		},
 
 

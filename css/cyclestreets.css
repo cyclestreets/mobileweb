@@ -301,6 +301,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .popup.photomap .popup-card {border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8;}
 .popup.photomap .loader {display: inline-block; position: absolute; margin: 58% 48%; width: 38px; height: 38px; z-index: 1;}
 .popup.photomap a {position: absolute; bottom: 0; margin: 20px; padding: 0; line-height: 15px; color: #dc4f55; text-decoration: none;}
+.popup.photomap a.share {bottom: 0; left: 0;}
 .popup.photomap a.flip {margin-left: 70%; right: 0;}
 .popup.photomap .flip-card-inner {position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d;}
 .popup.photomap .flip-card-inner.flipped {transform: rotateY(180deg);}

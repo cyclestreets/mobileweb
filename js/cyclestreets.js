@@ -726,7 +726,8 @@ var cyclestreetsui = (function ($) {
 					_breadcrumbs = [];
 				
 					// Show the matching panel
-					$('.panel.' + className).first ().removeClass ('minimised').slideToggle ();
+					var panel = $('.panel.' + className).first ();
+					$(panel).removeClass ('minimised').slideToggle ();
 
 					// The Journey Planner card should open, as well, rather than simply displaying the card in minimised position
 					if (className == 'journeyplanner') {
@@ -737,7 +738,9 @@ var cyclestreetsui = (function ($) {
 					}
 
 					// Resize map element
-					cyclestreetsui.fitMap ();
+					var timeout = 500;
+					var fullscreen = false;
+					cyclestreetsui.fitMap (panel, fullscreen, timeout);
 				}
 			});
 		},
@@ -1060,6 +1063,10 @@ var cyclestreetsui = (function ($) {
 
 				// Expand card, and resize map
 				$('.panel.journeyplanner.search').addClass ('open', 450);
+				var element = '.panel.journeyplanner.search';
+				var fullscreen = false;
+				var timeout = 450;
+				cyclestreetsui.fitMap (element, fullscreen, timeout);
 				
 				// Drop a pin in the middle of the map as our default start position
 				if (addMapCenter) {routing.addMapCenter ();} 

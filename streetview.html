@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Street View</title>
+		<style>
+			html, body, #map-canvas {height: 100%; margin: 0px; padding: 0px;}
+		</style>
+		
+		<script type="text/javascript" src=".config.js"></script>
+		<script>
+			
+			// Function to load the Google Maps API with the key specified dynamically from the config; see: http://stackoverflow.com/a/31342500
+			function loadGmaps () {
+				var apiKey = config.gmapApiKey;
+				var script = document.createElement('script');
+				script.type = 'text/javascript';
+				script.src = 'https://maps.googleapis.com/maps/api/js?v=3&key=' + apiKey + '&callback=streetviewWithDirection';
+				document.body.appendChild(script);
+			}
+			
+			// Load Google Maps API when ready
+			window.onload = loadGmaps;
+			
+			// Function to parse query string arguments: see: http://stackoverflow.com/a/2880929
+			function getQueryParameters ()
+			{
+				var urlParams;
+				(window.onpopstate = function () {
+					var match,
+					    pl     = /\+/g,  // Regex for replacing addition symbol with a space
+					    search = /([^&=]+)=?([^&]*)/g,
+					    decode = function (s) { return decodeURIComponent(s.replace(pl, ' ')); },
+					    query  = window.location.search.substring(1);
+
+					urlParams = {};
+					while (match = search.exec(query)) {
+						urlParams[decode(match[1])] = decode(match[2]);
+					}
+				})();
+				return urlParams;
+			}
+
+			// Functions to validate a lat/lon; see: http://stackoverflow.com/a/39842070
+			function isLatitude (lat) {
+				return isFinite(lat) && Math.abs(lat) <= 90;
+			}
+			function isLongitude (lng) {
+				return isFinite(lng) && Math.abs(lng) <= 180;
+			}			
+			
+			// Function to create a Street View panel which looks in the correct direction
+			// Effectively this gets the nearest Street View panorama to a specified point, then adjusts the camera angle to face that point (which is not done by default)
+			// See: https://developers.google.com/maps/documentation/javascript/examples/streetview-embed
+			// See: http://stackoverflow.com/a/11950935/180733
+			// See: http://stackoverflow.com/a/8381895/180733
+			function streetviewWithDirection ()
+			{
+				// Get the query string parameters
+				var get = getQueryParameters ();
+				
+				// Ensure a latitude and longitude are specified
+				if (!get['latitude'] || !get['longitude']) {
+					alert ('Error: No latitude/longitude pair supplied.');
+					return false;
+				}
+				
+				// Valid the latitude and longitude
+				if (!isLatitude (get['latitude']) || !isLongitude (get['longitude'])) {
+					alert ('Error: Invalid latitude/longitude pair supplied.');
+					return false;
+				}
+				
+				// Convert to float
+				get['latitude'] = parseFloat(get['latitude']);
+				get['longitude'] = parseFloat(get['longitude']);
+				
+				// Set max distance
+				var streetViewMaxDistance = 100;
+				
+				// Create a point
+				var point = new google.maps.LatLng(get['latitude'], get['longitude']);
+				
+				// Initialise (but do not immediately display) the panorama at the specified location
+				var panoramaOptions = {
+					position: point,
+					visible: false
+				};
+				var panorama = new google.maps.StreetViewPanorama(document.getElementById("map-canvas"), panoramaOptions);
+				
+				// Instantiate the Street View service so that the heading can be looked up
+				var streetViewService = new google.maps.StreetViewService();
+				streetViewService.getPanoramaByLocation(point, streetViewMaxDistance, function (streetViewPanoramaData, status) {
+					
+					// If the panorama has been found, determine the direction ('heading'); this is basically the angle of the resolved streetview image location from the initial requested point
+					if(status === google.maps.StreetViewStatus.OK){
+						var oldPoint = point;
+						point = streetViewPanoramaData.location.latLng;
+						var heading = google.maps.geometry.spherical.computeHeading(point,oldPoint);
+					} else {
+						var heading = 90;	// Arbitrary
+						//alert('Not found, using fixed heading direction.');
+					}
+					
+					// Show the panorama, at the specified location and direction ('heading'), and set it to be visible
+					panorama.setPosition(point);
+					panorama.setPov({
+						heading: heading,
+						zoom: 1,
+						pitch: 0
+					});
+					panorama.setVisible(true);
+				});
+			}
+		</script>
+	</head>
+		
+	<body>
+		<div id="map-canvas"></div>
+	</body>
+</html>

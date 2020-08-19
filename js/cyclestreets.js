@@ -85,7 +85,7 @@ var cyclestreetsui = (function ($) {
 	var _shortcutLocations = ['home', 'work']; // Store shortcut locations in settings menu and JP card
 	var _notificationQueue = []; // Store any notifications in a queue
 	var _photomapUploadImage = []; // Store the Photomap upload photo while proceeding through the wizard
-
+	
 	// Enable panels and additional functionality
 	var _actions = [
 		'journeyPlanner',
@@ -725,7 +725,7 @@ var cyclestreetsui = (function ($) {
 					_breadcrumbs = [];
 				
 					// Show the matching panel
-					$('.panel.' + className).first ().slideToggle ();
+					$('.panel.' + className).first ().removeClass ('minimised').slideToggle ();
 
 					// The Journey Planner card should open, as well, rather than simply displaying the card in minimised position
 					if (className == 'journeyplanner') {

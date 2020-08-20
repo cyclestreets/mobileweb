@@ -802,14 +802,15 @@ var cyclestreetsui = (function ($) {
 			$('.panel.journeyplanner.search .segmented-control li').click (function (event){
 				// Build the ul name from the label that was clicked
 				var ulClass = event.target.textContent.toLowerCase().replace (' ', '-');
-
+				
 				// Hide all recent item panels except the one we clicked on
-				$('.panel.journeyplanner.search .recent-items ul').hide ();
-				$('.panel.journeyplanner.search .recent-items ul.' + ulClass).show('slide', {direction: 'up'}, 300);
+				$('.panel.journeyplanner.search .recent-items > ul').hide ();
+				$('.panel.journeyplanner.search .recent-items ul.' + ulClass).show ('slide', {direction: 'up'}, 300);
 			});
 
-			// On startup, show the default option (recent searches)
+			// On startup, show the default option (places)
 			$('.panel.journeyplanner.search .recent-items ul.recent-journeys').hide ();
+			$('.panel.journeyplanner.search .recent-items ul.recent-searches').hide ();
 			
 			// Clicking on a recent journey searches for that route again
 			$(document).on ('click', '.getRecentJourneyDirections', function () {
@@ -1034,7 +1035,7 @@ var cyclestreetsui = (function ($) {
 			var html = '';
 			var poiId = null;
 			var poiIconSrc = null;
-			$.each($('.panel.pois ul li :input'), function (indexInArray, input) { 
+			$.each ($('.panel.pois ul li :input'), function (indexInArray, input) { 
 				poiId = $(input).val ();
 				poiIconSrc = $(input).siblings ('label').find ('img'). prop ('src');
 				html += '<li><a href="#" class="ui-button poi disabled" data-poi="' + poiId + '"><img src="' +poiIconSrc +'" /></a></li>';

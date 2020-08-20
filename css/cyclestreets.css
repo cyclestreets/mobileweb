@@ -140,12 +140,11 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search .loader {display: none; position: absolute; right: 75px; margin-top: 5px; margin-left: -3px; width: 38px; height: 38px;}
 .panel.journeyplanner.search .ui-autocomplete-loading + .loader {display: inline-block;}
 .panel.journeyplanner.search a.reorderWaypoint {display: none; position: absolute; left: 49px; margin-top: 13px;}
-.panel.journeyplanner.search a.locationTracking {display: none; position: absolute; right: 130px; margin-top: 17px;}
-.panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; right: 78px; margin-top: 8px;}
-.panel.journeyplanner.search a.addWaypoint {display: none; position: relative; top: 35px; left: -343px; transform: scale(-1, 1);}
-.panel.journeyplanner.search.open input {width: calc(100% - 127px); padding-left: 43px; padding-right: 40px; transform: scale(1);}
+.panel.journeyplanner.search a.locationTracking {display: none; position: absolute; right: 121px; margin-top: 17px;}
+.panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; right: 78px; margin-top: 4px;}
+.panel.journeyplanner.search a.addWaypoint {display: none; position: absolute; margin-top: 28px; left: 7px; transform: scale(-1, 1);}
+.panel.journeyplanner.search.open input {width: calc(100% - 140px); padding-left: 43px; padding-right: 50px; transform: scale(1);}
 .panel.journeyplanner.search.open .inputDiv:first-of-type input {padding-right: 35px; width: calc(100% - 127px);}
-.panel.journeyplanner.search.open .inputDiv:last-of-type input {bottom: 0;}
 .panel.journeyplanner.search.open a.reorderWaypoint {display: inline-block;}
 .panel.journeyplanner.search.open a.removeWaypoint {display: inline-block;}
 .panel.journeyplanner.search.open a.addWaypoint {display: inline-block;}

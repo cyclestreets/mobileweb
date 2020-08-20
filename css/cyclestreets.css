@@ -225,7 +225,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.select ul li {list-style-type: none; display: inline-block;}
 .panel.journeyplanner.select ul li img {display: inline-block; margin: 0 5px 0 15px; padding: 0;}
 .panel.journeyplanner.select ul li p {display: inline-block; margin: 0; padding: 0; text-align: left;}
-.panel.journeyplanner.select .elevation-chart-container {position: absolute; bottom: 0; left: 0; height: 80px; width: 115%; z-index: 1; background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, 90%,  rgba(255, 255, 255, 0) 100%)}
+.panel.journeyplanner.select .elevation-chart-container {position: absolute; bottom: 0; left: 0; height: 50px; width: 115%; z-index: 1; background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, 90%,  rgba(255, 255, 255, 0) 100%)}
 .panel.journeyplanner.select.minimised .elevation-chart-container, .panel.journeyplanner.select.minimised .elevation-scrubber {display: none;}
 .panel.journeyplanner.select span.elevation {position: absolute; display: none; bottom: 342px; right: 4px; padding: 5px; padding-left: 25px; color: #ffffff; opacity: .75; border-radius: 40px; line-height: 20px; z-index: 3; background: url('/images/icon-elevation.svg') no-repeat, #212322; background-position: 7px 50%;}
 .panel.journeyplanner.select span img {padding: 0 5px 0 0;}

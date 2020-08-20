@@ -77,7 +77,7 @@ var cyclestreetsui = (function ($) {
 	
 	// Class properties
 	var _map = null;
-	var _breadcrumbs = []; // Breadcrump trail used when clicking left chevrons
+	var _breadcrumbs = []; // Breadcrumb trail used when clicking left chevrons
 	var _isMobileDevice = true;
 	var _panningEnabled = false
 	var _poisActivated = []; // Store the POIs activated
@@ -718,16 +718,37 @@ var cyclestreetsui = (function ($) {
 						$(event.target).prop ('checked', true); // We just disactivated the input by clicking it, reactivte it
 					}
 					
+					// Save the current (visible before change) panel to the breadcrumb trail
+					if ($('.panel:visible').length) {
+						_breadcrumbs.unshift ('.' + $('.panel:visible').first ().attr ('class').split(' ').join('.'))
+					}
+					
 					// Hide nav & open searchbars and all panels
 					cyclestreetsui.resetUI ();
 					$('.panel').hide ();
-				
-					// Reset the breadcrumb trail as we are starting a new "journey" from the nav
-					_breadcrumbs = [];
-				
-					// Show the matching panel
+
+					// Can we find a saved state in the breadcrumbs similar to our desired panel
+					// For example, we might not want to open .panel.journeyplanner.search, but .panel.journeyplanner.select instead, if that was the last card opened
+					// Find the latest matching subpanel with this class name, and if it exists, open it
 					var panel = $('.panel.' + className).first ();
+					var previousStateIndex = _breadcrumbs.findIndex (breadcrumbPanel => breadcrumbPanel.includes(className))
+					
+					// If we found a previous state, go to this panel instead
+					if (previousStateIndex > -1) {
+						// Set out new pane
+						panel = _breadcrumbs[previousStateIndex]
+
+						// Reset any states the panel might have been in
+						panel = panel.replace ('.minimised', '')
+						
+						// As we have "teleported" back a few steps, delete any breadcrumbs that were made in the meantime
+						_breadcrumbs.splice (0, previousStateIndex + 1)
+					}
+					
+					// If this panel was previously minimised, remove this class so it opens fully
 					$(panel).removeClass ('minimised').slideToggle ();
+					
+					/*
 
 					// The Journey Planner card should open, as well, rather than simply displaying the card in minimised position
 					if (className == 'journeyplanner') {
@@ -736,11 +757,10 @@ var cyclestreetsui = (function ($) {
 						// Set the JP back to the default minimised state
 						$('.panel.journeyplanner.search').removeClass ('open');
 					}
+					*/
 
 					// Resize map element
-					var timeout = 500;
-					var fullscreen = false;
-					cyclestreetsui.fitMap (panel, fullscreen, timeout);
+					cyclestreetsui.fitMap (panel, false, 500);
 				}
 			});
 		},
@@ -777,7 +797,8 @@ var cyclestreetsui = (function ($) {
 					
 				// Resize div, and resize map to fit the new div size
 				$('#map').css ({bottom: height});
-				_map.resize ();
+				setTimeout(() => {_map.resize ();}, 50); // Wait for the 1s CSS map transition
+				
 			}, timeout);
 			
 		},
@@ -878,9 +899,6 @@ var cyclestreetsui = (function ($) {
 
 				// Switch to the card containing the tabs
 				cyclestreetsui.switchPanel ('.panel.journeyplanner.search', '.panel.journeyplanner.select');
-
-				// Resize map element
-				cyclestreetsui.fitMap ('.panel.journeyplanner.select');
 			});
 
 			// Handler for user location button in JP
@@ -1064,9 +1082,7 @@ var cyclestreetsui = (function ($) {
 				// Expand card, and resize map
 				$('.panel.journeyplanner.search').addClass ('open', 450);
 				var element = '.panel.journeyplanner.search';
-				var fullscreen = false;
-				var timeout = 450;
-				cyclestreetsui.fitMap (element, fullscreen, timeout);
+				cyclestreetsui.fitMap (element, false, 450);
 				
 				// Drop a pin in the middle of the map as our default start position
 				if (addMapCenter) {routing.addMapCenter ();} 
@@ -1190,13 +1206,13 @@ var cyclestreetsui = (function ($) {
 
 			// Generic handler for back actions
 			$('.action.back').click (function () {
+				// Get the current panel class name
+				var currentPanel = $(this).closest ('.panel').attr ('class');
+				currentPanel = '.' + currentPanel.replace (/\s/g, '.');
+
 				// Follow any directly specified href
 				var href = $(this).attr ('href');
-				if (href != '#') {
-					// Get the current panel class name
-					var currentPanel = $(this).closest ('.panel').attr ('class');
-					currentPanel = '.' + currentPanel.replace (/\s/g, '.');
-					
+				if (href != '#') {	
 					// Build a class name out of the href
 					href = href.replace (/^#/, '.');
 					
@@ -1204,20 +1220,23 @@ var cyclestreetsui = (function ($) {
 					cyclestreetsui.switchPanel (currentPanel, href);
 				} 
 				else {
-					// If we have stored a previous breadcrump, return to it
+					// If we have stored a previous breadcrumb, return to it
 					if (_breadcrumbs.length > 0) {
 						// Hide all panels
 						$('.panel').hide ();
 						
 						// Show the previous panel
-						var lastPanel = _breadcrumbs.pop ();
+						var lastPanel = _breadcrumbs.shift ();
 						var element = $(lastPanel).first ();
+
 						$(element).show ();
 						var fullscreen = false
 					}
 					else {
 						// Otherwise, if there are no breadcrumbs, return to the default home screen
 						cyclestreetsui.returnHome ();	
+						
+						// Set variables for fitMap
 						var element = false;
 						var fullscreen = true;
 					}
@@ -1443,7 +1462,7 @@ var cyclestreetsui = (function ($) {
 		
 		// Switch panel
 		switchPanel: function (currentPanel, destinationPanel) {
-			_breadcrumbs.push (currentPanel);
+			_breadcrumbs.unshift (currentPanel);
 			$(currentPanel).hide ();
 			$(destinationPanel).show ();
 
@@ -1456,9 +1475,6 @@ var cyclestreetsui = (function ($) {
 			// Close the nav bar
 			cyclestreetsui.closeNav ();
 			
-			// Reset the route search box to default "peeking" height
-			cyclestreetsui.closeRouteSearchBox ();
-			
 			// Hide the move-map browse input field
 			cyclestreetsui.hideBrowseSearchBox ();
 
@@ -1470,10 +1486,32 @@ var cyclestreetsui = (function ($) {
 		returnHome: function () {
 			cyclestreetsui.resetUI ();
 			$('.panel').hide (); // Hide all panels
-			$('.panel.journeyplanner.search').show (); // Show the default pannel, i.e. journeyplanner search
+			
+			// Show the last used journeyplanner panel, in a minimised position (i.e. search, select, etc)
+			var panelName = 'journeyplanner'
+			var previousStateIndex = _breadcrumbs.findIndex (breadcrumbPanel => breadcrumbPanel.includes(panelName))
+				
+			
+			// If we found a previous state, go to this panel instead
+			if (previousStateIndex > -1) {
+				var panel = _breadcrumbs[previousStateIndex]
+				
+				// Reset any states the panel might have been in
+				panel = panel.replace ('.open', '')
+				panel = panel.replace ('.minimised', '')
+
+				// As we have "teleported" back a few steps, delete any breadcrumbs that were made in the meantime
+				_breadcrumbs.splice (0, previousStateIndex + 1)
+			} else {
+				// Show the default pannel, i.e. journeyplanner search
+				var panel = '.panel.journeyplanner.search'
+			}
+
+			// Show the panel
+			$(panel).show ();
 			
 			// Resize map element
-			cyclestreetsui.fitMap ();
+			cyclestreetsui.fitMap (panel, false, 10);
 		},
 			
 			
@@ -1496,7 +1534,7 @@ var cyclestreetsui = (function ($) {
 					}
 				else {
 						// Add breadcrumb to enable the back chevron functionality
-						_breadcrumbs.push ('.panel.ridetracker.track');
+						_breadcrumbs.unshift ('.panel.ridetracker.track');
 						
 						// Add tracking classes to adjust the appearance of this panel to satnav-mode
 						$('.panel.ridetracker.track').addClass ('tracking');

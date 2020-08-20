@@ -1066,6 +1066,14 @@ var cyclestreetsui = (function ($) {
 
 				// Change the search placeholder to prompt user input
 				$('.panel.journeyplanner.search #end').attr ('placeholder', 'Where do you want to go?');
+
+				// Focus on the first empty geocoder
+				$('.panel.journeyplanner.search input').each (function () {
+					if ($(this).val() == '') {
+						this.focus();
+						return false;
+					}
+				});
 			}
 		},
 

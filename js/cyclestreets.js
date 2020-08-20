@@ -1920,7 +1920,8 @@ var cyclestreetsui = (function ($) {
 				routing.setSingleMarkerMode (false);
 				
 				// Switch back to settings
-				cyclestreetsui.switchPanel ('.panel.journeyplanner.setLocation', '.panel.settings');
+				// Don't provide an origin panel, so that we don't save this as a searchable breadcrumb
+				cyclestreetsui.switchPanel ('', '.panel.settings');
 			});
 
 

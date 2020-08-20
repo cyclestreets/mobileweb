@@ -1088,7 +1088,10 @@ var cyclestreetsui = (function ($) {
 		 */
 		mainUI: function ()
 		{
-						
+			
+			// Make iPhone hide url bar
+			setTimeout (function () {window.scrollTo(0, 1); }, 1000);
+			
 			// Swiping down on a card closes it
 			$('.panel').on ('swipedown', function () {
 				// Prevent card from closing if we are reordering a input geocoder

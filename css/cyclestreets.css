@@ -218,7 +218,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.select ul {margin: 15px 0 0 0; padding: 0;}
 .panel.journeyplanner.select h2 {text-align: center; font-size: 20px;}
 .panel.journeyplanner.select ul li {list-style-type: none; display: inline-block;}
-.panel.journeyplanner.select ul li img {display: inline-block; margin: 0 5px 0 30px; padding: 0;}
+.panel.journeyplanner.select ul li img {display: inline-block; margin: 0 5px 0 15px; padding: 0;}
 .panel.journeyplanner.select ul li p {display: inline-block; margin: 0; padding: 0; text-align: left;}
 .panel.journeyplanner.select .elevation-chart-container {position: absolute; bottom: 0; left: 0; height: 80px; width: 111%; z-index: 1;}
 .panel.journeyplanner.select.minimised .elevation-chart-container, .panel.journeyplanner.select.minimised .elevation-scrubber {display: none;}

@@ -1135,6 +1135,7 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 
+			
 			// Clicking on a minimised card expands it
 			$('.panel').on ('click', function (event) {
 				if ($(this).hasClass ('minimised')) {
@@ -1145,6 +1146,7 @@ var cyclestreetsui = (function ($) {
 					cyclestreetsui.fitMap (element, fullscreen, timeout);
 				}
 			});
+			
 
 
 			/*

@@ -1095,8 +1095,8 @@ var cyclestreetsui = (function ($) {
 				if (!routing.getInputDragStatus ()){
 					$(this).addClass ('minimised', 400);
 					var element = this;
-					var fullscreen = false;
-					var timeout = 400;
+					var fullscreen = true;
+					var timeout = 410;
 					cyclestreetsui.fitMap (element, fullscreen, timeout);
 				}
 			});
@@ -1208,16 +1208,19 @@ var cyclestreetsui = (function ($) {
 						
 						// Show the previous panel
 						var lastPanel = _breadcrumbs.pop ();
-						$(lastPanel).first ().show ();
-
+						var element = $(lastPanel).first ();
+						$(element).show ();
+						var fullscreen = false
 					}
 					else {
 						// Otherwise, if there are no breadcrumbs, return to the default home screen
 						cyclestreetsui.returnHome ();	
+						var element = false;
+						var fullscreen = true;
 					}
 
 					// Resize map element
-					cyclestreetsui.fitMap ();
+					cyclestreetsui.fitMap (element, fullscreen);
 				}
 			});
 			
@@ -1254,6 +1257,12 @@ var cyclestreetsui = (function ($) {
 					// Switch the panel
 					if (nextPanel.length) {
 						cyclestreetsui.switchPanel ('.' + currentPanel, nextPanelClass);
+
+						// Resize map element
+						var element = nextPanelClass
+						var fullscreen = false
+						var timeout = 100
+						cyclestreetsui.fitMap ();
 					}
 				}
 				

@@ -805,7 +805,7 @@ var cyclestreetsui = (function ($) {
 				
 				// Hide all recent item panels except the one we clicked on
 				$('.panel.journeyplanner.search .recent-items > ul').hide ();
-				$('.panel.journeyplanner.search .recent-items ul.' + ulClass).show ('slide', {direction: 'up'}, 300);
+				$('.panel.journeyplanner.search .recent-items ul.' + ulClass).show ();
 			});
 
 			// On startup, show the default option (places)

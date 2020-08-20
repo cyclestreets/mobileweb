@@ -1129,9 +1129,7 @@ var cyclestreetsui = (function ($) {
 				} else {
 					$(this).removeClass ('minimised', 400);
 					var element = this;
-					var fullscreen = false;
-					var timeout = 400;
-					cyclestreetsui.fitMap (element, fullscreen, timeout);
+					cyclestreetsui.fitMap (this, false, 400);
 				}
 			});
 
@@ -1140,10 +1138,7 @@ var cyclestreetsui = (function ($) {
 			$('.panel').on ('click', function (event) {
 				if ($(this).hasClass ('minimised')) {
 					$(this).removeClass ('minimised', 400);
-					var element = this;
-					var fullscreen = false;
-					var timeout = 400;
-					cyclestreetsui.fitMap (element, fullscreen, timeout);
+					cyclestreetsui.fitMap (this, false, 400);
 				}
 			});
 			

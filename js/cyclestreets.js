@@ -553,9 +553,6 @@ var cyclestreetsui = (function ($) {
 			layerviewer.initialise (_settings, _layerConfig);
 			_map = layerviewer.getMap ();
 
-			// Enable autocomplete for geocoder inputs
-			//cyclestreetsui.autocomplete ();
-			
 			// Initialise the UI
 			cyclestreetsui.mainUI ();
 			cyclestreetsui.navBar ();
@@ -571,9 +568,6 @@ var cyclestreetsui = (function ($) {
 
 			// Intialise routing library
 			cyclestreetsui.routing ();
-
-			// Get POIS icon URLs
-			//cyclestreetsui.getPoisIconUrls ();
 
 			// Trigger geolocation to find the user's location at startup
 			layerviewer.triggerGeolocation ();
@@ -689,21 +683,20 @@ var cyclestreetsui = (function ($) {
 					// Enable clicking on the eye icon to deactivate a layer
 					// If the target is <a href> and not directly the <label>, check to see if we are clicking the eye of a checkbox
 					// If either POI or Photomap layers are deactivated, clicking the label will activate the layer with the default settings
-					// If these laers are activated, clicking on the label should simply open the card; clicking the eye will deactivate the layer
+					// If these layers are activated, clicking on the label should simply open the card; clicking the eye will deactivate the layer
 					// However, if we are clicking on a Data submenu item, there is no card attached, and we DO want to activate/deactivate when clicking the label
 					
 					// If we are clicking on a Data submenu item, toggle the item on/off and close the menu
-					if ($(event.target).parents('li.data').length) {
+					if ($(event.target).parents ('li.data').length) {
 						cyclestreetsui.resetUI ();
 						$('.panel').hide ();
 						cyclestreetsui.fitMap ();
-						return true;
+						return false;
 					}
 					
 					// If we are clicking the Eye icon on active Photomap or POI menu item
-					if ($(event.target).is('a') && ($(event.target).parents('li.photomap').length || $(event.target).parents('li.pois').length)) {
+					if ($(event.target).is ('a') && ($(event.target).parents ('li.photomap').length || $(event.target).parents ('li.pois').length)) {
 						var inputElement = $(event.currentTarget).find ('input').first();
-						
 						if ($(inputElement).prop ('checked') == true) {
 							$(inputElement).prop ('checked', false);
 							layerviewer.toggleDataLayer (inputElement[0]);		
@@ -713,9 +706,9 @@ var cyclestreetsui = (function ($) {
 						return false;
 					
 					// Clicking the input/label of an activated Photomap/POI layer should not disable the layer, only open the card
-					} else if ($(event.target).closest('li').hasClass ('enabled')) { 
+					} else if ($(event.target).closest ('li').hasClass ('enabled')) { 
 						event.preventDefault ()
-						$(event.target).prop ('checked', true); // We just disactivated the input by clicking it, reactivte it
+						$(event.target).prop ('checked', true); // We just deactivated the input by clicking it, reactivate it
 					}
 					
 					// Save the current (visible before change) panel to the breadcrumb trail
@@ -737,29 +730,13 @@ var cyclestreetsui = (function ($) {
 					if (previousStateIndex > -1) {
 						// Set out new pane
 						panel = _breadcrumbs[previousStateIndex]
-
-						// Reset any states the panel might have been in
-						panel = panel.replace ('.minimised', '')
 						
 						// As we have "teleported" back a few steps, delete any breadcrumbs that were made in the meantime
-						_breadcrumbs.splice (0, previousStateIndex + 1)
+						_breadcrumbs.splice (0, previousStateIndex + 1)	
 					}
 					
-					// If this panel was previously minimised, remove this class so it opens fully
-					$(panel).removeClass ('minimised').slideToggle ();
-					
-					/*
-
-					// The Journey Planner card should open, as well, rather than simply displaying the card in minimised position
-					if (className == 'journeyplanner') {
-						cyclestreetsui.openJourneyPlannerCard ();
-					} else {
-						// Set the JP back to the default minimised state
-						$('.panel.journeyplanner.search').removeClass ('open');
-					}
-					*/
-
-					// Resize map element
+					// Display panel and resize map element
+					$(panel).first ().show ()
 					cyclestreetsui.fitMap (panel, false, 500);
 				}
 			});
@@ -1103,20 +1080,13 @@ var cyclestreetsui = (function ($) {
 		 * Main UI functions
 		 */
 		mainUI: function ()
-		{
-			
-			// Make iPhone hide url bar
-			setTimeout (function () {window.scrollTo(0, 1); }, 1000);
-			
+		{	
 			// Swiping down on a card closes it
 			$('.panel').on ('swipedown', function () {
 				// Prevent card from closing if we are reordering a input geocoder
 				if (!routing.getInputDragStatus ()){
 					$(this).addClass ('minimised', 400);
-					var element = this;
-					var fullscreen = true;
-					var timeout = 410;
-					cyclestreetsui.fitMap (element, fullscreen, timeout);
+					cyclestreetsui.fitMap (this, true, 410);
 				}
 			});
 			
@@ -1128,7 +1098,6 @@ var cyclestreetsui = (function ($) {
 					cyclestreetsui.openJourneyPlannerCard ();
 				} else {
 					$(this).removeClass ('minimised', 400);
-					var element = this;
 					cyclestreetsui.fitMap (this, false, 400);
 				}
 			});

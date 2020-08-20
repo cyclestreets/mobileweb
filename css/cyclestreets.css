@@ -95,7 +95,7 @@ ul li {list-style-type: none;}
 ul li select {display: inline-block; margin: 2px 0; padding: 0 20px; width: calc(100% - 120px); border-radius: 25px; text-align: left; text-decoration: none; background: #dc4f55; color: #f5f5f5;}
 textarea {display: inline-block; margin: 2px 0; padding: 10px 20px; height: 50px; width: calc(100% - 160px); border: none; border-radius: 25px; vertical-align: middle;}
 input {margin: 3px 0; padding: 0 20px; line-height: 50px; width: calc(100% - 100px); border: none; border-radius: 25px;}
-input:focus {outline: auto 2px Highlight; outline: auto 2px -webkit-focus-ring-color;}
+input:focus, select:focus, textarea:focus, button:focus {outline: auto 1px Highlight; outline: auto 2px -webkit-focus-ring-color;}
 select {-webkit-appearance: none; height: 50px;}
 hr {margin-top: 10px; margin-bottom: 10px;}
 .disabled {opacity: 0.5;}
@@ -164,7 +164,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search ul.recent-journeys, .panel.journeyplanner.search ul.recent-searches {max-height: 111px; overflow-y: scroll; overflow-x: hidden; margin-right: -35px;}
 .panel.journeyplanner.search ul.places {max-height: 100px; overflow-x: scroll; margin: 0 -20px;}
 .panel.journeyplanner.search ul.recent-journeys a.clearRecentJourneys, .panel.journeyplanner.search ul.recent-searches a.clearRecentSearches {padding-bottom: 10px;}
-.panel.journeyplanner.search ul.recent-searches img {height: 30px;}
+.panel.journeyplanner.search ul.recent-searches img {height: 30px; padding-right: !5px;}
 
 .panel.journeyplanner.search .recent-items .shortcutHorizontalScroll {display: inline-block; overflow-x: scroll; padding-left: 20px; width: 100%; margin: 0 0 0 -20px;}
 .panel.journeyplanner.search .recent-items ul.shortcut-icons {list-style-type: none; width: 450px; padding: 0; margin: 0; display: block; scrollbar-width: none;}
@@ -181,7 +181,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search .recent-items li p.destination {display: inline; font-size: 16px; line-height: 19px;}
 .panel.journeyplanner.search .recent-items li p.address {width: 320px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
 .panel.journeyplanner.search .recent-items li p.distance {float: right; padding: 0 20px 0 20px; background: left no-repeat; background-image: url('/images/icon-cyclist-small.svg');}
-.panel.journeyplanner.search .recent-items li img {padding-right: 15px;}
+.panel.journeyplanner.search .recent-items ul.recent-journeys li img {padding-right: 15px;}
 .panel.journeyplanner.search .recent-items li p.distance, .panel.journeyplanner.search .recent-items p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
 .panel.journeyplanner.search .recent-items li a {float: right; transition: transform .2s;}
 .panel.journeyplanner.search .recent-items li a:hover {transform: scale(1.12);}

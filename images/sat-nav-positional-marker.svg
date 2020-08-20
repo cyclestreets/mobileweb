@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="34" viewBox="0 0 34 34">
+  <defs>
+    <ellipse id="ellipse-1" cx="12" cy="12" rx="12" ry="12"/>
+    <filter id="filter-2" width="200%" height="200%" x="-50%" y="-50%" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0" in="SourceAlpha" result="shadow-1-feOffset-shadow"/>
+      <feGaussianBlur in="shadow-1-feOffset-shadow" result="shadow-1-feGaussianBlur-shadow" stdDeviation="3.012"/>
+      <feColorMatrix in="shadow-1-feGaussianBlur-shadow" result="shadow-1-feColorMatrix-shadow" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.25 0"/>
+    </filter>
+    <ellipse id="ellipse-3" cx="2.5" cy="8.5" rx="2.5" ry="2.5"/>
+    <mask id="mask-4" x="-11" y="-11.5" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+      <rect width="34" height="34" x="-11" y="-11.5" fill="black"/>
+      <use fill="white" xlink:href="#ellipse-3"/>
+    </mask>
+    <ellipse id="ellipse-5" cx="9.5" cy="8.5" rx="2.5" ry="2.5"/>
+    <mask id="mask-6" x="-11" y="-11.5" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+      <rect width="34" height="34" x="-11" y="-11.5" fill="black"/>
+      <use fill="white" xlink:href="#ellipse-5"/>
+    </mask>
+  </defs>
+  <g transform="translate(5 5)">
+    <g>
+      <use fill="black" stroke="black" stroke-opacity="0" stroke-width="0" filter="url(#filter-2)" xlink:href="#ellipse-1"/>
+      <use fill="rgb(255,255,255)" xlink:href="#ellipse-1"/>
+    </g>
+    <g transform="translate(6 6.5)">
+      <use fill-opacity="0" stroke="rgb(220,79,85)" stroke-width="1.5" mask="url(#mask-4)" xlink:href="#ellipse-3"/>
+      <use fill-opacity="0" stroke="rgb(220,79,85)" stroke-width="1.5" mask="url(#mask-6)" xlink:href="#ellipse-5"/>
+      <path fill="rgb(220,79,85)" fill-rule="evenodd" d="M8.5 4L9 5.5h1.5L11 4H8.5z"/>
+      <path fill="none" stroke="rgb(220,79,85)" stroke-linecap="round" stroke-linejoin="round" stroke-width=".75" d="M9.5 8.5L8 4.5l-.5-.25"/>
+      <ellipse cx="4.375" cy=".875" fill="rgb(220,79,85)" rx=".875" ry=".875"/>
+      <path fill="rgb(220,79,85)" fill-rule="evenodd" d="M7.60275269 3.89414978L5.75 3.25 4.5 2c-.57705527 0-1.06953168.4171901-1.16439899.98639392l-.23193253 1.39159521c-.06334129.38004772.0972897.7626816.41293158.98363091L5.5 6.75V9.5l2.5.75L6.25 9l.20386127-2.24247397c.02898568-.31884252-.09644565-.63228736-.3373886-.84311244L4.5 4.5l.25-1 .63470745.4231383c.07649626.0509975.1596598.09120239.24714057.11947852l1.77099927.57243445.1999054-.72090149z"/>
+      <path fill="rgb(220,79,85)" fill-rule="evenodd" d="M.5 8.5l5.25259068-.43771589C6.15493208 8.02875566 6.5 8.34626399 6.5 8.75c0 .39260493-.35253233.69124461-.73979544.62670076L.5 8.5z"/>
+      <path fill="none" stroke="rgb(220,79,85)" stroke-linecap="round" stroke-linejoin="miter" stroke-width=".75" d="M5.5 8.5L8 5"/>
+    </g>
+  </g>
+</svg>

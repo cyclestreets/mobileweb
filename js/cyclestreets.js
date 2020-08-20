@@ -1160,7 +1160,7 @@ var cyclestreetsui = (function ($) {
 				{	
 					// Display a notification
 					cyclestreetsui.displayNotification (
-						'Please log-in to access this feature.', 
+						'Please sign in to access this feature.', 
 						'/images/icon-user.svg',
 						function () {
 							// Callback function to switch to log-in

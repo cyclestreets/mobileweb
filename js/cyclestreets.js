@@ -996,8 +996,8 @@ var cyclestreetsui = (function ($) {
 			function getLocation() {
 				
 				var options = {
-					enableHighAccuracy: true,
-					timeout: 5000,
+					enableHighAccuracy: false,
+					timeout: 2000,
 					maximumAge: 0
 				  };
 				  

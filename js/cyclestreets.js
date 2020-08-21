@@ -225,9 +225,9 @@ var cyclestreetsui = (function ($) {
 			emptyPlaceholderText: '{%osmeditlink}',
 			popupHtml: 
 				  '<div class="data" data-coordinates="{geometry.coordinates}"></div><div class="place-photo">{%streetview}</div><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><h2>{properties.name}</h2>'
-				+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>{properties.osmTags.addr:street} {properties.osmTags.addr:city} {properties.osmTags.addr:postcode}</p>'
+				+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>{properties.osmTags.addr:street}</p>'
 				+ '<ul><li><img src="/images/icon-clock.svg" alt="Opening times" /><p>{properties.osmTags.opening_hours}</p></li><li>'
-				+ '<img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">01223 576790</p></li></ul><a href="#" class="share" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /></a>',
+				+ '<img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">{properties.osmTags.phone}</p></li></ul><a href="#" class="share" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /></a>',
 			popupCallback: function (renderDetailsHtml) {
 				cyclestreetsui.displayPoiPopup (renderDetailsHtml);
 			}

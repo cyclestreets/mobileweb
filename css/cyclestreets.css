@@ -230,7 +230,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.select span.elevation {position: absolute; display: none; bottom: 342px; right: 4px; padding: 5px; padding-left: 25px; color: #ffffff; opacity: .75; border-radius: 40px; line-height: 20px; z-index: 3; background: url('/images/icon-elevation.svg') no-repeat, #212322; background-position: 7px 50%;}
 .panel.journeyplanner.select span img {padding: 0 5px 0 0;}
 .panel.journeyplanner.select .elevation-scrubber {position: absolute; bottom: -8px; z-index: 2;}
-.cyclistmarker {transition: 1s; height: 32px; width: 32px;}
+.cyclistmarker {height: 32px; width: 32px;}
 
 /* Ridetracker specific card styles */
 .panel.ridetracker.track a {display: none;}

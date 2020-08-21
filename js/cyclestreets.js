@@ -994,8 +994,15 @@ var cyclestreetsui = (function ($) {
 		{
 			// On startup, check the geolocation status of the browser
 			function getLocation() {
+				
+				var options = {
+					enableHighAccuracy: true,
+					timeout: 5000,
+					maximumAge: 0
+				  };
+				  
 				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(showPosition, showError);
+					navigator.geolocation.getCurrentPosition(showPosition, showError, options);
 				} else {
 					vex.dialog.alert ('Geolocation is not supported by this browser.');
 					routing.setGeolocationAvailability (false);

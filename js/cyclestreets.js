@@ -998,7 +998,7 @@ var cyclestreetsui = (function ($) {
 				var options = {
 					enableHighAccuracy: false,
 					timeout: 2000,
-					maximumAge: 0
+					maximumAge: Infinity
 				  };
 				  
 				if (navigator.geolocation) {

@@ -198,7 +198,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.select ul.journeyStats {padding-bottom: 15px;}
 .panel.journeyplanner.select .loader {display: block; margin: 0 auto; width: 38px; height: 38px;}
 .panel.journeyplanner.select #resultsTabs {max-height: 350px; padding-left: 20px; margin-top: -9px;}
-.panel.journeyplanner.select #itineraries {max-height: 350px; overflow: scroll; width: calc(100% + 40px); margin-left: -20px; margin-right: -20px;}
+.panel.journeyplanner.select #itineraries {max-height: 350px; overflow-y: scroll; overflow-x: hidden; width: calc(100% + 40px); margin-left: -20px; margin-right: -20px;}
 .panel.journeyplanner.select #itineraries .ui-tabs-panel table.itinerary {width: 100%; margin-bottom: 130px;}
 .panel.journeyplanner.select ul.ui-tabs-nav {display: table; margin: 10px auto; padding: 0;}
 .panel.journeyplanner.select ul.ui-tabs-nav li {display: table-cell; margin: 0; padding: 0; color: #cc5959; list-style-type: none;}

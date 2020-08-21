@@ -690,7 +690,7 @@ var cyclestreetsui = (function ($) {
 					if ($(event.target).parents ('li.data').length) {
 						cyclestreetsui.resetUI ();
 						$('.panel').hide ();
-						cyclestreetsui.fitMap ();
+						cyclestreetsui.fitMap (false, true, 100);
 						return true;
 					}
 					

@@ -285,7 +285,7 @@ var cyclestreetsui = (function ($) {
 			},
 			popupHtml: 
 			      '<div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><img class="popup-photo" src="{properties.thumbnailUrl}" alt="Photo" />' 
-				+ '<a class="share" href="#" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /> Share</a><a class="flip" href="#" title="Show more information"> Photo info</a></div>'
+				+ '<p class="key">{properties.caption}</p><a class="share" href="#" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /> Share</a><a class="flip" href="#" title="Show more information"> Photo info</a></div>'
 				+ '<div class="flip-card-back popup-card"><a href="#" class="back" title="Return to the front of this card"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a><br>' 
 				+ '<p class="key">Category: </p><p>{properties.categoryName}</p><br>	<p class="key">Type: </p><p>{properties.metacategoryName}</p><hr /><ul><li><img src="/images/icon-user.svg" alt="User icon" /><p>{properties.username}</p></li>'
 				+ '<li><img src="/images/icon-clock.svg" alt="Clock icon" /><p>{properties.datetime}</p></li><li><img src="/images/icon-hashtag.svg" alt="Photo number" /><p>{properties.id}</p></li><li><img src="/images/icon-copyright.svg" alt="Copyright" /><p>{properties.licenseName}</p></li></ul></div></div>',
@@ -691,7 +691,7 @@ var cyclestreetsui = (function ($) {
 						cyclestreetsui.resetUI ();
 						$('.panel').hide ();
 						cyclestreetsui.fitMap ();
-						return false;
+						return true;
 					}
 					
 					// If we are clicking the Eye icon on active Photomap or POI menu item

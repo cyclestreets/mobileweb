@@ -304,7 +304,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .popup a.ui-button.close-button {position: absolute; top: 0; left: 0; margin: 10px; line-height: 60px; z-index: 3;}
 
 /* Photomap popup */
-.popup.photomap {perspective: 1000px; background-color: transparent; height: 480px;}
+.popup.photomap {perspective: 1000px; background-color: transparent; height: 550px; margin: 20% auto;}
 .popup.photomap .popup-card {border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8;}
 .popup.photomap .loader {display: inline-block; position: absolute; margin: 58% 48%; width: 38px; height: 38px; z-index: 1;}
 .popup.photomap a {position: absolute; bottom: 0; margin: 20px; padding: 0; line-height: 15px; color: #dc4f55; text-decoration: none;}
@@ -313,7 +313,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .popup.photomap .flip-card-inner {position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d;}
 .popup.photomap .flip-card-inner.flipped {transform: rotateY(180deg);}
 .popup.photomap .flip-card-front, .flip-card-back {position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden;}
-.popup.photomap .flip-card-front img.popup-photo {max-width: 100%; height: 85%; overflow: hidden; z-index: 2;}
+.popup.photomap .flip-card-front img.popup-photo {height: 74%; overflow: hidden; z-index: 2;}
+.popup.photomap .flip-card-front p.key {margin: 15px 0 15px 20px;}
 .popup.photomap .flip-card-back {transform: rotateY(180deg); background: #212322; text-align: left;}
 .popup.photomap .flip-card-back img {margin: 15px;}
 .popup.photomap .flip-card-back hr {width: calc(100% - 40px);}

@@ -1019,7 +1019,9 @@ var cyclestreetsui = (function ($) {
 				}
 			}
 
-			function showPosition (position) {}
+			function showPosition (position) {
+				routing.setGeolocationAvailability (true);
+			}
 
 			function showError(error) {
 				// Set geolocation as unavailable 
@@ -1028,7 +1030,7 @@ var cyclestreetsui = (function ($) {
 				// Display a user message
 				switch (error.code) {
 					case error.PERMISSION_DENIED:
-						vex.dialog.alert ('Please allow the browser to access your location.');	
+						vex.dialog.alert ('Please allow the browser to access your location, by refreshing the page.');	
 						break;
 					case error.POSITION_UNAVAILABLE:
 						vex.dialog.alert ('Location information is unavailable.');	

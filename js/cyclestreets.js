@@ -796,7 +796,9 @@ var cyclestreetsui = (function ($) {
 			routing.buildRecentSearches ();
 
 			// Check for geolocation status
-			cyclestreetsui.checkForGeolocationStatus ();
+			_map.on ('load', function () {
+				cyclestreetsui.checkForGeolocationStatus ();
+			});
 			
 			// Enable recent searches and recent journeys to show
 			$('.panel.journeyplanner.search .segmented-control li').click (function (event){
@@ -1005,7 +1007,7 @@ var cyclestreetsui = (function ($) {
 				
 				var options = {
 					enableHighAccuracy: false,
-					timeout: 2000,
+					timeout: 5000,
 					maximumAge: Infinity
 				  };
 				  

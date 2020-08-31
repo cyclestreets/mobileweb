@@ -49,11 +49,11 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
 .ui-button {display: block; position: fixed; width: 50px; height: 50px; line-height: 50px; border: 0 solid #f5f5f5; border-radius: 50%; background: #f5f5f5; text-align: center; box-shadow: 0 0 3px gray; transition: transform .2s;}
 .ui-button-large {width: 65px; height: 65px; background: #cc5959; transition: transform .2s;}
 .ui-button:hover, .ui-button-large:hover {transform: scale(1.1);}
-#hamburger-menu {top: 20px; left: 20px; z-index: 20;}
+#hamburger-menu {top: 20px; left: 20px;}
 .mainLoadingSpinner {width: 65px; height: 65px; border-radius: 50%; display: none; position: fixed; top: 20px; left: 20px; background: linear-gradient(0deg, rgba(204, 89, 89, 0.2) 33%, #e1dde0 100%); box-sizing: border-box; animation: rotation 1s linear infinite;}
-#geolocate-button {top: 30px; right: 20px; line-height: 64px; z-index: 20;}
+#geolocate-button {top: 30px; right: 20px; line-height: 64px;}
 #geolocate-button img {margin-right: 4px;}
-#glasses-icon {top: 95px; right: 20px; line-height: 53px; z-index: 20;}
+#glasses-icon {top: 95px; right: 20px; line-height: 53px;}
 #browse-search-box {display: none; position: fixed; top: 95px; right: 20px; width: 50px; height: 50px; margin: 0; background: #f5f5f5; z-index: 19;}
 #browse-search-box.open {display: block; padding-left: 20px; padding-right: 50px; max-width: 300px; border-radius: 25px; line-height: 20px; box-shadow: 0 0 3px gray;}
 #close-browse-box-icon {display: none; top: 95px; right: 20px; z-index: 1; line-height: 60px; box-shadow: none; z-index: 20;}
@@ -185,7 +185,6 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search .recent-items ul.recent-journeys li img {padding-right: 15px;}
 .panel.journeyplanner.search .recent-items li p.distance, .panel.journeyplanner.search .recent-items p.address {font-size: 14px; line-height: 16px; color: #8e8c8c;}
 .panel.journeyplanner.search .recent-items li a {float: right; transition: transform .2s;}
-.panel.journeyplanner.search .recent-items li a:hover {transform: scale(1.12);}
 
 .panel.journeyplanner.search .recent-items ul.recent-searches li a {padding-right: 20px;}
 .panel.journeyplanner.search .recent-items ul.recent-searches li p.destination {line-height: 34px;}
@@ -278,6 +277,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.photomap.uploading p {display: inline-block; width: 40%; margin: 10px 30%; color: #fbf6f8; text-align: center;}
 .panel.photomap.uploading progress {margin: 10px 30%; width: 40%;}
 .panel.photomap.uploading a {display: block; color: #c4c1c2; text-align: center;}
+.wizard.photomap p {line-height: inherit;}
 
 /* Places card */
 .panel.pois {max-height: 50%; overflow-y: scroll;}
@@ -305,7 +305,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .popup a.ui-button.close-button {position: absolute; top: 0; left: 0; margin: 10px; line-height: 60px; z-index: 3;}
 
 /* Photomap popup */
-.popup.photomap {perspective: 1000px; background-color: transparent; height: 550px; margin: 20% auto;}
+.popup.photomap {perspective: 1000px; background-color: transparent; height: 550px; margin: 20% auto; z-index: 20;}
 .popup.photomap .popup-card {border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8;}
 .popup.photomap .loader {display: inline-block; position: absolute; margin: 58% 48%; width: 38px; height: 38px; z-index: 1;}
 .popup.photomap a {position: absolute; bottom: 0; margin: 20px; padding: 0; line-height: 15px; color: #dc4f55; text-decoration: none;}
@@ -314,13 +314,13 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .popup.photomap .flip-card-inner {position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d;}
 .popup.photomap .flip-card-inner.flipped {transform: rotateY(180deg);}
 .popup.photomap .flip-card-front, .flip-card-back {position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden;}
-.popup.photomap .flip-card-front img.popup-photo {height: 74%; overflow: hidden; z-index: 2;}
+.popup.photomap .flip-card-front img.popup-photo {height: 74%; overflow: hidden;}
 .popup.photomap .flip-card-front p.key {margin: 15px 0 15px 20px;}
 .popup.photomap .flip-card-back {transform: rotateY(180deg); background: #212322; text-align: left;}
 .popup.photomap .flip-card-back img {margin: 15px;}
 .popup.photomap .flip-card-back hr {width: calc(100% - 40px);}
 .popup.photomap .flip-card-back ul li img {width: 16px; margin: 10px 10px 0 20px;}
-.popup.photomap .flip-card-back p {display: inline-block; margin: 0; color: #fbf6f8;}
+.popup.photomap .flip-card-back p {display: inline-block; margin: 0; color: #fbf6f8; font-size: 13px;}
 .popup.photomap .flip-card-back p.key {margin: 0 0 15px 20px; color: #c4c1c2;}
 
 /* Places popup */
@@ -436,13 +436,20 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
     nav #secondary-menu li a {font-size: 15px;}
     nav ul ul li label {font-size: 13px;}
     input, select, textarea {font-size: 12px;}
+    select {height: 40px;}
     .panel.journeyplanner.select ul.ui-tabs-nav label {width: auto;}
     .panel.journeyplanner.search ul.segmented-control label {width: auto;}
     .panel.journeyplanner.select #itineraries .ui-tabs-panel table.itinerary {font-size: 13px;}
     .popup.notification p.direction {font-size: 15px; width: 162px;}
-    .panel.journeyplanner.select ul li img {padding: 0 5px 0 8px;}
+    .panel.journeyplanner.select ul li img {padding: 0; margin-right: 0;}
     .panel.settings ul li a.set {font-size: 14px;}
-    .popup.places {margin: 2.5%;}
+    .popup.places {margin: 2.5%; height: 82%;}
+    .panel.journeyplanner.select ul li p {font-size: 9pt;}
+    .panel.journeyplanner.select p.location {margin: 0;}
+    .panel.journeyplanner.select {max-height: 239px;}
+    .panel.journeyplanner.search .recent-items li p {margin: 0;}
+    .popup.photomap {width: 92%; margin: 5% auto; height: 510px;}
+    .lines td, .lines th {padding: 0;}
 }
 
 img.marker.mapbox-gl-marker {z-index: 0;}

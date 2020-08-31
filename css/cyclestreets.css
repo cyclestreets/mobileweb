@@ -130,6 +130,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search {height: 38px; padding-top: 12px; padding-bottom: 15px;}
 .panel.journeyplanner.search.open {height: auto; max-height: 90%; padding-bottom: 0;}
 .panel.journeyplanner.search #start {display: none;}
+.panel.journeyplanner.search.open #start {padding-right: 68px; width: calc(100% - 160px);}
 .panel.journeyplanner.search #getRoutes {display: none; position: absolute; right: 0; top: 5px; transition: transform .2s;}
 .panel.journeyplanner.search #getRoutes.grayscale:hover {transform: scale(1.0);}
 .panel.journeyplanner.search #getRoutes:hover {transform: scale(1.1);}

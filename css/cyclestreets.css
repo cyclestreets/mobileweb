@@ -76,7 +76,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
  */
 
 /* Structural elements */
-.panel {display: none; position: fixed; height: auto; bottom: 0; left: 0; z-index: 5; width: calc(100% - 40px); padding: 15px 20px; background-color: #fbf6f8;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); user-select: none;}
+.panel {display: none; position: fixed; height: auto; bottom: 0; left: 0; z-index: 20; width: calc(100% - 40px); padding: 15px 20px; background-color: #fbf6f8;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); user-select: none;}
 .panel::before {content:url('/images/card-handle.svg'); position: absolute; top: -8px; margin: 0 calc((100% - 208px) / 2);}
 .panel.red::before {content:url('/images/card-handle-red-fill.svg');}
 .hidden {display: none;}
@@ -130,21 +130,21 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search {height: 38px; padding-top: 12px; padding-bottom: 15px;}
 .panel.journeyplanner.search.open {height: auto; max-height: 90%; padding-bottom: 0;}
 .panel.journeyplanner.search #start {display: none;}
-.panel.journeyplanner.search.open #start {padding-right: 68px; width: calc(100% - 160px);}
+.panel.journeyplanner.search.open #start {padding-right: 71px; width: calc(100% - 148px);}
 .panel.journeyplanner.search #getRoutes {display: none; position: absolute; right: 0; top: 5px; transition: transform .2s;}
 .panel.journeyplanner.search #getRoutes.grayscale:hover {transform: scale(1.0);}
 .panel.journeyplanner.search #getRoutes:hover {transform: scale(1.1);}
 
-.panel.journeyplanner.search .inputDiv {margin-left: 15px;}
+.panel.journeyplanner.search.open .inputDiv {margin-left: 15px;}
 .panel.journeyplanner.search input {position: relative; bottom: 5px; height: 45px; width: calc(100% - 40px); padding: 0 20px; border: 0; transition: transform .2s;}
 .panel.journeyplanner.search input:hover {transform: scale(1.05);}
-.panel.journeyplanner.search .loader {display: none; position: absolute; right: 75px; margin-top: 1px; margin-left: -3px; width: 38px; height: 38px;}
+.panel.journeyplanner.search .loader {display: none; position: absolute; right: 60px; margin-top: 1px; margin-left: -3px; width: 38px; height: 38px;}
 .panel.journeyplanner.search .ui-autocomplete-loading + .loader {display: inline-block;}
 .panel.journeyplanner.search a.reorderWaypoint {display: none; position: absolute; left: 49px; margin-top: 10px;}
-.panel.journeyplanner.search a.locationTracking {display: none; position: absolute; right: 121px; margin-top: 14px;}
-.panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; right: 78px; margin-top: 4px;}
+.panel.journeyplanner.search a.locationTracking {display: none; position: absolute; right: 103px; margin-top: 14px;}
+.panel.journeyplanner.search a.removeWaypoint {display: none; position: absolute; right: 63px; margin-top: 4px;}
 .panel.journeyplanner.search a.addWaypoint {display: none; position: absolute; margin-top: 28px; left: 7px; transform: scale(-1, 1);}
-.panel.journeyplanner.search.open input {width: calc(100% - 140px); padding-left: 43px; padding-right: 50px; transform: scale(1);}
+.panel.journeyplanner.search.open input {width: calc(100% - 122px); padding-left: 43px; padding-right: 44px; transform: scale(1);}
 .panel.journeyplanner.search.open .inputDiv:first-of-type input {padding-right: 35px; width: calc(100% - 127px);}
 .panel.journeyplanner.search.open a.reorderWaypoint {display: inline-block;}
 .panel.journeyplanner.search.open a.removeWaypoint {display: inline-block;}
@@ -280,7 +280,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.photomap.uploading a {display: block; color: #c4c1c2; text-align: center;}
 
 /* Places card */
-.panel.pois {max-height: 50%;}
+.panel.pois {max-height: 50%; overflow-y: scroll;}
 .panel.pois ul {overflow-y: scroll; text-align: center;}
 .panel.pois ul li {display: inline-block; height: 90px; width: 80px; margin: 0 28px 15px 0; vertical-align: top;}
 .panel.pois ul li input {position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;} /* Hide the browser's default checkbox */
@@ -377,7 +377,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.settings hr {width: calc(100% + 40px); margin: 5px 0 10px -20px;}
 .panel.settings ul {padding: 10px;}
 .panel.settings ul li img {display: inline-block; padding: 10px 0; vertical-align: middle;}
-.panel.settings ul li a {display: inline-block; color: #dc4f55; text-decoration: none;}
+.panel.settings ul li a {display: inline-block; color: #dc4f55; text-decoration: none; overflow: hidden;}
 .panel.settings ul li a.ui-button-large {position: relative; width: calc(100% - 80px); margin-left: 20px; padding: 0 15px; height: 40px; border-radius: 50px; color: #fbf6f8; line-height: 40px; text-align: left;}
 .panel.settings ul li a.set {color: #212322; background-color: #fbf6f8;}
 .panel.settings p {float: left; width: 270px; text-align: left; margin: 10px 0;}
@@ -431,8 +431,17 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.blog object, .panel.donate object {height: 100%; width: calc(100% + 40px); margin-left: -20px; overflow:auto;}
 
 /* Screen-size specific adjustments */
-@media screen and (max-height: 320px) {
- .panel {height: 250px; overflow-y: scroll;}
+@media screen and (max-width: 320px) {
+    nav li a {font-size: 18px;}
+    nav #secondary-menu li a {font-size: 15px;}
+    nav ul ul li label {font-size: 13px;}
+    input {font-size: 12px;}
+    .panel.journeyplanner.select ul.ui-tabs-nav label {width: auto;}
+    .panel.journeyplanner.search ul.segmented-control label {width: auto;}
+    table .itinerary {font-size: 12px;}
+    .popup.notification p.direction {font-size: 15px; width: 162px;}
+    .panel.journeyplanner.select ul li img {padding: 0 5px 0 8px;}
+    .panel.settings ul li a.set {font-size: 14px;}
 }
 
 img.marker.mapbox-gl-marker {z-index: 0;}

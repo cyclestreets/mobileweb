@@ -806,6 +806,8 @@ var cyclestreetsui = (function ($) {
 				// Hide all recent item panels except the one we clicked on
 				$('.panel.journeyplanner.search .recent-items > ul').hide ();
 				$('.panel.journeyplanner.search .recent-items ul.' + ulClass).show ();
+
+				cyclestreetsui.fitMap ();
 			});
 
 			// On startup, show the default option (places)
@@ -1101,7 +1103,7 @@ var cyclestreetsui = (function ($) {
 			$('.panel').on ('swipedown', function () {
 				// Prevent card from closing if we are reordering a input geocoder
 				if (!routing.getInputDragStatus ()){
-					$(this).addClass ('minimised', 400);
+					$(this).removeClass ('open').addClass ('minimised', 400);
 					cyclestreetsui.fitMap (this, true, 410);
 				}
 			});

@@ -569,6 +569,11 @@ var cyclestreetsui = (function ($) {
 			// Intialise routing library
 			cyclestreetsui.routing ();
 
+			// Check for geolocation status
+			_map.on ('load', function () {
+				cyclestreetsui.checkForGeolocationStatus ();
+			});
+
 			// Trigger geolocation to find the user's location at startup
 			layerviewer.triggerGeolocation ();
 			
@@ -794,11 +799,6 @@ var cyclestreetsui = (function ($) {
 			// Retrieve and populate the search panel with recent searches and journeys
 			routing.buildRecentJourneys ();
 			routing.buildRecentSearches ();
-
-			// Check for geolocation status
-			_map.on ('load', function () {
-				cyclestreetsui.checkForGeolocationStatus ();
-			});
 			
 			// Enable recent searches and recent journeys to show
 			$('.panel.journeyplanner.search .segmented-control li').click (function (event){

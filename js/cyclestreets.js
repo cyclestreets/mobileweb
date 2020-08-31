@@ -756,8 +756,8 @@ var cyclestreetsui = (function ($) {
 		// Fit the map to any opened card
 		// Accepts an element, or attempts to find the open panel
 		// If a timeout is specified, which is useful when animations are queued, the function will only execute after the time has expired
-		fitMap: function (element = false, fullscreen = false, timeout = 0) 
-		{
+		fitMap: function (element = false, fullscreen = false, timeout = 50) 
+		{	
 			setTimeout (function() {
 				var height = null;
 			
@@ -774,7 +774,7 @@ var cyclestreetsui = (function ($) {
 					
 				// Resize div, and resize map to fit the new div size
 				$('#map').css ({bottom: height});
-				setTimeout(() => {_map.resize ();}, 50); // Wait for the 1s CSS map transition
+				setTimeout(() => {_map.resize ();}, 50); // Wait for the map to resize
 				
 			}, timeout);
 			

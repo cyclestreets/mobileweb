@@ -847,8 +847,14 @@ var cyclestreetsui = (function ($) {
 			});
 
 			// Handler for clearing recent searches and journeys
-			$(document).on ('click', '.clearRecentSearches', function () {routing.clearRecentSearches ();})
-			$(document).on ('click', '.clearRecentJourneys', function () {routing.clearRecentJourneys ();})
+			$(document).on ('click', '.clearRecentSearches', function () {
+				routing.clearRecentSearches ();
+				cyclestreetsui.fitMap ();
+			})
+			$(document).on ('click', '.clearRecentJourneys', function () {
+				routing.clearRecentJourneys ();
+				cyclestreetsui.fitMap ();
+			})
 
 			
 			/* 

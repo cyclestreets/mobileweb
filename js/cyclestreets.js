@@ -1638,10 +1638,8 @@ var cyclestreetsui = (function ($) {
 		// Display a POI popup
 		displayPoiPopup: function (renderedDetailsHtml)
 		{
-			$('.panel:visible').first ().addClass ('minimised');
-			var fullscreen = true;
-			var destinationPanel = null;
-			cyclestreetsui.fitMap (destinationPanel, fullscreen);
+			$('.panel:visible').first ().removeClass ('open').addClass ('minimised');
+			cyclestreetsui.fitMap (null, true, 100);
 
 			// Get the HTML for the popup
 			$('.popup.places').html (renderedDetailsHtml);

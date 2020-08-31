@@ -435,13 +435,14 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
     nav li a {font-size: 18px;}
     nav #secondary-menu li a {font-size: 15px;}
     nav ul ul li label {font-size: 13px;}
-    input {font-size: 12px;}
+    input, select, textarea {font-size: 12px;}
     .panel.journeyplanner.select ul.ui-tabs-nav label {width: auto;}
     .panel.journeyplanner.search ul.segmented-control label {width: auto;}
-    table .itinerary {font-size: 12px;}
+    .panel.journeyplanner.select #itineraries .ui-tabs-panel table.itinerary {font-size: 13px;}
     .popup.notification p.direction {font-size: 15px; width: 162px;}
     .panel.journeyplanner.select ul li img {padding: 0 5px 0 8px;}
     .panel.settings ul li a.set {font-size: 14px;}
+    .popup.places {margin: 2.5%;}
 }
 
 img.marker.mapbox-gl-marker {z-index: 0;}

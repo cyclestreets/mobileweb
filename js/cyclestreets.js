@@ -1007,7 +1007,7 @@ var cyclestreetsui = (function ($) {
 		checkForGeolocationStatus ()
 		{
 			// On startup, check the geolocation status of the browser
-			function getLocation() {
+			function getLocation () {
 				
 				var options = {
 					enableHighAccuracy: false,
@@ -1016,7 +1016,7 @@ var cyclestreetsui = (function ($) {
 				  };
 				  
 				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(showPosition, showError, options);
+					navigator.geolocation.getCurrentPosition (showPosition, showError, options);
 				} else {
 					vex.dialog.alert ('Geolocation is not supported by this browser.');
 					routing.setGeolocationAvailability (false);
@@ -1027,14 +1027,14 @@ var cyclestreetsui = (function ($) {
 				routing.setGeolocationAvailability (true);
 			}
 
-			function showError(error) {
+			function showError (error) {
 				// Set geolocation as unavailable 
 				routing.setGeolocationAvailability (false);
 				
 				// Display a user message
 				switch (error.code) {
 					case error.PERMISSION_DENIED:
-						vex.dialog.alert ('Please allow the browser to access your location, by refreshing the page.');	
+						vex.dialog.alert ('Please allow the browser to access your location, by refreshing the page or changing privacy settings.');	
 						break;
 					case error.POSITION_UNAVAILABLE:
 						vex.dialog.alert ('Location information is unavailable.');	

@@ -891,16 +891,20 @@ var cyclestreetsui = (function ($) {
 
 			// Handler for user location button in JP
 			$('.panel.journeyplanner.search a.locationTracking').click (function () {
-				// Enable this button (remove grayscale)
-				$(this).removeClass ('grayscale');
-				
-				// Retrieve the geolocatuon from layerviewer
-				var geolocation = layerviewer.getGeolocation ();
-				var geolocationLngLat = geolocation._accuracyCircleMarker._lngLat;
-
-				// Build the waypoint to be "dropped" into map
-				var waypoint = {lng: geolocationLngLat.lng, lat: geolocationLngLat.lat, label: 'waypoint0'};
-				routing.addWaypointMarker (waypoint);
+				if (routing.getGeolocationAvailability ()){
+					// Enable this button (remove grayscale)
+					$(this).removeClass ('grayscale');
+					
+					// Retrieve the geolocatuon from layerviewer
+					var geolocation = layerviewer.getGeolocation ();
+					var geolocationLngLat = geolocation._accuracyCircleMarker._lngLat;
+	
+					// Build the waypoint to be "dropped" into map
+					var waypoint = {lng: geolocationLngLat.lng, lat: geolocationLngLat.lat, label: 'waypoint0'};
+					routing.addWaypointMarker (waypoint);
+				} else {
+					vex.dialog.alert ('Please allow the browser to access your location, by refreshing the page or changing privacy settings.');
+				}
 			});
 			
 			// Open the Route search box on focusing or clicking on any JP geocoder input

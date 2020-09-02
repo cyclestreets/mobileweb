@@ -571,12 +571,11 @@ var cyclestreetsui = (function ($) {
 
 			// Check for geolocation status
 			_map.on ('load', function () {
-				cyclestreetsui.checkForGeolocationStatus ();
+				layerviewer.checkForGeolocationStatus (function () {
+					layerviewer.triggerGeolocation;
+				});
 			});
 
-			// Trigger geolocation to find the user's location at startup
-			layerviewer.triggerGeolocation ();
-			
 			// Show the default panel, after a slight pleasing delay
 			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
 		},
@@ -1000,55 +999,6 @@ var cyclestreetsui = (function ($) {
 					routing.addWaypointMarker (waypoint);
 				}
 			});
-		},
-
-
-		// Function to ascertain the geolocation status of the brwoser
-		checkForGeolocationStatus ()
-		{
-			// On startup, check the geolocation status of the browser
-			function getLocation () {
-				
-				var options = {
-					enableHighAccuracy: false,
-					timeout: 5000,
-					maximumAge: Infinity
-				  };
-				  
-				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition (showPosition, showError, options);
-				} else {
-					vex.dialog.alert ('Geolocation is not supported by this browser.');
-					routing.setGeolocationAvailability (false);
-				}
-			}
-
-			function showPosition (position) {
-				routing.setGeolocationAvailability (true);
-			}
-
-			function showError (error) {
-				// Set geolocation as unavailable 
-				routing.setGeolocationAvailability (false);
-				
-				// Display a user message
-				switch (error.code) {
-					case error.PERMISSION_DENIED:
-						vex.dialog.alert ('Please allow the browser to access your location, by refreshing the page or changing privacy settings.');	
-						break;
-					case error.POSITION_UNAVAILABLE:
-						vex.dialog.alert ('Location information is unavailable.');	
-						break;
-					case error.TIMEOUT:
-						vex.dialog.alert ('The request to get user location timed out.');
-						break;
-					case error.UNKNOWN_ERROR:
-						vex.dialog.alert ('An unknown error occurred.');
-						break;
-				}
-			}
-
-			getLocation ();
 		},
 
 

@@ -84,6 +84,9 @@ var cyclestreetsui = (function ($) {
 
 		// Whether to use MapboxGL JS's default navigation controls
 		useDefaultNavigationControls: false,
+
+		// Whether to use MapboxGL JS's default geolocation control
+		hideDefaultGeolocationControl: false,
 		
 	};
 	

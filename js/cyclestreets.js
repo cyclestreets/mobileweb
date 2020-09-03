@@ -1324,6 +1324,17 @@ var cyclestreetsui = (function ($) {
 				$(this).siblings ('li').removeClass ('active');
 			});
 
+			// Enable custom state change of panning control
+			var customPanningAction = function (panningEnabled) {
+				if (panningEnabled) {
+					$('#panning').css ({"background-color": "#cc5959", "color": "#f5f5f5"});
+				} else {
+					$('#panning').css ({"background-color": "#f5f5f5", "color": "#cc5959"});
+				}
+			};
+			layerviewer.setCustomPanningIndicatorAction (customPanningAction);
+			
+
 			/*
 			* Functions to run at startup
 			*/

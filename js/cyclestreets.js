@@ -571,11 +571,21 @@ var cyclestreetsui = (function ($) {
 
 			// Check for geolocation status
 			_map.on ('load', function () {
-				layerviewer.checkForGeolocationStatus (function () 
-				{
-					// If geolocation check is successful, center the map on user location
-					layerviewer.triggerGeolocation ();
-				}, true, true); // Force check, as flag is set to false at start
+				layerviewer.checkForGeolocationStatus (
+					function () 
+						{
+							// Adapt the UI to the geolocation availability
+							cyclestreetsui.adaptUiToGeolocationAvailability ();
+							
+							// If geolocation check is successful, center the map on user location
+							layerviewer.triggerGeolocation ();
+						}, 
+					function ()
+						{
+							// If an error occurs, adapt the UI to the geolocation availability
+							cyclestreetsui.adaptUiToGeolocationAvailability ();
+						},
+					true, true); // Force check, as flag is set to false at start
 			});
 
 			// Adapt the UI to the geolocation availability
@@ -894,12 +904,12 @@ var cyclestreetsui = (function ($) {
 			});
 
 			// Handler for user location button in JP
-			$('.panel.journeyplanner.search a.locationTracking').click (function () {
-				if (routing.getGeolocationAvailability ()){
+			$('.panel.journeyplanner.search a.locationTracking').click (function (e) {
+				if (layerviewer.getGeolocationAvailability ()){
 					// Enable this button (remove grayscale)
 					$(this).removeClass ('grayscale');
 					
-					// Retrieve the geolocatuon from layerviewer
+					// Retrieve the geolocation from layerviewer
 					var geolocation = layerviewer.getGeolocation ();
 					var geolocationLngLat = geolocation._accuracyCircleMarker._lngLat;
 	
@@ -907,6 +917,8 @@ var cyclestreetsui = (function ($) {
 					var waypoint = {lng: geolocationLngLat.lng, lat: geolocationLngLat.lat, label: 'waypoint0'};
 					routing.addWaypointMarker (waypoint);
 				} else {
+					e.preventDefault ();
+					e.stopPropagation ();
 					vex.dialog.alert ('Please allow the browser to access your location, by refreshing the page or changing privacy settings.');
 				}
 			});
@@ -1315,7 +1327,7 @@ var cyclestreetsui = (function ($) {
 		// Function to hide/show certain aspects of the UI based on geolocation availability
 		adaptUiToGeolocationAvailability: function ()
 		{
-			if (!routing.getGeolocationAvailability ()){
+			if (!layerviewer.getGeolocationAvailability ()){
 				$('.locationTracking').removeClass ('zoom').addClass ('disabled grayscale');
 				$('#geolocate-button').removeClass ('zoom').addClass ('disabled grayscale');
 			} else {

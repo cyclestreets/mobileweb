@@ -593,6 +593,10 @@ var cyclestreetsui = (function ($) {
 							layerviewer.toggleDataLayer (inputElement[0]);		
 						}
 
+						// If the current active card is the element we just turned off, close the card
+						let clickedClass = $(event.target).parents ().shift ().attr ('class')
+						$(clickedClass).hide ();
+
 						// Do not switch to this card
 						return false;
 					

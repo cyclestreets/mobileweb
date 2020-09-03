@@ -1336,6 +1336,13 @@ var cyclestreetsui = (function ($) {
 				}
 			};
 			layerviewer.setCustomPanningIndicatorAction (customPanningAction);
+
+			// Enable custom state change of geolocation button
+			var customGeolocationToggleAction = function () {
+				$('#geolocate-button').children ('img').attr ('src', '/images/icon-location-small-aqua.svg');
+				cyclestreetsui.animateElement ('#geolocate-button', 'pulse');
+			};
+			layerviewer.setCustomGeolocationButtonAction (customGeolocationToggleAction);
 			
 
 			/*

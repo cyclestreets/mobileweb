@@ -1364,8 +1364,7 @@ var cyclestreetsui = (function ($) {
 			
 			// Show the last used journeyplanner panel, in a minimised position (i.e. search, select, etc)
 			var panelName = 'journeyplanner'
-			var previousStateIndex = _breadcrumbs.findIndex (breadcrumbPanel => breadcrumbPanel.includes(panelName))
-				
+			var previousStateIndex = _breadcrumbs.findIndex (breadcrumbPanel => breadcrumbPanel.includes (panelName))
 			
 			// If we found a previous state, go to this panel instead
 			if (previousStateIndex > -1) {
@@ -1620,7 +1619,7 @@ var cyclestreetsui = (function ($) {
 					var photomapUploadForm = new FormData ();
 					var formData = $('.wizard.photomap form').serializeArray();
 					$.each(formData, function (indexInArray, formObject) { 
-						photomapUploadForm.append(formObject.name, formObject.value);
+						photomapUploadForm.append (formObject.name, formObject.value);
 					});
 
 					// Assemble additional data elements

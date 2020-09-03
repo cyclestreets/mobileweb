@@ -472,14 +472,6 @@ var cyclestreetsui = (function ($) {
 			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
 		},
 		
-		
-		// Routing
-		routing: function ()
-		{
-			// Delegate to separate class
-			routing.initialise (_settings, _map, _isMobileDevice, _panningEnabled);
-		},
-		
 
 		// Autocomplete
 		autocomplete: function ()
@@ -685,10 +677,9 @@ var cyclestreetsui = (function ($) {
 		 */
 		journeyPlanner: function ()
 		{	
+			// Initialise routing
+			routing.initialise (_settings, _map, _isMobileDevice, _panningEnabled);
 
-			// Intialise routing library
-			cyclestreetsui.routing ();
-			
 			/* 
 			* JP: Recent searches and journeys 
 			*/

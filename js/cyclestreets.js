@@ -142,12 +142,6 @@ var cyclestreetsui = (function ($) {
 				+ '</p>'
 		},
 		
-		taxidata: {
-			apiCall: '/v2/advocacydata.taxis',
-			iconUrl: '/images/icons/road_neutral.svg',
-			heatmap: true
-		},
-		
 		trafficcounts: {
 			apiCall: '/v2/trafficcounts.locations',
 			apiFixedParameters: {
@@ -327,19 +321,6 @@ var cyclestreetsui = (function ($) {
 				+ '</table>'
 		},
 		
-		// https://wiki.openstreetmap.org/wiki/Strava
-		strava: {
-			apiCall: false,
-			apiKey: false,
-			tileLayer: {
-				tiles: 'https://tile.cyclestreets.net/strava/ride/{%style}/{z}/{x}/{y}@2x.png',	// E.g. https://heatmap-external-c.strava.com/tiles/ride/blue/11/1026/674.png?v=19
-				maxZoom: 11.999,
-				attribution: 'Strava heatmap',
-				tileSize: 512,
-				label: 'Strava heatmap'
-			}
-		},
-		
 		// https://www.cyipt.bike/api/#width
 		widths: {
 			apiCall: 'https://www.cyipt.bike/api/v1/width.json',
@@ -409,125 +390,6 @@ var cyclestreetsui = (function ($) {
 			polygonStyle: 'blue'
 		},
 		
-		// https://www.cyclestreets.net/api/v2/infrastructure.locations/
-		tflcid: {
-			apiCall: '/v2/infrastructure.locations',
-			apiFixedParameters: {
-				dataset: 'tflcid',
-				thumbnailsize: 400
-			},
-			iconSize: [24, 24],
-			iconField: 'iconUrl',
-			style: {
-				LineString: {
-					'line-color': 'red',
-					'line-width': 3
-				}
-			},
-			popupImagesField: 'images',
-			popupLabels: {
-				ss_road: 'Road marking',
-				ss_patch: 'Coloured patch on surface',
-				ss_facing: 'Facing off-side',
-				ss_nocyc: 'No cycling',
-				ss_noveh: 'No vehicles',
-				ss_circ: 'Circular/Rectangular',
-				ss_exempt: 'Exemption',
-				ss_noleft: 'No left turn exception',
-				ss_norigh: 'No right turn exception',
-				ss_left: 'Compulsory turn left exception',
-				ss_right: 'Compulsory turn right exception',
-				ss_noexce: 'No straight ahead exception',
-				ss_dismou: 'Cyclists dismount',
-				ss_end: 'End of Route',
-				ss_cycsmb: 'Cycle symbol',
-				ss_pedsmb: 'Pedestrian symbol',
-				ss_bussmb: 'Bus symbol',
-				ss_smb: 'Other vehicle symbol',
-				ss_lnsign: 'Line on sign',
-				ss_arrow: 'Direction arrow',
-				ss_nrcol: 'Road marking or Sign includes a number in a box',
-				ss_ncn: 'National Cycle Network',
-				ss_lcn: 'London Cycle Network',
-				ss_superh: 'Cycle Superhighway',
-				ss_quietw: 'Quietway',
-				ss_greenw: 'Greenway',
-				ss_routen: 'Route Number',
-				ss_destn: 'Destination',
-				ss_access: 'Access times',
-				ss_name: 'TSRGD Sign number',
-				ss_colour: 'Colour of Patch',
-				sig_head: 'Cycle signal head',
-				sig_separa: 'Separate stage for cyclists',
-				sig_early: 'Early release',
-				sig_twostg: 'Two stage turn',
-				sig_gate: 'Cycle gate/Bus gate',
-				trf_raised: 'Raised table',
-				trf_entry: 'Raised side road entry treatment',
-				trf_cushi: 'Speed cushions',
-				trf_hump: 'Speed hump',
-				trf_sinuso: 'Sinusoidal',
-				trf_barier: 'Barrier',
-				trf_narow: 'Carriageway narrowing',
-				trf_calm: 'Other traffic calming',
-				rst_steps: 'Steps',
-				rst_lift: 'Lift',
-				prk_carr: 'Carriageway',
-				prk_cover: 'Covered',
-				prk_secure: 'Secure',
-				prk_locker: 'Locker',
-				prk_sheff: 'Sheffield',
-				prk_mstand: 'M stand',
-				prk_pstand: 'P stand',
-				prk_hoop: 'Cyclehoop',
-				prk_post: 'Post',
-				prk_buterf: 'Butterfly',
-				prk_wheel: 'Wheel rack',
-				prk_hangar: 'Bike hangar',
-				prk_tier: 'Two tier',
-				prk_other: 'Other / unknown',
-				prk_provis: 'Provision',
-				prk_cpt: 'Capacity',
-				clt_carr: 'On / Off Carriageway',
-				clt_segreg: 'Segregated lane / track',
-				clt_stepp: 'Stepped lane / track',
-				clt_parseg: 'Partially segregated lane / track',
-				clt_shared: 'Shared lane or footway',
-				clt_mandat: 'Mandatory cycle lane',
-				clt_advis: 'Advisory cycle lane',
-				clt_priori: 'Cycle lane/track priority',
-				clt_contra: 'Contraflow lane/track',
-				clt_bidire: 'Bi-directional',
-				clt_cbypas: 'Cycle bypass',
-				clt_bbypas: 'Continuous cycle facilities at bus stop',
-				clt_parkr: 'Park route',
-				clt_waterr: 'Waterside route',
-				clt_ptime: 'Full-time / Part-time',
-				clt_access: 'Access times',
-				asl_fdr: 'Feeder lane',
-				asl_fdrlft: 'Feeder lane on left',
-				asl_fdcent: 'Feeder Lane in centre',
-				asl_fdrigh: 'Feeder lane on right',
-				asl_shared: 'Shared nearside lane',
-				crs_signal: 'Signal controlled crossing',
-				crs_segreg: 'Segregated cycles and pedestrians',
-				crs_cygap: 'Cycle gap',
-				crs_pedest: 'Pedestrian Only Crossing',
-				crs_level: 'Level Crossing',
-				res_pedest: 'Pedestrian only route',
-				res_bridge: 'Pedestrian bridge',
-				res_tunnel: 'Pedestrian tunnel',
-				res_steps: 'Steps',
-				res_lift: 'Lift',
-				colour: 'Surface colour',
-				road_name: 'Road name',
-				osm_id: 'OSM way ID assignment',
-				'_type': 'Asset type'
-			},
-			popupFormatters: {
-				osm_id: function (value, feature) {return '<a href="https://www.openstreetmap.org/way/' + value + '" target="_blank">' + value + '</a>';}
-			}
-		},
 		
 		// OpenStreetMap; see: https://wiki.openstreetmap.org/wiki/API_v0.6
 		osm: {

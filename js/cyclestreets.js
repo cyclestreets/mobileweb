@@ -575,11 +575,11 @@ var cyclestreetsui = (function ($) {
 				{
 					// If geolocation check is successful, center the map on user location
 					layerviewer.triggerGeolocation ();
-					
-					// Adapt the UI to the geolocation availability
-					cyclestreetsui.adaptUiToGeolocationAvailability ();
 				}, true, true); // Force check, as flag is set to false at start
 			});
+
+			// Adapt the UI to the geolocation availability
+			cyclestreetsui.adaptUiToGeolocationAvailability ();
 
 			// Show the default panel, after a slight pleasing delay
 			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
@@ -1316,13 +1316,13 @@ var cyclestreetsui = (function ($) {
 		adaptUiToGeolocationAvailability: function ()
 		{
 			if (!routing.getGeolocationAvailability ()){
-				$('.locationTracking').hide ();
+				$('.locationTracking').removeClass ('zoom').addClass ('disabled grayscale');
 				$('#geolocate-button').removeClass ('zoom').addClass ('disabled grayscale');
 			} else {
-				//$('.locationTracking').show ();
+				$('.locationTracking').addClass ('zoom').removeClass ('disabled grayscale');
 				$('#geolocate-button').addClass ('zoom').removeClass ('disabled grayscale');
+				cyclestreetsui.animateElement ('#geolocate-button', 'pulse');
 			}
-
 		},
 
 

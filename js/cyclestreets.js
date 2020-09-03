@@ -443,9 +443,6 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui[action] ();
 			});
 
-			// Intialise routing library
-			cyclestreetsui.routing ();
-
 			// Check for geolocation status
 			_map.on ('load', function () {
 				layerviewer.checkForGeolocationStatus (
@@ -686,6 +683,9 @@ var cyclestreetsui = (function ($) {
 		journeyPlanner: function ()
 		{	
 
+			// Intialise routing library
+			cyclestreetsui.routing ();
+			
 			/* 
 			* JP: Recent searches and journeys 
 			*/

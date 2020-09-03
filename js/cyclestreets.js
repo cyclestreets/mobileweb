@@ -663,7 +663,7 @@ var cyclestreetsui = (function ($) {
 			$(_settings.dataLoadingSpinnerSelector).click (function() {cyclestreetsui.openNav ();});
 			
 			// Map click handler
-			$('#map').click (function () {
+			$('#map').click (function (event) {
 				// Enable implicit click/touch on map as close menu			
 				if ($('nav').is (':visible')) {
 					$('nav').hide ('slide', {direction: 'left'}, 300);
@@ -672,6 +672,9 @@ var cyclestreetsui = (function ($) {
 				} else if ($('#browse-search-box').hasClass ('open')) {
 					cyclestreetsui.resetUI ();
 				} else {
+					// Take no action if we are clicking on a MapboxGL control
+					if ($(event.originalEvent.target).hasClass ('mapboxgl-ctrl-icon')) {return;}
+					
 					// Otherwise, open the JP card, as the routing library will add a marker on this click
 					cyclestreetsui.openJourneyPlannerCard ();
 				}
@@ -936,7 +939,7 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			// Open the Route search box on focusing or clicking on any JP geocoder input
-			$('.panel.journeyplanner.search input').focus (function (){
+			$('.panel.journeyplanner.search input').focus (function (event){
 				if (!$('.panel.journeyplanner.search').hasClass ('open')) {
 					cyclestreetsui.openJourneyPlannerCard ();
 					routing.setMarkerAtUserLocation ();
@@ -1123,7 +1126,6 @@ var cyclestreetsui = (function ($) {
 			});
 			
 
-
 			/*
 			* Card generic handlers: authenticate, save, wizard, forward, backward
 			*/
@@ -1302,10 +1304,12 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.enableNavigation (this);
 			 });
 
+
 			/*
 			* Main UI buttons: browse, segmented controls
 			*/
 			
+
 			// Show the move-map-to search box
 			$('#glasses-icon').click (function() {
 				cyclestreetsui.resetUI ();
@@ -1315,7 +1319,7 @@ var cyclestreetsui = (function ($) {
 				routing.disableMapClickListening (true);
 			});
 			
-			// Close the Browse search box
+			// Close the browse search box
 			$('#close-browse-box-icon').click (cyclestreetsui.hideBrowseSearchBox);
 			
 			// Slide up the ride notification on click

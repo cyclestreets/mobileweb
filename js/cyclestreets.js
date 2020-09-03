@@ -571,9 +571,14 @@ var cyclestreetsui = (function ($) {
 
 			// Check for geolocation status
 			_map.on ('load', function () {
-				layerviewer.checkForGeolocationStatus (function () {
-					layerviewer.triggerGeolocation;
-				});
+				layerviewer.checkForGeolocationStatus (function () 
+				{
+					// If geolocation check is successful, center the map on user location
+					layerviewer.triggerGeolocation ();
+					
+					// Adapt the UI to the geolocation availability
+					cyclestreetsui.adaptUiToGeolocationAvailability ();
+				}, true, true); // Force check, as flag is set to false at start
 			});
 
 			// Show the default panel, after a slight pleasing delay
@@ -1304,9 +1309,22 @@ var cyclestreetsui = (function ($) {
 
 			// On startup, load and apply and cookies (settings, etc)
 			cyclestreetsui.loadAndApplyCookies ();
-
-			
 		},
+
+		
+		// Function to hide/show certain aspects of the UI based on geolocation availability
+		adaptUiToGeolocationAvailability: function ()
+		{
+			if (!routing.getGeolocationAvailability ()){
+				$('.locationTracking').hide ();
+				$('#geolocate-button').removeClass ('zoom').addClass ('disabled grayscale');
+			} else {
+				//$('.locationTracking').show ();
+				$('#geolocate-button').addClass ('zoom').removeClass ('disabled grayscale');
+			}
+
+		},
+
 
 		// Animate an element, passing in the selector and animation class
 		animateElement: function (element, animation, prefix = 'animate__')

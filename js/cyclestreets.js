@@ -71,7 +71,16 @@ var cyclestreetsui = (function ($) {
 		promptBeforeClearingRoute: false,
 
 		// Custom data loading spinner selector for layerviewer. For layer specific spinner, should contain layerId
-		dataLoadingSpinnerSelector: '.mainLoadingSpinner'
+		dataLoadingSpinnerSelector: '.mainLoadingSpinner',
+
+		// Custom panning control element for layerviewer
+		panningControlElement: '<a href="#" id="panning" class="ui-button" title="Turn on 3D mode">3D</a>',
+
+		// Custom panning control element insertion point (will be prepended to this element)
+		panningControlInsertionElement: 'main',
+
+		// Determine whether to enable layerviewer's text based panning status indication
+		setPanningIndicator: false,
 		
 	};
 	

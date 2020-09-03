@@ -81,6 +81,9 @@ var cyclestreetsui = (function ($) {
 
 		// Determine whether to enable layerviewer's text based panning status indication
 		setPanningIndicator: false,
+
+		// Whether to use MapboxGL JS's default navigation controls
+		useDefaultNavigationControls: false,
 		
 	};
 	

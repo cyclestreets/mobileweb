@@ -87,6 +87,9 @@ var cyclestreetsui = (function ($) {
 
 		// Whether to use MapboxGL JS's default geolocation control
 		hideDefaultGeolocationControl: false,
+
+		// Load Tabs class toggle, used when loading a parameterised URL. This CSS class will be added to the enabled parent li elements (i.e., 'checked', or 'selected')
+		loadTabsClassToggle: 'enabled',
 		
 	};
 	

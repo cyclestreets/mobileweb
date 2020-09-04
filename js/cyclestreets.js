@@ -1237,7 +1237,7 @@ var cyclestreetsui = (function ($) {
 
 
 		// Animate an element, passing in the selector and animation class
-		animateElement: function (element, animation, prefix = 'animate__')
+		animateElement: function (element, animation, onAnimationEnd = false, variable = true, prefix = 'animate__')
 		{
 			// Create a promise and return it
 			new Promise((resolve, reject) => {
@@ -1248,9 +1248,12 @@ var cyclestreetsui = (function ($) {
 
 				// When the animation ends, we clean the classes and resolve the Promise
 				function handleAnimationEnd() {
+					if (onAnimationEnd) {
+						onAnimationEnd (element);
+					}
 					node.classList.remove(`${prefix}animated`, animationName);
 					node.removeEventListener('animationend', handleAnimationEnd);
-
+					
 					resolve('Animation ended');
 				}
 
@@ -2223,12 +2226,13 @@ var cyclestreetsui = (function ($) {
 				routing.addWaypointMarker (waypoint);
 
 				// Hide popup and open JP card
-				cyclestreetsui.animateElement (popupCardClass, 'zoomOutDown');
-				setTimeout (function (){
+				cyclestreetsui.animateElement (popupCardClass, 'zoomOutDown', function (element){
 					$('.panel.journeyplanner.search').removeClass ('open');
-					$(popupCard).hide ();
 					cyclestreetsui.openJourneyPlannerCard ();
-				}, 500);
+					$(element).hide ();
+				}, 
+				popupCard);
+
 			});
 		},	
 

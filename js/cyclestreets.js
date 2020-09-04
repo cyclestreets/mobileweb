@@ -90,7 +90,9 @@ var cyclestreetsui = (function ($) {
 
 		// Load Tabs class toggle, used when loading a parameterised URL. This CSS class will be added to the enabled parent li elements (i.e., 'checked', or 'selected')
 		loadTabsClassToggle: 'enabled',
-		
+
+		// Use jQuery tabs to tabify main menu
+		useJqueryTabsRendering: false,
 	};
 	
 	// Class properties

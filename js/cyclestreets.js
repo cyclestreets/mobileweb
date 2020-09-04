@@ -1694,13 +1694,12 @@ var cyclestreetsui = (function ($) {
 		// Display a Photomap popup
 		displayPhotomapPopup: function (renderedDetailsHtml)
 		{
-			$('.panel').hide ();
+			$('.panel:visible').first ().removeClass ('open').addClass ('minimised');
+			cyclestreetsui.fitMap (null, true, 100);
+
+			// Get the HTML for the popup
 			$('.popup.photomap').html (renderedDetailsHtml);
 			$('.popup.photomap').show ();
-			
-			var fullscreen = true;
-			var panel = null;
-			cyclestreetsui.fitMap (panel, fullscreen);
 		},
 
 
@@ -2226,6 +2225,7 @@ var cyclestreetsui = (function ($) {
 				// Hide popup and open JP card
 				cyclestreetsui.animateElement (popupCardClass, 'zoomOutDown');
 				setTimeout (function (){
+					$('.panel.journeyplanner.search').removeClass ('open');
 					$(popupCard).hide ();
 					cyclestreetsui.openJourneyPlannerCard ();
 				}, 500);

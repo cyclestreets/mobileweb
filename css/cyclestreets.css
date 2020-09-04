@@ -455,7 +455,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
     .panel.journeyplanner.select p.location {margin: 0;}
     .panel.journeyplanner.select {max-height: 239px;}
     .panel.journeyplanner.search .recent-items li p {margin: 0;}
-    .popup.photomap {width: 92%; margin: 5% auto; height: 510px;}
+    .popup.photomap {width: 92%; margin: 5% auto; height: 522px;}
     .lines td, .lines th {padding: 0;}
 }
 

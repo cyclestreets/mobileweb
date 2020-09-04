@@ -75,6 +75,7 @@ button.mapboxgl-ctrl-geolocate:hover {transform: scale(1.1); background-color: #
 .ui-autocomplete li a span {color: gray; font-size: 0.81em;}
 .ui-autocomplete li a.ui-state-active {cursor: pointer; background-color: #fbf6f8; border-radius: 25px;}
 .ui-autocomplete {z-index: 100}
+.ui-helper-hidden-accessible {display: none;}
 
 /*
  * Default panel styling
@@ -320,9 +321,10 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .popup.photomap .flip-card-inner.flipped {transform: rotateY(180deg);}
 .popup.photomap .flip-card-front, .flip-card-back {position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden;}
 .popup.photomap .flip-card-front img.popup-photo {height: 74%; overflow: hidden;}
-.popup.photomap .flip-card-front p.key {margin: 15px 0 15px 20px;}
+.popup.photomap .flip-card-front p.key {display: -webkit-box; margin: 6px 0 15px 20px; line-height: 1.2em; max-height: 4.8em; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 4; -webkit-box-orient: vertical;}
 .popup.photomap .flip-card-back {transform: rotateY(180deg); background: #212322; text-align: left;}
 .popup.photomap .flip-card-back img {margin: 15px;}
+.popup.photomap a.get-directions {position: relative; float: right; margin: 0 0 0 5px;}
 .popup.photomap .flip-card-back hr {width: calc(100% - 40px);}
 .popup.photomap .flip-card-back ul li img {width: 16px; margin: 10px 10px 0 20px;}
 .popup.photomap .flip-card-back p {display: inline-block; margin: 0; color: #fbf6f8; font-size: 13px;}

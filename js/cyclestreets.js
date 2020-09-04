@@ -298,7 +298,7 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.displayPhotomapPopup (renderDetailsHtml);
 			},
 			popupHtml: 
-			      '<div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><img class="popup-photo" src="{properties.thumbnailUrl}" alt="Photo" /><a href="#" class="get-directions" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a>' 
+			      '<div class="data" data-coordinates="{geometry.coordinates}"></div><div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><img class="popup-photo" src="{properties.thumbnailUrl}" alt="Photo" /><a href="#" class="get-directions" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a>' 
 				+ '<p class="key">{properties.caption}</p><a class="share" href="#" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /> Share</a><a class="flip" href="#" title="Show more information"> Photo info</a></div>'
 				+ '<div class="flip-card-back popup-card"><a href="#" class="back" title="Return to the front of this card"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a><br>' 
 				+ '<p class="key">Category: </p><p>{properties.categoryName}</p><br>	<p class="key">Type: </p><p>{properties.metacategoryName}</p><hr /><ul><li><img src="/images/icon-user.svg" alt="User icon" /><p>{properties.username}</p></li>'
@@ -655,7 +655,7 @@ var cyclestreetsui = (function ($) {
 		// If a timeout is specified, which is useful when animations are queued, the function will only execute after the time has expired
 		fitMap: function (element = false, fullscreen = false, timeout = 50) 
 		{	
-			setTimeout (function() {
+			setTimeout (function () {
 				var height = null;
 			
 				// If we are fullscreen, set height as 0
@@ -923,14 +923,13 @@ var cyclestreetsui = (function ($) {
 			if (!$('.panel.journeyplanner.search').hasClass ('open')) {
 				// Close all other search boxes, menus, etc...
 				cyclestreetsui.resetUI ();
-
+				
 				// Show the other input boxes
 				$('.panel.journeyplanner.search input').show ();
 
 				// Expand card, and resize map
-				$('.panel.journeyplanner.search').addClass ('open', 450);
-				var element = '.panel.journeyplanner.search';
-				cyclestreetsui.fitMap (element, false, 450);
+				$('.panel.journeyplanner.search').addClass ('open', 450).show ();
+				cyclestreetsui.fitMap ('.panel.journeyplanner.search', false, 450);
 				
 				// Drop a pin in the middle of the map as our default start position
 				if (addMapCenter) {routing.addMapCenter ();} 
@@ -1227,10 +1226,10 @@ var cyclestreetsui = (function ($) {
 		adaptUiToGeolocationAvailability: function ()
 		{
 			if (!layerviewer.getGeolocationAvailability ()){
-				$('.locationTracking').removeClass ('zoom').addClass ('disabled grayscale');
+				$('a.locationTracking').removeClass ('zoom').addClass ('disabled grayscale');
 				$('#geolocate-button').removeClass ('zoom').addClass ('disabled grayscale');
 			} else {
-				$('.locationTracking').addClass ('zoom').removeClass ('disabled grayscale');
+				$('a.locationTracking').addClass ('zoom').removeClass ('disabled grayscale');
 				$('#geolocate-button').addClass ('zoom').removeClass ('disabled grayscale');
 				cyclestreetsui.animateElement ('#geolocate-button', 'pulse');
 			}
@@ -2211,10 +2210,11 @@ var cyclestreetsui = (function ($) {
 				$('.inner-card').removeClass('flipped');
 			});
 			
-			// Add a waypoint from a popup card
+			// Add a waypoint from a photomap or POIS popup card
 			$(document).on('click', '.popup .get-directions', function (event) {
 				// Get lat and long of this new waypoint
-				var popupCard = $(event.target.offsetParent);
+				var popupCard = $(event.target).closest('.popup');
+				var popupCardClass = '.' + $(event.target).closest ('.popup').attr ('class').split(' ').join('.');
 				var coordinates = $(popupCard).children ('.data').first ().data ('coordinates').split (',');
 				var longitude = coordinates[0];
 				var latitude = coordinates[1];
@@ -2224,9 +2224,11 @@ var cyclestreetsui = (function ($) {
 				routing.addWaypointMarker (waypoint);
 
 				// Hide popup and open JP card
-				$('.popup.places').hide ();
-				$('.panel.journeyplanner.search').removeClass ('open');
-				cyclestreetsui.openJourneyPlannerCard ();
+				cyclestreetsui.animateElement (popupCardClass, 'zoomOutDown');
+				setTimeout (function (){
+					$(popupCard).hide ();
+					cyclestreetsui.openJourneyPlannerCard ();
+				}, 500);
 			});
 		},	
 

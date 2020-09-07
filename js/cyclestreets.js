@@ -238,8 +238,8 @@ var cyclestreetsui = (function ($) {
 				+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>{properties.osmTags.addr:street}</p>'
 				+ '<ul><li><img src="/images/icon-clock.svg" alt="Opening times" /><p>{properties.osmTags.opening_hours}</p></li><li>'
 				+ '<img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">{properties.osmTags.phone}</p></li></ul><a href="#" class="share" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /></a>',
-			popupCallback: function (renderDetailsHtml) {
-				cyclestreetsui.displayPoiPopup (renderDetailsHtml);
+			popupCallback: function (renderDetailsHtml, animation = false) {
+				cyclestreetsui.displayPoiPopup (renderDetailsHtml, animation);
 			}
 		},
 		
@@ -290,8 +290,18 @@ var cyclestreetsui = (function ($) {
 				datetime: 'friendlydate'
 			},
 			iconField: 'iconUrl',		// icons specified in the field value
-			popupCallback: function (renderDetailsHtml) {
-				cyclestreetsui.displayPhotomapPopup (renderDetailsHtml);
+			apiCallId: {
+				apiCall: '/v2/photomap.location',
+				idParameter: 'id',
+				apiFixedParameters:{
+					fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,categoryName,metacategoryName,datetime,apiUrl',
+					thumbnailsize: 1000,
+					datetime: 'friendlydate'
+				},
+				popupAnimation: true,
+			},
+			popupCallback: function (renderDetailsHtml, animation = false) {
+				cyclestreetsui.displayPhotomapPopup (renderDetailsHtml, animation);
 			},
 			popupHtml: 
 			      '<div class="data" data-coordinates="{geometry.coordinates}"></div><div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><img class="popup-photo" src="{properties.thumbnailUrl}" alt="Photo" /><a href="#" class="get-directions" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a>' 
@@ -1664,13 +1674,13 @@ var cyclestreetsui = (function ($) {
 					photomapUploadForm.append('mediaupload', _photomapUploadImage, 'filename');
 
 					// Send the photomap upload data via AJAX
-					$.ajax({
+					$.ajax ({
 						url: photomapAddUrl,
 						type: $('.wizard.photomap form').attr('method'),
 						data: photomapUploadForm,
 						processData: false,
 						contentType: false,
-					}).done(function (result) 
+					}).done (function (result) 
 					{	
 						// Detect API error
 						if ('error' in result) {

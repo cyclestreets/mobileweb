@@ -43,7 +43,7 @@ nav #nav-footer .logo-description {padding: 0 0 5px 20px; font-size: 9px; font-w
  * Main UI
  */
 
-#map {position:absolute; top: 0; bottom: 0; left: 0; width:100%; transition: .05s;}
+#map {position:absolute; top: 0; bottom: 0; left: 0; width:100%;}
 
 /* Main UI icons and input boxes */
 .ui-button {display: block; position: fixed; width: 50px; height: 50px; line-height: 50px; border: 0 solid #f5f5f5; border-radius: 50%; background: #f5f5f5; text-align: center; box-shadow: 0 0 3px gray; transition: transform .2s;}
@@ -55,9 +55,10 @@ button.mapboxgl-ctrl-geolocate {display: block; position: fixed; margin: -10px -
 button.mapboxgl-ctrl-geolocate:hover {transform: scale(1.1); background-color: #f5f5f5;}
 .mapboxgl-ctrl button:not(:disabled):hover {background-color: #f5f5f5;}
 .mapboxgl-ctrl button.mapboxgl-ctrl-geolocate .mapboxgl-ctrl-icon {transform: scale(1.3);}
+.mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl-bottom-right, .mapboxgl-ctrl-top-left, .mapboxgl-ctrl-top-right {z-index: inherit;}
 #geolocate-button {display: none; top: 30px; right: 20px; line-height: 64px;}
 #geolocate-button img {margin-right: 4px;}
-#panning {top: 160px; right: 20px; line-height: 52px; z-index: 5;}
+#panning {top: 160px; right: 20px; line-height: 52px;}
 #glasses-icon {top: 95px; right: 20px; line-height: 53px;}
 #browse-search-box {display: none; position: fixed; top: 95px; right: 20px; width: 50px; height: 50px; margin: 0; background: #f5f5f5; z-index: 19;}
 #browse-search-box.open {display: block; padding-left: 20px; padding-right: 50px; max-width: 300px; border-radius: 25px; line-height: 20px; box-shadow: 0 0 3px gray;}
@@ -314,7 +315,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 /* Photomap popup */
 .popup.photomap {perspective: 1000px; background-color: transparent; height: 550px; margin: 8% auto; z-index: 20;}
 .popup.photomap .popup-card {border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8;}
-.popup.photomap .loader {display: inline-block; position: absolute; margin: 58% 48%; width: 38px; height: 38px; z-index: 1;}
+.popup.photomap .loader {display: inline-block; position: fixed; margin: auto; width: 38px; height: 38px;}
 .popup.photomap a {position: absolute; bottom: 0; margin: 20px; padding: 0; line-height: 15px; color: #dc4f55; text-decoration: none;}
 .popup.photomap a.share {bottom: 0; left: 0;}
 .popup.photomap a.flip {margin-left: 70%; right: 0;}
@@ -456,8 +457,6 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
     .panel.journeyplanner.select p.location {margin: 0;}
     .panel.journeyplanner.select {max-height: 239px;}
     .panel.journeyplanner.search .recent-items li p {margin: 0;}
-    .popup.photomap {width: 92%; margin: 5% auto; height: 472px;}
+    .popup.photomap {width: 92%; margin: 5% auto; height: 392px;}
     .lines td, .lines th {padding: 0;}
 }
-
-img.marker.mapbox-gl-marker {z-index: 0;}

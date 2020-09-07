@@ -283,6 +283,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.photomap.uploading p {display: inline-block; width: 40%; margin: 10px 30%; color: #fbf6f8; text-align: center;}
 .panel.photomap.uploading progress {margin: 10px 30%; width: 40%;}
 .panel.photomap.uploading a {display: block; color: #c4c1c2; text-align: center;}
+.panel.photomap.uploading span {display: block; margin: auto; margin-bottom: 17px;}
 .wizard.photomap p {line-height: inherit;}
 
 /* Places card */

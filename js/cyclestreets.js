@@ -234,7 +234,7 @@ var cyclestreetsui = (function ($) {
 			iconSize: [24, 24],
 			emptyPlaceholderText: '{%osmeditlink}',
 			popupHtml: 
-				  '<div class="data" data-coordinates="{geometry.coordinates}"></div><div class="place-photo">{%streetview}</div><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><h2>{properties.name}</h2>'
+				  '<div class="data" data-coordinates="{geometry.coordinates}" data-name="{properties.name}" data-id="{properties.id}"></div><div class="place-photo">{%streetview}</div><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><h2>{properties.name}</h2>'
 				+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>{properties.osmTags.addr:street}</p>'
 				+ '<ul><li><img src="/images/icon-clock.svg" alt="Opening times" /><p>{properties.osmTags.opening_hours}</p></li><li>'
 				+ '<img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">{properties.osmTags.phone}</p></li></ul><a href="#" class="share" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /></a>',
@@ -1498,13 +1498,15 @@ var cyclestreetsui = (function ($) {
 
 			// Enable the POI share sheet 
 			$(document).on ('click', '.popup.places a.share', function (event) {
-				var popupCardElement = $(event.target).closest ('.popup.places');
-				var poiTitle = $(popupCardElement).find ('h2').first ().text ();
+				// Get location data
+				var data = $(event.target).parents ('.popup').find ('.data').data ();
+				var poiId = data.id;
+				var name = data.name;
 
 				const shareData = {
-					title: poiTitle,
-					text: 'View a place on CycleStreets!',
-					url: 'https://www.cyclestreets.net/'
+					title: name,
+					text: 'View a point of interest on CycleStreets!',
+					url: 'https://www.mobiledata.cyclestreets.net/poi/' + poiId
 				};
 				navigator.share (shareData);
 			});

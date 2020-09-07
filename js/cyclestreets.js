@@ -1,3 +1,6 @@
+/*jslint browser: true, white: true, single: true, for: true */
+/*global $, jQuery, EXIF, vex, osm2geo, alert, console, window */
+
 var cyclestreetsui = (function ($) {
 	
 	'use strict';
@@ -40,13 +43,6 @@ var cyclestreetsui = (function ($) {
 
 		// Use existing geolocation button instead of Mapbox's
 		geolocationElementId: 'geolocate-button',
-
-		// Images; size set in CSS with .itinerarymarker
-		images: {
-			start: '/images/pin-A.svg',
-			waypoint: '/images/pin-V.svg',
-			finish: '/images/pin-B.svg'
-		},
 
 		// Whether to plan routes the moment the map is clicked rather than wait until a routing button is pressed
 		planRoutingOnMapClick: false,
@@ -92,14 +88,14 @@ var cyclestreetsui = (function ($) {
 		loadTabsClassToggle: 'enabled',
 
 		// Use jQuery tabs to tabify main menu
-		useJqueryTabsRendering: false,
+		useJqueryTabsRendering: false
 	};
 	
 	// Class properties
 	var _map = null;
 	var _breadcrumbs = []; // Breadcrumb trail used when clicking left chevrons
 	var _isMobileDevice = true;
-	var _panningEnabled = false
+	var _panningEnabled = false;
 	var _poisActivated = []; // Store the POIs activated
 	var _settingLocationName = null; // When we are setting a frequent location, save which kind of location
 	var _shortcutLocations = ['home', 'work']; // Store shortcut locations in settings menu and JP card
@@ -168,7 +164,7 @@ var cyclestreetsui = (function ($) {
 				[500, 8],
 				[100, 6],
 				[10, 4],
-				[0, 2],
+				[0, 2]
 			],
 			popupHtml:	// Popup code thanks to https://hfcyclists.org.uk/wp/wp-content/uploads/2014/02/captions-html.txt
 				  '<p>Count Point {properties.id} on <strong>{properties.road}</strong>, a {properties.road_type}<br />'
@@ -190,7 +186,7 @@ var cyclestreetsui = (function ($) {
 			iconSizes: {
 				'Small': [24, 24],
 				'Medium': [36, 36],
-				'Large': [50, 50],
+				'Large': [50, 50]
 			},
 			popupHtml:
 				  '<p><strong>{properties.description}</strong></p>'
@@ -348,7 +344,7 @@ var cyclestreetsui = (function ($) {
 				[8, 6],
 				[5, 5],
 				[3, 4],
-				[0, 3],
+				[0, 3]
 			],
 			popupHtml:
 				  '<p>Width: {properties.width}</p>'
@@ -412,7 +408,7 @@ var cyclestreetsui = (function ($) {
 			},
 			convertData: function (osmXml) {
 				var geojson = osm2geo (osmXml);		// Requires osm2geo from https://gist.github.com/tecoholic/1396990
-				geojson.features = geojson.features.filter (function (feature) { return (feature.geometry.type == 'LineString') });	// See: https://stackoverflow.com/a/2722213
+				geojson.features = geojson.features.filter (function (feature) { return (feature.geometry.type == 'LineString'); });	// See: https://stackoverflow.com/a/2722213
 				return geojson;
 			}
 		}
@@ -494,7 +490,7 @@ var cyclestreetsui = (function ($) {
 								return {
 									label: item.tag,
 									value: item.tag
-								}
+								};
 							}));
 						}
 					});
@@ -596,7 +592,7 @@ var cyclestreetsui = (function ($) {
 						}
 
 						// If the current active card is the element we just turned off, close the card
-						let clickedClass = $(event.target).parents ().shift ().attr ('class')
+						var clickedClass = $(event.target).parents ().shift ().attr ('class');
 						$(clickedClass).hide ();
 
 						// Do not switch to this card
@@ -604,13 +600,13 @@ var cyclestreetsui = (function ($) {
 					
 					// Clicking the input/label of an activated Photomap/POI layer should not disable the layer, only open the card
 					} else if ($(event.target).closest ('li').hasClass ('enabled')) { 
-						event.preventDefault ()
+						event.preventDefault ();
 						$(event.target).prop ('checked', true); // We just deactivated the input by clicking it, reactivate it
 					}
 					
 					// Save the current (visible before change) panel to the breadcrumb trail
 					if ($('.panel:visible').length) {
-						_breadcrumbs.unshift ('.' + $('.panel:visible').first ().attr ('class').split(' ').join('.'))
+						_breadcrumbs.unshift ('.' + $('.panel:visible').first ().attr ('class').split(' ').join('.'));
 					}
 					
 					// Hide nav & open searchbars and all panels
@@ -2200,20 +2196,20 @@ var cyclestreetsui = (function ($) {
 		popupActions: function ()
 		{
 			// Close a popup panel
-			$(document).on('click', '.popup .close-button', function() {
+			$(document).on ('click', '.popup .close-button', function() {
 				$('.popup').hide('300');
 			});
 			
 			// Flip photomap popup card
-			$(document).on('click', '.popup a.flip', function () {
+			$(document).on ('click', '.popup a.flip', function () {
 				$('.inner-card').addClass('flipped');
 			});
-			$(document).on('click', '.popup a.back', function () {
+			$(document).on ('click', '.popup a.back', function () {
 				$('.inner-card').removeClass('flipped');
 			});
 			
 			// Add a waypoint from a photomap or POIS popup card
-			$(document).on('click', '.popup .get-directions', function (event) {
+			$(document).on ('click', '.popup .get-directions', function (event) {
 				// Get lat and long of this new waypoint
 				var popupCard = $(event.target).closest('.popup');
 				var popupCardClass = '.' + $(event.target).closest ('.popup').attr ('class').split(' ').join('.');

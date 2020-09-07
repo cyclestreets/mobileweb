@@ -30,7 +30,7 @@ var cyclestreetsui = (function ($) {
 		defaultTileLayer: 'opencyclemap',
 		
 		// Default layers ticked
-		defaultLayers: ['photomap'],
+		defaultLayers: [],
 		
 		// Icon size, set globally for all layers
 		iconSize: [38, 42],

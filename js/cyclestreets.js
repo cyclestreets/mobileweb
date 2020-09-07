@@ -1734,7 +1734,7 @@ var cyclestreetsui = (function ($) {
 		},
 
 		// Display a Photomap popup
-		displayPhotomapPopup: function (renderedDetailsHtml)
+		displayPhotomapPopup: function (renderedDetailsHtml, animation)
 		{
 			$('.panel:visible').first ().removeClass ('open').addClass ('minimised');
 			cyclestreetsui.fitMap (null, true, 100);
@@ -1742,6 +1742,9 @@ var cyclestreetsui = (function ($) {
 			// Get the HTML for the popup
 			$('.popup.photomap').html (renderedDetailsHtml);
 			$('.popup.photomap').show ();
+			if (animation) {
+				cyclestreetsui.animateElement ('.popup.photomap', 'backInDown');
+			}
 		},
 
 

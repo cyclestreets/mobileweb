@@ -435,7 +435,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 /* Blog panel */
 .panel.blog, .panel.donate {height: 90%;}
 .panel.blog, .panel.donate h2 {padding-bottom: 5px;}
-.panel.blog object, .panel.donate object {height: 100%; width: calc(100% + 40px); margin-left: -20px; overflow:auto;}
+.cyclestreetsExternalView {height: 100%; width: calc(100% + 40px); margin-left: -20px; overflow:auto;}
 
 /* Screen-size specific adjustments */
 @media screen and (max-width: 320px) {

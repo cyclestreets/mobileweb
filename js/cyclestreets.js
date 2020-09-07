@@ -916,6 +916,11 @@ var cyclestreetsui = (function ($) {
 		// addMapCenter: false -> opening the map will put a starting pin at the user's location
 		openJourneyPlannerCard: function (addMapCenter = false) 
 		{
+			// If we are in single marker mode (i.e., setting a photomap location), do not open
+			if (routing.getSingleMarkerMode ()) {
+				return;
+			}
+
 			if (!$('.panel.journeyplanner.search').hasClass ('open')) {
 				// Close all other search boxes, menus, etc...
 				cyclestreetsui.resetUI ();

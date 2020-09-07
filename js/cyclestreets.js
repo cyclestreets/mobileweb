@@ -1550,6 +1550,15 @@ var cyclestreetsui = (function ($) {
 		 */
 		photomap: function ()
 		{					
+			// In single marker mode, clicking a map (adding a marker) enabled the continue button
+			$('#map').click (function (event) {
+				if (routing.getSingleMarkerMode) {
+					if (routing.getSingleMarkerLocation ().length) {
+						$('.panel.photomap.add-location a.action.forward').addClass ('enabled');
+					}
+				}
+			});
+			
 			// When file input is changed, display a preview picture
 			$('#photomapFileUpload').on('change', function () {
 				if (typeof (FileReader) != "undefined") {

@@ -1726,9 +1726,17 @@ var cyclestreetsui = (function ($) {
 
 
 		// Function to get lat/lon from image
-		zoomToImageLatLon: function (imageFile)
+		zoomToImageLatLon: function (imageFile, onGeolocationDataAvailable = false, onNoGeolocationData = false)
 		{	
-			EXIF.getData(imageFile, function () {
+			EXIF.getData (imageFile, function () {
+				
+				// If the picture has no geolocation data, do not run
+				if (!this.exifdata.hasOwnProperty ('GPSLatitude') || !this.exifdata.hasOwnProperty ('GPSLongitude')) {
+					if (onNoGeolocationData) {
+						onNoGeolocationData ();
+					}
+					return false;
+				}
 				
 				// Calculate latitude decimal
 				var latDegree = Number(this.exifdata.GPSLatitude[0].numerator)/Number(this.exifdata.GPSLatitude[0].denominator);
@@ -1745,12 +1753,16 @@ var cyclestreetsui = (function ($) {
 				var lonDirection = this.exifdata.GPSLongitudeRef;
 
 				var lonFinal = cyclestreetsui.convertDMSToDD(lonDegree, lonMinute, lonSecond, lonDirection);
-
+				
 				// Zoom the map to the marker location
 				_map.flyTo({center: [lonFinal, latFinal]});
 
 				// Set a marker at this location
 				routing.setFrequentLocation ({'lng': lonFinal, 'lat': latFinal, 'label': null});
+
+				if (onGeolocationDataAvailable) {
+					onGeolocationDataAvailable ();
+				}
 			});
 		},
 

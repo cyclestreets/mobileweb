@@ -2258,7 +2258,10 @@ var cyclestreetsui = (function ($) {
 		{
 			// Close a popup panel
 			$(document).on ('click', '.popup .close-button', function() {
-				$('.popup').hide('300');
+				var element = '.popup';
+				cyclestreetsui.animateElement ('.popup', 'zoomOut', function (element){
+					$('.popup').hide();
+				});
 			});
 			
 			// Flip photomap popup card

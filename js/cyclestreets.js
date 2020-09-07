@@ -1125,10 +1125,7 @@ var cyclestreetsui = (function ($) {
 						cyclestreetsui.switchPanel ('.' + currentPanel, nextPanelClass);
 
 						// Resize map element
-						var element = nextPanelClass
-						var fullscreen = false
-						var timeout = 100
-						cyclestreetsui.fitMap ();
+						cyclestreetsui.fitMap (nextPanelClass, false, 100);
 					}
 				}
 				
@@ -1323,7 +1320,11 @@ var cyclestreetsui = (function ($) {
 			// Special handler for Photomap upload form and setLocation, where we are setting a location on the map
 			// If we haven't set a location (i.e., photo upload was a PNG and user hasn't searched for a location), don't progress
 			if (selector == '.panel.photomap.add-location' || selector == '.panel.journeyplanner.setLocation') {
-				if (!routing.getSingleMarkerLocation ().length) {canProgress = false;}
+				if (!routing.getSingleMarkerLocation ().length) {
+					canProgress = false;
+					var notificationText = 'Please set a location for this photo.';
+					cyclestreetsui.displayNotification (notificationText, '/images/icon-add-photo-rest.svg')
+				}
 			}
 			
 			return canProgress;

@@ -1506,7 +1506,7 @@ var cyclestreetsui = (function ($) {
 				const shareData = {
 					title: name,
 					text: 'View a point of interest on CycleStreets!',
-					url: 'https://www.mobiledata.cyclestreets.net/poi/' + poiId
+					url: 'https://www.mobiledata.cyclestreets.net/poi/' + poiId + '/'
 				};
 				navigator.share (shareData);
 			});

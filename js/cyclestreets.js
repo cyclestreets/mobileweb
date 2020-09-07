@@ -1588,6 +1588,14 @@ var cyclestreetsui = (function ($) {
 
 			// After clicking next, zoom the map to the location of the image
 			$('.panel.photomap.add-photo a.action.forward').click (function () {
+				// Turn off the Photomap and POIS layer
+				var layersToTurnOff = ['#show_pois', '#show_photomap'];
+				$.each (layersToTurnOff, function (indexInArray, layerId) { 
+					if ($(layerId).prop ('checked')) {
+						 $(layerId).prop ('checked', false).trigger ('change');
+					 }
+				});
+				
 				// Set single marker mode
 				routing.setSingleMarkerMode (true);
 

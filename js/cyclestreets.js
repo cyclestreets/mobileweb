@@ -833,7 +833,7 @@ var cyclestreetsui = (function ($) {
 					// If this is the last POI selected, visually disable all JP pois and turn off the layer
 					if($.inArray(clickedPoiId, _poisActivated) !== -1 && !$(link).hasClass ('disabled')) {
 						$('.panel.journeyplanner.search ul.shortcut-icons a.poi').addClass ('disabled');
-						$('#show_pois').attr ('checked', false).trigger ('change');
+						$('#show_pois').prop ('checked', false).trigger ('change');
 						return;
 					}
 
@@ -847,14 +847,14 @@ var cyclestreetsui = (function ($) {
 					});
 
 					// Enable the POI layer input (check navbar input)
-					$('#show_pois').attr ('checked', true).trigger ('change');
+					$('#show_pois').prop ('checked', true).trigger ('change');
 					
 					// Mirror the POI layout on the Places card
 					$.each ($('.panel.pois input'), function (index, input) {
 						if (input.id != clickedPoiId) {
-							$(input).attr ('checked', false).trigger ('change');
+							$(input).prop ('checked', false).trigger ('change');
 						} else {
-							$(input).attr ('checked', true).trigger ('change');
+							$(input).prop ('checked', true).trigger ('change');
 						}
 					});
 

@@ -1603,7 +1603,16 @@ var cyclestreetsui = (function ($) {
 				routing.resetFrequentLocation ();
 				
 				// Zoom to the lat lon of this image and set a marker
-				cyclestreetsui.zoomToImageLatLon (_photomapUploadImage);
+				cyclestreetsui.zoomToImageLatLon (_photomapUploadImage, 
+					function () {
+						// Enable the continue button
+						$('.panel.photomap.add-location a.action.forward').addClass ('enabled');
+					}, 
+					function () {
+						// Image had no geolocation data, so change the text on the card
+						$('.panel.photomap.add-location p').text ('Please set a location by tapping on the map. You can move the map to a place by searching.')
+					}
+				);
 			});
 
 			// On exiting add-location screen, heading backwards, cancel single marker mode
@@ -1616,18 +1625,12 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			// On add location screen, check for a saved location
-			$('.panel.photomap.add-location a.action.forward').click (function (event) {
-				// If we haven't set a location (i.e., photo upload was a PNG and user hasn't searched for a location), don't progress
-				var location = routing.getSingleMarkerLocation ();
-				if (location.length < 1) {
-					var notificationText = 'Please set a location for this photo.';
-					cyclestreetsui.displayNotification (notificationText, '/images/icon-add-photo-rest.svg')
-					return;
-				}
-				
+			$('.panel.photomap.add-location a.action.forward').click (function (event) {				
 				// Stop single marker mode
 				// #¡# Should also be set if we cancel out of the location page
-				routing.setSingleMarkerMode (false);
+				if (!routing.getSingleMarkerLocation ().length) {
+					routing.setSingleMarkerMode (false);
+				}		
 			});
 
 			// On add location screen, check for a saved location
@@ -1675,11 +1678,18 @@ var cyclestreetsui = (function ($) {
 							cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
 
 						} else { 
-							// Set single marker mode
+							// Turn on the Photomap layer
+							$('#show_photomap').prop ('checked', true).trigger('change');
+
+							// Unset single marker mode
 							routing.setSingleMarkerMode (false);
 
 							// Delete any saved frequent lat lon
 							routing.resetFrequentLocation ();
+
+							// Remove any data from the form
+							$('.wizard.photomap form').trigger('reset');
+							$('.photomapFileUploadPreview').empty();
 							
 							// Display a notification
 							cyclestreetsui.displayNotification ('Photo uploaded successfully', '/images/tick-green.png')

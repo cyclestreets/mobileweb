@@ -477,7 +477,9 @@ var cyclestreetsui = (function ($) {
 			cyclestreetsui.adaptUiToGeolocationAvailability ();
 
 			// Show the default panel, after a slight pleasing delay
-			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow');
+			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow', function () {
+				cyclestreetsui.fitMap ();
+			});
 		},
 		
 
@@ -647,12 +649,12 @@ var cyclestreetsui = (function ($) {
 					}
 					
 					// Display panel and resize map element
-					$(panel).first ().show ()
-					cyclestreetsui.fitMap (panel, false, 500);
+					$(panel).first ().show (cyclestreetsui.fitMap ());
 				}
 			});
 		},
 
+		
 		// Open the nav bar
 		openNav: function () {
 			$('nav').show ('slide', {direction: 'left' }, 300);
@@ -661,34 +663,40 @@ var cyclestreetsui = (function ($) {
 			routing.disableMapClickListening (true);
 		},
 		
+
 		// Close the nav bar
 		closeNav: function() {$('nav').hide ("slide", {direction: "left"}, 300);},
+
 
 		// Fit the map to any opened card
 		// Accepts an element, or attempts to find the open panel
 		// If a timeout is specified, which is useful when animations are queued, the function will only execute after the time has expired
-		fitMap: function (element = false, fullscreen = false, timeout = 50) 
+		fitMap: function (element = false, fullscreen = false, timeout = 10) 
 		{	
+			console.log (element, fullscreen, timeout);
 			setTimeout (function () {
 				var height = null;
 			
 				// If we are fullscreen, set height as 0
 				if (fullscreen) {
 					height = 0;
-				} else if (!element) { // If no element is shown, find the open card
+
+				// If no element is shown, find the open card
+				} else if (!element) { 
 					// There should only ever be one visible card
 					element = $('.panel:visible').first ();
-					height = $(element).height ();
-				} else { // Find the height of the passed-in element
-					height = $(element).height ();
+					height = $(element).outerHeight ();
+				
+				// Find the height of the passed-in element
+				} else { 
+					height = $(element).outerHeight ();
 				}
 					
 				// Resize div, and resize map to fit the new div size
 				$('#map').css ({bottom: height});
-				setTimeout(() => {_map.resize ();}, 50); // Wait for the map to resize
+				setTimeout(() => {_map.resize ();}, 10); // Wait for the map to resize
 				
 			}, timeout);
-			
 		},
 		
 		
@@ -948,7 +956,7 @@ var cyclestreetsui = (function ($) {
 
 				// Expand card, and resize map
 				$('.panel.journeyplanner.search').addClass ('open', 450).show ();
-				cyclestreetsui.fitMap ('.panel.journeyplanner.search', false, 450);
+				cyclestreetsui.fitMap (false, false, 450);
 				
 				// Drop a pin in the middle of the map as our default start position
 				if (addMapCenter) {routing.addMapCenter ();} 

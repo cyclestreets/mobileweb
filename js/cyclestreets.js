@@ -608,8 +608,10 @@ var cyclestreetsui = (function ($) {
 						}
 
 						// If the current active card is the element we just turned off, close the card
-						var clickedClass = $(event.target).parents ().shift ().attr ('class');
-						$(clickedClass).hide ();
+						var clickedClass = $(event.target).parents ('li').first ().attr ('class');
+						$('.panel.' + clickedClass).hide (function () {
+							cyclestreetsui.fitMap (false, true);
+						});
 
 						// Do not switch to this card
 						return false;

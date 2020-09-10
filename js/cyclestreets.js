@@ -1590,10 +1590,9 @@ var cyclestreetsui = (function ($) {
 					image_holder.show();
 					_photomapUploadImage = $(this)[0].files[0];
 					reader.readAsDataURL(_photomapUploadImage);
-					
 				} else {
 					// Display an error 
-					var notificationText = 'You can not upload photos on this device';
+					var notificationText = 'You can not upload photos on this device.';
 					cyclestreetsui.displayNotification (notificationText, '/images/icon-photomap-red.svg')
 				}
 			});
@@ -1673,12 +1672,12 @@ var cyclestreetsui = (function ($) {
 					photomapUploadForm.append ('longitude', Number(markerLocation.lng));
 
 					// Attach the photo, as binary payload
-					photomapUploadForm.append('mediaupload', _photomapUploadImage, 'filename');
+					photomapUploadForm.append ('mediaupload', _photomapUploadImage, 'filename');
 
 					// Send the photomap upload data via AJAX
 					$.ajax ({
 						url: photomapAddUrl,
-						type: $('.wizard.photomap form').attr('method'),
+						type: $('.wizard.photomap form').attr ('method'),
 						data: photomapUploadForm,
 						processData: false,
 						contentType: false,
@@ -1686,12 +1685,12 @@ var cyclestreetsui = (function ($) {
 					{	
 						// Detect API error
 						if ('error' in result) {
-							$('.feedback-submit.error p').text(result.error);
-							cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
+							$('.feedback-submit.error p').text (result.error);
+							cyclestreetsui.switchPanel ('.panel', '.feedback-submit.error');
 
 						} else { 
 							// Turn on the Photomap layer
-							$('#show_photomap').prop ('checked', true).trigger('change');
+							$('#show_photomap').prop ('checked', true).trigger ('change');
 
 							// Unset single marker mode
 							routing.setSingleMarkerMode (false);
@@ -1700,8 +1699,8 @@ var cyclestreetsui = (function ($) {
 							routing.resetFrequentLocation ();
 
 							// Remove any data from the form
-							$('.wizard.photomap form').trigger('reset');
-							$('.photomapFileUploadPreview').empty();
+							$('.wizard.photomap form').trigger ('reset');
+							$('.photomapFileUploadPreview').empty ();
 							
 							// Display a notification
 							cyclestreetsui.displayNotification ('Photo uploaded successfully', '/images/tick-green.png')
@@ -1710,11 +1709,11 @@ var cyclestreetsui = (function ($) {
 							cyclestreetsui.returnHome ();
 						}
 
-					}).fail(function (failure) {
+					}).fail (function (failure) {
 						if (failure.responseJSON.error) {
-							$('.feedback-submit.error p').text(failure.responseJSON.error);
+							$('.feedback-submit.error p').text (failure.responseJSON.error);
 						}
-						cyclestreetsui.switchPanel('.panel', '.feedback-submit.error');
+						cyclestreetsui.switchPanel ('.panel', '.feedback-submit.error');
 					});
 				}
 			});
@@ -1754,10 +1753,10 @@ var cyclestreetsui = (function ($) {
 		// Function to get lat/lon from image
 		zoomToImageLatLon: function (imageFile, onGeolocationDataAvailable = false, onNoGeolocationData = false)
 		{	
-			EXIF.getData (imageFile, function () {
-				
+			var zoomToLocation = function (imageData) {
+					
 				// If the picture has no geolocation data, do not run
-				if (!this.exifdata.hasOwnProperty ('GPSLatitude') || !this.exifdata.hasOwnProperty ('GPSLongitude')) {
+				if (!imageData.hasOwnProperty ('GPSLatitude') || !imageData.hasOwnProperty ('GPSLongitude')) {
 					if (onNoGeolocationData) {
 						onNoGeolocationData ();
 					}
@@ -1765,20 +1764,20 @@ var cyclestreetsui = (function ($) {
 				}
 				
 				// Calculate latitude decimal
-				var latDegree = Number(this.exifdata.GPSLatitude[0].numerator)/Number(this.exifdata.GPSLatitude[0].denominator);
-				var latMinute = Number(this.exifdata.GPSLatitude[1].numerator)/Number(this.exifdata.GPSLatitude[1].denominator);
-				var latSecond = Number(this.exifdata.GPSLatitude[2].numerator)/Number(this.exifdata.GPSLatitude[2].denominator);
-				var latDirection = this.exifdata.GPSLatitudeRef;
+				var latDegree = Number(imageData.GPSLatitude[0].numerator)/Number(imageData.GPSLatitude[0].denominator);
+				var latMinute = Number(imageData.GPSLatitude[1].numerator)/Number(imageData.GPSLatitude[1].denominator);
+				var latSecond = Number(imageData.GPSLatitude[2].numerator)/Number(imageData.GPSLatitude[2].denominator);
+				var latDirection = imageData.GPSLatitudeRef;
 
-				var latFinal = cyclestreetsui.convertDMSToDD(latDegree, latMinute, latSecond, latDirection);
+				var latFinal = cyclestreetsui.convertDMSToDD (latDegree, latMinute, latSecond, latDirection);
 
 				// Calculate longitude decimal
-				var lonDegree = Number(this.exifdata.GPSLongitude[0].numerator)/Number(this.exifdata.GPSLongitude[0].denominator);
-				var lonMinute = Number(this.exifdata.GPSLongitude[1].numerator)/Number(this.exifdata.GPSLongitude[1].denominator);
-				var lonSecond = Number(this.exifdata.GPSLongitude[2].numerator)/Number(this.exifdata.GPSLongitude[2].denominator);
-				var lonDirection = this.exifdata.GPSLongitudeRef;
+				var lonDegree = Number(imageData.GPSLongitude[0].numerator)/Number(imageData.GPSLongitude[0].denominator);
+				var lonMinute = Number(imageData.GPSLongitude[1].numerator)/Number(imageData.GPSLongitude[1].denominator);
+				var lonSecond = Number(imageData.GPSLongitude[2].numerator)/Number(imageData.GPSLongitude[2].denominator);
+				var lonDirection = imageData.GPSLongitudeRef;
 
-				var lonFinal = cyclestreetsui.convertDMSToDD(lonDegree, lonMinute, lonSecond, lonDirection);
+				var lonFinal = cyclestreetsui.convertDMSToDD (lonDegree, lonMinute, lonSecond, lonDirection);
 				
 				// Zoom the map to the marker location
 				_map.flyTo({center: [lonFinal, latFinal]});
@@ -1789,8 +1788,24 @@ var cyclestreetsui = (function ($) {
 				if (onGeolocationDataAvailable) {
 					onGeolocationDataAvailable ();
 				}
-			});
+			};
+			
+			var extractImageData = function (imageFile) {
+				// Open image: determine file format
+				if (_photomapUploadImage.name.toLowerCase ().endsWith (".heic")) {
+					var reader = new FileReader();
+					reader.onload = function () {zoomToLocation (findEXIFinHEIC (reader.result));};
+					reader.readAsArrayBuffer(_photomapUploadImage);
+				} else { // Other file types
+					EXIF.getData (imageFile, function () {
+						zoomToLocation (EXIF.getAllTags (this));
+					});
+				}
+			};
+
+			extractImageData (imageFile);
 		},
+		
 
 		// Function to convert degrees, minutes, seconds to decimal
 		convertDMSToDD: function (degrees, minutes, seconds, direction) 

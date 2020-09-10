@@ -199,13 +199,13 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search .recent-items ul.recent-searches li p.destination {line-height: 34px;}
 
 /* Route speed select panel */
-.panel.journeyplanner.select {max-height: 300px; transition: 0.5s;}
+.panel.journeyplanner.select {height: 300px; transition: 0.5s;}
 .panel.journeyplanner.select *:focus {outline: none;}
 .panel.journeyplanner.select a.action {margin-right: -20px;}
 .panel.journeyplanner.select p {margin-top: 15px; text-align: center;}
 .panel.journeyplanner.select p.location {font-size: 13px; margin: 10px; padding: 0; color: #8e8c8c;}
 .panel.journeyplanner.select ul.journeyStats {padding-bottom: 15px;}
-.panel.journeyplanner.select .loader {display: block; margin: 0 auto; width: 38px; height: 38px;}
+.panel.journeyplanner.select .loader {display: block; margin: 30% auto; width: 38px; height: 38px;}
 .panel.journeyplanner.select #resultsTabs {max-height: 350px; padding-left: 20px; margin-top: -9px;}
 .panel.journeyplanner.select #itineraries {max-height: 350px; overflow-y: scroll; overflow-x: hidden; width: calc(100% + 40px); margin-left: -20px; margin-right: -20px;}
 .panel.journeyplanner.select #itineraries .ui-tabs-panel table.itinerary {width: 100%; margin-bottom: 130px;}

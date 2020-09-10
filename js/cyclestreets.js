@@ -574,8 +574,14 @@ var cyclestreetsui = (function ($) {
 				// If this is the data menu item, open its sub-menu
 				if (className == 'data') {
 					// Open the Data submenu
-					$('li.data ul').slideToggle ();
-				
+					$('li.data ul').slideToggle('400', function () {
+						if ($('li.data ul').is(":visible")) {
+							$('li.data a').css({ "background": "url('/images/icon-disclosure-red-up.svg') right no-repeat" });
+						} else {
+							$('li.data a').css({ "background": "url('/images/icon-disclosure-red-down.svg') right no-repeat" });
+						}
+					});
+
 				// Otherwise, close the nav and open the desired panel
 				} else {
 					

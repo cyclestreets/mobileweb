@@ -1,0 +1,9 @@
+{
+  "name": "CycleStreets",
+  "short_name": "CycleStreets",
+  "theme_color": "#407f2f",
+  "background_color": "#ffffff",
+  "display": "fullscreen",
+  "scope": "/",
+  "start_url": "/"
+}

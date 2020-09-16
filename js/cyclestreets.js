@@ -673,7 +673,6 @@ var cyclestreetsui = (function ($) {
 		// If a timeout is specified, which is useful when animations are queued, the function will only execute after the time has expired
 		fitMap: function (element = false, fullscreen = false, timeout = 10) 
 		{	
-			console.log (element, fullscreen, timeout);
 			setTimeout (function () {
 				var height = null;
 			

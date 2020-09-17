@@ -584,6 +584,9 @@ var cyclestreetsui = (function ($) {
 						}
 					});
 
+					// Ensure map click event listening stays off
+					routing.disableMapClickListening (true); 
+
 				// Otherwise, close the nav and open the desired panel
 				} else {
 					

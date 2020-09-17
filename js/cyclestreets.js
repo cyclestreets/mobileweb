@@ -2295,9 +2295,10 @@ var cyclestreetsui = (function ($) {
 		popupActions: function ()
 		{
 			// Close a popup panel
-			$(document).on ('click', '.popup .close-button', function() {
-				var element = '.popup';
-				cyclestreetsui.animateElement ('.popup', 'zoomOut', function (element){
+			$(document).on ('click', '.popup .close-button', function(event) {
+				var popupElement = $(event.target).parents ('.popup').attr ('class');
+				var popupElementClass = '.' + popupElement.replace (' ', '.');
+				cyclestreetsui.animateElement (popupElementClass, 'zoomOut', function (element){
 					$('.popup').hide();
 				});
 			});

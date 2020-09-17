@@ -315,7 +315,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .popup a.ui-button.close-button {position: absolute; top: 0; left: 0; margin: 10px; line-height: 60px; z-index: 3;}
 
 /* Photomap popup */
-.popup.photomap {perspective: 1000px; position: relative; background-color: transparent; height: 550px; margin: 8% auto; z-index: 20;}
+.popup.photomap {perspective: 1000px; position: relative; background-color: transparent; height: 470px; margin: 8% auto; z-index: 20;}
 .popup.photomap .popup-card {border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8;}
 .popup.photomap .loader {display: inline-block; position: fixed; margin: auto; width: 38px; height: 38px;}
 .popup.photomap a {position: absolute; bottom: 0; margin: 20px; padding: 0; line-height: 15px; color: #dc4f55; text-decoration: none;}

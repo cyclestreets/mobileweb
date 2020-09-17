@@ -838,8 +838,7 @@ var cyclestreetsui = (function ($) {
 			// Open the Route search box on focusing or clicking on any JP geocoder input
 			$('.panel.journeyplanner.search input').focus (function (event){
 				if (!$('.panel.journeyplanner.search').hasClass ('open')) {
-					cyclestreetsui.openJourneyPlannerCard ();
-					routing.setMarkerAtUserLocation ();
+					cyclestreetsui.openJourneyPlannerCard (false, true);
 				}
 			});
 
@@ -950,7 +949,7 @@ var cyclestreetsui = (function ($) {
 		// Handler to open the journey planner card. Accept addMapCenter as variable.
 		// addMapCenter: true -> opening the card will set a pin in the device map center
 		// addMapCenter: false -> opening the map will put a starting pin at the user's location
-		openJourneyPlannerCard: function (addMapCenter = false) 
+		openJourneyPlannerCard: function (addMapCenter = false, setMarkerAtUserLocation = false) 
 		{
 			// If we are in single marker mode (i.e., setting a photomap location), do not open
 			if (routing.getSingleMarkerMode ()) {
@@ -973,6 +972,9 @@ var cyclestreetsui = (function ($) {
 
 				// Change the search placeholder to prompt user input
 				$('.panel.journeyplanner.search #end').attr ('placeholder', 'Where do you want to go?');
+
+				// If necessary, set a waypoint marker at the user's location	
+				if (setMarkerAtUserLocation) {routing.setMarkerAtUserLocation ();}
 
 				// Focus on the first empty geocoder
 				$('.panel.journeyplanner.search input').each (function () {

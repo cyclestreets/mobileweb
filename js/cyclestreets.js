@@ -707,6 +707,14 @@ var cyclestreetsui = (function ($) {
 			// Initialise routing
 			routing.initialise (_settings, _map, _isMobileDevice, _panningEnabled);
 
+			// If we are loading a route from an ID, switch the Journey Planner to select panel
+			if (routing.getLoadingRouteFromId ()) {
+				cyclestreetsui.switchPanel ('.panel.journeyplanner.search', '.panel.journeyplanner.select');
+				
+				// Add open status on the search panel, in case we move back into it
+				$('.panel.journeyplanner.search').addClass ('open');
+			}
+
 			/* 
 			* JP: Recent searches and journeys 
 			*/

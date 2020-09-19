@@ -316,7 +316,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 /* Photomap popup */
 .popup.photomap {perspective: 1000px; position: relative; background-color: transparent; height: 470px; margin: 8% auto; z-index: 20;}
-.popup.photomap .popup-card {border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8;}
+.popup.photomap .popup-card {border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8; box-shadow: 0 0 10px gray}
 .popup.photomap .loader {display: inline-block; position: fixed; margin: auto; width: 38px; height: 38px;}
 .popup.photomap a {position: absolute; bottom: 0; margin: 20px; padding: 0; line-height: 15px; color: #dc4f55; text-decoration: none;}
 .popup.photomap a.share {bottom: 0; left: 0;}
@@ -332,7 +332,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .popup.photomap .flip-card-back hr {width: calc(100% - 40px);}
 .popup.photomap .flip-card-back ul li img {width: 16px; margin: 10px 10px 0 20px;}
 .popup.photomap .flip-card-back p {display: inline-block; margin: 0; color: #fbf6f8; font-size: 13px;}
-.popup.photomap .flip-card-back p.key {margin: 0 0 15px 20px; color: #c4c1c2;}
+.popup.photomap .flip-card-back p.key {margin: 0 0 15px 20px; color: #c4c1c2; padding-right: 5px;}
 
 /* Places popup */
 .popup.places {height: 83%; max-height: 550px; width: 90%; max-width: 300px; margin: 6% 10% 25%; border-radius: 20px; overflow-x: hidden; background-color: #fbf6f8; position: absolute; z-index: 20;}

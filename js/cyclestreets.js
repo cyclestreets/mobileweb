@@ -6,9 +6,10 @@ var cyclestreetsui = (function ($) {
 	'use strict';
 	
 	// Default settings
-	var _settings = {
-		
-		// CycleStreets API
+	var _settings = 
+	{	
+		// CycleStreets website & API
+		baseUrl: 'https://www.cyclestreets.net/',
 		apiBaseUrl: 'https://api.cyclestreets.net',
 		apiKey: 'YOUR_API_KEY',
 		
@@ -284,7 +285,7 @@ var cyclestreetsui = (function ($) {
 		photomap: {
 			apiCall: '/v2/photomap.locations',
 			apiFixedParameters: {
-				fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,iconUrl,categoryName,metacategoryName,datetime,apiUrl',
+				fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,iconUrl,categoryName,metacategoryName,datetime,apiUrl,shortlink',
 				limit: 150,
 				thumbnailsize: 1000,
 				datetime: 'friendlydate'
@@ -294,7 +295,7 @@ var cyclestreetsui = (function ($) {
 				apiCall: '/v2/photomap.location',
 				idParameter: 'id',
 				apiFixedParameters:{
-					fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,categoryName,metacategoryName,datetime,apiUrl',
+					fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,categoryName,metacategoryName,datetime,apiUrl,shortlink',
 					thumbnailsize: 1000,
 					datetime: 'friendlydate'
 				},
@@ -304,7 +305,7 @@ var cyclestreetsui = (function ($) {
 				cyclestreetsui.displayPhotomapPopup (renderDetailsHtml, animation);
 			},
 			popupHtml: 
-			      '<div class="data" data-coordinates="{geometry.coordinates}" data-location-id="{properties.id}" data-caption="{properties.caption}" data-username="{properties.username}"></div><div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><img class="popup-photo" src="{properties.thumbnailUrl}" alt="Photo" /><a href="#" class="get-directions" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a>' 
+			      '<div class="data" data-coordinates="{geometry.coordinates}" data-location-id="{properties.id}" data-caption="{properties.caption}" data-shortlink="{properties.shortlink}" data-username="{properties.username}"></div><div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><img class="popup-photo" src="{properties.thumbnailUrl}" alt="Photo" /><a href="#" class="get-directions" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a>' 
 				+ '<p class="key">{properties.caption}</p><a class="share" href="#" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /> Share</a><a class="flip" href="#" title="Show more information"> Photo info</a></div>'
 				+ '<div class="flip-card-back popup-card"><a href="#" class="back" title="Return to the front of this card"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a><br>' 
 				+ '<p class="key">Category: </p><p>{properties.categoryName}</p><br>	<p class="key">Type: </p><p>{properties.metacategoryName}</p><hr /><ul><li><img src="/images/icon-user.svg" alt="User icon" /><p>{properties.username}</p></li>'
@@ -1751,13 +1752,14 @@ var cyclestreetsui = (function ($) {
 				// Get location data
 				var data = $(event.target).parents ('.popup').find ('.data').data ();
 				var locationId = data.locationId;
+				var shortlink = data.shortlink
 				var caption = data.caption;
 				var username = data.username;
 
 				const shareData = {
-					title: caption.substring (0, 20),
-					text: 'View this photo by ' + username + ' on CycleStreets',
-					url: 'https://www.mobiledesign.cyclestreets.net/photomap/' + locationId
+					title: 'View this photo by ' + username + ' on CycleStreets',
+					text: caption,
+					url: shortlink
 				};
 				navigator.share (shareData);
 			});

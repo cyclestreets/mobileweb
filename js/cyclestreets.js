@@ -1024,7 +1024,7 @@ var cyclestreetsui = (function ($) {
 			// Clicking on a minimised card expands it
 			$('.panel').on ('click', function (event) {
 				// If we are clicking on JP route select segmented controls, don't expand
-				if ($(event.delegateTarget).is ('.panel, .journeyplanner, .search')) {
+				if ($(event.target.offsetParent).hasClass ('select')) {
 					return;
 				}
 

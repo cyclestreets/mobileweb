@@ -371,6 +371,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.account input {width: calc(100% - 40px); margin: 5px auto;}
 .panel.account h3 {width: 100%; line-height: 30px; text-align: center; margin-bottom: 0;}
 .panel.account p {margin: 0 20px; padding: 0; text-align: left;}
+.panel.account .showCreateAccount {display: none;}
 .panel.account .create-account {position: relative; width: 50%; height: 50px; margin: 10px auto; border-radius: 50px; color: #fbf6f8;}
 .panel.account img.showOrHidePassword {display: none; position: absolute; right: 40px; top: 132px;}
 

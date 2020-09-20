@@ -21,7 +21,7 @@ nav li.pois {background-image: url('/images/icon-places-red.svg');}
 nav li.ridetracker {background-image: url('/images/icon-ride-track-red.svg');}
 nav li.data {background-image: url('/images/icon-data-red.svg'); background-position: 0 8px;}
 nav li.data a {transform: 1s; background: url('/images/icon-disclosure-red-down.svg') right no-repeat;}
-nav ul li ul li label {display: inline-block; width: 212px; padding: 2.5px 0 2.5px 38px; }
+nav ul li ul li label {display: inline-block; width: 212px; padding: 2.5px 0 2.5px 38px; width: calc(100% - 36px);}
 nav li.enabled a, nav ul li ul li.enabled label {background: url('/images/icon-view-pass-on-16x16.svg') right no-repeat;}
 nav a {padding: 12px 38px; text-decoration: none; color: #fbf6f8; display: block; transition: 0.3s;}
 nav a, nav label {transition: 0.3s;}

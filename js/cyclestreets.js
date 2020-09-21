@@ -2110,6 +2110,26 @@ var cyclestreetsui = (function ($) {
 					$(passwordMaskImage).hide ();
 				}
 			});
+
+			// On typing into either field in the sign-in form, hide the large sign-up button
+			$('.panel.account form input').on ('input', function () {
+				// If any fields have input, hide the create account div
+				var hasInput = false;
+				$.each($('.panel.account form input'), function (indexInArray, inputElement) { 
+					if ($(inputElement).val ()) {
+						hasInput = true;
+						$('.createAccount').hide ('slow');
+						$('.showCreateAccount').show ('slow');
+						return;
+					} 
+				});
+				
+				// If no fields with input were found, show the create account div
+				if (!hasInput) {
+					$('.createAccount').show ();
+					$('.showCreateAccount').hide ();
+				}
+			});
 			
 			// Sign-in handler
 			$('.panel.account a.action.forward').click (function () {

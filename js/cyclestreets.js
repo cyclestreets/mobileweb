@@ -2129,6 +2129,11 @@ var cyclestreetsui = (function ($) {
 					$('.showCreateAccount').hide ();
 				}
 			});
+
+			$('.showCreateAccount').on ('click', function () {
+				$('.createAccount').show ();
+				$('.showCreateAccount').hide ();
+			});
 			
 			// Sign-in handler
 			$('.panel.account a.action.forward').click (function () {

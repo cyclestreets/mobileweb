@@ -613,8 +613,7 @@ var cyclestreetsui = (function ($) {
 					if ($(event.target).is ('a') && ($(event.target).parents ('li.photomap').length || $(event.target).parents ('li.pois').length)) {
 						var inputElement = $(event.currentTarget).find ('input').first();
 						if ($(inputElement).prop ('checked') == true) {
-							$(inputElement).prop ('checked', false);
-							layerviewer.toggleDataLayer (inputElement[0]);		
+							$(inputElement).prop ('checked', false).trigger ('change');
 						}
 
 						// If the current active card is the element we just turned off, close the card

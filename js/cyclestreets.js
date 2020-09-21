@@ -9,7 +9,8 @@ var cyclestreetsui = (function ($) {
 	var _settings = 
 	{	
 		// CycleStreets website & API
-		baseUrl: 'https://www.cyclestreets.net/',
+		baseUrl: '/',
+		shareBaseUrl: 'https://www.cyclestreets.net/',
 		apiBaseUrl: 'https://api.cyclestreets.net',
 		apiKey: 'YOUR_API_KEY',
 		

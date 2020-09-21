@@ -30,6 +30,9 @@ var cyclestreetsui = (function ($) {
 			zoom: 5
 		},
 		defaultTileLayer: 'opencyclemap',
+
+		// Padding for fit bounds
+		fitBoundsPadding: 20,
 		
 		// Default layers ticked
 		defaultLayers: [],

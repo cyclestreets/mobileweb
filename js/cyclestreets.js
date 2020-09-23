@@ -2117,8 +2117,9 @@ var cyclestreetsui = (function ($) {
 				$.each($('.panel.account form input'), function (indexInArray, inputElement) { 
 					if ($(inputElement).val ()) {
 						hasInput = true;
-						$('.createAccount').hide ('slow');
-						$('.showCreateAccount').show ('slow');
+						$('.createAccount').hide ();
+						$('.showCreateAccount').show ();
+						cyclestreetsui.fitMap ();
 						return;
 					} 
 				});
@@ -2127,12 +2128,14 @@ var cyclestreetsui = (function ($) {
 				if (!hasInput) {
 					$('.createAccount').show ();
 					$('.showCreateAccount').hide ();
+					cyclestreetsui.fitMap ();
 				}
 			});
 
 			$('.showCreateAccount').on ('click', function () {
 				$('.createAccount').show ();
 				$('.showCreateAccount').hide ();
+				cyclestreetsui.fitMap ();
 			});
 			
 			// Sign-in handler

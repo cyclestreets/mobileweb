@@ -279,8 +279,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.photomap ul li label {display: inline-block; width: 100px;}
 .panel.photomap p {display: inline; line-height: 35px;}
 .panel.photomap hr {width: calc(100% + 40px); margin-left: -20px;}
-.panel.photomap .photomapFileUploadPreview {max-width: 100%; height: auto; max-height: 400px; overflow: hidden;}
-.panel.photomap .photomapFileUploadPreview img {max-width: 100%; height: auto;}
+.panel.photomap .photomapFileUploadPreview {max-width: 100%; height: auto; max-height: 280px; overflow: hidden;}
+.panel.photomap .photomapFileUploadPreview img {max-width: 100%; height: auto; max-height: 280px; margin: 0 auto 10px; display: block; object-fit: contain;}
 .panel.photomap.add-photo input {width: 100%;}
 .panel.photomap.add-details ul li label {display: inline-block; width: 100px;}
 .panel.photomap.add-details img {border-radius: 25px;}

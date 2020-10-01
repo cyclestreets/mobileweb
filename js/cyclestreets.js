@@ -1920,6 +1920,9 @@ var cyclestreetsui = (function ($) {
 				// Hide the browse search box and reset the placeholder
 				cyclestreetsui.hideBrowseSearchBox ();
 				$('#browse-search-box').attr ('placeholder', 'Move map to place or postcode');
+				
+				// Clear the saved location label
+				$('.panel.journeyplanner.setLocation input').val ('');
 
 				// Get the saved marker location
 				var singleMarkerLocation = routing.getSingleMarkerLocation ();

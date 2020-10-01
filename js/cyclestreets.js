@@ -1739,12 +1739,21 @@ var cyclestreetsui = (function ($) {
 							// Remove any data from the form
 							$('.wizard.photomap form').trigger ('reset');
 							$('.photomapFileUploadPreview').empty ();
-							
+						
 							// Display a notification
 							cyclestreetsui.displayNotification ('Photo uploaded successfully', '/images/tick-green.png')
+							
+							// Reset the can progress status of the form forward and back controls
+							var photomapPanels = $('.panel.photomap');
+							$.each (photomapPanels, function (indexInArray, panel) { 
+								 cyclestreetsui.enableNavigation (panel);
+							});
 
-							// Return home
-							cyclestreetsui.returnHome ();
+							// Show the initial Photomap wizard screen
+
+							// Display a Photomap popup with the newly added photo
+							window.location.replace('/photomap/' + result.id);
+
 						}
 
 					}).fail (function (failure) {

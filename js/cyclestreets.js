@@ -482,9 +482,14 @@ var cyclestreetsui = (function ($) {
 			cyclestreetsui.adaptUiToGeolocationAvailability ();
 
 			// Show the default panel, after a slight pleasing delay
-			$('.panel.journeyplanner.search').delay (300).slideToggle ('slow', function () {
-				cyclestreetsui.fitMap ();
-			});
+			var urlParameters = layerviewer.parseUrl ();
+			if (urlParameters.sections.includes('photomap')) {
+				$('.panel.photomap').first ().show();
+			} else {
+				$('.panel.journeyplanner.search').delay (300).slideToggle ('slow', function () {
+					cyclestreetsui.fitMap ();
+				});
+			}
 		},
 		
 
@@ -1744,16 +1749,10 @@ var cyclestreetsui = (function ($) {
 							cyclestreetsui.displayNotification ('Photo uploaded successfully', '/images/tick-green.png')
 							
 							// Reset the can progress status of the form forward and back controls
-							var photomapPanels = $('.panel.photomap');
-							$.each (photomapPanels, function (indexInArray, panel) { 
-								 cyclestreetsui.enableNavigation (panel);
-							});
-
-							// Show the initial Photomap wizard screen
-
+							$('.wizard.photomap .action.forward').removeClass ('enabled');
+							
 							// Display a Photomap popup with the newly added photo
 							window.location.replace('/photomap/' + result.id);
-
 						}
 
 					}).fail (function (failure) {

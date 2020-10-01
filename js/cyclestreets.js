@@ -1961,6 +1961,7 @@ var cyclestreetsui = (function ($) {
 			// Special handler to write distance units to routing library
 			$('.panel.settings #settings-done').click (function () {
 				cyclestreetsui.setDistanceUnit ();
+				cyclestreetsui.setCyclingSpeed ();
 			});
 		},
 
@@ -1974,6 +1975,28 @@ var cyclestreetsui = (function ($) {
 			// Write this to routing library
 			routing.setDistanceUnit (activeDistanceUnit);
 		},
+
+
+		// Set the maximum cycling speed for the journey
+		setCyclingSpeed: function () 
+		{
+			// Get the active distance unit
+			var cyclingSpeed = $('#cycling-speed').val ();
+			switch (cyclingSpeed) {
+				case '1':
+					routing.setCyclingSpeed ('16');
+					break;
+				case '2':
+					routing.setCyclingSpeed ('20');
+					break;
+				case '3':
+					routing.setCyclingSpeed ('24');
+					break;
+				default:
+					routing.setCyclingSpeed ('16');
+			}
+		},
+
 
 		// Function to find the latest blog post, and alert the user of its existence
 		checkLatestBlogPost: function ()

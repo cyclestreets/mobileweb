@@ -106,6 +106,7 @@ var cyclestreetsui = (function ($) {
 	var _shortcutLocations = ['home', 'work']; // Store shortcut locations in settings menu and JP card
 	var _notificationQueue = []; // Store any notifications in a queue
 	var _photomapUploadImage = []; // Store the Photomap upload photo while proceeding through the wizard
+	var _nextPanelAfterAuthentication = null // If we leave a panel to go to the log-in screen, redirect to the original panel after successful log-in
 	
 	// Enable panels and additional functionality
 	var _actions = [
@@ -1055,6 +1056,9 @@ var cyclestreetsui = (function ($) {
 				// If user isn't logged in, stop
 				if (!cyclestreetsui.updateLoggedInStatus ()) 
 				{	
+					// Get the panel that we are clicked the authenticated link from
+					_nextPanelAfterAuthentication = $(event.target).closest ('.panel');
+					
 					// Display a notification
 					cyclestreetsui.displayNotification (
 						'Please sign in to access this feature.', 
@@ -2205,10 +2209,22 @@ var cyclestreetsui = (function ($) {
 							cyclestreetsui.animateElement ('.panel.account input[name="password"]', 'shakeX');
 						}
 
-					} else { // Save the login cookie
-						// Switch to the logging in panel
-						cyclestreetsui.switchPanel ('.panel', '.panel.logged-in');
+					} else { 
+						// Save the login cookie
+						if (_nextPanelAfterAuthentication !== null) {
+							// Display a drop-down notification
+							cyclestreetsui.displayNotification (
+								'Sign-in successful.',
+								'/images/tick-green.png'
+							);
 
+							// Switch to the saved panel. 
+							cyclestreetsui.switchPanel ('.panel.account', _nextPanelAfterAuthentication);
+						} else {
+							// Show a panel that displays a successfully signed-in message
+							cyclestreetsui.switchPanel ('.panel', '.panel.logged-in');
+						}
+						
 						// Encode the credentials in base 64
 						var identifier = btoa(unescape(encodeURIComponent($('.panel.account input[name="identifier"]').val())));
 						var password = btoa(unescape(encodeURIComponent($('.panel.account input[name="password"]').val())));
@@ -2365,7 +2381,7 @@ var cyclestreetsui = (function ($) {
 
 			// Display a dropdown, indicating the user has signed out
 			cyclestreetsui.resetUI ();
-			cyclestreetsui.displayNotification ('You have logged out.', '/images/tick-green.png');
+			cyclestreetsui.displayNotification ('You have signed out.', '/images/tick-green.png');
 		},
 
 			

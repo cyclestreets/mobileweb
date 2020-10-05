@@ -1007,7 +1007,7 @@ var cyclestreetsui = (function ($) {
 		 */
 		mainUI: function ()
 		{	
-			// Swiping down on a card closes it
+			// Swiping down on a panel minimises it
 			$('.panel').on ('swipedown', function () {
 				// Prevent card from closing if we are reordering a input geocoder
 				if (!routing.getInputDragStatus ()){
@@ -1017,19 +1017,21 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			
-			// Swiping up on a card opens it
-			$('.panel').on ('swipeup', function (event) {
-				// If this is the JP card, trigger open event
-				if ($(event.target).is ('.panel, .journeyplanner, .search')) {
-					cyclestreetsui.openJourneyPlannerCard ();
-				} else {
-					$(this).removeClass ('minimised', 400);
-					cyclestreetsui.fitMap (this, false, 400);
+			// Swiping up on a minimised panel expands it
+			$('.panel').on ('swipe', function (event) {
+				if ($(this).hasClass ('minimised')) {
+					// If this is the JP card, trigger open event
+					if ($(event.target).is ('.search')) {
+						cyclestreetsui.openJourneyPlannerCard ();
+					} else {
+						$(this).removeClass ('minimised', 400);
+						cyclestreetsui.fitMap (this, false, 400);
+					}
 				}
 			});
 
 			
-			// Clicking on a minimised card expands it
+			// Clicking on a minimised panel expands it
 			$('.panel').on ('click', function (event) {
 				// If we are clicking on JP route select segmented controls, don't expand
 				if ($(event.target.offsetParent).hasClass ('select')) {

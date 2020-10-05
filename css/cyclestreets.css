@@ -204,8 +204,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 /* Route speed select panel */
 .panel.journeyplanner.select {height: 300px; transition: 0.5s;}
 .panel.journeyplanner.select *:focus {outline: none;}
-.panel.journeyplanner.select.minimised {height: 28px; padding-top: 23px;}
-.panel.journeyplanner.select.minimised a.action.back {margin-top: 20px;}
+.panel.journeyplanner.select.minimised {height: 28px;}
 .panel.journeyplanner.select a.action {margin-right: -20px;}
 .panel.journeyplanner.select p {margin-top: 15px; text-align: center;}
 .panel.journeyplanner.select p.location {font-size: 13px; margin: 10px; padding: 0; color: #8e8c8c;}

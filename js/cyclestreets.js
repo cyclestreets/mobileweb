@@ -566,16 +566,16 @@ var cyclestreetsui = (function ($) {
 			
 			// Open card from main nav items
 			$('nav ul > li').click (function (event) {
-				
-				// Enable map click event listening
-				routing.disableMapClickListening (false); // Enable routing library to listen for map clicks 
 
 				// Get the class name from the li
 				var className = this.className.split (' ')[0];
 				
 				// If we clicked the sign out buttom, sign out and do not open the account panel
 				if ($(this).hasClass ('signOut')) {
-					cyclestreetsui.signOut ();	
+					cyclestreetsui.signOut ();
+					
+					// Re-enable map click event listening
+					routing.disableMapClickListening (false); 
 					return;
 				}
 
@@ -612,6 +612,9 @@ var cyclestreetsui = (function ($) {
 						cyclestreetsui.resetUI ();
 						$('.panel').hide ();
 						cyclestreetsui.fitMap (false, true, 100);
+						
+						// Re-enable map click event listening
+						routing.disableMapClickListening (false); 
 						return true;
 					}
 					
@@ -636,6 +639,9 @@ var cyclestreetsui = (function ($) {
 						event.preventDefault ();
 						$(event.target).prop ('checked', true); // We just deactivated the input by clicking it, reactivate it
 					}
+
+					// Re-enable map click event listening
+					routing.disableMapClickListening (false); 
 					
 					// Save the current (visible before change) panel to the breadcrumb trail
 					if ($('.panel:visible').length) {

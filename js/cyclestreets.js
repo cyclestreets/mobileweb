@@ -203,7 +203,7 @@ var cyclestreetsui = (function ($) {
 				+ '<p>Reference: <a href="{properties.url}">{properties.uid}</a><br />'
 				+ 'Local Authority: {properties.authority_name}<br />'
 				+ 'Date: {properties.start_date}</p>'
-				+ '<p><a href="{properties.url}"><img src="images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
+				+ '<p><a href="{properties.url}"><img src="/images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
 		},
 		
 		bikeshare: {

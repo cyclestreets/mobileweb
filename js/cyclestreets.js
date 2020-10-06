@@ -537,8 +537,14 @@ var cyclestreetsui = (function ($) {
 		navBar: function () 
 		{	
 			// Open the nav bar
-			$('#hamburger-menu').click (function() {cyclestreetsui.openNav ();});
-			$(_settings.dataLoadingSpinnerSelector).click (function() {cyclestreetsui.openNav ();});
+			$('#hamburger-menu').click (function() {
+				cyclestreetsui.openNav ();
+			});
+
+			// If the data loading spinner is active (above the menu bar), clicking it is a proxy for clicking the hamburger button
+			$(_settings.dataLoadingSpinnerSelector).click (function() {
+				cyclestreetsui.openNav ();
+			});
 			
 			// Map click handler
 			$('#map').click (function (event) {
@@ -675,8 +681,15 @@ var cyclestreetsui = (function ($) {
 
 		
 		// Open the nav bar
-		openNav: function () {
+		openNav: function () 
+		{
+			// Slide the nav out from the left
 			$('nav').show ('slide', {direction: 'left' }, 300);
+
+			// Generate a new "Improve map" link, by calculating the current map centre
+			var center = _map.getCenter();
+			var zoomLevel = Math.round(_map.getZoom ());
+			$('.improve-map').prop ('href', 'https://www.mapbox.com/map-feedback/#/' + center.lng + '/' + center.lat + '/' + zoomLevel);
 				
 			// Don't listen for map clicks while the menu is open
 			routing.disableMapClickListening (true);

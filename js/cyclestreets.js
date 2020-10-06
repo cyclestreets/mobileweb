@@ -588,6 +588,12 @@ var cyclestreetsui = (function ($) {
 				// If we clicked the blog button, consider the latest post as read
 				if ($(this).hasClass ('blog')) {
 					cyclestreetsui.setMostRecentBlogPostAsViewed ();	
+					$('.blogFrame').attr('src', 'https://www.cyclestreets.org/news/');
+				}
+
+				// If clicking the Donate navbar link, load the donate iFrame
+				if ($(this).hasClass ('donate')) {
+					$('.donateFrame').attr('src', 'https://www.cyclestreets.org/donate/');
 				}
 				
 				// If this is the data menu item, open its sub-menu
@@ -1031,7 +1037,6 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 			
-			
 			// Swiping up on a minimised panel expands it
 			$('.panel').on ('swipe', function (event) {
 				if ($(this).hasClass ('minimised')) {
@@ -1045,7 +1050,6 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 
-			
 			// Clicking on a minimised panel expands it
 			$('.panel').on ('click', function (event) {
 				// If we are clicking on JP route select segmented controls, don't expand
@@ -1290,6 +1294,10 @@ var cyclestreetsui = (function ($) {
 
 			// On startup, load and apply and cookies (settings, etc)
 			cyclestreetsui.loadAndApplyCookies ();
+
+			// Stop the iFrames (blog, donate) from loading
+			window.frames[0].stop(); // blog
+			window.frames[1].stop(); // donate
 		},
 
 		

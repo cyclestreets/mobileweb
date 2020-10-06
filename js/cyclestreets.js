@@ -685,11 +685,6 @@ var cyclestreetsui = (function ($) {
 		{
 			// Slide the nav out from the left
 			$('nav').show ('slide', {direction: 'left' }, 300);
-
-			// Generate a new "Improve map" link, by calculating the current map centre
-			var center = _map.getCenter();
-			var zoomLevel = Math.round(_map.getZoom ());
-			$('.improve-map').prop ('href', 'https://www.mapbox.com/map-feedback/#/' + center.lng + '/' + center.lat + '/' + zoomLevel);
 				
 			// Don't listen for map clicks while the menu is open
 			routing.disableMapClickListening (true);

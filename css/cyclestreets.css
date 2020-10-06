@@ -35,7 +35,7 @@ nav .text-column {width: 80%;}
 nav .badge-column {width: 20%;}
 nav .blog-badge {position: relative; margin: 0; padding: 0;}
 nav .blog-badge[data-badge]:after {content: attr(data-badge); position: absolute; right: 20px; font-size: .7em; background: #cc5959; color: white; width: 18px; height: 18px; text-align: center; line-height: 18px; border-radius: 50%; box-shadow: 0 0 1px #333;}
-nav #nav-footer {position: fixed; bottom: 0; height: 50px; width: 100%; padding: 10px; background-color: #212323; color: #b1afb1;}
+nav #nav-footer {position: fixed; bottom: 0; height: 50px; width: calc(70% - 20px); max-width: 280px; padding: 10px; background-color: #212323; color: #b1afb1;}
 nav #nav-footer .cyclestreets-logo {float: left; width: 50px; height: 50px;}
 nav #nav-footer h6, nav #nav-footer p, nav #nav-footer a {margin: 0 0 0 40px;}
 nav #nav-footer .logo-text {padding: 3px 0 5px 20px; color: #e1dde0; font-size: 18px; font-weight: bold; font-variant: small-caps;}

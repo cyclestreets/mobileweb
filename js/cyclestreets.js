@@ -484,9 +484,10 @@ var cyclestreetsui = (function ($) {
 
 			// Show the default panel, after a slight pleasing delay
 			var urlParameters = layerviewer.parseUrl ();
-			if (urlParameters.sections.includes('photomap')) {
+			console.log (urlParameters);
+			if (urlParameters.sections.includes ('photomap')) {
 				$('.panel.photomap').first ().show();
-			} else {
+			} else if (!urlParameters.formParameters.includes ('journey')) {
 				$('.panel.journeyplanner.search').delay (300).slideToggle ('slow', function () {
 					cyclestreetsui.fitMap ();
 				});

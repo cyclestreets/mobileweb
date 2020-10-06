@@ -318,6 +318,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 #map .popup {display: block;} 
 .popup {display: none; margin: 40% auto 20%; width: 94%; max-width: 400px; z-index: 20;}
 .popup a.ui-button.close-button {position: absolute; top: 0; left: 0; margin: 10px; line-height: 60px;}
+.mapboxgl-popup.collisions {z-index: 1;}
 
 /* Photomap popup */
 .popup.photomap {perspective: 1000px; position: relative; background-color: transparent; height: 500px; margin: 8% auto; z-index: 20;}

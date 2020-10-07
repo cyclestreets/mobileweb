@@ -482,7 +482,7 @@ var cyclestreetsui = (function ($) {
 			// Adapt the UI to the geolocation availability
 			cyclestreetsui.adaptUiToGeolocationAvailability ();
 
-			// Show the default panel, after a slight pleasing delay
+			// Parse URL to ascertain which panel to show
 			var urlParameters = layerviewer.parseUrl ();
 			if (urlParameters.sections.includes ('photomap')) {
 				$('.panel.photomap').first ().show();
@@ -492,44 +492,7 @@ var cyclestreetsui = (function ($) {
 				});
 			}
 		},
-		
-
-		// Autocomplete
-		autocomplete: function ()
-		{
-			// Enable autocomplete for Photomap tags; see: https://stackoverflow.com/a/21398000/180733
-			$('#photomap input[name="tags"]').autocomplete({
-				minLength: 3,
-				source: function (request, response) {
-					$.ajax({
-						dataType: 'json',
-						type : 'GET',
-						url: _settings.apiBaseUrl + '/v2/photomap.tags?key=' + _settings.apiKey + '&limit=10',
-						data: {
-							match: request.term
-						},
-						success: function (data) {
-							response ($.map (data, function (item) {
-								return {
-									label: item.tag,
-									value: item.tag
-								};
-							}));
-						}
-					});
-				}
-			});
-		},
-		
-
-		// Function to go the map page
-		mapPageLink: function (longitude, latitude)
-		{
-			var zoom = 13;		// #!# Currently fixed - need to compute dynamically, e.g. https://github.com/mapbox/mapbox-unity-sdk/issues/1125
-			var targetUrl = '/map/' + '#' + zoom + '/' + latitude.toFixed(6) + '/' + longitude.toFixed(6);
-			window.location.href = targetUrl;
-		},
-		
+	
 		
 		/*
 		 * Nav bar functions

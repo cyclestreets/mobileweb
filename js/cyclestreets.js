@@ -93,7 +93,10 @@ var cyclestreetsui = (function ($) {
 		loadTabsClassToggle: 'enabled',
 
 		// Use jQuery tabs to tabify main menu
-		useJqueryTabsRendering: false
+		useJqueryTabsRendering: false,
+
+		// Speed code values
+		speedCodeValues: { 1: 16, 2: 20, 3: 24 }
 	};
 	
 	// Class properties
@@ -838,9 +841,11 @@ var cyclestreetsui = (function ($) {
 			// Clicking a input panel focuses it -> fix for bug where clicking input on iOS would not trigger this
 			$('.panel.journeyplanner.search input').click ( function () {$(this).focus ();});
 
+
 			/* 
 			* JP: favourite and shortcut buttons
 			*/
+
 
 			// On startup, populate the POI shortcuts by mirroring the Places card
 			cyclestreetsui.buildJourneyPlannerPoiShortcuts ();
@@ -1031,6 +1036,7 @@ var cyclestreetsui = (function ($) {
 			/*
 			* Card generic handlers: authenticate, save, wizard, forward, backward
 			*/
+
 
 			// Handler for authenticated links, prompts user to log-in
 			$('.authenticated').click (function (event) {
@@ -1972,20 +1978,11 @@ var cyclestreetsui = (function ($) {
 		setCyclingSpeed: function () 
 		{
 			// Get the active distance unit
-			var cyclingSpeed = $('#cycling-speed').val ();
-			switch (cyclingSpeed) {
-				case '1':
-					routing.setCyclingSpeed ('16');
-					break;
-				case '2':
-					routing.setCyclingSpeed ('20');
-					break;
-				case '3':
-					routing.setCyclingSpeed ('24');
-					break;
-				default:
-					routing.setCyclingSpeed ('16');
-			}
+			var cyclingSpeedCode = $('#cycling-speed').val();
+			
+			// Set the cycling speed
+			if (!_settings.speedCodeValues.hasOwnProperty(cyclingSpeedCode)) {cyclingSpeedCode = 1;}	// Default to 16 (value 1) if unsupported value supplied
+			routing.setCyclingSpeed(_settings.speedCodeValues[cyclingSpeedCode]);
 		},
 
 

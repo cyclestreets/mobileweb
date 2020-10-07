@@ -1089,13 +1089,13 @@ var cyclestreetsui = (function ($) {
 
 				// Save each value in the cookie
 				$.each(nearestInputs, function (index, input) {
-					if ($(input).attr('type') == 'checkbox') {
-						$.cookie($(input).attr('id'), $(input).prop('checked'));
+					if ($(input).attr ('type') == 'checkbox') {
+						$.cookie($(input).attr ('id'), $(input).prop ('checked'), {expires: 30});
 					} else if ($(input).is ('li')) {
-						var segmentedControlId = $(input).parent().prop('id');
-						$.cookie(segmentedControlId, $(input).prop('id'));
+						var segmentedControlId = $(input).parent ().prop ('id');
+						$.cookie(segmentedControlId, $(input).prop ('id'), {expires: 30});
 					} else {
-						$.cookie($(input).attr('id'), $(input).val());
+						$.cookie($(input).attr ('id'), $(input).val (), {expires: 30});
 					}
 				});
 			})
@@ -1573,7 +1573,7 @@ var cyclestreetsui = (function ($) {
 
 
 			// Overwrite the POIS cookie and update the class variable
-			$.cookie('poisActivated', JSON.stringify(_poisActivated));
+			$.cookie('poisActivated', JSON.stringify(_poisActivated), {expires: 30});
 		},
 
 		

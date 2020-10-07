@@ -96,7 +96,10 @@ var cyclestreetsui = (function ($) {
 		useJqueryTabsRendering: false,
 
 		// Speed code values
-		speedCodeValues: { 1: 16, 2: 20, 3: 24 }
+		speedCodeValues: { 1: 16, 2: 20, 3: 24 },
+
+		// Element on which to display a routing "enabled" icon, while route is shown
+		routingEnabledElement: 'nav li.journeyplanner'
 	};
 	
 	// Class properties
@@ -542,7 +545,7 @@ var cyclestreetsui = (function ($) {
 				// Get the class name from the li
 				var className = this.className.split (' ')[0];
 				
-				// If we clicked the sign out buttom, sign out and do not open the account panel
+				// If we clicked the sign out bottom, sign out and do not open the account panel
 				if ($(this).hasClass ('signOut')) {
 					cyclestreetsui.signOut ();
 					
@@ -803,6 +806,9 @@ var cyclestreetsui = (function ($) {
 
 				// Save the search in cookie
 				routing.addToRecentJourneys ();
+
+				// Enable the active route icon
+				$('nav li.journeyplanner').addClass (_settings.loadTabsClassToggle);
 				
 				// Get routes from waypoints already on the map
 				routing.plannable (); // Will plan the route and create the result tabs

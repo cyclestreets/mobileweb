@@ -450,7 +450,8 @@ var cyclestreetsui = (function ($) {
 			});
 			
 			// Set additional layerviewer parameters
-			_settings.styleSwitcherContainer = '.panel.map-style';
+			// #!# Shouldn't really be added to global _settings, but a cloned object
+			_settings.styleSwitcherGraphical = '.panel.map-style';
 			
 			// Run the layerviewer for these settings and layers
 			layerviewer.initialise (_settings, _layerConfig);

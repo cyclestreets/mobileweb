@@ -449,6 +449,9 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 			
+			// Set additional layerviewer parameters
+			_settings.styleSwitcherContainer = '.panel.map-style';
+			
 			// Run the layerviewer for these settings and layers
 			layerviewer.initialise (_settings, _layerConfig);
 			_map = layerviewer.getMap ();

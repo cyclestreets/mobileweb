@@ -70,7 +70,10 @@ var cyclestreetsui = (function ($) {
 
 		// Whether to prompt before clearing route
 		promptBeforeClearingRoute: false,
-
+		
+		// Form rescan path
+		formRescanPath: '.{layerId} form',
+		
 		// Custom data loading spinner selector for layerviewer. For layer specific spinner, should contain layerId
 		dataLoadingSpinnerSelector: '.mainLoadingSpinner',
 

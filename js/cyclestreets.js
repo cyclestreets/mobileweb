@@ -123,7 +123,7 @@ var cyclestreetsui = (function ($) {
 		'pois',
 		'loginAndSignup'
 	];
-
+	
 	// Layer definitions
 	var _layerConfig = {
 		
@@ -473,19 +473,17 @@ var cyclestreetsui = (function ($) {
 			// Check for geolocation status
 			_map.on ('load', function () {
 				layerviewer.checkForGeolocationStatus (
-					function () 
-						{
-							// Adapt the UI to the geolocation availability
-							cyclestreetsui.adaptUiToGeolocationAvailability ();
-							
-							// If geolocation check is successful, center the map on user location
-							layerviewer.triggerGeolocation ();
-						}, 
-					function ()
-						{
-							// If an error occurs, adapt the UI to the geolocation availability
-							cyclestreetsui.adaptUiToGeolocationAvailability ();
-						},
+					function () {
+						// Adapt the UI to the geolocation availability
+						cyclestreetsui.adaptUiToGeolocationAvailability ();
+						
+						// If geolocation check is successful, center the map on user location
+						layerviewer.triggerGeolocation ();
+					}, 
+					function () {
+						// If an error occurs, adapt the UI to the geolocation availability
+						cyclestreetsui.adaptUiToGeolocationAvailability ();
+					},
 					true, true); // Force check, as flag is set to false at start
 			});
 
@@ -1611,7 +1609,7 @@ var cyclestreetsui = (function ($) {
 		 * Photomap upload screen
 		 */
 		photomap: function ()
-		{					
+		{
 			// In single marker mode, clicking a map (adding a marker) enabled the continue button
 			$('#map').click (function (event) {
 				if (routing.getSingleMarkerMode) {

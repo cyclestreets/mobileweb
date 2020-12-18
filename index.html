@@ -3,9 +3,15 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>CycleStreets - cycle routing</title>
+		
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1.0" />
+		
 		<link rel="icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/images/apple-touch-icon-57x57.png">
+		
 		<meta name="apple-mobile-web-app-capable" content="yes" />
+		
+		<!-- Sharing -->
 		<meta property="og:title" content="CycleStreets - UK-wide cycle routing and intelligence">
 		<meta name="twitter:card" content="photo">
 		<meta property="og:image" content="https://www.mobiledesign.cyclestreets.net/images/og-image.png">
@@ -14,19 +20,18 @@
 		<meta name="twitter:description" content="UK-wide cycle journey planner and photomap: for cyclists by cyclists">
 		<meta name="twitter:image" content="https://www.mobiledesign.cyclestreets.net/images/og-image-twitter.png">
 		<meta name="twitter:url" content="https://www.cyclestreets.net/">
-		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1.0" />
 		
 		<!-- jQuery-->
 		<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/2.0.2/jquery.mobile-events.js"></script>
 		<script src="/js/lib/jquery.ui.touch-punch.js"></script>
 		<script src="/js/lib/js-cookie/js.cookie.js"></script>
 		<script src="/js/lib/jquery-cookie/jquery.cookie.js"></script>
 
 		<!-- Mapbox -->
-		<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
-		<link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+		<script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+		<link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
 		<script src="/js/lib/mapbox-gl-draw/mapbox-gl-draw.js"></script>
 		<link rel="stylesheet" href="/js/lib/mapbox-gl-draw/mapbox-gl-draw.css" />
 
@@ -52,7 +57,7 @@
 		<script src="/js/lib/osm2geo/osm2geo.js"></script>
 		
 		<!-- chart.js -->
-		<script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 		
 		<!-- Read exif data from images -->
 		<script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
@@ -86,7 +91,7 @@
 		<!-- Hamburger menu -->
 			<nav>
 				<!-- <a href="#" id="closeNavButton" class="close-nav-button"><img src="/images/icon-cross-red.svg"></a> Include close button? -->
-				<div class="selector">
+				<div id="selector">
 					<ul>
 						<li class="journeyplanner">
 							<a href="#">Journey planner</a>
@@ -106,27 +111,27 @@
 						-->
 						<li class="data"><a href="#">Data</a>
 							<ul>
-								<li class=collisions>
+								<li class="collisions">
 									<input type="checkbox" name="show[]" id="show_collisions" />
 									<label for="show_collisions">Collisions</label>
 								</li>
-								<li class=trafficcounts>
+								<li class="trafficcounts">
 									<input type="checkbox" name="show[]" id="show_trafficcounts" />
 									<label for="show_trafficcounts">Traffic counts</label>
 								</li>
-								<li class=cycletheft>
+								<li class="cycletheft">
 									<input type="checkbox" name="show[]" id="show_cycletheft" />
 									<label for="show_cycletheft">Cycle theft</label>
 								</li>
-								<li class=cycleability>
+								<li class="cycleability">
 									<input type="checkbox" name="show[]" id="show_cycleability" />
 									<label for="show_cycleability">Cycleability</label>
 								</li>
-								<li class=planningapplications>
+								<li class="planningapplications">
 									<input type="checkbox" name="show[]" id="show_planningapplications" />
 									<label for="show_planningapplications">Planning applications</label>
 								</li>
-								<li class=groups>
+								<li class="groups">
 									<input type="checkbox" name="show[]" id="show_groups" />
 									<label for="show_groups">Cycling groups</label>
 								</li>												
@@ -162,7 +167,7 @@
 			</nav>
 			<main>
 				<!-- Main UI components -->
-				<div id='map'></div>
+				<div id="map"></div>
 				
 				<a href="#" id="hamburger-menu" class="ui-button ui-button-large" title="Open menu"><img src="/images/btn-burger-nav-rest.svg" alt="Hamburger menu icon" /></a>
 				<span class="mainLoadingSpinner"></span>
@@ -723,7 +728,7 @@
 					<a id="settings-done" class="action forward returnHome save" href="#" title="Save your settings and close this card">Done</a>
 					<h3>Saved locations</h3>
 					<ul>
-						<li class="setSavedLocation" id='homeLocation'>
+						<li class="setSavedLocation" id="homeLocation">
 							<img src="/images/icon-home-dark.svg" alt="Home icon" />
 							<a class="ui-button ui-button-large" href="#" title="Set your home location">Set your home location <img class="disclosure" src="/images/icon-disclosure-light.svg" alt="Set home location" /></a>
 						</li>

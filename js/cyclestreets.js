@@ -70,7 +70,10 @@ var cyclestreetsui = (function ($) {
 
 		// Whether to prompt before clearing route
 		promptBeforeClearingRoute: false,
-
+		
+		// Form rescan path
+		formRescanPath: '.{layerId} form',
+		
 		// Custom data loading spinner selector for layerviewer. For layer specific spinner, should contain layerId
 		dataLoadingSpinnerSelector: '.mainLoadingSpinner',
 
@@ -123,7 +126,7 @@ var cyclestreetsui = (function ($) {
 		'pois',
 		'loginAndSignup'
 	];
-
+	
 	// Layer definitions
 	var _layerConfig = {
 		
@@ -449,6 +452,10 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 			
+			// Set additional layerviewer parameters
+			// #!# Shouldn't really be added to global _settings, but a cloned object
+			_settings.styleSwitcherGraphical = '.panel.map-style';
+			
 			// Run the layerviewer for these settings and layers
 			layerviewer.initialise (_settings, _layerConfig);
 			_map = layerviewer.getMap ();
@@ -469,19 +476,17 @@ var cyclestreetsui = (function ($) {
 			// Check for geolocation status
 			_map.on ('load', function () {
 				layerviewer.checkForGeolocationStatus (
-					function () 
-						{
-							// Adapt the UI to the geolocation availability
-							cyclestreetsui.adaptUiToGeolocationAvailability ();
-							
-							// If geolocation check is successful, center the map on user location
-							layerviewer.triggerGeolocation ();
-						}, 
-					function ()
-						{
-							// If an error occurs, adapt the UI to the geolocation availability
-							cyclestreetsui.adaptUiToGeolocationAvailability ();
-						},
+					function () {
+						// Adapt the UI to the geolocation availability
+						cyclestreetsui.adaptUiToGeolocationAvailability ();
+						
+						// If geolocation check is successful, center the map on user location
+						layerviewer.triggerGeolocation ();
+					}, 
+					function () {
+						// If an error occurs, adapt the UI to the geolocation availability
+						cyclestreetsui.adaptUiToGeolocationAvailability ();
+					},
 					true, true); // Force check, as flag is set to false at start
 			});
 
@@ -1607,7 +1612,7 @@ var cyclestreetsui = (function ($) {
 		 * Photomap upload screen
 		 */
 		photomap: function ()
-		{					
+		{
 			// In single marker mode, clicking a map (adding a marker) enabled the continue button
 			$('#map').click (function (event) {
 				if (routing.getSingleMarkerMode) {

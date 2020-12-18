@@ -1055,7 +1055,8 @@ var cyclestreetsui = (function ($) {
 				if (!cyclestreetsui.updateLoggedInStatus ()) 
 				{	
 					// Get the panel that we are clicked the authenticated link from
-					_nextPanelAfterAuthentication = $(event.target).closest ('.panel');
+					var postAuthenticationPanel = $(event.target).data('afterauthenticate');
+					_nextPanelAfterAuthentication = (postAuthenticationPanel !== undefined ? postAuthenticationPanel : $(event.target).closest ('.panel'));
 					
 					// Display a notification
 					cyclestreetsui.displayNotification (

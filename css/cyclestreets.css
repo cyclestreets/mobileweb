@@ -469,3 +469,21 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
     .popup.photomap {width: 92%; margin: 5% auto; height: 392px;}
     .lines td, .lines th {padding: 0;}
 }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    body {background-color: #353433;}
+    .panel, .popup.notification {background-color: #353433;}
+    .panel::before {filter: invert(81%);}
+    input, textarea {background-color: #454545; color: #f0f0f0;}
+    ul.segmented-control label, .panel.journeyplanner.select ul.ui-tabs-nav label {border: 1px solid #454545; color: #fff;}
+    ul.segmented-control label:hover, .panel.settings ul.segmented-control label:hover, .panel.journeyplanner.select ul.ui-tabs-nav label:hover {background-color: #7f7f7e;}
+    
+    h2, h3, h4, h5, p, .itinerary td, label {color: #f0f0f0;}
+
+    .panel.settings img {filter: invert(100%);}
+
+    .panel.journeyplanner.select .elevation-chart-container {background: linear-gradient(to top, rgba(53, 52, 51, 1) 0%, 90%,  rgba(53, 52, 51, 0) 100%);}
+
+    .popup.places, .popup.photomap .popup-card {background-color: #353433;}
+}

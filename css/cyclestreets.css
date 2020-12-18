@@ -294,16 +294,17 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .wizard.photomap p {line-height: inherit;}
 
 /* Places card */
-.panel.pois {max-height: 50%;}
-.panel.pois .poisScrollableContainer {height: 300px; overflow-y: scroll;}
+.panel.pois {max-height: 39%;}
+.panel.pois .poisScrollableContainer {height: 196px; overflow-y: scroll;}
 .panel.pois ul {text-align: center;}
-.panel.pois ul li {display: inline-block; height: 90px; width: 80px; margin: 0 28px 15px 0; vertical-align: top;}
+.panel.pois ul li {display: inline-block; height: 90px; width: 80px; margin: 0 7px 15px 0; vertical-align: top;}
 .panel.pois ul li input {position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;} /* Hide the browser's default checkbox */
 .panel.pois ul li label {display: inline-block; opacity: 0.75; width: 65px; height: 65px; margin: 2px; border: 1px solid transparent; border-radius: 50%; background: #f5f5f5; color: #212322; text-decoration: none; text-align: center; box-shadow: 0 0 3px gray;}
 .panel.pois ul li input:checked ~ label {opacity: 1; background-color: #fefefe; border-color: #dc4f55}
 .panel.pois ul li label img {display: block; padding: 15px;}
 .panel.pois ul li label span {display: inline-block; text-align: center; word-wrap:normal; font-size: 13px; margin-top: 10px;}
-
+@media screen and (max-width: 680px) {.panel.pois {max-height: 24%;}}
+@media screen and (max-width: 480px) {.panel.pois {max-height: 50%;}}
 
 /*
  * Popup panels
@@ -479,12 +480,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
     #browse-search-box {color: #353433;}
     ul.segmented-control label, .panel.journeyplanner.select ul.ui-tabs-nav label {border: 1px solid #454545; color: #fff;}
     ul.segmented-control label:hover, .panel.settings ul.segmented-control label:hover, .panel.journeyplanner.select ul.ui-tabs-nav label:hover {background-color: #7f7f7e;}
-    
-    h2, h3, h4, h5, p, .itinerary td, label {color: #f0f0f0;}
-
+    h2, h3, h4, h5, p, .itinerary td, label, .panel.pois span {color: #f0f0f0;}
     .panel.settings img {filter: invert(100%);}
-
     .panel.journeyplanner.select .elevation-chart-container {background: linear-gradient(to top, rgba(53, 52, 51, 1) 0%, 90%,  rgba(53, 52, 51, 0) 100%);}
-
     .popup.places, .popup.photomap .popup-card {background-color: #353433;}
 }

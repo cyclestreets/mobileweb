@@ -450,7 +450,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 
 /* Screen-size specific adjustments */
 @media screen and (max-width: 320px) {
-    nav li a {font-size: 18px;}
+    nav li a {font-size: 15px;}
     nav #secondary-menu li a {font-size: 15px;}
     nav ul ul li label {font-size: 13px;}
     input, select, textarea {font-size: 12px;}

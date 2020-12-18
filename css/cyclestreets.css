@@ -476,6 +476,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
     .panel, .popup.notification {background-color: #353433;}
     .panel::before {filter: invert(81%);}
     input, textarea {background-color: #454545; color: #f0f0f0;}
+    #browse-search-box {color: #353433;}
     ul.segmented-control label, .panel.journeyplanner.select ul.ui-tabs-nav label {border: 1px solid #454545; color: #fff;}
     ul.segmented-control label:hover, .panel.settings ul.segmented-control label:hover, .panel.journeyplanner.select ul.ui-tabs-nav label:hover {background-color: #7f7f7e;}
     

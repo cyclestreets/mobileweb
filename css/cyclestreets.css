@@ -485,4 +485,5 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
     .panel.settings img {filter: invert(100%);}
     .panel.journeyplanner.select .elevation-chart-container {background: linear-gradient(to top, rgba(53, 52, 51, 1) 0%, 90%,  rgba(53, 52, 51, 0) 100%);}
     .popup.places, .popup.photomap .popup-card {background-color: #353433;}
+    .turnsicons {filter: hue-rotate(-44deg) contrast(200%) invert(100%);}
 }

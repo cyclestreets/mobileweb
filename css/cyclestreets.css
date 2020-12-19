@@ -359,7 +359,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .popup.notification {position: relative; margin: 20px 7.5%; padding: 10px; width: 80%; height: 60px; border-radius: 8px; background-color: #fbf6f8; transition: none; z-index: 99;}
 .popup.notification img {height: 30px; width: 30px; background-color: #fefefe; border-radius: 5px; padding: 15px; margin-right: 10px; float: left}
 .popup.notification p {display: inline-block; margin: 0 0 0 10px;}
-.popup.notification p.direction {width: 200px; margin-top: 10px; font-size: 17px;}
+.popup.notification p.direction {width: 180px; margin-top: 10px; font-size: 17px;}
 .popup.notification p.time {color: #dc4f55; margin-top: 10px; font-size: 14px;}
 .popup.notification p.distance {color: #8e8c8c; font-size: 14px;}
 
@@ -459,7 +459,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
     .panel.journeyplanner.select ul.ui-tabs-nav label {width: auto;}
     .panel.journeyplanner.search ul.segmented-control label {width: auto;}
     .panel.journeyplanner.select #itineraries .ui-tabs-panel table.itinerary {font-size: 13px;}
-    .popup.notification p.direction {font-size: 15px; width: 162px;}
+    .popup.notification p.direction {font-size: 15px; width: 100px;}
     .panel.journeyplanner.select ul li img {padding: 0; margin-right: 0;}
     .panel.settings ul li a.set {font-size: 14px;}
     .popup.places {margin: 2.5%; height: 82%;}

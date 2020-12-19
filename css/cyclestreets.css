@@ -177,7 +177,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.search ul.recent-journeys, .panel.journeyplanner.search ul.recent-searches {max-height: 111px; overflow-y: scroll; overflow-x: hidden; margin-right: -35px;}
 .panel.journeyplanner.search ul.places {max-height: 100px; overflow-x: scroll; margin: 0 -20px;}
 .panel.journeyplanner.search ul.recent-journeys a.clearRecentJourneys, .panel.journeyplanner.search ul.recent-searches a.clearRecentSearches {padding-bottom: 10px;}
-.panel.journeyplanner.search ul.recent-searches img {height: 30px; padding-right: !5px;}
+.panel.journeyplanner.search ul.recent-searches img {height: 30px; padding-right: 15px;}
 
 .panel.journeyplanner.search .recent-items .shortcutHorizontalScroll {display: inline-block; overflow-x: scroll; padding-left: 20px; width: 100%; margin: 0 0 0 -20px;}
 .panel.journeyplanner.search .recent-items ul.shortcut-icons {list-style-type: none; width: 450px; padding: 0; margin: 0; display: block; scrollbar-width: none;}
@@ -479,7 +479,8 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
     input, textarea {background-color: #454545; color: #f0f0f0;}
     #browse-search-box {color: #353433;}
     ul.segmented-control label, .panel.journeyplanner.select ul.ui-tabs-nav label {border: 1px solid #454545; color: #fff;}
-    ul.segmented-control label:hover, .panel.settings ul.segmented-control label:hover, .panel.journeyplanner.select ul.ui-tabs-nav label:hover {background-color: #7f7f7e;}
+    ul.segmented-control label:hover, .panel.settings ul.segmented-control label:hover, .panel.journeyplanner.search ul.segmented-control label:hover, .panel.journeyplanner.select ul.ui-tabs-nav label:hover {background-color: #7f7f7e;}
+    .panel.journeyplanner.select ul.ui-tabs-nav .ui-tabs-tab:hover {background: none;}
     h2, h3, h4, h5, p, .itinerary td, label, .panel.pois span {color: #f0f0f0;}
     .panel.settings img {filter: invert(100%);}
     .panel.journeyplanner.select .elevation-chart-container {background: linear-gradient(to top, rgba(53, 52, 51, 1) 0%, 90%,  rgba(53, 52, 51, 0) 100%);}

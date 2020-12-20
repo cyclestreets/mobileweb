@@ -973,8 +973,7 @@ var cyclestreetsui = (function ($) {
 				$('.panel.journeyplanner.search input').show ();
 
 				// Expand card, and resize map
-				$('.panel.journeyplanner.search').addClass ('open', 450).show ();
-				cyclestreetsui.fitMap (false, false, 450);
+				$('.panel.journeyplanner.search').addClass ('open').show ();
 				
 				// Drop a pin in the middle of the map as our default start position
 				if (addMapCenter) {routing.addMapCenter ();} 
@@ -985,9 +984,13 @@ var cyclestreetsui = (function ($) {
 				// If necessary, set a waypoint marker at the user's location	
 				if (setMarkerAtUserLocation) {routing.setMarkerAtUserLocation ();}
 				
-				// Focus on the first empty geocoder	
-				var inputs = $('.panel.journeyplanner.search input')
-				inputs.last().focus();
+				// Focus on the first empty geocoder
+				$('.panel.journeyplanner.search input').each (function () {
+					if ($(this).val() == '') {
+						this.focus();
+						return false;
+					}
+				});
 			}
 		},
 

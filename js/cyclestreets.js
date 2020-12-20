@@ -984,14 +984,10 @@ var cyclestreetsui = (function ($) {
 
 				// If necessary, set a waypoint marker at the user's location	
 				if (setMarkerAtUserLocation) {routing.setMarkerAtUserLocation ();}
-
-				// Focus on the first empty geocoder
-				$($('.panel.journeyplanner.search input')).each (function () {
-					if ($(this).val() == '') {
-						this.focus();
-						return false;
-					}
-				});
+				
+				// Focus on the first empty geocoder	
+				var inputs = $('.panel.journeyplanner.search input')
+				inputs.last().focus();
 			}
 		},
 

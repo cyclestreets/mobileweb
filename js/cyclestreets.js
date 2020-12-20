@@ -986,7 +986,7 @@ var cyclestreetsui = (function ($) {
 				if (setMarkerAtUserLocation) {routing.setMarkerAtUserLocation ();}
 
 				// Focus on the first empty geocoder
-				$('.panel.journeyplanner.search input').each (function () {
+				$($('.panel.journeyplanner.search input')).each (function () {
 					if ($(this).val() == '') {
 						this.focus();
 						return false;

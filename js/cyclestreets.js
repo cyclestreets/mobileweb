@@ -40,6 +40,9 @@ var cyclestreetsui = (function ($) {
 		// Icon size, set globally for all layers
 		iconSize: [38, 42],
 		
+		// Enable 3D terrain
+		enable3dTerrain: true,
+		
 		// Enable scale bar
 		enableScale: true,
 		

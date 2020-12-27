@@ -388,6 +388,7 @@ body .mapboxgl-map {line-height: 1.4;}
 #map .mapboxgl-popup-content span.unknown {color: #ccc; font-style: italic;}
 #map .mapboxgl-popup-content a.edit {float: right;}
 #map .mapboxgl-popup-content a.edit {color: #ccc; text-decoration: none;}
+#map .mapboxgl-popup {z-index: 2;}
 
 /* Layer-specific popup styling */
 .mapboxgl-popup.trafficcounts .mapboxgl-popup-content {min-width: 500px; max-width: 500px;}

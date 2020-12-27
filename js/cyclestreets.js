@@ -266,8 +266,8 @@ var cyclestreetsui = (function ($) {
 				+ '<li><img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">{properties.osmTags.phone}</p></li>'
 				+ '</ul>'
 				+ '<a href="#" class="share" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /></a>',
-			popupCallback: function (renderDetailsHtml, animation = false) {
-				cyclestreetsui.displayPoiPopup (renderDetailsHtml, animation);
+			popupCallback: function (renderDetailsHtml) {
+				cyclestreetsui.displayPoiPopup (renderDetailsHtml);
 			}
 		},
 		

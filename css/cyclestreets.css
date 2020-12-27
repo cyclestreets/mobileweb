@@ -28,7 +28,8 @@ nav a, nav label {transition: 0.3s;}
 nav a:hover, nav label:hover {color: #cc5959;}
 nav hr {color: #b1afb1; margin-left: 0; width: 50%;}
 nav #secondary-menu {padding-bottom: 70px;}
-nav #secondary-menu li a {font-size: 16px; color: #c5c2c3;}
+nav #secondary-menu li a {font-size: 16px; color: #c5c2c3; padding-top: 8px; padding-bottom: 8px;}
+nav #secondary-menu li a span.emoji {vertical-align: middle; line-height: 16px;}
 nav #secondary-menu li a:hover {color: #cc5959;}
 nav .badge-row {display: flex;}
 nav .text-column {width: 80%;}

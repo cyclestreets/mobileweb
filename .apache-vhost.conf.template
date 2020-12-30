@@ -1,0 +1,47 @@
+<VirtualHost *:80>
+	
+	# Available URL(s)
+	ServerName m.cyclestreets.net
+	
+	# Logging
+	CustomLog /var/log/apache2/mobile-access.log combined
+	ErrorLog /var/log/apache2/mobile-error.log
+	
+	# Redirect to HTTPS
+	Redirect Permanent / https://m.cyclestreets.net/
+	
+</VirtualHost>
+
+
+# Main host, running SSL
+<VirtualHost *:443>
+	
+	# Available URL(s)
+	ServerName m.cyclestreets.net
+	
+	# Logging
+	CustomLog /var/log/apache2/mobile-access_ssl.log combined
+	ErrorLog /var/log/apache2/mobile-error_ssl.log
+	
+	# Where the files are
+	DocumentRoot /var/www/mobiledesign/mobile-design/
+	Alias /js/lib/Mapboxgljs.LayerViewer /var/www/mobiledesign/Mapboxgljs.LayerViewer
+	Alias /js/lib/mobiledev /var/www/mobiledesign/mobiledev
+	
+	# Allow access
+	<Directory />
+		Require all granted
+	</Directory>
+	
+	# Allow redirects in .htaccess
+	<Directory />
+		AllowOverride FileInfo
+	</Directory>
+	
+	# Certificates
+	SSLEngine on
+	SSLCertificateFile      /etc/apache2/sslcerts/m.cyclestreets.net.crt
+	SSLCertificateKeyFile   /etc/apache2/sslcerts/m.cyclestreets.net.key
+	SSLCACertificateFile    /etc/apache2/sslcerts/m.cyclestreets.net.ca-bundle
+	
+</VirtualHost>

@@ -312,21 +312,28 @@ var cyclestreetsui = (function ($) {
 		photomap: {
 			apiCall: '/v2/photomap.locations',
 			apiFixedParameters: {
-				fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,iconUrl,categoryName,metacategoryName,datetime,apiUrl,shortlink',
+				fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,credit,licenseName,iconUrl,categoryName,metacategoryName,datetime,apiUrl,shortlink',
 				limit: 150,
 				thumbnailsize: 1000,
 				datetime: 'friendlydate'
 			},
 			iconField: 'iconUrl',		// icons specified in the field value
+			convertData: function (response) {
+				// Use credit rather username when it exists
+				$.each (response.features, function (index, feature) {
+					if (feature.properties.credit) {response.features[index].properties.username = feature.properties.credit;}
+				});
+				return response;
+			},
 			apiCallId: {
 				apiCall: '/v2/photomap.location',
 				idParameter: 'id',
-				apiFixedParameters:{
-					fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,licenseName,categoryName,metacategoryName,datetime,apiUrl,shortlink',
+				apiFixedParameters: {
+					fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,credit,licenseName,categoryName,metacategoryName,datetime,apiUrl,shortlink',
 					thumbnailsize: 1000,
 					datetime: 'friendlydate'
 				},
-				popupAnimation: true,
+				popupAnimation: true
 			},
 			popupCallback: function (renderDetailsHtml, animation = false) {
 				cyclestreetsui.displayPhotomapPopup (renderDetailsHtml, animation);

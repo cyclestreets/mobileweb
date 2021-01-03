@@ -1,5 +1,5 @@
-/*jslint browser: true, white: true, single: true, for: true */
-/*global $, jQuery, EXIF, vex, osm2geo, alert, console, window */
+/*jslint browser: true, white: true, single: true, for: true, long: true */
+/*global $, jQuery, layerviewer, routing, EXIF, findEXIFinHEIC, vex, osm2geo, alert, console, window */
 
 var cyclestreetsui = (function ($) {
 	
@@ -46,9 +46,6 @@ var cyclestreetsui = (function ($) {
 		// Enable scale bar
 		enableScale: true,
 		
-		// First-run welcome message
-		firstRunMessageHtml: false,
-
 		// Use existing geolocation button instead of Mapbox's
 		geolocationElementId: 'geolocate-button',
 
@@ -122,7 +119,7 @@ var cyclestreetsui = (function ($) {
 	var _shortcutLocations = ['home', 'work']; // Store shortcut locations in settings menu and JP card
 	var _notificationQueue = []; // Store any notifications in a queue
 	var _photomapUploadImage = []; // Store the Photomap upload photo while proceeding through the wizard
-	var _nextPanelAfterAuthentication = null // If we leave a panel to go to the log-in screen, redirect to the original panel after successful log-in
+	var _nextPanelAfterAuthentication = null; // If we leave a panel to go to the log-in screen, redirect to the original panel after successful log-in
 	
 	// Enable panels and additional functionality
 	var _actions = [
@@ -640,9 +637,10 @@ var cyclestreetsui = (function ($) {
 
 						// Do not switch to this card
 						return false;
+					}
 					
 					// Clicking the input/label of an activated Photomap/POI layer should not disable the layer, only open the card
-					} else if ($(event.target).closest ('li').hasClass ('enabled')) { 
+					if ($(event.target).closest ('li').hasClass ('enabled')) {
 						event.preventDefault ();
 						$(event.target).prop ('checked', true); // We just deactivated the input by clicking it, reactivate it
 					}
@@ -663,15 +661,15 @@ var cyclestreetsui = (function ($) {
 					// For example, we might not want to open .panel.journeyplanner.search, but .panel.journeyplanner.select instead, if that was the last card opened
 					// Find the latest matching subpanel with this class name, and if it exists, open it
 					var panel = $('.panel.' + className).first ();
-					var previousStateIndex = _breadcrumbs.findIndex (breadcrumbPanel => breadcrumbPanel.includes(className))
+					var previousStateIndex = _breadcrumbs.findIndex ((breadcrumbPanel) => breadcrumbPanel.includes(className));
 					
 					// If we found a previous state, go to this panel instead
 					if (previousStateIndex > -1) {
 						// Set out new pane
-						panel = _breadcrumbs[previousStateIndex]
+						panel = _breadcrumbs[previousStateIndex];
 						
 						// As we have "teleported" back a few steps, delete any breadcrumbs that were made in the meantime
-						_breadcrumbs.splice (0, previousStateIndex + 1)	
+						_breadcrumbs.splice (0, previousStateIndex + 1);
 					}
 					
 					// Display panel and resize map element
@@ -803,12 +801,12 @@ var cyclestreetsui = (function ($) {
 			$(document).on ('click', '.clearRecentSearches', function () {
 				routing.clearRecentSearches ();
 				cyclestreetsui.fitMap ();
-			})
+			});
 			$(document).on ('click', '.clearRecentJourneys', function () {
 				routing.clearRecentJourneys ();
 				cyclestreetsui.fitMap ();
-			})
-
+			});
+			
 			
 			/* 
 			* JP: inputs and route buttons 
@@ -939,7 +937,7 @@ var cyclestreetsui = (function ($) {
 				});
 		
 				// If we clicked on a shortcut location which is not set, display an alert, otherwise, add it to the geocoder inputs
-				var savedLocation = cyclestreetsui.retrieveSavedLocations ().find (obj => obj.title == shortcutLocationName);
+				var savedLocation = cyclestreetsui.retrieveSavedLocations ().find ((obj) => obj.title == shortcutLocationName);
 				if (!savedLocation) {
 					cyclestreetsui.displayNotification (
 						"You can set your " + shortcutLocationName + " location in Settings.", 
@@ -949,13 +947,13 @@ var cyclestreetsui = (function ($) {
 						}
 					);
 					return;
-				} else {
-					// Otherwise, add this waypoint to the geocoder inputs
-					// Strip the waypoint of it label, so the routing library can attribute it automatically
-					var waypoint = savedLocation.coordinates.pop ();
-					waypoint.label = null;
-					routing.addWaypointMarker (waypoint);
 				}
+				
+				// Otherwise, add this waypoint to the geocoder inputs
+				// Strip the waypoint of it label, so the routing library can attribute it automatically
+				var waypoint = savedLocation.coordinates.pop ();
+				waypoint.label = null;
+				routing.addWaypointMarker (waypoint);
 			});
 		},
 
@@ -1076,7 +1074,7 @@ var cyclestreetsui = (function ($) {
 				{	
 					// Get the panel that we are clicked the authenticated link from
 					var postAuthenticationPanel = $(event.target).data('afterauthenticate');
-					_nextPanelAfterAuthentication = (postAuthenticationPanel !== undefined ? postAuthenticationPanel : $(event.target).closest ('.panel'));
+					_nextPanelAfterAuthentication = (postAuthenticationPanel !== 'undefined' ? postAuthenticationPanel : $(event.target).closest ('.panel'));
 					
 					// Display a notification
 					cyclestreetsui.displayNotification (
@@ -1124,7 +1122,7 @@ var cyclestreetsui = (function ($) {
 						$.cookie($(input).attr ('id'), $(input).val (), {expires: 30});
 					}
 				});
-			})
+			});
 
 			// Generic handler for back actions
 			$('.action.back').click (function () {
@@ -1143,24 +1141,26 @@ var cyclestreetsui = (function ($) {
 				} 
 				else {
 					// If we have stored a previous breadcrumb, return to it
+					var element;
+					var fullscreen;
 					if (_breadcrumbs.length > 0) {
 						// Hide all panels
 						$('.panel').hide ();
 						
 						// Show the previous panel
 						var lastPanel = _breadcrumbs.shift ();
-						var element = $(lastPanel).first ();
+						element = $(lastPanel).first ();
 
 						$(element).show ();
-						var fullscreen = false
+						fullscreen = false;
 					}
 					else {
 						// Otherwise, if there are no breadcrumbs, return to the default home screen
 						cyclestreetsui.returnHome ();	
 						
 						// Set variables for fitMap
-						var element = false;
-						var fullscreen = true;
+						element = false;
+						fullscreen = true;
 					}
 
 					// Resize map element
@@ -1182,7 +1182,7 @@ var cyclestreetsui = (function ($) {
 					// Check whether we can progress
 					if (!cyclestreetsui.canProgress ('.' + currentPanel)) {
 						var notificationText = 'Please fill out all items in this panel to continue.';
-						cyclestreetsui.displayNotification (notificationText, '/images/icon-tourist-info-pos.svg')
+						cyclestreetsui.displayNotification (notificationText, '/images/icon-tourist-info-pos.svg');
 						return;
 					}
 					
@@ -1194,14 +1194,15 @@ var cyclestreetsui = (function ($) {
 					
 					// Find the next children of this panel, if we have any
 					var nextPanel = $(this).closest ('.panel').next (panelClass);
+					var nextPanelClass = null;
 					if (nextPanel.length) {
-						var nextPanelClass = '.' + nextPanel.attr ('class').replace (/\s/g, '.');
+						nextPanelClass = '.' + nextPanel.attr ('class').replace (/\s/g, '.');
 					}
 					
 					// Switch the panel
 					if (nextPanel.length) {
 						cyclestreetsui.switchPanel ('.' + currentPanel, nextPanelClass);
-
+						
 						// Resize map element
 						cyclestreetsui.fitMap (nextPanelClass, false, 100);
 					}
@@ -1320,12 +1321,12 @@ var cyclestreetsui = (function ($) {
 		animateElement: function (element, animation, onAnimationEnd = false, variable = true, prefix = 'animate__')
 		{
 			// Create a promise and return it
-			new Promise((resolve, reject) => {
+			new Promise ((resolve, reject) => {
 				const animationName = `${prefix}${animation}`;
 				const node = document.querySelector(element);
-
+				
 				node.classList.add(`${prefix}animated`, animationName);
-
+				
 				// When the animation ends, we clean the classes and resolve the Promise
 				function handleAnimationEnd() {
 					if (onAnimationEnd) {
@@ -1336,7 +1337,7 @@ var cyclestreetsui = (function ($) {
 					
 					resolve('Animation ended');
 				}
-
+				
 				node.addEventListener('animationend', handleAnimationEnd);
 			});
 		},
@@ -1364,7 +1365,7 @@ var cyclestreetsui = (function ($) {
 			$('#browse-search-box').addClass ('open');
 			$('#close-browse-box-icon').show ();
 			$('#glasses-icon').hide ();
-			$('#browse-search-box').animate ({width: '70%',}, "slow");
+			$('#browse-search-box').animate ({width: '70%'}, 'slow');
 			$('#browse-search-box').focus ();
 		},
 		
@@ -1405,7 +1406,7 @@ var cyclestreetsui = (function ($) {
 				if (!routing.getSingleMarkerLocation ().length) {
 					canProgress = false;
 					var notificationText = 'Please set a location for this photo.';
-					cyclestreetsui.displayNotification (notificationText, '/images/icon-add-photo-rest.svg')
+					cyclestreetsui.displayNotification (notificationText, '/images/icon-add-photo-rest.svg');
 				}
 			}
 			
@@ -1451,22 +1452,23 @@ var cyclestreetsui = (function ($) {
 			$('.panel').hide (); // Hide all panels
 			
 			// Show the last used journeyplanner panel, in a minimised position (i.e. search, select, etc)
-			var panelName = 'journeyplanner'
-			var previousStateIndex = _breadcrumbs.findIndex (breadcrumbPanel => breadcrumbPanel.includes (panelName))
+			var panelName = 'journeyplanner';
+			var previousStateIndex = _breadcrumbs.findIndex ((breadcrumbPanel) => breadcrumbPanel.includes (panelName));
 			
 			// If we found a previous state, go to this panel instead
+			var panel;
 			if (previousStateIndex > -1) {
-				var panel = _breadcrumbs[previousStateIndex]
+				panel = _breadcrumbs[previousStateIndex];
 				
 				// Reset any states the panel might have been in
-				panel = panel.replace ('.open', '')
-				panel = panel.replace ('.minimised', '')
+				panel = panel.replace ('.open', '');
+				panel = panel.replace ('.minimised', '');
 
 				// As we have "teleported" back a few steps, delete any breadcrumbs that were made in the meantime
-				_breadcrumbs.splice (0, previousStateIndex + 1)
+				_breadcrumbs.splice (0, previousStateIndex + 1);
 			} else {
 				// Show the default pannel, i.e. journeyplanner search
-				var panel = '.panel.journeyplanner.search'
+				panel = '.panel.journeyplanner.search';
 			}
 
 			// Show the panel
@@ -1485,24 +1487,23 @@ var cyclestreetsui = (function ($) {
 			// Main ridetracker panel actions
 			$('.panel.ridetracker.track .action.forward').click (function () {
 				if ($('.panel.ridetracker').hasClass ('tracking')) {
-						// Reset the ride tracking panel to default state
-						$('.panel.ridetracker.track').hide ();
-						$('.panel.ridetracker.track').removeClass ('tracking');
-						$('#cancel-tracking, #finish-tracking').removeClass ('enabled');
-						$('#my-rides-button, #start-ride-tracking').addClass ('enabled');
-						
-						// Open the add-details panel
-						cyclestreetsui.switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.add-details');
-					}
-				else {
-						// Add breadcrumb to enable the back chevron functionality
-						_breadcrumbs.unshift ('.panel.ridetracker.track');
-						
-						// Add tracking classes to adjust the appearance of this panel to satnav-mode
-						$('.panel.ridetracker.track').addClass ('tracking');
-						$('#my-rides-button, #start-ride-tracking').removeClass ('enabled');
-						$('#cancel-tracking, #finish-tracking'). addClass('enabled');
-					}
+					// Reset the ride tracking panel to default state
+					$('.panel.ridetracker.track').hide ();
+					$('.panel.ridetracker.track').removeClass ('tracking');
+					$('#cancel-tracking, #finish-tracking').removeClass ('enabled');
+					$('#my-rides-button, #start-ride-tracking').addClass ('enabled');
+					
+					// Open the add-details panel
+					cyclestreetsui.switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.add-details');
+				} else {
+					// Add breadcrumb to enable the back chevron functionality
+					_breadcrumbs.unshift ('.panel.ridetracker.track');
+					
+					// Add tracking classes to adjust the appearance of this panel to satnav-mode
+					$('.panel.ridetracker.track').addClass ('tracking');
+					$('#my-rides-button, #start-ride-tracking').removeClass ('enabled');
+					$('#cancel-tracking, #finish-tracking'). addClass('enabled');
+				}
 			});
 			
 			$('.panel.ridetracker.track .action.back').click (function () {
@@ -1513,9 +1514,12 @@ var cyclestreetsui = (function ($) {
 						$('#my-rides-button, #start-ride-tracking').addClass ('enabled');
 					}
 				// Otherwise, open the My Rides panel
+				/*
+				// #!# TODO
 				else {
-						//cyclestreetsui.switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.my-rides');
-					}
+					cyclestreetsui.switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.my-rides');
+				}
+				*/
 			});
 			
 			
@@ -1607,7 +1611,7 @@ var cyclestreetsui = (function ($) {
 		retrievePoisCookie: function ()
 		{
 			// Read the recent journeys from a cookie, or read the default array if no cookie present
-			var poisActivated = ($.cookie ('poisActivated') ? $.parseJSON($.cookie('poisActivated')) : _settings['defaultPoi']);
+			var poisActivated = ($.cookie ('poisActivated') ? $.parseJSON($.cookie('poisActivated')) : _settings.defaultPoi);
 			
 			// Loop through each POI ID and check the checkbox
 			$.each($(poisActivated), function (index, poiID) {
@@ -1645,7 +1649,7 @@ var cyclestreetsui = (function ($) {
 			
 			// When file input is changed, display a preview picture
 			$('#photomapFileUpload').on('change', function () {
-				if (typeof (FileReader) != "undefined") {
+				if (typeof (FileReader) !== 'undefined') {
 					// Empty the image holder from any previous photomap
 					var image_holder = $(".photomapFileUploadPreview");
 					image_holder.empty();
@@ -1653,19 +1657,18 @@ var cyclestreetsui = (function ($) {
 					// Initialise new FileReader and show image
 					var reader = new FileReader();
 					reader.onload = function (e) {
-						$("<img />", {
-							"src": e.target.result,
-							"class": "thumb-image"
+						$('<img />', {
+							'src': e.target.result,
+							'class': 'thumb-image'
 						}).appendTo(image_holder);
-		
-					}
+					};
 					image_holder.show();
 					_photomapUploadImage = $(this)[0].files[0];
 					reader.readAsDataURL(_photomapUploadImage);
 				} else {
 					// Display an error 
 					var notificationText = 'You can not upload photos on this device.';
-					cyclestreetsui.displayNotification (notificationText, '/images/icon-photomap-red.svg')
+					cyclestreetsui.displayNotification (notificationText, '/images/icon-photomap-red.svg');
 				}
 			});
 
@@ -1693,7 +1696,7 @@ var cyclestreetsui = (function ($) {
 					}, 
 					function () {
 						// Image had no geolocation data, so change the text on the card
-						$('.panel.photomap.add-location p').text ('Please set a location by tapping on the map. You can move the map to a place by searching.')
+						$('.panel.photomap.add-location p').text ('Please set a location by tapping on the map. You can move the map to a place by searching.');
 					}
 				);
 			});
@@ -1734,8 +1737,8 @@ var cyclestreetsui = (function ($) {
 					// Assemble additional data elements
 					// User identifier and password
 					var credentials = ($.cookie ('credentials') ? $.parseJSON($.cookie('credentials')) : []);
-					photomapUploadForm.append ('username', atob(credentials.identifier));
-					photomapUploadForm.append ('password', atob(credentials.password));
+					photomapUploadForm.append ('username', window.atob(credentials.identifier));
+					photomapUploadForm.append ('password', window.atob(credentials.password));
 					
 					// User defined latitude and longitude
 					var markerLocation = routing.getSingleMarkerLocation ();
@@ -1752,11 +1755,10 @@ var cyclestreetsui = (function ($) {
 						type: $('.wizard.photomap form').attr ('method'),
 						data: photomapUploadForm,
 						processData: false,
-						contentType: false,
-					}).done (function (result) 
-					{	
+						contentType: false
+					}).done (function (result) {
 						// Detect API error
-						if ('error' in result) {
+						if (result.hasOwnProperty ('error')) {
 							$('.feedback-submit.error p').text (result.error);
 							cyclestreetsui.switchPanel ('.panel', '.feedback-submit.error');
 
@@ -1775,7 +1777,7 @@ var cyclestreetsui = (function ($) {
 							$('.photomapFileUploadPreview').empty ();
 						
 							// Display a notification
-							cyclestreetsui.displayNotification ('Photo uploaded successfully', '/images/tick-green.png')
+							cyclestreetsui.displayNotification ('Photo uploaded successfully', '/images/tick-green.png');
 							
 							// Reset the can progress status of the form forward and back controls
 							$('.wizard.photomap .action.forward').removeClass ('enabled');
@@ -1798,7 +1800,7 @@ var cyclestreetsui = (function ($) {
 				// Get location data
 				var data = $(event.target).parents ('.popup').find ('.data').data ();
 				var locationId = data.locationId;
-				var shortlink = data.shortlink
+				var shortlink = data.shortlink;
 				var caption = data.caption;
 				var username = data.username;
 
@@ -1886,8 +1888,9 @@ var cyclestreetsui = (function ($) {
 		// Function to convert degrees, minutes, seconds to decimal
 		convertDMSToDD: function (degrees, minutes, seconds, direction) 
 		{	
-			var dd = (Number(degrees) + Number(minutes)/60 + Number(seconds)/3600).toFixed(6)
-			if (direction == "S" || direction == "W") {
+			var dd = Number(degrees) + (Number(minutes)/60) + (Number(seconds)/3600);
+			dd = dd.toFixed(6);
+			if (direction == 'S' || direction == 'W') {
 				dd = dd * -1; 
 			}
 			
@@ -1942,7 +1945,7 @@ var cyclestreetsui = (function ($) {
 				var location = routing.getSingleMarkerLocation ();
 				if (location.length < 1) {
 					var notificationText = 'Please set a location.';
-					cyclestreetsui.displayNotification (notificationText, '/images/icon-photomap-red.svg')
+					cyclestreetsui.displayNotification (notificationText, '/images/icon-photomap-red.svg');
 					return;
 				}
 
@@ -2031,13 +2034,14 @@ var cyclestreetsui = (function ($) {
 				// Find this ID in the result array
 				var newBlogPostCount = 0;
 				if (lastViewedBlogPostId) {
-					var lastViewedBlogPostIndex = result.findIndex(blogPost =>blogPost.id == lastViewedBlogPostId);
+					var lastViewedBlogPostIndex = result.findIndex((blogPost) => blogPost.id == lastViewedBlogPostId);
 					if (lastViewedBlogPostIndex == 0) {
 						// We have seen the latest blog post
 						return;
-					} else if (lastViewedBlogPostIndex > -1) {
+					}
+					if (lastViewedBlogPostIndex > -1) {
 						// The amount of new blog posts is equal to our marker index
-						newBlogPostCount = lastViewedBlogPostIndex
+						newBlogPostCount = lastViewedBlogPostIndex;
 					} else { // i.e., could not find this ID
 						// Otherwise, there are 10 new blog posts (the API retrieval limit)
 						newBlogPostCount = 10;
@@ -2045,7 +2049,7 @@ var cyclestreetsui = (function ($) {
 					
 					// Display a notification
 					var notificationText = 'There ' + (newBlogPostCount == 1 ? 'is' : 'are') + ' ' + newBlogPostCount + ((newBlogPostCount == 1) ? ' new blog post.': ' new blog posts.');
-					cyclestreetsui.displayNotification (notificationText, '/images/icon-hashtag.svg')
+					cyclestreetsui.displayNotification (notificationText, '/images/icon-hashtag.svg');
 				} else {
 					// New user, set the msot recent blog post as viewed
 					cyclestreetsui.setMostRecentBlogPostAsViewed ();
@@ -2104,7 +2108,7 @@ var cyclestreetsui = (function ($) {
 			var savedLocation = null;
 			var elementId = null;
 			$.each(_shortcutLocations, function (indexInArray, locationName) { 
-				savedLocation = savedLocations.find (obj => obj.title == locationName);
+				savedLocation = savedLocations.find ((obj) => obj.title == locationName);
 
 				// If we found a saved location, locate that label and update it in the settings panel
 				if (savedLocation) {
@@ -2143,7 +2147,7 @@ var cyclestreetsui = (function ($) {
 
 			// Enable masking/unmasking of password fields
 			$('.showOrHidePassword').click (function () {
-				this.previousElementSibling.type = $(this).hasClass ('show') ? 'text' : 'password';
+				this.previousElementSibling.type = ($(this).hasClass ('show') ? 'text' : 'password');
 				$(this).toggleClass ('show');
 				$(this).attr ('src', $(this).hasClass ('show') ? '/images/icon-eye.svg' : '/images/icon-eye-false.svg');
 			});
@@ -2216,7 +2220,7 @@ var cyclestreetsui = (function ($) {
 					$('.panel.account .loader').hide ();
 
 					// Detect API error
-					if ('error' in result) {
+					if (result.hasOwnProperty ('error')) {
 						cyclestreetsui.displayNotification (result.error, '/images/icon-tourist-info-pos.svg');
 
 						if (result.error.includes ('password')) {
@@ -2240,8 +2244,8 @@ var cyclestreetsui = (function ($) {
 						}
 						
 						// Encode the credentials in base 64
-						var identifier = btoa(unescape(encodeURIComponent($('.panel.account input[name="identifier"]').val())));
-						var password = btoa(unescape(encodeURIComponent($('.panel.account input[name="password"]').val())));
+						var identifier = window.btoa(window.unescape(encodeURIComponent($('.panel.account input[name="identifier"]').val())));
+						var password = window.btoa(window.unescape(encodeURIComponent($('.panel.account input[name="password"]').val())));
 						
 						var credentials = {
 							'identifier': identifier,
@@ -2289,7 +2293,7 @@ var cyclestreetsui = (function ($) {
 				}).done(function (result) 
 				{	
 					// Detect API error
-					if ('error' in result) {
+					if (result.hasOwnProperty ('error')) {
 						// Is this a username or password error? Based on error message, write the correct card to the breadcrumb trail
 						var returnToWhichPanel = null;
 						if (~result.error.indexOf('username')) {
@@ -2460,11 +2464,10 @@ var cyclestreetsui = (function ($) {
 			// If the display daemon is already working through a queue, let it do its job
 			if ($('.popup.system-notification').queue ('fx').length) {
 				return;
-			} else {
-				// Otherwise start to work through the notification queue
-				cyclestreetsui.notificationDaemon ();
 			}
 			
+			// Otherwise start to work through the notification queue
+			cyclestreetsui.notificationDaemon ();
 		},
 
 
@@ -2524,7 +2527,6 @@ var cyclestreetsui = (function ($) {
 		 */
 		developerTools: function ()
 		{
-			
 			//$('.panel').hide ();
 			//$('.popup.photomap').show ();
 			//$('.panel.journeyplanner.select').show ();

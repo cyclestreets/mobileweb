@@ -2044,7 +2044,7 @@ var cyclestreetsui = (function ($) {
 					}	
 					
 					// Display a notification
-					var notificationText = 'There are ' + newBlogPostCount + ((newBlogPostCount == 1) ? ' new blog post.': ' new blog posts.');
+					var notificationText = 'There ' + (newBlogPostCount == 1 ? 'is' : 'are') + ' ' + newBlogPostCount + ((newBlogPostCount == 1) ? ' new blog post.': ' new blog posts.');
 					cyclestreetsui.displayNotification (notificationText, '/images/icon-hashtag.svg')
 				} else {
 					// New user, set the msot recent blog post as viewed

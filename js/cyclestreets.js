@@ -102,7 +102,7 @@ var cyclestreetsui = (function ($) {
 		useJqueryTabsRendering: false,
 
 		// Speed code values
-		speedCodeValues: { 1: 16, 2: 20, 3: 24 },
+		speedCodeValues: { '1': 16, '2': 20, '3': 24 },
 
 		// Element on which to display a routing "enabled" icon, while route is shown
 		routingEnabledElement: 'nav li.journeyplanner',
@@ -2013,8 +2013,8 @@ var cyclestreetsui = (function ($) {
 			var cyclingSpeedCode = $('#cycling-speed').val();
 			
 			// Set the cycling speed
-			if (!_settings.speedCodeValues.hasOwnProperty(cyclingSpeedCode)) {cyclingSpeedCode = 1;}	// Default to 16 (value 1) if unsupported value supplied
-			routing.setCyclingSpeed(_settings.speedCodeValues[cyclingSpeedCode]);
+			if (!_settings.speedCodeValues.hasOwnProperty(cyclingSpeedCode)) {cyclingSpeedCode = '1';}	// Default to 16 (value 1) if unsupported value supplied
+			routing.setCyclingSpeed (_settings.speedCodeValues[cyclingSpeedCode]);
 		},
 
 

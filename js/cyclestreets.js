@@ -90,7 +90,7 @@ var cyclestreetsui = (function ($) {
 		setPanningIndicator: false,
 
 		// Whether to use MapboxGL JS's default navigation controls
-		useDefaultNavigationControls: false,
+		useDefaultNavigationControls: true,
 
 		// Whether to use MapboxGL JS's default geolocation control
 		hideDefaultGeolocationControl: false,

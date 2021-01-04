@@ -71,7 +71,7 @@ A supplied example Apache configuration is supplied.
 1. Create an Apache VirtualHost; this is necessary as the site employs mod_rewrite for proper permalink support
 2. Clone this repo
 3. Clone the [Mapboxgljs.LayerViewer library](https://github.com/cyclestreets/Mapboxgljs.LayerViewer) into /js/lib/ or use an alias as per the Apache configuration
-4. Clone the [mobiledev library](https://github.com/cyclestreets/mobiledev) into /js/lib/ or use an alias as per the Apache configuration
+4. Clone the [routing-ui library](https://github.com/cyclestreets/routing-ui) into /js/lib/ or use an alias as per the Apache configuration
 
 
 ## Code structure
@@ -82,7 +82,7 @@ The site structure is as follows:
 
 - (1) The current repo, which is a user interface class, defines the available data layers, and contains UI logic; it uses:
   - (2) The Mapboxgljs.LayerViewer library, which is a general UI library responsible for managing multiple layers on a map.
-  - (3) The mobiledev library (for the journey planner layer), which is a routing UI library, managing the mechanics of planning a route.
+  - (3) The routing-ui library (for the journey planner layer), which is a routing UI library, managing the mechanics of planning a route.
 
 The `index.html` file defines various libraries and then runs `/js/cyclestreets.js` which contains the site logic.
 
@@ -91,7 +91,7 @@ All URL requests, other than assets, are challenged into that index.html file, u
 
 ## Copyright
 
-Copyright CycleStreets Ltd, 2020-1.
+Copyright CycleStreets Ltd, 2020-21.
 
 
 ## License

@@ -61,6 +61,7 @@ Contributions and pull requests are very welcome.
 * Uses Mapbox GL JS mapping library
 
 
+
 ## Installation
 
 Contributions and pull requests are very welcome.
@@ -73,9 +74,24 @@ A supplied example Apache configuration is supplied.
 4. Clone the [mobiledev library](https://github.com/cyclestreets/mobiledev) into /js/lib/ or use an alias as per the Apache configuration
 
 
+## Code structure
+
+Three components are used: The current repo, a layer management library, and a routing UI library.
+
+The site structure is as follows:
+
+- (1) The current repo, which is a user interface class, defines the available data layers, and contains UI logic; it uses:
+  - (2) The Mapboxgljs.LayerViewer library, which is a general UI library responsible for managing multiple layers on a map.
+  - (3) The mobiledev library (for the journey planner layer), which is a routing UI library, managing the mechanics of planning a route.
+
+The `index.html` file defines various libraries and then runs `/js/cyclestreets.js` which contains the site logic.
+
+All URL requests, other than assets, are challenged into that index.html file, using rewriting at webserver level.
+
+
 ## Copyright
 
-Copyright CycleStreets Ltd, 2020.
+Copyright CycleStreets Ltd, 2020-1.
 
 
 ## License

@@ -51,7 +51,7 @@ var cyclestreetsui = (function ($) {
 
 		// Whether to plan routes the moment the map is clicked rather than wait until a routing button is pressed
 		planRoutingOnMapClick: false,
-
+		
 		// Whether to show the basic Mapbox toolbox
 		showToolBox: false,
 
@@ -729,9 +729,13 @@ var cyclestreetsui = (function ($) {
 		 * Journey planner functions
 		 */
 		journeyPlanner: function ()
-		{	
+		{
+			// Set the UI paths to supply to the routing library
+			_settings.plannerDivPath = '.panel.journeyplanner.search';
+			_settings.mapStyleDivPath = '.panel.map-style';
+			
 			// Initialise routing
-			routing.initialise (_settings, _map, _isMobileDevice, _panningEnabled);
+			routing.initialise (_settings, _map, _isMobileDevice, _panningEnabled, false);
 
 			// If we are loading a route from an ID, switch the Journey Planner to select panel
 			if (routing.getLoadingRouteFromId ()) {

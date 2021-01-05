@@ -1,5 +1,5 @@
 /* Routing */
-.itinerarymarker {width: 30px; height: 40px; cursor: pointer;}
+.itinerarymarker {width: 22px; height: 43px; cursor: pointer;}
 .mapboxgl-popup {width: 200px;}
 .mapboxgl-popup-content {text-align: center; font-size: 1.2em; border-radius: 5px; box-shadow: 5px 5px 10px #888;}
 .mapboxgl-ctrl-group h2 {font-size: 1em;}

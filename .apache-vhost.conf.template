@@ -26,7 +26,7 @@
 	# Where the files are
 	DocumentRoot /var/www/mobiledesign/mobile-design/
 	Alias /js/lib/Mapboxgljs.LayerViewer /var/www/mobiledesign/Mapboxgljs.LayerViewer
-	Alias /js/lib/mobiledev /var/www/mobiledesign/mobiledev
+	Alias /js/lib/routing-ui /var/www/mobiledesign/routing-ui
 	
 	# Allow access
 	<Directory />

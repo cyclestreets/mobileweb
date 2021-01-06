@@ -57,9 +57,9 @@ var cyclestreetsui = (function ($) {
 
 		// Images; size set in CSS with .itinerarymarker
 		images: {
-			start: '/images/wisps/start.png',
-			waypoint: '/images/wisps/waypoint.png',
-			finish: '/images/wisps/finish.png'
+			start: '/images/itinerarymarkers/start.png',
+			waypoint: '/images/itinerarymarkers/waypoint.png',
+			finish: '/images/itinerarymarkers/finish.png'
 		},
 
 		// Array with default POI(s) to show when opening the POIs card. This can either be a single POI or multiple

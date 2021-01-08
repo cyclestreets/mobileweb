@@ -470,6 +470,9 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 			
+			// Support for legacy redirects, which must be run before the map is loaded (to prevent map hash dominating)
+			cyclestreetsui.legacyRedirects ();
+			
 			// Set additional layerviewer parameters
 			// #!# Shouldn't really be added to global _settings, but a cloned object
 			_settings.styleSwitcherGraphical = '.panel.map-style';
@@ -2525,7 +2528,26 @@ var cyclestreetsui = (function ($) {
 			return myArray;
 		},
 		
-
+		
+		// Legacy redirects
+		legacyRedirects: function ()
+		{
+			// Initialise
+			var matched;
+			var redirectTo;
+			
+			// Journey planner, e.g. /journey/#72625074 or /journey/#72625074/balanced
+			if (window.location.pathname == '/journey/') {
+				matched = window.location.hash.match (/^#([0-9]+)(|\/quietest|\/balanced|\/fastest|\/shortest)$/);
+				if (matched) {
+					var strategyHash = (matched[2] ? '#' + matched[2].substring(1) : '');	// Maintain optional strategy hash
+					redirectTo = location.origin + /journey/ + matched[1] + '/' + strategyHash;
+					window.location.replace (redirectTo);
+				}
+			}
+		},
+				
+		
 		/*
 		 * Developer tools
 		 */

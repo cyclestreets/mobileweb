@@ -2437,6 +2437,14 @@ var cyclestreetsui = (function ($) {
 				}
 			});
 			
+			// Close popup if clicking elsewhere on the map, i.e. implied close
+			_map.on ('click', function (event) {
+				if ($('.popup').is (':visible')) {
+					$('.popup .close-button').click ();
+					event.stopPropagation ();
+				}
+			});
+			
 			// Flip photomap popup card
 			$(document).on ('click', '.popup a.flip', function () {
 				$('.inner-card').addClass('flipped');

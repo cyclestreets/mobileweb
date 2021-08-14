@@ -2421,13 +2421,20 @@ var cyclestreetsui = (function ($) {
 		 */
 		popupActions: function ()
 		{
-			// Close a popup panel
-			$(document).on ('click', '.popup .close-button', function(event) {
+			// Close a popup panel on click or escape
+			$(document).on ('click', '.popup .close-button', function (event) {
 				var popupElement = $(event.target).parents ('.popup').attr ('class');
 				var popupElementClass = '.' + popupElement.replace (' ', '.');
 				cyclestreetsui.animateElement (popupElementClass, 'zoomOut', function (element){
 					$('.popup').hide();
 				});
+			});
+			$(document).keyup (function (event) {
+				if ($('.popup').is (':visible')) {
+					if (event.key === 'Escape') {
+						$('.popup .close-button').click ();
+					}
+				}
 			});
 			
 			// Flip photomap popup card

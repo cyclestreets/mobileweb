@@ -219,27 +219,6 @@ var cyclestreetsui = (function ($) {
 				+ '<p><a href="{properties.url}"><img src="/images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
 		},
 		
-		bikeshare: {
-			apiCall: '/v2/pois.locations',
-			apiFixedParameters: {
-				type: 'londoncyclehire',	// NB This value likely to be changed (generalised) in future
-				limit: 400
-			},
-			iconField: 'iconUrl',
-			iconSize: [28, 28],
-			popupHtml:
-				  '<p><strong>Cycle hire dock</strong></p>'
-				+ '<p>{properties.name}</p>'
-				+ '<p>{properties.notes}</p>'
-		},
-		
-		triplengths: {
-			apiCall: '/v2/usage.journeylengths',
-			polygonStyle: 'grid',
-			popupHtml:
-				  '<p>Average distance: <strong>{properties.distance}km</strong>'
-		},
-		
 		pois: {
 			apiCall: '/v2/pois.locations',
 			apiFixedParameters: {
@@ -286,24 +265,6 @@ var cyclestreetsui = (function ($) {
 				+ 'Outcome: <strong>{properties.outcome_status.category}</strong><br />'
 				+ '</p>'
 				+ '<p>Note: The location given in the police data is <a href="https://data.police.uk/about/#location-anonymisation" target="_blank" title="See more details [link opens in a new window]">approximate</a>, for anonymity reasons.</p>'
-		},
-		
-		// https://www.cyclescape.org/api
-		issues: {
-			apiCall: 'https://www.cyclescape.org/api/issues.json',
-			apiKey: false,
-			apiFixedParameters: {
-				page: 1,
-				per_page: 100
-			},
-			iconUrl: '/images/icons/destinations_bad.svg',
-			polygonStyle: 'red',
-			popupHtml:
-				  '<p><strong><a href="{properties.cyclescape_url}">{properties.title}</a></strong></p>'
-				+ '<div class="scrollable">'
-				+ '{properties.description}'	// Already HTML
-				+ '</div>'
-				+ '<p><a href="{properties.cyclescape_url}">Full details</a></p>'
 		},
 		
 		photomap: {
@@ -364,35 +325,6 @@ var cyclestreetsui = (function ($) {
 				+ '</table>'
 		},
 		
-		// https://www.cyipt.bike/api/#width
-		widths: {
-			apiCall: 'https://www.cyipt.bike/api/v1/width.json',
-			sendZoom: true,
-			lineColourField: 'width',
-			lineColourStops: [
-				[14, '#4575b4'],
-				[12, '#74add1'],
-				[10, '#abd9e9'],
-				[8, '#e0f3f8'],
-				[6, '#fee090'],
-				[4, '#fdae61'],
-				[2, '#f46d43'],
-				[0, '#d73027']
-			],
-			lineWidthField: 'width',
-			lineWidthStops: [
-				[21, 8],
-				[14, 7],
-				[8, 6],
-				[5, 5],
-				[3, 4],
-				[0, 3]
-			],
-			popupHtml:
-				  '<p>Width: {properties.width}</p>'
-				+ '{%streetview}'
-		},
-		
 		// https://www.cyclestreets.net/api/v2/mapdata/
 		cycleability: {
 			apiCall: '/v2/mapdata',
@@ -424,36 +356,6 @@ var cyclestreetsui = (function ($) {
 				  '<p><strong>{properties.title}</strong></p>'
 				+ '<p>{properties.description}</p>'
 				+ '<p><a href="{properties.url}">Cyclescape group</a></p>'
-		},
-		
-		// https://www.cyclestreets.net/api/v2/isochrones.show/
-		howfar: {
-			apiCall: '/v2/isochrones.show',
-			iconUrl: '/images/icons/destinations_good.svg',
-			setMarker: 'lonlat',
-			polygonStyle: 'blue'
-		},
-		
-		
-		// OpenStreetMap; see: https://wiki.openstreetmap.org/wiki/API_v0.6
-		osm: {
-			apiCall: 'https://www.openstreetmap.org/api/0.6/map',	// Will return XML; see: https://wiki.openstreetmap.org/wiki/API_v0.6#Retrieving_map_data_by_bounding_box:_GET_.2Fapi.2F0.6.2Fmap
-			bbox: true,
-			dataType: 'xml',
-			minZoom: 19,
-			fullZoom: 19,
-			fullZoomMessage: 'OSM data is only available from zoom 19 - please zoom in further.',
-			style: {
-				LineString: {
-					'line-color': 'red',
-					'line-width': 3
-				}
-			},
-			convertData: function (osmXml) {
-				var geojson = osm2geo (osmXml);		// Requires osm2geo from https://gist.github.com/tecoholic/1396990
-				geojson.features = geojson.features.filter (function (feature) { return (feature.geometry.type == 'LineString'); });	// See: https://stackoverflow.com/a/2722213
-				return geojson;
-			}
 		}
 	};
 	

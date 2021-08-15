@@ -99,8 +99,12 @@ var cyclestreetsui = (function ($) {
 		useJqueryTabsRendering: false,
 
 		// Speed code values
-		speedCodeValues: { '1': 16, '2': 20, '3': 24 },
-
+		speedCodeValues: {
+			'1': 16,
+			'2': 20,
+			'3': 24
+		},
+		
 		// Element on which to display a routing "enabled" icon, while route is shown
 		routingEnabledElement: 'nav li.journeyplanner',
 		
@@ -133,6 +137,92 @@ var cyclestreetsui = (function ($) {
 	
 	// Layer definitions
 	var _layerConfig = {
+		
+		photomap: {
+			apiCall: '/v2/photomap.locations',
+			apiFixedParameters: {
+				fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,credit,licenseName,iconUrl,categoryName,metacategoryName,datetime,apiUrl,shortlink',
+				limit: 150,
+				thumbnailsize: 1000,
+				datetime: 'friendlydate'
+			},
+			iconField: 'iconUrl',		// icons specified in the field value
+			convertData: function (response) {
+				// Use credit rather username when it exists
+				$.each (response.features, function (index, feature) {
+					if (feature.properties.credit) {response.features[index].properties.username = feature.properties.credit;}
+				});
+				return response;
+			},
+			apiCallId: {
+				apiCall: '/v2/photomap.location',
+				idParameter: 'id',
+				apiFixedParameters: {
+					fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,credit,licenseName,categoryName,metacategoryName,datetime,apiUrl,shortlink',
+					thumbnailsize: 1000,
+					datetime: 'friendlydate'
+				},
+				popupAnimation: true
+			},
+			popupCallback: function (renderDetailsHtml, animation = false) {
+				cyclestreetsui.displayPhotomapPopup (renderDetailsHtml, animation);
+			},
+			popupHtml:
+			      '<div class="data" data-coordinates="{geometry.coordinates}" data-location-id="{properties.id}" data-caption="{properties.caption}" data-shortlink="{properties.shortlink}" data-username="{properties.username}"></div><div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><img class="popup-photo" data-src="{properties.thumbnailUrl}" alt="Photo" /><a href="#" class="get-directions" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a>'
+				+ '<p class="key">{properties.caption}</p><a class="share" href="#" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /> Share</a><a class="flip" href="#" title="Show more information"> Photo info</a></div>'
+				+ '<div class="flip-card-back popup-card"><a href="#" class="back" title="Return to the front of this card"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a><br />'
+				+ '<p class="key">Category:</p><p>{properties.categoryName}</p><br><p class="key">Type:</p><p> {properties.metacategoryName}</p><hr /><ul><li><img src="/images/icon-user.svg" alt="User icon" /><p> {properties.username}</p></li>'
+				+ '<li><img src="/images/icon-clock.svg" alt="Clock icon" /><p>{properties.datetime}</p></li><li><img src="/images/icon-hashtag.svg" alt="Photo number" /><p>{properties.id}</p></li><li><img src="/images/icon-copyright.svg" alt="Copyright" /><p>{properties.licenseName}</p></li></ul></div></div>',
+			//popupHtml: {'popupHtmlSelector': '.inner-card.flip-card-inner'},
+			detailsOverlay: 'apiUrl',
+			overlayHtml:
+				  '<table class="fullimage">'
+				+ '<tr>'
+				+ '<td>'
+				+ '<p><img src="{properties.thumbnailUrl}" /></p>'
+				+ '</td>'
+				+ '<td>'
+				+ '<p>'
+				+ '<strong>{properties.caption}</strong>'
+				+ '</p>'
+				+ '<table>'
+				// + '<tr><td>Date:</td><td>{properties.datetime}</td></tr>'
+				+ '<tr><td>By:</td><td>{properties.username}</td></tr>'
+				// + '<tr><td>Category:</td><td>{properties.categoryName} &mdash; {properties.metacategoryName}</td></tr>'
+				+ '</table>'
+				+ '{%streetview}'
+				+ '</td>'
+				+ '</tr>'
+				+ '</table>'
+		},
+		
+		pois: {
+			apiCall: '/v2/pois.locations',
+			apiFixedParameters: {
+				fields: 'id,latitude,longitude,name,osmTags,website,editlink,nodeId',
+				limit: 400,
+				thumbnailsize: 300,
+				datetime: 'friendlydate',
+				iconsize: 24
+			},
+			iconField: 'iconUrl', 	// icons specified in the field value
+			iconSize: [24, 24],
+			emptyPlaceholderText: '{%osmeditlink}',
+			popupHtml:
+				  '<div class="data" data-coordinates="{geometry.coordinates}" data-name="{properties.name}" data-id="{properties.id}"></div>'
+				+ '<div class="place-photo">{%streetview}</div>'
+				+ '<a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a>'
+				+ '<h2>{properties.name}</h2>'
+				+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>{properties.osmTags.addr:street}</p>'
+				+ '<ul>'
+				+ '<li><img src="/images/icon-clock.svg" alt="Opening times" /><p>{properties.osmTags.opening_hours}</p></li>'
+				+ '<li><img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">{properties.osmTags.phone}</p></li>'
+				+ '</ul>'
+				+ '<a href="#" class="share" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /></a>',
+			popupCallback: function (renderDetailsHtml, requestData, feature) {
+				cyclestreetsui.displayPoiPopup (renderDetailsHtml, requestData, feature);
+			}
+		},
 		
 		collisions: {
 			apiCall: '/v2/collisions.locations',
@@ -219,34 +309,6 @@ var cyclestreetsui = (function ($) {
 				+ '<p><a href="{properties.url}"><img src="/images/icons/bullet_go.png" /> <strong>View full details</a></strong></p>'
 		},
 		
-		pois: {
-			apiCall: '/v2/pois.locations',
-			apiFixedParameters: {
-				fields: 'id,latitude,longitude,name,osmTags,website,editlink',
-				limit: 400,
-				thumbnailsize: 300,
-				datetime: 'friendlydate',
-				iconsize: 24
-			},
-			iconField: 'iconUrl', 	// icons specified in the field value
-			iconSize: [24, 24],
-			emptyPlaceholderText: '{%osmeditlink}',
-			popupHtml: 
-				  '<div class="data" data-coordinates="{geometry.coordinates}" data-name="{properties.name}" data-id="{properties.id}"></div>'
-				+ '<div class="place-photo">{%streetview}</div>'
-				+ '<a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a>'
-				+ '<h2>{properties.name}</h2>'
-				+ '<a href="#" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a><p>{properties.osmTags.addr:street}</p>'
-				+ '<ul>'
-				+ '<li><img src="/images/icon-clock.svg" alt="Opening times" /><p>{properties.osmTags.opening_hours}</p></li>'
-				+ '<li><img src="/images/icon-telephone.svg" alt="Telephone contact" /><p class="phone">{properties.osmTags.phone}</p></li>'
-				+ '</ul>'
-				+ '<a href="#" class="share" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /></a>',
-			popupCallback: function (renderDetailsHtml) {
-				cyclestreetsui.displayPoiPopup (renderDetailsHtml);
-			}
-		},
-		
 		// https://data.police.uk/docs/method/crime-street/
 		// https://data.police.uk/api/crimes-street/bicycle-theft?poly=52.199295,0.124497:52.214312,0.124497:52.214312,0.1503753:52.1992,0.15037:52.19929,0.1244&date=2016-07
 		cycletheft: {
@@ -265,64 +327,6 @@ var cyclestreetsui = (function ($) {
 				+ 'Outcome: <strong>{properties.outcome_status.category}</strong><br />'
 				+ '</p>'
 				+ '<p>Note: The location given in the police data is <a href="https://data.police.uk/about/#location-anonymisation" target="_blank" title="See more details [link opens in a new window]">approximate</a>, for anonymity reasons.</p>'
-		},
-		
-		photomap: {
-			apiCall: '/v2/photomap.locations',
-			apiFixedParameters: {
-				fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,credit,licenseName,iconUrl,categoryName,metacategoryName,datetime,apiUrl,shortlink',
-				limit: 150,
-				thumbnailsize: 1000,
-				datetime: 'friendlydate'
-			},
-			iconField: 'iconUrl',		// icons specified in the field value
-			convertData: function (response) {
-				// Use credit rather username when it exists
-				$.each (response.features, function (index, feature) {
-					if (feature.properties.credit) {response.features[index].properties.username = feature.properties.credit;}
-				});
-				return response;
-			},
-			apiCallId: {
-				apiCall: '/v2/photomap.location',
-				idParameter: 'id',
-				apiFixedParameters: {
-					fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,credit,licenseName,categoryName,metacategoryName,datetime,apiUrl,shortlink',
-					thumbnailsize: 1000,
-					datetime: 'friendlydate'
-				},
-				popupAnimation: true
-			},
-			popupCallback: function (renderDetailsHtml, animation = false) {
-				cyclestreetsui.displayPhotomapPopup (renderDetailsHtml, animation);
-			},
-			popupHtml: 
-			      '<div class="data" data-coordinates="{geometry.coordinates}" data-location-id="{properties.id}" data-caption="{properties.caption}" data-shortlink="{properties.shortlink}" data-username="{properties.username}"></div><div class="inner-card flip-card-inner"><div class="flip-card-front popup-card"><a href="#" class="ui-button close-button" title="Close this popup"><img src="/images/icon-cross-red.svg" alt="Close icon" /></a><img class="popup-photo" data-src="{properties.thumbnailUrl}" alt="Photo" /><a href="#" class="get-directions" title="Get directions to this place"><img class="get-directions" src="/images/btn-get-directions-large.svg" /></a>'
-				+ '<p class="key">{properties.caption}</p><a class="share" href="#" title="Share this location"><img src="/images/icon-share.svg" alt="Share icon" /> Share</a><a class="flip" href="#" title="Show more information"> Photo info</a></div>'
-				+ '<div class="flip-card-back popup-card"><a href="#" class="back" title="Return to the front of this card"><img src="/images/icon-disclosure-red-left.svg" alt="Left chevron" /></a><br>' 
-				+ '<p class="key">Category:</p><p>{properties.categoryName}</p><br><p class="key">Type:</p><p> {properties.metacategoryName}</p><hr /><ul><li><img src="/images/icon-user.svg" alt="User icon" /><p> {properties.username}</p></li>'
-				+ '<li><img src="/images/icon-clock.svg" alt="Clock icon" /><p>{properties.datetime}</p></li><li><img src="/images/icon-hashtag.svg" alt="Photo number" /><p>{properties.id}</p></li><li><img src="/images/icon-copyright.svg" alt="Copyright" /><p>{properties.licenseName}</p></li></ul></div></div>',
-			//popupHtml: {'popupHtmlSelector': '.inner-card.flip-card-inner'},
-			detailsOverlay: 'apiUrl',
-			overlayHtml:
-				  '<table class="fullimage">'
-				+ '<tr>'
-				+ '<td>'
-				+ '<p><img src="{properties.thumbnailUrl}" /></p>'
-				+ '</td>'
-				+ '<td>'
-				+ '<p>'
-				+ '<strong>{properties.caption}</strong>'
-				+ '</p>'
-				+ '<table>'
-				// + '<tr><td>Date:</td><td>{properties.datetime}</td></tr>'
-				+ '<tr><td>By:</td><td>{properties.username}</td></tr>'
-				// + '<tr><td>Category:</td><td>{properties.categoryName} &mdash; {properties.metacategoryName}</td></tr>'
-				+ '</table>'
-				+ '{%streetview}'
-				+ '</td>'
-				+ '</tr>'
-				+ '</table>'
 		},
 		
 		// https://www.cyclestreets.net/api/v2/mapdata/
@@ -382,7 +386,7 @@ var cyclestreetsui = (function ($) {
 			// Run the layerviewer for these settings and layers
 			layerviewer.initialise (_settings, _layerConfig);
 			_map = layerviewer.getMap ();
-
+			
 			// Initialise the UI
 			cyclestreetsui.mainUI ();
 			cyclestreetsui.navBar ();
@@ -395,7 +399,7 @@ var cyclestreetsui = (function ($) {
 			$.each (_actions, function (setting, action) {
 				cyclestreetsui[action] ();
 			});
-
+			
 			// Check for geolocation status
 			_map.on ('load', function () {
 				layerviewer.checkForGeolocationStatus (
@@ -2483,5 +2487,5 @@ var cyclestreetsui = (function ($) {
 			//console.log($('.popup.photomap').prop('outerHTML'));
 		}
 		
-	};	
+	};
 } (jQuery));

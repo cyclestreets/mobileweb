@@ -1183,6 +1183,11 @@ var cyclestreetsui = (function ($) {
 			// Close the browse search box
 			$('#close-browse-box-icon').click (cyclestreetsui.hideBrowseSearchBox);
 			
+			// Close the browse search box on search item selection
+			$('.geocoder').on ('autocompleteselect', function (event, ui) {
+				cyclestreetsui.hideBrowseSearchBox ();
+			});
+			
 			// Slide up the ride notification on click
 			cyclestreetsui.setDefaultNotificationClickBehaviour ();
 

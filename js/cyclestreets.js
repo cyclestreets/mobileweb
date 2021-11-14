@@ -943,11 +943,15 @@ var cyclestreetsui = (function ($) {
 		{
 			// Swiping down on a panel minimises it
 			$('.panel').on ('swipedown', function () {
+				
 				// Prevent card from closing if we are reordering a input geocoder
-				if (!routing.getInputDragStatus ()){
-					$(this).removeClass ('open').addClass ('minimised', 400);
-					cyclestreetsui.fitMap (this, true, 410);
-				}
+				if (routing.getInputDragStatus ()) {return;}
+				
+				// Prevent card from closing if in a textarea which has focus, i.e. dragging within the textarea, e.g. feedback form
+				if ($('.panel textarea').is (':focus')) {return;}
+				
+				$(this).removeClass ('open').addClass ('minimised', 400);
+				cyclestreetsui.fitMap (this, true, 410);
 			});
 			
 			// Swiping up on a minimised panel expands it

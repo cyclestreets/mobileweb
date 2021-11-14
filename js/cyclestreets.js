@@ -600,7 +600,10 @@ var cyclestreetsui = (function ($) {
 		
 
 		// Close the nav bar
-		closeNav: function() {$('nav').hide ("slide", {direction: "left"}, 300);},
+		closeNav: function ()
+		{
+			$('nav').hide ("slide", {direction: "left"}, 300);
+		},
 
 
 		// Fit the map to any opened card
@@ -937,7 +940,7 @@ var cyclestreetsui = (function ($) {
 		 * Main UI functions
 		 */
 		mainUI: function ()
-		{	
+		{
 			// Swiping down on a panel minimises it
 			$('.panel').on ('swipedown', function () {
 				// Prevent card from closing if we are reordering a input geocoder
@@ -1339,7 +1342,8 @@ var cyclestreetsui = (function ($) {
 		},
 		
 		// Switch panel
-		switchPanel: function (currentPanel, destinationPanel) {
+		switchPanel: function (currentPanel, destinationPanel)
+		{
 			_breadcrumbs.unshift (currentPanel);
 			$(currentPanel).hide ();
 			$(destinationPanel).show ();
@@ -1349,7 +1353,8 @@ var cyclestreetsui = (function ($) {
 		},
 		
 		// Reset nav and move-map search box to their default states
-		resetUI: function () {
+		resetUI: function ()
+		{
 			// Close the nav bar
 			cyclestreetsui.closeNav ();
 			
@@ -1361,7 +1366,8 @@ var cyclestreetsui = (function ($) {
 		},
 		
 		// Set-up the default home-screen
-		returnHome: function () {
+		returnHome: function ()
+		{
 			cyclestreetsui.resetUI ();
 			$('.panel').hide (); // Hide all panels
 			
@@ -2427,7 +2433,7 @@ var cyclestreetsui = (function ($) {
 				}
 
 				// Slide down the notification, and hide it after a delay
-				// Upon completetion, call this function again
+				// Upon completion, call this function again
 				$('.popup.system-notification').slideDown ('slow');
 				$('.popup.system-notification').delay (2500).slideUp ('slow', cyclestreetsui.notificationDaemon);
 			} 

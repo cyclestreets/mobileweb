@@ -106,11 +106,11 @@ var cyclestreetsui = (function ($) {
 		},
 		
 		// Element on which to display a routing "enabled" icon, while route is shown
-		routingEnabledElement: 'nav li.journeyplanner',
+		routingEnabledElement: 'nav li.journeyplanner'
 		
 		// First-run welcome message
-		firstRunMessageHtml: '<p>Welcome the beta of our new mobile website from CycleStreets, the journey planning people.</p>'
-			+ '<p>Please do let us know any bugs you find, using the feedback link in the menu.</p>'
+//		firstRunMessageHtml: '<p>Welcome the beta of our new mobile website from CycleStreets, the journey planning people.</p>'
+//			+ '<p>Please do let us know any bugs you find, using the feedback link in the menu.</p>'
 	};
 	
 	// Class properties

@@ -2,7 +2,7 @@
   "name": "mobileweb",
   "version": "1.0.0",
   "description": "CycleStreets mobile website",
-  "main": "js-new/cyclestreets.js",
+  "main": "src/cyclestreets.js",
   "repository": "git@github.com:cyclestreets/mobileweb.git",
   "author": "CycleStreets Ltd",
   "license": "GPL-3.0-only",

@@ -10,7 +10,7 @@
     "@benmajor/jquery-touch-events": "^2.0.3",
     "Mapboxgljs.LayerViewer": "https://github.com/cyclestreets/Mapboxgljs.LayerViewer",
     "animate.css": "^4.1.1",
-    "chart.js": "2.9.3",
+    "chart.js": "2.9.4",
     "exif-heic-js": "https://github.com/exif-heic-js/exif-heic-js",
     "exif-js": "^2.3.0",
     "geojson": "^0.5.0",

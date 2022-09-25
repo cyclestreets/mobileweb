@@ -210,6 +210,7 @@ input:checked + .slider:before { -webkit-transform: translateX(26px); -ms-transf
 .panel.journeyplanner.select p {margin-top: 15px; text-align: center;}
 .panel.journeyplanner.select p.location {font-size: 13px; margin: 10px; padding: 0; color: #8e8c8c;}
 .panel.journeyplanner.select ul.journeyStats {padding-bottom: 15px;}
+.panel.journeyplanner.select ul.journeyStats li a {margin: 0 5px 0 15px; color: #212322;}
 .panel.journeyplanner.select .loader {display: block; margin: 5% auto; width: 38px; height: 38px;}
 .panel.journeyplanner.select #resultsTabs {max-height: 350px; padding-left: 20px; margin-top: -9px;}
 .panel.journeyplanner.select #itineraries {max-height: 350px; overflow-y: scroll; overflow-x: hidden; width: calc(100% + 40px); margin-left: -30px; margin-right: -20px;}

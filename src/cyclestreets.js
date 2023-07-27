@@ -144,7 +144,7 @@ var cyclestreetsui = (function ($) {
 			apiCall: '/v2/photomap.locations',
 			apiFixedParameters: {
 				fields: 'id,captionHtml,hasPhoto,thumbnailUrl,url,username,credit,licenseName,iconUrl,categoryName,metacategoryName,datetime,apiUrl,shortlink',
-				limit: 150,
+				limit: 30,
 				thumbnailsize: 1000,
 				datetime: 'friendlydate'
 			},

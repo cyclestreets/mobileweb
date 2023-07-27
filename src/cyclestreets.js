@@ -131,7 +131,6 @@ var cyclestreetsui = (function ($) {
 	// Enable panels and additional functionality
 	var _actions = [
 		'journeyPlanner',
-		'rideTracker',
 		'settings',
 		'photomap',
 		'pois',
@@ -1411,66 +1410,6 @@ var cyclestreetsui = (function ($) {
 		},
 			
 			
-		/*
-		 * Ride tracker actions
-		 */
-		rideTracker: function ()
-		{
-			// Main ridetracker panel actions
-			$('.panel.ridetracker.track .action.forward').click (function () {
-				if ($('.panel.ridetracker').hasClass ('tracking')) {
-					// Reset the ride tracking panel to default state
-					$('.panel.ridetracker.track').hide ();
-					$('.panel.ridetracker.track').removeClass ('tracking');
-					$('#cancel-tracking, #finish-tracking').removeClass ('enabled');
-					$('#my-rides-button, #start-ride-tracking').addClass ('enabled');
-					
-					// Open the add-details panel
-					cyclestreetsui.switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.add-details');
-				} else {
-					// Add breadcrumb to enable the back chevron functionality
-					_breadcrumbs.unshift ('.panel.ridetracker.track');
-					
-					// Add tracking classes to adjust the appearance of this panel to satnav-mode
-					$('.panel.ridetracker.track').addClass ('tracking');
-					$('#my-rides-button, #start-ride-tracking').removeClass ('enabled');
-					$('#cancel-tracking, #finish-tracking'). addClass('enabled');
-				}
-			});
-			
-			$('.panel.ridetracker.track .action.back').click (function () {
-				// If we are in satnav mode, cancel the tracking and return to default state
-				if ($('.panel.ridetracker.track').hasClass ('tracking')) {
-						$('.panel.ridetracker.track').removeClass ('tracking');
-						$('#cancel-tracking, #finish-tracking').removeClass ('enabled');
-						$('#my-rides-button, #start-ride-tracking').addClass ('enabled');
-					}
-				// Otherwise, open the My Rides panel
-				/*
-				// #!# TODO
-				else {
-					cyclestreetsui.switchPanel ('.panel.ridetracker.track', '.panel.ridetracker.my-rides');
-				}
-				*/
-			});
-			
-			
-			$('.panel.ridetracker.add-details .action.forward').click (function () {
-				cyclestreetsui.switchPanel ('.panel.ridetracker.add-details', '.panel.ridetracker.show-tracked-ride');
-			});
-			
-			// Enable the share sheet 
-			$('.panel.ridetracker.show-tracked-ride .action.forward').click (function () {
-				const shareData = {
-					title: 'My CycleStreets Journey',
-					text: 'View my latest journey here!',
-					url: 'https://www.cyclestreets.net/journey/52327060/'
-				};
-				navigator.share (shareData);
-			});
-		},
-		
-
 		/*
 		 * POIS selection screen actions
 		 */

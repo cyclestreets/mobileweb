@@ -202,7 +202,7 @@ var cyclestreetsui = (function ($) {
 			apiCall: '/v2/pois.locations',
 			apiFixedParameters: {
 				fields: 'id,latitude,longitude,name,osmTags,website,editlink,nodeId',
-				limit: 400,
+				limit: 100,
 				thumbnailsize: 300,
 				datetime: 'friendlydate',
 				iconsize: 24

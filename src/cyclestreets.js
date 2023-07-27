@@ -106,7 +106,10 @@ var cyclestreetsui = (function ($) {
 		},
 		
 		// Element on which to display a routing "enabled" icon, while route is shown
-		routingEnabledElement: 'nav li.journeyplanner'
+		routingEnabledElement: 'nav li.journeyplanner',
+		
+		// Element to which the journey planner results will be attached
+		resultsContainerDivPath: '#resultsTabs'
 		
 		// First-run welcome message
 //		firstRunMessageHtml: '<p>Welcome the beta of our new mobile website from CycleStreets, the journey planning people.</p>'

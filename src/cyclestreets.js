@@ -1223,11 +1223,6 @@ var cyclestreetsui = (function ($) {
 
 			// On startup, load and apply and cookies (settings, etc)
 			cyclestreetsui.loadAndApplyCookies ();
-
-			// Stop the iFrames (blog, donate) from loading; see also later handlers which reinstate on load
-			// #!# This can soon be replaced by native loading="lazy"; see: https://web.dev/iframe-lazy-loading/
-			window.frames[0].stop(); // blog
-			window.frames[1].stop(); // donate
 		},
 
 		

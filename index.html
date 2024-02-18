@@ -570,8 +570,9 @@
 							<h2>Create account</h2>
 							<a class="action back" href="#" title="Cancel account creation">Cancel</a>
 							<a class="action forward" href="#" title="Go to the next step">Next <img src="/images/icon-disclosure-red-right.svg" alt="Right chevron" /></a>
-							<p>Choose your CycleStreets username: </p>
-							<input name="username" placeholder="Username" required="required" />
+							<p>Choose your CycleStreets username:<br />(Must be all lower-case letters/numbers, at least 5 characters long.)</p>
+
+							<input name="username" placeholder="Username" required="required" pattern="[a-z0-9]{5,}" />
 						</div>
 						
 						<div class="panel choose-password">

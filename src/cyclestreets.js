@@ -230,7 +230,8 @@ var cyclestreetsui = (function ($) {
 			apiCall: '/v2/collisions.locations',
 			apiFixedParameters: {
 				jitter: '1',
-				datetime: 'friendly'
+				datetime: 'friendly',
+				"field:casualties" : 'Cyclist'
 			},
 			fullZoom: 17,
 			parameterNamespace: 'field:',		// See: https://www.cyclestreets.net/api/v2/collisions.locations/

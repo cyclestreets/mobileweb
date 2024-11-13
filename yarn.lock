@@ -258,9 +258,10 @@ es6-object-assign@1.1.0:
   resolved "https://registry.yarnpkg.com/es6-object-assign/-/es6-object-assign-1.1.0.tgz#c2c3582656247c39ea107cb1e6652b6f9f24523c"
   integrity sha512-MEl9uirslVwqQU369iHNWZXsI8yaZYGg/D65aOgZkeyFJwHYSxilf7rQzXKI7DdDuBPrBXbfk3sl9hJhmd5AUw==
 
-"exif-heic-js@https://github.com/exif-heic-js/exif-heic-js":
-  version "0.0.0"
-  resolved "https://github.com/exif-heic-js/exif-heic-js#cb5bf96d1af58fddbba21c3b31db77562b7d41d0"
+exif-heic-js@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/exif-heic-js/-/exif-heic-js-1.0.2.tgz#0cd6f0d7d22c7f15a6c1665346e370af6e21db71"
+  integrity sha512-DezOtMk6ghI6fD6yNEwRABnqzPFnM5JcjZfpaFXEQpRciBzsjFOo/9gwFIed1LAzAFHBLaO/JhqsBZpsWd3e1A==
 
 exif-js@^2.3.0:
   version "2.3.0"

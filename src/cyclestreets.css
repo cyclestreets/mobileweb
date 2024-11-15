@@ -481,7 +481,7 @@ body .mapboxgl-map {line-height: 1.4;}
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
     body {background-color: #353433;}
-    .panel, .popup.notification {background-color: #353433;}
+    .panel, .popup.notification, .mapboxgl-popup-content {background-color: #353433;}
     .panel::before {filter: invert(81%);}
     input, textarea {background-color: #454545; color: #f0f0f0;}
     #browse-search-box {color: #353433;}

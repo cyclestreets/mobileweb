@@ -250,8 +250,8 @@ var cyclestreetsui = (function ($) {
 				+ 'Date and time: <strong>{properties.datetime}</strong><br />'
 				+ 'Severity: <strong>{properties.severity}</strong><br />'
 				+ 'Casualties: <strong>{properties.casualties}</strong><br />'
-				+ 'No. of Casualties: <strong>{properties.Number_of_Casualties}</strong><br />'
-				+ 'No. of Vehicles: <strong>{properties.Number_of_Vehicles}</strong>'
+				+ 'Number of casualties: <strong>{properties.number_of_casualties}</strong><br />'
+				+ 'Number of vehicles: <strong>{properties.number_of_vehicles}</strong>'
 				+ '</p>'
 		},
 		

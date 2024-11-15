@@ -59,7 +59,14 @@ var cyclestreetsui = (function ($) {
 		images: {
 			start: '/images/itinerarymarkers/start.png',
 			waypoint: '/images/itinerarymarkers/waypoint.png',
-			finish: '/images/itinerarymarkers/finish.png'
+			finish: '/images/itinerarymarkers/finish.png',
+			
+			// Results container icons
+			distance: '/js/lib/routing-ui/images/resultscontainer/icon-cyclist.svg',
+			time: '/js/lib/routing-ui/images/resultscontainer/icon-clock.svg',
+			calories: '/js/lib/routing-ui/images/resultscontainer/icon-flame.svg',
+			co2: '/js/lib/routing-ui/images/resultscontainer/icon-leaf.svg',
+			gpx: '/js/lib/routing-ui/images/resultscontainer/icon-jp-red.svg'
 		},
 
 		// Array with default POI(s) to show when opening the POIs card. This can either be a single POI or multiple

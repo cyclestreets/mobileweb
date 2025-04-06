@@ -104,6 +104,7 @@ a.action.forward.white {color: #ffffff;}
 h2 {margin: 5px 0 10px 0; text-align: center; font-variant: small-caps;}
 ul {margin: 0; padding: 0;}
 ul li {list-style-type: none;}
+ul li input[type='search'] {width: calc(100% - 120px);}
 ul li select {display: inline-block; margin: 2px 0; padding: 0 20px; width: calc(100% - 120px); border-radius: 25px; text-align: left; text-decoration: none; background: #dc4f55; color: #f5f5f5;}
 textarea {display: inline-block; margin: 2px 0; padding: 10px 20px; height: 50px; width: calc(100% - 160px); border: none; border-radius: 25px; vertical-align: middle;}
 input {margin: 3px 0; padding: 0 20px; line-height: 50px; width: calc(100% - 100px); border: none; border-radius: 25px;}

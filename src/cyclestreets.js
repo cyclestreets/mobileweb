@@ -1714,6 +1714,13 @@ var cyclestreetsui = (function ($) {
 				};
 				navigator.share (shareData);
 			});
+			
+			// Prevent caption field return key causing form submission, resulting in an empty field on new page load
+			$('#search').keypress (function (event) {
+				if (event.keyCode == 13) {
+					event.preventDefault ();
+				}
+			});
 		},
 
 		// Display a Photomap popup

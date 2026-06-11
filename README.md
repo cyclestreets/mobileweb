@@ -54,9 +54,9 @@ Contributions and pull requests are very welcome.
 ## Credits
 
 * Routing by Simon Nuttall
-* Site development by Patrick Johansson
+* Site development by Lusitano Design
 * Library development by Martin Lucas-Smith
-* UX/UI design and concept by Martin Lucas-Smith & Patrick Johansson
+* UX/UI design and concept by Martin Lucas-Smith & Lusitano Design
 * UI design and icons by Jamie Watson
 * Uses Mapbox GL JS mapping library
 
